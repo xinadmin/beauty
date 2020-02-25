@@ -1,0 +1,300 @@
+/*.mui-bar {
+	background-color: #FF4404;
+  color: #fff !important;
+}
+body {
+	background-color: #fff;
+}
+.mui-content {
+	background: #fff;
+	margin-bottom: 4.8rem;
+}
+.xieyi h1 {
+	padding: 10px;
+	color: #000000;
+	font-weight: 500;
+	font-size: 1.0rem;
+}
+
+.xieyi p {
+	width: 100%;
+	padding: 0 10px;
+	color: #2E2E2E;
+	font-size: 0.9rem;
+	letter-spacing: 1.5px;
+	text-indent: 2em
+}
+
+.xuzhi-bottom {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: #fff;
+	overflow: hidden;
+	min-height: 4.6rem;
+}
+
+.xuzhi-bottom div {
+	font-size: 0.9rem;
+}
+
+#check-xuanze {
+	display: inline-block;
+	margin: 10px;
+	height: ;
+	border: solid 1px #000000;
+}
+
+#next {
+	display: block;
+	width: 98%;
+	margin: 0 auto;
+	padding: 10px;
+	background: #cdcdcd;
+	margin-bottom: 2px;
+	font-size: 1.0rem;
+	color: #333333;
+}
+
+
+.mui-input-row input {
+	font-size: 0.9rem;
+}
+
+#show_dizhi s {
+	padding: 4% 2% 4% 0;
+	font-size: 1.0rem;
+}
+
+#show_dizhi s i {
+	height: 2.2rem;
+	line-height: 2.2rem;
+	display: inline-block;
+}
+
+#show_dizhi s img {
+	margin: 0.4rem;
+	float: right;
+}
+
+#error {
+	display: block;
+	text-align: center;
+	height: 2.0rem;
+	line-height: 2.0rem;
+	background: #007AFF;
+	border-radius: 2px;
+}
+
+#first_message_page .none {
+	display: none;
+}
+
+#zhengmian_pic {
+	width: 96%;
+	padding: 0 4% 2%;
+	overflow: hidden;
+}
+
+#zhengmian_pic h1 {
+	color: #000000;
+	height: 2.0rem;
+	line-height: 2.0rem;
+	font-size: 0.8rem;
+}
+
+#zhengmian_pic form {
+	width: 4.6rem;
+	height: 4.5rem;
+	display: inline-block;
+	border: 1px #e6e6e6 solid;
+	background: url(http://yiyun.zhonyou.cn/webapp_img/addpic.png) no-repeat center center;
+	background-size: 2.5rem, 2.5rem;
+}
+
+#zhengmian_pic form.border {
+	border: solid 2px #E6E6E6;
+}
+
+#zhengmian_pic p {
+	width: 4.6rem;
+	height: 4.5rem;
+	position: relative;
+	display: inline-block;
+	float: left;
+	margin-right: 0.5rem;
+}
+
+#zhengmian_pic p:last-child {
+	display: none;
+}
+
+#zhengmian_pic p img {
+	width: 4.6rem;
+	height: 4.5rem;
+}
+
+#zhengmian_pic p s {
+	display: block;
+	background-color: rgba(0, 0, 0, 0.4);
+	width: 100%;
+	height: 4.5rem;
+	line-height: 4.5rem;
+	z-index: 999;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: center;
+	color: #fff;
+}*/
+
+body {
+background-color: #fff
+}
+.mui-bar {
+	background-color: #ff3300;
+}
+.mui-content {
+	background: #fff;
+	margin-bottom: 4.8rem;
+}
+.xieyi h1 {
+	padding: 10px;
+	color: #000000;
+	font-weight: 500;
+	font-size: 1.0rem;
+}
+
+.xieyi p {
+	width: 100%;
+	padding: 0 10px;
+	color: #2E2E2E;
+	font-size: 0.9rem;
+	letter-spacing: 1.5px;
+	text-indent: 2em
+}
+
+.xuzhi-bottom {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: #fff;
+	overflow: hidden;
+	min-height: 4.6rem;
+}
+
+.xuzhi-bottom div {
+	font-size: 0.9rem;
+}
+
+#check-xuanze {
+	display: inline-block;
+	margin: 10px;
+	height: ;
+	border: solid 1px #000000;
+}
+
+#next {
+	display: block;
+	width: 98%;
+	margin: 0 auto;
+	padding: 10px;
+	background: #cdcdcd;
+	margin-bottom: 2px;
+	font-size: 1.0rem;
+	color: #333333;
+}
+
+
+.mui-input-row input {
+	font-size: 0.9rem;
+}
+
+#show_dizhi s {
+	padding: 4% 2% 4% 0;
+	font-size: 1.0rem;
+}
+
+#show_dizhi s i {
+	height: 2.2rem;
+	line-height: 2.2rem;
+	display: inline-block;
+}
+
+#show_dizhi s img {
+	margin: 0.4rem;
+	float: right;
+}
+
+#error {
+	display: block;
+	text-align: center;
+	height: 2.0rem;
+	line-height: 2.0rem;
+	background: #007AFF;
+	border-radius: 2px;
+}
+
+#first_message_page .none {
+	display: none;
+}
+
+#zhengmian_pic {
+	width: 96%;
+	padding: 0 4% 2%;
+	overflow: hidden;
+}
+
+#zhengmian_pic h1 {
+	color: #000000;
+	height: 2.0rem;
+	line-height: 2.0rem;
+	font-size: 0.8rem;
+}
+
+#zhengmian_pic form {
+	width: 4.6rem;
+	height: 4.5rem;
+	display: inline-block;
+	border: 1px #e6e6e6 solid;
+	background: url(../img/addpic.png) no-repeat center center;
+	background-size: 2.5rem, 2.5rem;
+}
+
+#zhengmian_pic form.border {
+	border: solid 2px #E6E6E6;
+}
+
+#zhengmian_pic p {
+	width: 4.6rem;
+	height: 4.5rem;
+	position: relative;
+	display: inline-block;
+	float: left;
+	margin-right: 0.5rem;
+}
+
+#zhengmian_pic p:last-child {
+	display: none;
+}
+
+#zhengmian_pic p img {
+	width: 4.6rem;
+	height: 4.5rem;
+}
+
+#zhengmian_pic p s {
+	display: block;
+	background-color: rgba(0, 0, 0, 0.4);
+	width: 100%;
+	height: 4.5rem;
+	line-height: 4.5rem;
+	z-index: 999;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: center;
+	color: #fff;
+}

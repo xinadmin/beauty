@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/sousuo.css" />
+		<title>产品搜索</title>
+		<style type="text/css">
+			
+<style type="text/css">
+.mui-content {
+	background: #EEEEEE;
+}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<span class="mui_back delete_page mui-action-back" ></span>
+			<div id="sousuokuang">
+				<div id="outer_sousuo">
+					<input type="text" placeholder="面膜" id="sousuokuang_message" onkeyup="checkInput(this)" />
+					<s class="none" onclick="clearInput(this)"></s>
+				</div>
+			</div>
+			<span class="sousuo_btn" id="sousuokuang_btn"></span>
+		</header>
+		<div class="mui-content" id="nav_item">
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	var soulistpage = null;
+	var search_all = [];
+	mui.init({
+		swipeBack: true
+	});
+	mui.plusReady(function() {
+		check_item();
+		$('#sousuokuang_message').attr("autofocus", true);
+		document.activeElement.focus(); //隐藏软键盘
+		soulistpage = mui.preload({
+			url: 'sousuo_list.html',
+			id: 'sousuo_list',
+		})
+	})
+
+	function check_item() {
+		var html = "";
+		var search_val = window.localStorage.getItem("search");
+		html += "<p>搜索历史</p>";
+		if(search_val) {
+			search_all = search_val.split(",");
+			var hash = [];
+			for(var i = 0; i < search_all.length; i++) {
+				if(hash.indexOf(search_all[i]) == -1) {
+					hash.push(search_all[i]);
+					html += "<span><i>" + search_all[i] + "</i> <s></s></span>";
+				}
+				$('#nav_item').html(html);
+			}
+			window.localStorage.setItem("search", hash);
+		} else {
+			$('#nav_item').html(html);
+		}
+	}
+
+	window.addEventListener("focus_input", function() {
+		check_item();
+		$("#sousuokuang_message").focus();
+		document.activeElement.focus();
+	})
+
+	function checkInput(element) {
+		var value = $(element).val();
+		if(value != null && '' != value) {
+			$(element).parent().children('s').removeClass('none');
+		} else {
+			$(element).parent().children('s').addClass('none');
+		}
+	}
+
+	function clearInput(element) {
+		$(element).parent().children('#sousuokuang_message').val('');
+		$(element).parent().children('#sousuokuang_message').focus();
+		$(element).addClass('none');
+	}
+
+	document.getElementById("sousuokuang_btn").addEventListener('tap', function() {
+		var sousuo_value = document.getElementById("sousuokuang_message").value;
+		if(sousuo_value == "" || sousuo_value == null) {
+			sousuo_value = "面膜"
+		}
+		select_ok(sousuo_value);
+	});
+	document.getElementById("sousuokuang_message").addEventListener("keydown", function(e) {
+		if(13 == e.keyCode) { //点击了“搜索”   
+			document.activeElement.blur(); //隐藏软键盘 
+
+			var sousuo_value = document.getElementById("sousuokuang_message").value;
+			if(!sousuo_value) {
+				sousuo_value = "面膜";
+			}
+			select_ok(sousuo_value);
+		}
+	}, false);
+
+	function select_ok(item) {
+		if(window.localStorage.getItem("search") != null) {
+			var search_one = window.localStorage.getItem("search");
+			var search_val = search_one.split(",");
+			search_val.push(item);
+			window.localStorage.setItem("search", search_val);
+		} else {
+			window.localStorage.setItem("search", item);
+		}
+			mui.fire(soulistpage, 'get_listdetail', {
+				value: item //产品id
+			});
+			setTimeout(function() {
+				soulistpage.show("slide-in-right", 300);
+			}, 150);
+	}
+	mui("#nav_item").on("tap", "s", function() {
+		var delete_id = $(this);
+		var detale_val = $(this).siblings("i").text();
+		$(this).parent("span").remove();
+		var search_val = window.localStorage.getItem("search");
+		if(search_val) {
+			var search_two = search_val.split(",");
+			var hash = [];
+			if(search_two.length >= 2) {
+				for(var i = 0; i < search_two.length; i++) {
+					if(hash.indexOf(detale_val) == -1) {
+						hash.push(search_all[i]);
+					}
+				}
+				window.localStorage.setItem("search", hash);
+			} else {
+				window.localStorage.removeItem("search");
+			}
+		}
+	})
+	mui("body").on("tap", "i", function() {
+		var sousuo_value = $(this).text();
+		if(!sousuo_value) {
+			return false;
+		}
+		mui.fire(soulistpage, 'get_listdetail', {
+			value: sousuo_value //产品id
+		});
+		setTimeout(function() {
+			soulistpage.show("slide-in-right", 300);
+		}, 150);
+	});
+</script>

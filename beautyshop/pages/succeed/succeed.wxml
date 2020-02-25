@@ -1,0 +1,37 @@
+<view>
+  <view class='xiadancg'>
+    <image class='chenggong' src='/pages/img/succeed.png' />
+    <view class='xiadantx'>购买订单成功，开始到店提货/预约</view>
+  </view>
+  <view class='wai_bor' wx:if="{{guanbi}}">
+  <!-- <image src='/pages/img/guanbi.png' id='guanbi' bindtap='cha'></image> -->
+    <view class='nei_bor'>
+      <view class='nei_text'>恭喜您获得本次消费返利</view>
+      <view class='nei_num'><text>¥</text><text id='shu'>{{red_packet}}</text></view>
+      <view class='nei_text_a'><image src='/pages/img/tishi.png' id='tishi'></image>已放入您的钱包中</view>
+    </view>
+  </view>
+<view class="container" wx:if="{{chou}}">
+  <!-- 停止位置:<input value='{{luckPosition}}' style="width:100%;text-align:center" bindinput='input' type='number'></input> -->
+  <view class='frame_view'>
+    <view class='frame_row'>
+      <image class='frame_item' style='opacity:{{color[0]}}' src='{{images[0]}}'></image>
+      <image class='frame_item' style='opacity:{{color[1]}}' src='{{images[1]}}'></image>
+      <image class='frame_item' style='opacity:{{color[2]}}' src='{{images[2]}}'></image>
+    </view>
+
+    <view class='frame_row'>
+      <image class='frame_item' style='opacity:{{color[7]}}' src='{{images[7]}}'></image>
+      <image class='frame_item' src='{{btnconfirm}}' bindtap='{{clickLuck}}'></image>
+      <image class='frame_item' style='opacity:{{color[3]}}' src='{{images[3]}}'></image>
+    </view>
+
+    <view class='frame_row'>
+      <image class='frame_item' style='opacity:{{color[6]}}' src='{{images[6]}}'></image>
+      <image class='frame_item' style='opacity:{{color[5]}}' src='{{images[5]}}'></image>
+      <image class='frame_item' style='opacity:{{color[4]}}' src='{{images[4]}}'></image>
+    </view>
+  </view>
+</view>
+
+</view>

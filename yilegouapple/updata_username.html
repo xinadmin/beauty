@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/upset.css" />
+		<title>更改用户名</title>
+		<style type="text/css">
+			.mui-content {
+				width: 96%;
+				margin: 2% auto;
+				background: #f0f4f3;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #FF3300;">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;font-weight: 500;">绑定手机号</span></button>
+
+		</header>
+		<div class="mui-content">
+			<div id="upset_outer">
+				<input type="text" id="new_tel" placeholder="输入新的用户名/昵称" />
+			</div>
+			<label>注意：修改后用户名可用于登录</label>
+			<input type="button" value="修改" id="baocun" />
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	mui.init({
+		swipeBack: true
+	});
+    var url_app=mui.app_url();
+	mui.plusReady(function() {
+				var local = window.localStorage;
+				var uid = local.getItem("uid");
+				document.getElementById("baocun").addEventListener("tap", function() {
+					var new_tel = $("#new_tel").val();
+					var uPattern = /^[a-zA-Z0-9_-]{3,16}$/;
+					if(!uPattern.test(new_tel)) {
+						mui.toast("用户名/昵称4到16位（字母，数字，下划线，减号）");
+					} else {
+						if(uid != "" || uid != null) {
+							if(new_tel != null && new_tel != "") {
+								var wd = plus.nativeUI.showWaiting();
+								mui.ajax(url_app+'SysUser/updateuserName', {
+									type: 'POST', //HTTP请求类型  
+									timeout: 10000, //超时时间设置为10秒；
+									data: {
+										userName: new_tel, //新改号码
+										uid: uid
+									},
+									headers: {
+										'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+									},
+									success: function(data) {
+										wd.close();
+										if(data == 1) {
+											mui.fire(plus.webview.getWebviewById("anquan"), 'reset_user', null);
+											mui.back();
+											local.setItem("user_name", new_tel);
+										} else if(data == -2) {
+											mui.toast("用户名/昵称已存在");
+										} else {
+											mui.toast("修改失败");
+										}
+									},
+									error: function(xhr, type, errorThrown) {
+										//异常处理；    
+										wd.close();
+										mui.toast("系统繁忙，稍后再试");
+									}
+								});
+							} else {
+								mui.toast("请填写完整再进行修改");
+							}
+						} else {
+							mui.toast("当前无法修改用户名，请退出重新登录进来");
+
+						}
+					};
+				})
+				})
+				
+</script>

@@ -1,0 +1,187 @@
+<include src="../../common/common" />
+<view class='order_all'>
+  <view class="my_list" id="my_list">
+    <view class="dingdan_zhuangtai">
+
+      <view id="item" class="{{selected?'sanjiao':''}}" bindtap="selected">全部</view>
+      <view id="item" class="{{selected1?'sanjiao':''}}" bindtap="selected1">服务</view>
+      <view id="item" class="{{selected2?'sanjiao':''}}" bindtap="selected2">待付款</view>
+      <view id="item" class="{{selected3?'sanjiao':''}}" bindtap="selected3">待提货</view>
+      <view id="item" class="{{selected4?'sanjiao':''}}" bindtap="selected4">待评价</view>
+
+    </view>
+  </view>
+
+  <view class="dingdan">
+    <view id="dingdan_item" class="{{selected?'show':'hidden'}}">
+      <view class="item_fukuan_list">
+        <view class='dingdan_list' id='fukuan' wx:for="{{order_list}}" wx:key="unique">
+            <navigator url='../order_detail/order_detail?order_id={{item.order_id}}'>
+          <view class='dingdan_biaohao'>
+            <span class="bianhao">{{item.meirongyuan_name}}
+
+            </span>
+            <span class='fr zhuangtai'>{{item.meirongyuanName}}</span>
+          </view>
+
+         
+            <view class='dingdan_list_message' id='' data-id="订单ID">
+
+              <view class="div_img">
+                <image src='{{item.goods_img}}' />
+              </view>
+              <view class='dingdan_all'>
+                <span class="name_produce fl">{{item.goods_name}}</span>
+                <span class="fr">￥{{item.pay_money}}</span>
+                <br />
+                <s class='num'>x{{item.goods_num}}</s>
+                <b class="fr">{{item.pay_money}}</b>
+              </view>
+            </view>
+          </navigator>
+
+
+        </view>
+
+      </view>
+    </view>
+
+    <view id="dingdan_item" class="{{selected1?'show':'hidden'}}">
+      <view class="item_fukuan_list">
+        <view class='dingdan_list' id='fukuan' wx:for="{{order_list_one}}" wx:key="unique">
+          <view class='dingdan_biaohao'>
+            <span class="bianhao">{{item.meirongyuan_name}}
+
+            </span>
+            <span class='fr zhuangtai'>{{item.meirongyuanName}}</span>
+          </view>
+
+          <navigator url='../order_detail/order_detail?order_id={{item.order_id}}'>
+            <view class='dingdan_list_message' id='' data-id="订单ID">
+
+              <view class="div_img">
+                <image src='{{item.goods_img}}' />
+              </view>
+              <view class='dingdan_all'>
+                <span class="name_produce fl">{{item.goods_name}}</span>
+                <span class="fr">￥{{item.pay_money}}</span>
+                <br />
+                <s class='num'>x{{item.goods_num}}</s>
+                <b class="fr">{{item.pay_money}}</b>
+              </view>
+            </view>
+          </navigator>
+          <view class="btn_take_goods">
+            <navigator url='../order_yuyue/order_yuyue?order_id={{item.order_id}}'>
+              <text class="ok_take_goods">服务预约</text>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view id="dingdan_item" class="{{selected2?'show':'hidden'}}">
+      <view class="item_fukuan_list">
+        <view class='dingdan_list' id='fukuan' wx:for="{{order_list_two}}" wx:key="unique">
+          <view class='dingdan_biaohao'>
+            <span class="bianhao">{{item.meirongyuan_name}}
+            </span>
+            <span class='fr zhuangtai'>{{item.meirongyuanName}}</span>
+          </view>
+          <navigator url='../order_detail/order_detail?order_id={{item.order_id}}'>
+            <view class='dingdan_list_message' id='' data-id="订单ID">
+              <view class="div_img">
+                <image src='{{item.goods_img}}' />
+              </view>
+              <view class='dingdan_all'>
+                <span class="name_produce fl">{{item.goods_name}}</span>
+                <span class="fr">￥{{item.pay_money}}</span>
+                <br />
+                <s class='num'>x{{item.goods_num}}</s>
+                <b class="fr">{{item.pay_money}}</b>
+              </view>
+            </view>
+          </navigator>
+          <view class="btn_take_goods">
+            <navigator url=''>
+              <text class="ok_take_goods" data-orderid="{{item.order_id}}" data-type="{{item.shipping_type}}" data-goodsname="{{item.goods_name}}" data-id="{{item.pay_money}}" data-out_trade_no="{{item.out_trade_no}}" data-goods_id="{{item.goods_id}}" bindtap='pay'>立即付款</text>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view id="dingdan_item" class="{{selected3?'show':'hidden'}}">
+      <view class="item_fukuan_list">
+        <view class='dingdan_list' id='fukuan' wx:for="{{order_list_three}}" wx:key="unique">
+          <view class='dingdan_biaohao'>
+            <span class="bianhao">{{item.meirongyuan_name}}
+            </span>
+            <span class='fr zhuangtai'>{{item.meirongyuanName}}</span>
+          </view>
+          <navigator url='../order_detail/order_detail?order_id={{item.order_id}}'>
+            <view class='dingdan_list_message' id='' data-id="订单ID">
+              <view class="div_img">
+                <image src='{{item.goods_img}}' />
+              </view>
+              <view class='dingdan_all'>
+                <span class="name_produce fl">{{item.goods_name}}</span>
+                <span class="fr">￥{{item.pay_money}}</span>
+                <br />
+                <s class='num'>x{{item.goods_num}}</s>
+                <b class="fr">{{item.pay_money}}</b>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </view>
+    <view id="dingdan_item" class="{{selected4?'show':'hidden'}}">
+      <view class="item_fukuan_list">
+        <view class='dingdan_list' id='fukuan' wx:for="{{order_list_four}}" wx:key="unique">
+          <view class='dingdan_biaohao'>
+            <span class="bianhao">{{item.meirongyuan_name}}
+            </span>
+            <span class='fr zhuangtai'>{{item.meirongyuanName}}</span>
+          </view>
+          <navigator url='../order_detail/order_detail?order_id={{item.order_id}}'>
+            <view class='dingdan_list_message' id='' data-id="订单ID">
+              <view class="div_img">
+                <image src='{{item.goods_img}}' />
+              </view>
+              <view class='dingdan_all'>
+                <span class="name_produce fl">{{item.goods_name}}</span>
+                <span class="fr">￥{{item.pay_money}}</span>
+                <br />
+                <s class='num'>x{{item.goods_num}}</s>
+                <b class="fr">{{item.pay_money}}</b>
+              </view>
+            </view>
+          </navigator>
+          <view class="btn_take_goods">
+            <navigator url='../dealValuation/dealValuation?orderId={{item.order_id}}'>
+              <text class="ok_take_goods">立即评价</text>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</view>
+
+
+<view class="tui-loading-row">
+  <view class="tui-loading-cell">
+    <view class="circle-line">
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+    </view>
+  </view>
+</view>

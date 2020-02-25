@@ -1,0 +1,224 @@
+	.mui-content {
+		background-color: #EEEEEE;
+		margin-bottom: 3.9rem;
+	}
+	
+	#xuanze_order {
+		display: inline-block;
+		/*height: 1.8rem;*/
+		height: 30px;
+		width: 50%;
+		position: fixed;
+		left: 50%;
+		top: 7px;
+		margin-left: -25%;
+		border-radius: 3px;
+	}
+	
+	#xuanze_order button {
+		float: left;
+		font-size: 0.8rem;
+		width: 50%;
+		height: 100%;
+		line-height: 100%;
+		color: #333333;
+		border-radius: 0;
+		outline: none;
+	}
+	
+	#xuanze_order button.active {
+		background: #8cc63e;
+		color: #fff;
+		border-radius: 0;
+	}
+	#nav_all_order {
+		width: 100%;
+		overflow: hidden;
+	}
+	.dingdan_zhuangtai {
+		width: 100%;
+		background: #F8F8F8;
+		overflow: hidden;
+		box-shadow: 0 1px 10px 1px #ddd;
+		margin-bottom: 5px;
+	}
+	
+	.dingdan_zhuangtai li {
+		float: left;
+		text-align: center;
+		width: 25%;
+		color: #fff;
+		position: relative;
+	}
+	
+	.dingdan_zhuangtai li p {
+		color: #000000;
+		height: 2.5rem;
+		line-height: 2.5rem;
+		display: inline-block;
+	}
+	
+	.dingdan_zhuangtai li p.active {
+		border-bottom: solid 2px #8cc63e;
+	}
+	
+	.dingdan {
+		width: 100%;
+		overflow: hidden;
+	}
+	
+	#dingdan_item {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		/*display: none;*/
+	}
+	
+	.dingdan_list {
+		width: 100%;
+		background: #fff;
+		margin: 0px auto 0.6rem;
+		box-shadow: 1px 2px 10px 2px #ddd;
+	}
+	
+	.dingdan_biaohao {
+		width: 94%;
+		margin: 0 auto;
+	}
+	
+	.dingdan_biaohao h1,
+	.dingdan_biaohao h2 {
+		display: inline-block;
+		height: 2.2rem;
+		font-weight: 500;
+		font-size: 0.8rem;
+		line-height: 2.2rem;
+	}
+	
+	.dingdan_biaohao h2 {
+		font-size: 0.7rem;
+		color: #FF4500;
+	}
+	
+	.dingdan_list_message {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0 2%;
+		background: rgba(0, 0, 0, 0.03);
+		overflow: hidden;
+		border-bottom: solid #fff 2px;
+	}
+	
+	.dingdan_list_message img {
+		width: 22%;
+		float: left;
+		margin: 0.6rem 0.6rem 0 0;
+	}
+	
+	.dingdan_all {
+		float: left;
+		width: 74%;
+		height: 100%;
+		max-height: 6.0rem;
+		padding-top: 0.3rem;
+	}
+	
+	.dingdan_all h3 {
+		text-align: left;
+		width: 70%;
+		float: left;
+		padding: 3px 0;
+		box-sizing: border-box;
+		min-height: 20px;
+		max-height: 40px;
+		height: 40px;
+		line-height: 20px;
+		color: #222222;
+		overflow-y: hidden;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+		font-size: 0.7rem;
+	}
+	
+	.dingdan_all h4 {
+		height: 1.6rem;
+		line-height: 1.6rem;
+		float: right;
+		width: 30%;
+		text-align: right;
+		font-size: 0.7rem;
+	}
+	
+	.dingdan_all h5 {
+		font-size: 0.7rem;
+		color: #5D6164;
+		height: 1.9rem;
+		text-align: left;
+		line-height: 1.9rem;
+	}
+	
+	.dingdan_all h6 {
+		height: 1.6rem;
+		line-height: 1.6rem;
+		color: #555555;
+		font-size: 0.8rem;
+		text-align: left;
+		overflow: hidden;
+		width: 90%;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	
+	.dingdan_bottom {
+		width: 96%;
+		height: 2.6rem;
+		padding-top: 0.4rem;
+		margin: 0 auto;
+	}
+	
+	.dingdan_bottom button {
+		height: 1.8rem;
+		float: right;
+		line-height: 1.8rem;
+		border-radius: 5px;
+		padding: 0 0.3rem;
+		color: #fe6006;
+		border: solid 1px #fe6006;
+	}
+	
+	.dingdan_bottom button#ok {
+		margin-right: 0.3rem;
+	}
+	
+	.dingdan_bottom button:active {
+		background: #fe6006;
+		color: #fff;
+		border-color: #fe6006;
+	}
+	/*无订单时样式*/
+	
+	#xian {
+		width: 100%;
+		text-align: center;
+		margin-top: 5rem;
+	}
+	
+	color: #020202;
+	#xian h1 {
+		height: 2.4rem;
+		line-height: 2.4rem;
+		font-size: 1.0rem;
+	}
+	
+	#xian h2 {
+		color: #555555;
+		height: 2.0rem;
+		line-height: 2.0rem;
+		font-size: 0.7rem;
+	}
+	.fixed {
+		position: fixed;
+		left: 0;
+	}

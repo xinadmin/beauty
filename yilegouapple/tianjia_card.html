@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<title>添加银行卡</title>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;background-color:#fd4404 ;">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left"><span class="mui-icon mui-icon-left-nav" style="color: #fff;font-size: 1.2rem;;">添加银行卡</span></button>
+			<a id="icon-help" class="mui-pull-right"><span class="mui-icon mui-icon-help" style="color: #fff;"></span></a>
+		</header>
+		<div class="mui-content">
+			<h1 style="min-height: 30px; line-height: 30px;padding-left: 2%;font-size: 0.8rem;">请绑定持卡人本人的银行卡</h1>
+			<form class="mui-input-group">
+				<div class="mui-input-row" style="position: relative;">
+					<label>持卡人</label>
+					<input type="text" placeholder="姓名" id="name">
+					<a id="icon-info"><span class="mui-icon mui-icon-info" style="color: #ff3300;position: absolute; right: 2%;top: 20%;"></span></a>
+
+				</div>
+				<div class="mui-input-row">
+					<label>所属银行</label>
+					<select value="">
+						<option value="农业银行">农业银行</option>
+						<option value="建设银行">建设银行</option>
+						<option value="中国银行">中国银行</option>
+						<option value="工商银行">工商银行</option>
+					</select>
+				</div>
+				<div class="mui-input-row">
+					<label>卡号</label>
+					<input type="number" class="mui-input-clear" id="card" placeholder="请输入卡号">
+				</div>
+				<div class="mui-input-row">
+					<label>手机号</label>
+					<input type="tel" class="mui-input-clear" id="tel" placeholder="银行卡绑定的手机号">
+				</div>
+				<div class="mui-input-row">
+					<label>身份证号</label>
+					<input type="text" class="mui-input-clear" id="idcard" placeholder="请输入身份证号">
+				</div>
+
+			</form>
+			<button id="wancheng" style="width: 90%;text-align: center;height: 2.5rem;line-height:2.5rem;margin:2% 5%;background-color: #ff3300;color: #fff;">完成</button/>
+			</div>
+	</body>
+</html>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js" ></script>
+<script>
+	mui.init({
+		swipeBack: true
+	});
+    var url_app=mui.app_url();
+	$(function(){
+		$("#wancheng").click(function(){
+			var uid=window.localStorage.getItem("uid");
+			var type = $('select  option:selected').val().replace(/\s+/g, "");
+			var name = $('#name').val().replace(/\s+/g, "");
+			var cart = $('#card').val().replace(/\s+/g, "");
+			var idcard = $("#idcard").val().replace(/\s+/g, "");
+			var tel = $('#tel').val().replace(/\s+/g, "");
+			var pattern = /^([1-9]{1})(\d{14}|\d{18})$/;
+			var reg=/^1[34578]\d{9}$/;
+			var reg1 = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+			if(uid==""){
+				mui.toast("您当前未登陆，请重新退出登录");
+				return false ;
+			}
+			else if(name==""){
+				mui.toast("姓名不能为空")
+				return false ;
+			}else if(cart==""){
+				mui.toast("卡号不能为空")
+				return false ;
+			}
+			else if(!pattern.test(cart)){
+				mui.toast("请输入不少于19位卡号的储蓄卡号");
+				return false ;
+			}else if(type==""){
+				mui.toast("银行选择不能为空")
+				return false ;
+			}
+			else if(tel==""){
+				mui.toast("手机号不能为空")
+				return false ;
+			}else if(!reg.test(tel)){
+				mui.toast("请输入正确手机号")
+				return false ;
+			}
+			else if(idcard==""){
+				mui.toast("身份证号不能为空")
+				return false ;
+			}else if(!reg1.test(idcard)){
+				mui.toast("请输入正确身份证号")
+				return false ;
+			}
+			else {
+		var wd = plus.nativeUI.showWaiting();
+				mui.ajax({
+					url: url_app+"SysUserBankAccount/insSysUserBankAccount",
+					type: "POST",
+					data: {
+						 uid:uid,  
+						 branchBankName:type, 
+						 realname:name, 
+						 accountNumber:cart,
+			             mobile:tel, 
+			             numberId:idcard
+					},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+					success: function(data) {
+						wd.close();
+						if(data == 1) {
+							mui.fire(plus.webview.getWebviewById("fenhong_tixian"),"bank_update",{
+						 branchBankName:type, 
+						 realname:name, 
+						 accountNumber:cart,
+			             mobile:tel, 
+			             numberId:idcard
+							})
+							mui.fire(plus.webview.getWebviewById("my_bankcard"),"bank_update",null);
+							mui.back();
+						}else {
+							mui.toast("添加失败");
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						wd.close();
+						mui.toast("添加失败,请稍后再试");
+					}
+				});
+				}
+		});		
+		});
+</script>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<title>美容师预约列表</title>
+		<style type="text/css">
+			body {
+				background: #F2F2F2;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.mui-content {
+				margin-top: 0.3rem;
+			}
+			
+			.list_yuyue {
+				width: 94%;
+				overflow: hidden;
+				border-radius: 5px;
+				margin: 0rem auto 0.6rem;
+				background: #f4f4f4;
+				border: solid 1px #ddd;
+			}
+			
+			.list_yuyue #yuyue_id {
+				padding: 2% 2%;
+				overflow: hidden;
+				font-size: 1.0rem;
+			}
+			
+			.list_yuyue h1.title_meal {
+				height: 2.6rem;
+				line-height: 2.6rem;
+				padding-left: 0.6rem;
+			}
+			.list_yuyue article {
+				background: #fff;
+				min-height: 120px;
+				overflow: hidden;
+				padding-left: 2%;
+				box-shadow: 0 5px 12px 10px #ddd;
+				
+			}
+			.list_yuyue article:first-child {
+				box-shadow: none;
+			}
+			.list_yuyue article h1 {
+				padding: 2% 0;
+			}
+			
+			.list_yuyue article h1 s {
+				display: inline-block;
+				width: 20%;
+				padding: 2% 0;
+				color: #7B7B7;
+				font-size: 0.9rem;
+			}
+			
+			.list_yuyue article h1 i {
+				display: inline-block;
+				width: 75%;
+				font-size: 0.8rem;
+				padding: 2% 0;
+				color: #122B40;
+				border-bottom: solid 1px #F9F9F9;
+			}
+			
+			.list_yuyue article h1:last-child i {
+				border-bottom: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav"  style="background-color: #FD4404;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+
+			<h1 class="mui-title" style="color: #fff;">预约列表</h1>
+			<!--<a class="mui-pull-right mui-icon-search mui-icon" id="sousuo_huiyuan" style="color: #fff;" href="javascript:void(0);" onclick=""></a>-->
+		</header>
+		<div class="mui-content">
+		<!--<div class="list_yuyue"data-id="1">
+    		<h1 style="height: 2.6rem;line-height: 2.6rem;">《头部保养养生套盒》</h1>
+    		<article>
+    			<h1><s>预约人:</s><i>黄小姐</i></h1>
+    			<h1><s>预约时间:</s><i>2018-6-8 10:20:00</i></h1>
+    			<h1><s>预约服务:</s><i>面部按摩</i></h1>
+    			<h1><s>状态:</s><i id='yuyue_body'>已确认</i></h1>
+    		</article>
+    		<article >
+    			<h1><s>预约人:</s><i>黄小姐</i></h1>
+    			<h1><s>预约时间:</s><i>2018-6-8 10:20:00</i></h1>
+    			<h1><s>预约服务:</s><i>面部按摩</i></h1>
+    			<h1><s>状态:</s><i id='yuyue_body'>已确认</i></h1>
+    		</article>
+    		
+    	</div>-->
+    	<!--<div class="list_yuyue" data-id="1">
+    			<p id="yuyue_id">编号：{{uid}}<span></span></p>
+    		<article >
+    			<h1><s>预约人:</s><i>黄小姐</i></h1>
+    			<h1><s>预约时间:</s><i>2018-6-8 10:20:00</i></h1>
+    			<h1><s>预约人:</s><i>黄小姐</i></h1>
+    		</article>
+    		
+    	</div>-->
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	var url_app=mui.app_url();
+	window.addEventListener("refresh", function() {
+		var current = plus.webview.currentWebview().reload();
+		meirongshi_id = current.meirongshi_id;
+	})
+	var meirongshi_id;
+	mui.init({
+		swipeBack: true
+	});
+	mui.plusReady(function() {
+		var current = plus.webview.currentWebview();
+		meirongshi_id = current.meirongshi_id;
+		if(!meirongshi_id) {
+			mui.toast("当前用户未登录");
+			plus.nativeUI.toast("当前用户未登录");
+			return;
+		}
+		var wd = plus.nativeUI.showWaiting();
+		mui.ajax({
+			type: "POST",
+			url: url_app+"yuyue/selectBymrsId",
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			},
+			data: {
+				mrsId: meirongshi_id //美容师id ，查询当前美容师有没有被人预约，查询sys_yuyue_detail信息
+			},
+			timeout: 10000,
+			success: function(data) {
+
+				var html = "";
+				$.each(data, function(i, item) {
+					html += "<div  class='list_yuyue'>";
+					html += "<h1 class='title_meal'>"+item.mealName+"</h1>";
+					$.each(item.detail, function(i, list) {
+						html += "<article id='list_yuyue' data-mealPrice='" + item.mealPrice + "' data-userTel='" + item.userTel + "' data-mealName='" + item.mealName + "'   data-yuyueId='" + item.yuyueId + "' data-mealNumber='"+item.mealNumber+"' data-fuwuMeirongshiId='"+list.fuwuMeirongshiId+"' data-fuwu='"+list.fuwu+"'>";
+						html += "<h1 class='first'><s>预约人:</s><i id='yuyue_userName'>" + item.userName + "</i></h1>";
+						html += "<h1><s>预约时间:</s><i id='yuyue_time'>" + list.fuwuTime + "</i></h1>";
+						html += "<h1><s>预约人:</s><i id='yuyue_body' class='yuyue_body'>" + list.yuyueBody + "</i></h1>";
+						if(list.fuwu==1){
+						html += "<h1><s>状态:</s><i id='yuyue_body'>已确认</i></h1>";
+						}
+						else if(list.fuwu==2){
+						html += "<h1><s>状态:</s><i id='yuyue_body'>未签单</i></h1>";
+						}
+						else if(list.fuwu==0){
+						html += "<h1><s>状态:</s><i id='yuyue_body'>未确认</i></h1>";
+						}
+						else if(list.fuwu==3){
+						html += "<h1><s>状态:</s><i id='yuyue_body'>会员已签单</i></h1>";
+						}else if(list.fuwu==3){
+						html += "<h1><s>状态:</s><i id='yuyue_body'>会员已评价</i></h1>";
+						}
+						html += "</article>";
+					});
+					html += "</div>";
+				})
+				$(".mui-content").append(html);
+				wd.close();
+			},
+			error: function(xhr, type, errorThrown) {
+				wd.close();
+				plus.nativeUI.toast("系统繁忙，稍后再试");
+
+			}
+		})
+	});
+//	document.getElementById("sousuo_huiyuan").addEventListener("tap", function() {
+//		mui.openWindow({
+//			id: "sousuo_huiyuan",
+//			url: "sousuo_huiyuan.html"
+//		})
+//	})
+	mui('body').on('tap', '#list_yuyue', function(evt) {
+		mui.openWindow({
+			id: "meirongshi_huiyuan_yuyue_queren",
+			url: "meirongshi_huiyuan_yuyue_queren.html",
+			extras: {
+				yuyue_meal_number: $(this).attr("data-mealNumber"),
+				yuyue_meal:  $(this).attr("data-mealName"),
+				yuyue_tel:  $(this).attr("data-userTel"),
+				yuyue_price:  $(this).attr("data-mealPrice"),
+				yuyue_userName: $(this).children(".first").children("#yuyue_userName").text(),
+				yuyue_time: $(this).children("h1").children("#yuyue_time").text(),
+				yuyue_id: $(this).attr("data-yuyueId"),
+				yuyue_meirongshiId: $(this).attr("data-fuwuMeirongshiId"),
+				yuyue_status: $(this).attr("data-fuwu"),
+				yuyue_body: $(this).children("h1").children(".yuyue_body").text()
+
+			}
+		})
+
+	})
+	window.addEventListener("refresh_list",function(rsp){
+		plus.webview.getWebviewById("meirongshi_huiyuan_yuyue_queren").close(300);
+		plus.webview.currentWebview().reload(true);
+	})
+</script>

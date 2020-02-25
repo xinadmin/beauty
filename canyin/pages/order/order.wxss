@@ -1,0 +1,153 @@
+.show {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+
+page {
+  background-color: #F7F7F7;
+}
+#my_list {
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+}
+
+#my_list .dingdan_zhuangtai {
+  width: 100%;
+  overflow: hidden;
+ 
+}
+
+#my_list .dingdan_zhuangtai #item {
+  float: left;
+  text-align: center;
+  width: 20%;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #333;
+  font-size:28rpx;
+  position: relative;
+}
+
+#my_list .dingdan_zhuangtai  .sanjiao {
+  border-bottom: solid 5rpx #FD5A5B;
+  color: #f30;
+}
+
+#xiangqingw{
+  width: 100%;
+ overflow: hidden;
+ margin-top:100rpx;
+
+}
+
+.xiangqingl{
+  width: 100%;
+  overflow: hidden;
+  margin: 30rpx auto;
+  padding: 0 32rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.dianpu_name_zhuangtai{
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #292929;
+  font-size: 36rpx;
+  border-bottom:2rpx solid rgb(224, 221, 221);
+ 
+}
+.dianpu_name_zhuangtai .dianpu_zhuangtai{
+  float: right;
+}
+.goods_list {
+   width: 100%;
+   overflow: hidden;
+}
+
+.goods_list .shangpin {
+    width: 100%;
+    height: 66rpx;
+    line-height: 66rpx;
+    overflow: hidden;
+    font-size: 30rpx;
+    color: #707070;
+}
+
+.goods{
+width:300rpx;
+float:left;
+height:66rpx;
+color:#707070;
+text-align:left;
+}
+.goods_list .shangpin .goods_money {
+width:200rpx;
+float:right;
+height:66rpx;
+color:#707070;
+text-align:right;
+}
+.goods_list .shangpin .goods_shuliang {
+float: right;
+margin-right: 11rpx;
+}
+
+
+.jianshu {
+  width: 100%;
+}
+.jianshu {
+  margin-top: 30rpx;
+  width: 100%;
+  height: 77rpx;
+  line-height: 77rpx;
+}
+.jianshu .jianshu_num {
+  float: right;
+}
+.tody {
+  width: 100%;
+  height: 99rpx;
+  line-height: 99rpx;
+  border-top: solid 1px #F9F9F9;
+  border-bottom:  solid 1px #F9F9F9;
+  color: #C1C1C1;
+  font-size: 32rpx;
+}
+.tody .zhuohao {
+  float: right;
+}
+.shiji_fukuan {
+  width: 100%;
+  height: 99rpx;
+  line-height: 99rpx;
+ color: #696969;
+  font-size: 36rpx;
+  text-align: right;
+}
+.shiji_jiner {
+  color: #FE8182;
+}
+.mowei {
+  width: 100%;
+  height :88rpx;
+  line-height: 88rpx;
+  margin: 15rpx 0;
+  color: #818382;
+   font-size: 28rpx;
+}
+.mowei .zhai{
+  float: right;
+  padding: 0 35rpx;
+  border-radius: 5px;
+ background-color: #FD5A5B;
+  color: #fff;
+  font-size: 34rpx;
+}

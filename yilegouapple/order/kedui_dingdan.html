@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/mui.css" />
+		<link rel="stylesheet" href="css/kedui_dingdan_new.css" />
+		<title>下订单</title>
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span
+				 class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;font-weight: 500;">确认订单</span></button>
+		</header>
+		<div class="mui-content">
+			<div id="shouhuo">
+				<p class="xinjian" style="display: none;"><img src="http://yiyun.zhonyou.cn/webapp_img/add.png" width="40px" />&nbsp;新建收货地址</p>
+				<div style="display: none;color: #333333;">
+					<p class="shouhuo_name"><i id="shouhuo_name">{{shouhuo_name}}</i> <s id="shouhuo_tel">{{shouhuo_tel}}</s></p>
+					<p class="shouhuo_dizhi"><s id="dizhi">{{shouhuo_address}}</s><img src="http://yiyun.zhonyou.cn/webapp_img/go.png" />
+					</p>
+					<p class="moren"><s class="shouhuo_time">收货时间不限</s><i>默认</i></p>
+				</div>
+			</div>
+			<div id="content">
+				<div class="produce">
+					<h1 class="produce_shop"><s class="shop_name">{{shop_name}}</s><img src="http://yiyun.zhonyou.cn/webapp_img/go.png" /></h1>
+					<div class="produce_message">
+						<img :src="produce_img" class="produce_img" onerror="this.src='http://yiyun.zhonyou.cn/webapp_img/moren.png'" />
+						<div class="produce_message_all">
+							<h2 class="produce_name" data-id="">{{produce_name}}</h2>
+							<h3>类型：<em class="guige">{{produce_canshu}}</em> <s>x<i class="shulianng">{{produce_shuliang}}</i></s></h3>
+							<h4 class="col-red">￥<s class="price">{{produce_price}}</s></h4>
+						</div>
+					</div>
+				</div>
+				<div id="peisong_beizhu">
+
+					<p class="peisong" id="peisong">配送方式 <s class="peisong_kuaidi">默认快递</s></p>
+
+					<i class="peisong_title">备注：</i><textarea></textarea>
+				</div>
+				<div class="jifen_bg" id="jifen_bg">
+					<div class="jifen_div">
+						<ul class="jifen_div_content">
+							<li class="jifen_div_content_li" id="slect_bg_pay" v-if="is_point_select">
+								<span class="active" id="select_pay_point"></span>乐购支付({{user_point}}个乐购币)<s>￥{{user_point}}</s>
+							</li>
+							<li class="jifen_div_content_li" id="slect_bg_pay_money">
+								<span class="active" id="select_pay_money"></span>余额支付(最高抵扣90%)<s>￥{{balance}}</s>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="heji">
+					<h2>运费<i class="col-red">￥<em class="price_all">{{shippingFee}}</em></i></h2>
+					<h2>合计(不含运费)<i class="col-red">￥<em class="price_all">{{produce_all_price}}</em></i></h2>
+					<!--<h2 v-if="discount_money_isshow">折扣9.5折<i class="col-red">￥<em class="price_all">{{discount_money}}</em></i></h2>-->
+					<h2>总计(含运费)<i class="col-red">￥<em class="price_all">{{before_money}}</em></i></h2>
+
+				</div>
+
+				<div class="jiesuan">
+					<h1 class="pay_money">应付:<i class="col-red">￥{{pay_money}}</h1>
+					<button id="tijiao_dingdan" onclick="order_add()"><s class="ok_order">提交订单</s></button>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/mui.min.js"></script>
+<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	mui.init();
+	var url_app = mui.app_url();
+	mui.plusReady(function() {
+		var current = plus.webview.currentWebview();
+		current.setStyle({
+			scrollIndicator: 'none'
+		});
+		current.addEventListener("hide", function(e) {
+			window.scrollTo(0, 0);
+			news.resetData();
+			current.reload(true);
+		}, false);
+	})
+
+	function getDefaultData() {
+		return {
+			produce_name: '',
+			produce_id: '',
+			produce_img: '',
+			produce_all_price: '',
+			produce_price: '',
+			produce_canshu: "",
+			produce_shuliang: "",
+			shop_id: "",
+			shop_name: "",
+			shippingFee: "",
+			pay_money: "",
+			shouhuo_name: "",
+			shouhuo_tel: "",
+			shouhuo_address: "",
+			costPrice: "",
+			pointExchange: 0,
+			user_point: 0,
+			point_buy: 0,
+			point_current: 0,
+			point_buy_true: false,
+			rushBuyId: "",
+			discount: 9.5,
+			balance: 0.0,
+			userPlatformMoney: 0.00,
+			balance_buy_true: false,
+			discount_money: 0.0, //折后价格
+			before_money: 0.0, //折后加运费价格0
+			discount_money_isshow: false,
+			is_point_select: true
+		}
+	}
+	var news = new Vue({
+		el: '.mui-content',
+		data: getDefaultData(),
+		methods: {
+			resetData: function() { //重置数据
+				Object.assign(this.$data, getDefaultData());
+			}
+		}
+	});
+	document.getElementById("select_pay_point").addEventListener("tap", function() {
+		if(news.point_buy_true) {
+			return;
+		} else {
+			if($(this).attr("class") == "active") {
+				$(this).removeClass("active");
+				news.pay_money = (parseFloat(news.pay_money) + parseFloat(news.user_point)).toFixed(2);
+				news.point_buy = 0;
+			} else {
+				news.point_buy = news.user_point;
+				$(this).addClass("active");
+				news.pay_money = (parseFloat(news.pay_money) - parseFloat(news.user_point)).toFixed(2);
+			}
+		}
+	})
+	document.getElementById("select_pay_money").addEventListener("tap", function() {
+		if(!news.balance_buy_true) {
+			return;
+		} else {
+			if($(this).attr("class") == "active") {
+				$(this).removeClass("active");
+				news.pay_money = (parseFloat(news.pay_money) + parseFloat(news.userPlatformMoney)).toFixed(2);
+				news.userPlatformMoney = 0.00;
+			} else {
+				news.userPlatformMoney = news.balance;
+				$(this).addClass("active");
+				news.pay_money = (parseFloat(news.pay_money) - parseFloat(news.userPlatformMoney)).toFixed(2);
+			}
+		}
+	})
+
+	function change() {
+		var d = new Date();
+		var vYear = d.getFullYear();
+		var vMon = d.getMonth() + 1;
+		var vDay = d.getDate();
+		var h = d.getHours();
+		var m = d.getMinutes();
+		var se = d.getSeconds();
+		var ms = d.getMilliseconds();
+		billno = "" + vYear + (vMon < 10 ? "0" + vMon : vMon) + (vDay < 10 ? "0" + vDay : vDay) + (h < 10 ? "0" + h : h) + (m <
+			10 ? "0" + m : m) + (se < 10 ? "0" + se : se) + ms;
+		return billno;
+
+	};
+	var item = [];
+	window.addEventListener("xiadan", function(evt) {
+		$(".xinjian").hide();
+		$("#shouhuo > div").hide();
+
+		var uid = window.localStorage.getItem("uid");
+		if(!uid) {
+			mui.toast("当前未登录");
+			mui.back();
+			return;
+		}
+		var wd = plus.nativeUI.showWaiting();
+		mui.ajax(
+			url_app + 'SysUserAddress/selTJuid', {
+				type: 'POST', //HTTP请求类型  
+				dataType: 'json', //服务器返回json格式数据  
+				data: {
+					userid: uid
+				},
+				timeout: 8000, //超时时间设置为10秒；
+				success: function(data) {
+					wd.close();
+					if(!data) {
+						$(".xinjian").css("display", "block");
+					} else {
+						news.shouhuo_name = data.shouhuoName;
+						news.shouhuo_tel = data.shouhuoTel;
+						news.shouhuo_address = data.shouhuoAddress;
+						$("#shouhuo > div").css("display", "block");
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					wd.close();
+					$(".xinjian").css("display", "block");
+				}
+			})
+		if(evt.detail.rushBuyId) {
+			news.rushBuyId = evt.detail.rushBuyId;
+		}
+		news.produce_name = evt.detail.produce_name,
+			news.produce_id = evt.detail.produce_id,
+			news.produce_img = evt.detail.produce_img,
+			news.produce_all_price = evt.detail.produce_all_price,
+			news.produce_price = evt.detail.produce_price,
+			news.produce_canshu = evt.detail.produce_canshu,
+			news.produce_shuliang = parseInt(evt.detail.produce_shuliang),
+			news.shop_id = evt.detail.shop_id,
+			news.shop_name = evt.detail.shop_name,
+			news.costPrice = evt.detail.costPrice,
+			news.shippingFee = evt.detail.shippingFee,
+			news.pointExchange = evt.detail.pointExchange;
+		mui.getJSON(url_app + "SysUserAccount/selSysUserAccountTJuid?uid=" + uid + "", function(rsp) {
+			news.point_current = rsp.point;
+			news.balance = rsp.balance;
+			if(news.pointExchange <= 0) {
+				news.point_buy_true = true;
+				$("#slect_bg_pay").css("color", "#ddd");
+				$("#select_pay_point").removeClass("active");
+			} else {
+				if(news.point_current <= 0) {
+					news.point_buy_true = true;
+						news.user_point = 0;
+					$("#slect_bg_pay").css("color", "#ddd");
+					$("#select_pay_point").removeClass("active");
+				} else {
+					if(news.point_current > news.pointExchange) {
+						news.user_point = news.pointExchange;
+						news.point_buy = news.pointExchange;
+					} else {
+						news.user_point = news.point_current;
+						news.point_buy = news.point_current;
+					}
+				}
+			}
+			if(news.rushBuyId=="") {
+				news.pay_money = (parseFloat(evt.detail.shippingFee) + parseFloat((evt.detail.produce_all_price * news.discount /
+					10))).toFixed(2);
+				news.before_money = news.pay_money;
+				news.pay_money = ((parseFloat(news.pay_money)) - (parseFloat(news.user_point))).toFixed(2);
+			} else {
+				news.pay_money = (parseFloat(evt.detail.shippingFee) + parseFloat(evt.detail.produce_all_price)).toFixed(2);
+				news.before_money = news.pay_money;
+				news.is_point_select = false;
+				news.point_buy = 0;
+			}
+			if(rsp.balance <= 0) {
+				$("#slect_bg_pay_money").css("color", "#ddd");
+				$("#select_pay_money").removeClass("active");
+				news.balance = 0.0;
+			} else {
+				news.balance_buy_true = true;
+				if(news.balance >= (news.pay_money * 0.9).toFixed(2)) {
+					news.balance = (news.pay_money * 0.9).toFixed(2);
+					news.userPlatformMoney = (news.pay_money * 0.9).toFixed(2)
+				} else {
+					news.userPlatformMoney = news.balance
+				}
+			}
+			news.pay_money = (news.pay_money - news.userPlatformMoney).toFixed(2);
+		})
+	});
+	//地址切换
+	window.addEventListener('show', function(event) {
+		//获得事件参数
+		var shouhuo_name = window.localStorage.getItem("shouhuo_name");
+		var shouhuo_tel = window.localStorage.getItem("shouhuo_tel");
+		var dizhi = window.localStorage.getItem("dizhi");
+		if($(".xinjian").css("display") == "none") {
+			news.shouhuo_name = shouhuo_name;
+			news.shouhuo_tel = shouhuo_tel;
+			news.shouhuo_address = dizhi;
+		} else {
+			$(".xinjian").css("display", 'none');
+			news.shouhuo_name = shouhuo_name;
+			news.shouhuo_tel = shouhuo_tel;
+			news.shouhuo_address = dizhi;
+			$("#shouhuo > div").css("display", "block");
+
+		}
+
+	});
+	//选择地址
+	document.getElementById("shouhuo").addEventListener("tap", function() {
+		mui.openWindow({
+			url: "../xuanze_dizhi.html",
+			id: "xuanze_dizhi"
+		})
+	})
+	var wd = null;
+	//结算商品
+	function order_add() {
+		if(wd) {
+			return;
+		}
+		var local = window.localStorage;
+		var uid = local.getItem("uid");
+		if(!uid) {
+			return;
+		}
+		var user_name = local.getItem("user_name");
+		var shop_name = news.shop_name; //商家名
+		var shop_id = news.shop_id; //商家id
+		var produce_img = news.produce_img; //商品图
+		var produce_name = news.produce_name; //商品名
+		var produce_id = news.produce_id; //商品id
+		var produce_canshu = news.produce_canshu; //参数
+		var produce_price = news.produce_price; //单价
+		var produce_all_price = news.produce_all_price; //总价
+		var produce_shuliang = news.produce_shuliang; //数量	
+		var user_name = user_name; //用户名
+		var shouhuo_name = news.shouhuo_name; //收货人
+		var shouhuo_tel = news.shouhuo_tel; //收货人电话
+		var dizhi = news.shouhuo_address; //收货地址
+		var buyer_message = $("textarea").val(); //买家留言
+		var Order_no = change();
+		var order_money = news.before_money;
+		var pay_money = news.pay_money;
+		var shippingFee = news.shippingFee;
+		var costPrice = news.costPrice;
+		if(shouhuo_name == null || shouhuo_name == "" || dizhi == null || dizhi == "" || shouhuo_tel == null || shouhuo_tel ==
+			"") {
+			mui.toast("收货地址不能为空");
+			return;
+		}
+		wd = plus.nativeUI.showWaiting();
+		$.ajax({
+			type: "POST",
+			url: url_app + "NsOrder/insertNsOrder",
+			async: true,
+			dataType: 'json',
+			data: {
+				payMoney: pay_money, //支付费用
+				userPlatformMoney: news.userPlatformMoney, //余额
+				refundMoney: pay_money, //退款费用
+				point: news.point_buy,
+				point_money: news.point_buy,
+				orderNo: Order_no, //订单编号
+				buyerId: uid, //用户id
+				userName: user_name, //用户名
+				buyerMessage: buyer_message, //买家留言
+				receiverMobile: shouhuo_tel, //收货手机号
+				receiverAddress: dizhi, //收货地址
+				receiverName: shouhuo_name, //收货name
+				shopId: shop_id, //产品所属商家uid
+				shopName: shop_name, //产品所属商家name
+				orderMoney: order_money, //商品价+运费
+				shippingMoney: shippingFee, //运费
+				goodsMoney: produce_all_price, //商品总,
+				goodsId: produce_id, //产品id
+				goodsName: produce_name, //产品name
+				skuName: produce_canshu, //商品规格
+				price: produce_price, //商品单价
+				costPrice: "0.00", //成本价
+				num: produce_shuliang, //产品数量
+				goodsPicture: produce_img, //产品主图
+				rushBuyId: news.rushBuyId
+			},
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			},
+			timeout: 10000,
+			success: function(data) {
+				wd.close();
+				wd = null;
+				if(data > 0) {
+					mui.openWindow({
+						url: "dingdan_pay.html",
+						id: "dingdan_pay",
+						extras: {
+							order_id: data,
+							shippingMoney: news.shippingFee,
+							produce_all_price: pay_money, //产品总价
+							shop_id: shop_id
+						}
+					})
+				} else {
+					mui.toast("系统繁忙，请稍后再试");
+				}
+			},
+			error: function(xhr, type, errorThrown) {
+				wd.close();
+				wd = null;
+				mui.toast("系统繁忙，稍后再试");
+
+			}
+		})
+	}
+
+	mui.back = function() {
+		plus.webview.currentWebview().hide("auto", 300);
+	}
+</script>

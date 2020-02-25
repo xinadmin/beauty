@@ -1,0 +1,315 @@
+/*header头部title样式*/
+
+
+/*个人信息样式*/
+
+.user_title {
+	width: 100%;
+	overflow: hidden;
+	background: url(../img/my13.png) repeat-x;
+	background-size: 100% 100%;
+	min-height: 8.6rem;
+	padding-top: 1.0rem;
+}
+
+#header_content {
+	width: 100%;
+	overflow: hidden;
+}
+.header_content_logo {
+	margin: 2% ;
+	margin-right: 2%;
+}
+#header_content img {
+	display: inline-block;
+	width: 16%;
+	float: left;
+	padding: 2%;
+	border-radius:50%;
+	background-color: #FAEFC2;
+	border: solid 2px #FA8D39;
+}
+
+.user-message {
+	float: left;
+	width: 80%;
+	padding: 0.3rem;
+	position: relative;
+}
+
+.user-message p {
+	color: #fff;
+	font-size: 1.0rem;
+	height: 2.0rem;
+	line-height: 2.0rem;
+}
+
+
+
+.user-message s {
+	display: inline-block;
+	height: 1.2rem;
+	width: 4.8rem;
+	line-height: 1.3rem;
+	padding-left: 1.4rem;
+	background:#f39800 url(../img/my_icon.jpg) no-repeat 8px center;
+	background-size: 15px 15px;
+	color: #E2E2E2;
+	font-size: 0.85rem;
+	border-radius: 10px;
+	font-style: italic;
+}
+
+.user-message s img {
+	display: inline-block;
+	width: 25%;
+}
+
+.account {
+	width: 90%;
+	margin: -1.3rem auto 0;
+	overflow: hidden;
+	z-index: 999;
+	background-color:#fff ;
+   border-radius: 7px;
+   
+}
+
+.account li {
+	float: left;
+	width: 30%;
+	height: 3.3rem;
+	line-height: 3.3rem;
+	font-size: 0.9rem;
+	color: #222222;
+	font-weight: 500;
+	padding-left:46px;
+	background: #fff url(../img/my9.jpg) no-repeat 12px center;
+  background-size: 31px 30px;
+  margin-left: 3.3%;
+}
+.account li:first-child {
+	padding-left:49px;
+	}
+.account li:nth-child(2) {
+ background: #fff url(../img/my10.jpg) no-repeat 8px center;
+  background-size: 31px 32px;
+}
+.account li:last-child {
+ background: #fff url(../img/my11.jpg) no-repeat 8px center;
+  background-size:  31px 32px;
+}
+#head_logo {
+	display: inline;
+	height: 100%;
+	line-height: 100%;
+	text-align: left;
+	display: none;
+}
+
+#head_logo s {
+	display: inline-block;
+	padding: 0.3rem 0;
+	font-size: 0.9rem;
+}
+
+#head_logo s img {
+	width: 15%;
+	margin-right: 0.2rem;
+}
+
+
+/*我的资产样式*/
+
+.my_list {
+	width: 100%;
+	height: 100%;
+}
+
+.my_list dl.zichan {
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	overflow: hidden;
+	margin-top: 0.6rem;
+	box-shadow: 0 -1px 10px 1px #CDCDCD;
+}
+
+.my_list dl.zichan dt {
+	width: 100%;
+	box-sizing: border-box;
+	min-height: 40px;
+	border-bottom: solid 1px #e0e0e0;
+}
+
+.my_list dl.zichan dt a {
+	width: 100%;
+	height: 2.3rem;
+	line-height: 2.3rem;
+	padding-left: 4%;
+	box-sizing: border-box;
+	font-size: 0.9rem;
+}
+
+.my_list dl.zichan dd {
+	border: none;
+	overflow: hidden;
+}
+
+.my_list dl.zichan dd article {
+	float: left;
+	width: 33.3%;
+	text-align: center;
+	border-right: 1px #e0e0e0 solid;
+	float: left;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.my_list dl.zichan dd article i {
+	height: 1.4rem;
+	display: block;
+	font-size: 0.7rem;
+	color: #222222;
+	line-height: 1.4rem;
+}
+
+.my_list dl.zichan dd article em {
+	height: 1.2rem;
+	color: #222222;
+	width: 100%;
+	font-size: 0.8rem;
+	line-height: 1.2rem;
+}
+
+.my_list dl.zichan dd article:last-child {
+	border: none;
+}
+
+.my_list dl.zichan dd a.user_zijin_list {
+	display: inline-block;
+	width: 33.3%;
+}
+
+.dingdan {
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	background: #fff;
+}
+
+.dingdan p {
+	padding: 4%;
+	color: #333333;
+	font-weight: 500;
+	border-bottom: solid 1px #eeeeee;
+}
+.dingdan p s {
+	display: inline-block;
+	border-left: solid 3px #ff3300;
+	padding-left: 8px; 
+	}
+.dingdan article {
+	width: 20%;
+	float: left;
+	text-align: center;
+	padding-bottom: 0.2rem;
+	overflow: hidden;
+}
+
+.dingdan article img {
+	margin: 0.4rem auto 0.2rem;
+	display: block;
+}
+
+.dingdan article em {
+	height: 1.2rem;
+	line-height: 1.2rem;
+	font-size: 0.7rem;
+}
+
+.my_list_nav {
+	width: 100%;
+	background: #fff;
+	margin: 0.6rem auto 0;
+}
+
+.my_list_nav ul {
+	width: 94%;
+	margin-left: 3%;
+	background: #fff;
+}
+
+.my_list_nav ul li {
+	width: 100%;
+	border-bottom: solid 1px #eeeeee;
+	box-sizing: border-box;
+	padding-left: 33px;
+	height: 2.9rem;
+	line-height: 2.9rem;
+	font-size: 0.9rem;
+	color: #000000;
+	font-weight: 500;
+	background:  url(../img/my2.png) no-repeat left center;
+	background-size: 26px 26px;
+}
+.my_list_nav ul li s {
+	float: right;
+	width: 2.7rem;
+	height: 2.7rem;
+	line-height: 2.7rem;
+	display:inline-block ;
+	background:  url(../img/my3.png) no-repeat right center;
+	background-size: 26px 26px;
+}
+#xinren_yaoqing{
+	background:  url(../img/my1.png) no-repeat left center;
+	background-size: 26px 26px;
+}
+#shop_ruzhu {
+	background:  url(../img/my18.png) no-repeat left center;
+	background-size: 26px 26px;
+}
+.my_list_nav ul li:last-child {
+	border-bottom: none;
+}
+#my-pingjia {
+	background:  url(../img/my17.png) no-repeat left center;
+	background-size: 26px 26px;
+}
+#weixin_guanzhu {
+	background:  url(../img/my16.png) no-repeat left center;
+	background-size: 26px 26px;
+}
+#kefu_zhongxin {
+	background:  url(../img/my4.png) no-repeat left center;
+	background-size: 26px 26px;
+}
+#upset {
+	background:  url(../img/my14.png) no-repeat 2px center;
+	background-size: 26px 26px;
+}
+#my_meirongshi {
+	background:  url(../img/my35.jpg) no-repeat 2px center;
+	background-size: 26px 26px;
+}
+@media only screen and (min-width:415px) {
+	.dingdan article {
+		height: 2.8rem;
+		line-height: 2.8rem;
+	}
+	.dingdan article img {
+		margin: 0;
+		margin-right: 0.6rem;
+		display: inline-block;
+	}
+	.dingdan article em {
+		height: 2.8rem;
+		line-height: 2.8rem;
+		font-size: 0.7rem;
+	}
+	.user_title img {
+		width: 14%;
+		padding-top: 0.6rem;
+	}
+}

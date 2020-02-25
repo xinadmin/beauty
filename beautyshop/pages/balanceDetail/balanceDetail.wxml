@@ -1,0 +1,25 @@
+<view>
+  <view class='detail_hade'><text>余额明细</text></view>
+   <block wx:for='{{balance}}' wx:key="index" >
+  <view class='detail_body'>
+    <view class='detail_body_left'>
+      <view class='detail_body_a' wx:if="{{item.fromType==5}}">美容师服务费</view>
+      <view class='detail_body_a' wx:elif="{{item.fromType==3}}">上级佣金</view>
+      <view class='detail_body_a' wx:elif="{{item.fromType==4}}">美容师佣金</view>
+      <!-- <view class='detail_body_b'>{{item.text}}</view> -->
+      <view class='detail_body_c'>{{item.createTime}}</view>
+    </view>
+    <text class='detail_body_a' wx:if="{{item.sign==1}}">+{{item.number}}</text>
+    <text class='detail_body_a' wx:elif="{{item.sign==0}}">-{{item.number}}</text>
+  </view>
+   </block>
+  <!-- <view class='detail_body'>
+    <view class='detail_body_left'>
+      <view class='detail_body_a'>美容院</view>
+      <view class='detail_body_b'>服务费</view>
+      <view class='detail_body_c'>2018-12-12</view>
+    </view>
+    <text class='detail_body_a'>+100</text>
+  </view> -->
+  
+</view>

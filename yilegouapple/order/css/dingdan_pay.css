@@ -1,0 +1,173 @@
+			.mui-bar {
+				overflow: hidden;
+			}
+			.dingdan {
+				width: 100%;
+				padding: 3% 0 5%;
+				overflow: hidden;
+				background: #fff;
+				text-align: center;
+			}
+			
+			.dingdan h1 {
+				color: #000000;
+				font-size: 1.1rem;
+				padding: 8px 0 10px 5px;
+			}
+			
+			.zhifu {
+				background: #fff;
+				width: 100%;
+				overflow: hidden;
+				border-top: 1px solid #E6E6E6;
+			}
+			
+			.zhifu h1 {
+				padding: 10px;
+				color: #000000;
+				font-size: 1.1rem;
+			}
+			
+			.zhifu-qudao label {
+				font-size: 1.0rem;
+			}
+			
+			.zhifu-qudao #radio {
+				margin-top: 3%;
+			}
+			
+			.zhifu-qudao label img {
+				display: inline-block;
+				width: 12%;
+				margin: 1% 1% 1% 0;
+			}
+			
+			.totalPrice {
+				float: left;
+				width: 60%;
+				font-size: 1.2rem;
+				height: 100%;
+				line-height: 300%;
+				padding-left: 5%;
+				background: #fff;
+				color: #333333;
+				box-sizing: border-box;
+				border-top: none;
+				background-color: #FFF;
+			}
+			#totalPrice {
+				color: #fe6006;
+			}
+			.buyNow {
+				display: inline-block;
+				width: 40%;
+			}
+			
+			.buyNow .buyNowBtn {
+				width: 100%;
+				background: #fe6006;
+				line-height: 300%;
+				opacity: 1;
+				color: #fff;
+				border-radius: 0;
+				font-size: 1.2rem;
+			}
+			/*會員支付*/
+			
+			/*.taocan {
+				width: 100%;
+				padding: 3px 0 5px 4px;
+				overflow: hidden;
+				background: #fff;
+			}
+			
+			.taocan h1 {
+				color: #000000;
+				font-size: 1.1rem;
+				padding: 8px 0 10px 5px;
+			}
+			
+			.taocan li {
+				width: 95%;
+				margin: 5px auto;
+				padding: 3px 0;
+				border-radius: 15px;
+				border: solid 1px pink;
+				position: relative;
+			}
+			
+			.taocan li p {
+				color: #888888;
+				padding: 6px 0 6px 8px;
+				font-size: 0.9rem;
+			}
+			
+			.taocan li p strong {
+				color: #000000;
+				font-size: 1.0rem;
+				font-weight: 600;
+			}
+			
+			.taocan li i {
+				position: absolute;
+				right: 4%;
+				top: 40%;
+				color: #D58512;
+				font-size: 1.2rem;
+			}
+			
+			.zhifu {
+				background: #fff;
+				width: 100%;
+				overflow: hidden;
+				margin-top: 10px;
+			}
+			
+			.zhifu h1 {
+				padding: 10px;
+				color: #000000;
+				font-size: 1.1rem;
+			}
+			
+			.zhifu-qudao label {
+				font-size: 1.0rem;
+			}
+			
+			.zhifu-qudao #radio {
+				margin-top: 3%;
+			}
+			
+			.zhifu-qudao label img {
+				display: inline-block;
+				width: 12%;
+				margin: 1% 1% 1% 0;
+			}
+			
+			.totalPrice {
+				float: left;
+				width: 60%;
+				font-size: 1.2rem;
+				height: 100%;
+				line-height: 300%;
+				padding-left: 5%;
+				background: #fff;
+				color: #000000;
+				box-sizing: border-box;
+			}
+			
+			.buyNow {
+				display: inline-block;
+				width: 40%;
+				min-height: 25px;
+				height: 100%;
+			}
+			
+			.buyNow .buyNowBtn {
+				width: 100%;
+				height: 100%;
+				background: #fe6006;
+				opacity: 1;
+				color: #fff;
+				border-radius: 0;
+				font-size: 1.2rem;
+			}*/

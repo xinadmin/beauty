@@ -1,0 +1,12 @@
+<view class='body'>
+<view id='mingxi'>余额明细</view>
+<view class='xiangqing' wx:for='{{balance}}' wx:key="index">
+    <view id='bigbox' >
+        <view id='title' wx:if="{{item.fromType==13}}">消费现金卷</view>
+        <view id='time'>{{item.createTime}}<text></text></view>
+    </view>
+    <view id='money'  wx:if="{{item.sign==1}}">+{{item.number}}</view>
+      <view id='money'  wx:if="{{item.sign==0}}">+{{item.number}}</view>
+</view>
+
+</view>

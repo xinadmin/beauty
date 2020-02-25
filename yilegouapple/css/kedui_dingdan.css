@@ -1,0 +1,395 @@
+#take_address_detail {
+	width: 100%;
+	background: #fff;
+	box-sizing: border-box;
+	overflow: hidden;
+	padding: 0.8rem 1.2rem 0;
+}
+
+#take_address_detail p {
+	display: inline-block;
+	width: 85%;
+}
+
+#take_address_detail .shouhuo_name {
+	color: #222222;
+	height: 2.2rem;
+	line-height: 2.2rem;
+	font-size: 0.85rem;
+}
+
+#take_address_detail .shouhuo_name s {
+	float: right;
+}
+
+#take_address_detail .shouhuo_dizhi {
+	color: #222222;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	max-height: 2.6rem;
+	min-height: 1.3rem;
+	line-height: 1.3rem;
+	margin-bottom: 0.3rem;
+}
+#shouhuo {
+	width: 100%;
+	background: #fff;
+	box-sizing: border-box;
+	overflow: hidden;
+	padding: 0.8rem 1.2rem 0;
+}
+
+.xinjian {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+	text-align: center;
+	height: 4.0rem;
+	line-height: 4.0rem;
+}
+
+
+#shouhuo p {
+	width: 100%;
+}
+
+#shouhuo .shouhuo_name {
+	color: #222222;
+	height: 2.2rem;
+	line-height: 2.2rem;
+}
+
+#shouhuo .shouhuo_name s {
+	float: right;
+}
+
+#shouhuo .shouhuo_dizhi {
+	color: #222222;
+}
+
+#shouhuo .shouhuo_dizhi img {
+	float: right;
+	width: 6%;
+}
+#shouhuo .moren {
+	width:100% ;
+	overflow: hidden;
+	padding: 0.25rem 0;
+	box-sizing: border-box;
+}
+#shouhuo .moren i {
+	float: right;
+	display: inline-block;
+	height: 1.7rem;
+	line-height:1.7rem;
+	font-size: 0.8rem;
+	padding: 0 0.4rem;
+	border-radius: 10px;
+	border: solid 1px #007AFF;
+}
+
+.produce {
+	width: 100%;
+	margin-top: 10px;
+	box-sizing: border-box;
+	padding: 0 3% 0;
+	overflow: hidden;
+	background: #fff;
+}
+
+.produce .produce_shop {
+	overflow: hidden;
+	width: 100%;
+	border-bottom: solid 1px #EEEEEE;
+}
+
+.produce .produce_shop s {
+	float: left;
+	padding: 3% 0 2%;
+	font-size: 1.0rem;
+	display: inline-block;
+}
+
+.produce .produce_shop img {
+	display: inline-block;
+	width: 6%;
+	padding: 3% 0 2%;
+	float: right;
+}
+
+.produce_message {
+	width: 100%;
+	overflow: hidden;
+	border-bottom: solid 1px #EEEEEE;
+}
+
+.produce_message img {
+	display: inline-block;
+	width: 28%;
+	float: left;
+	min-height: 5.5rem;
+	max-height: 6.6rem;
+	background: #ddd;
+}
+
+.produce_message div {
+	float: left;
+	width: 72%;
+	padding: 2% 0 0 2%;
+}
+
+.produce_message div h2 {
+	padding: 0.3rem 0;
+	height: 2.8rem;
+	font-size: 0.9rem;
+	letter-spacing:0.2px;
+				overflow-y: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+				overflow: hidden;
+}
+
+.produce_message div h3 {
+	/*padding: 2% 0;*/
+	height: 1.6rem;
+	line-height: 1.6rem;
+	
+	font-size: 0.8rem;
+}
+
+.produce_message div h3 s {
+	display: inline-block;
+	float: right;
+}
+
+.produce_message div h4 {
+	padding: 2% 0;
+}
+/*积分样式*/
+.jifen_bg {
+	width: 100%;
+	height: 8.8rem;
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+
+.jifen_bg .jifen_div {
+	width: 94%;
+	margin: 0 auto;
+}
+
+.jifen_bg .jifen_div .jifen_div_content {
+	width: 100%;
+	overflow: hidden;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li {
+	width: 100%;
+	min-height: 3.0rem;
+	line-height: 3.0rem;
+	color: #333333;
+	font-weight: 500;
+	position: relative;
+	padding-left: 2.0rem;
+	font-size: 0.9rem;
+	border-bottom: solid 1px #eeeeee;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li:last-child {
+	border: none;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li span {
+	display: inline-block;
+	height: 1.2rem;
+	width: 1.2rem;
+	position: absolute;
+	top: 0.9rem;
+	left: 0;
+	border: solid 1px #D3D3D3;
+	background-color: #F0F0F0;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li span.active {
+	border-width: 2px;
+	border-color: #ff4404;
+	background: url(../img/dagou_select.png) no-repeat center center;
+	background-size: 0.9rem 0.9rem;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li span.gray {
+	color: #ddd;
+	;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li s {
+	float: right;
+	font-weight: 600;
+}
+
+.peisong_all {
+	margin-bottom: 3.7rem;
+}
+
+#peisong_beizhu {
+	width: 100%;
+	padding: 0 3% 2%;
+	overflow: hidden;
+	background: #fff;
+}
+
+#peisong_beizhu i {
+	float: left;
+	color: #222222;
+	padding: 2% 0;
+}
+
+.peisong {
+	height: 2.3rem;
+	line-height: 2.3rem;
+	color: #333333;
+}
+
+.peisong s {
+	display: inline-block;
+	float: right;
+	height: 2.3rem;
+	width: 8.3rem;
+	text-align: right;
+	/*padding-right: 1.3rem;*/
+	/*background: url(http://yiyun.zhonyou.cn/webapp_img/go.png) no-repeat right center;
+	background-size: 1.2rem 1.2rem;*/
+}
+
+
+
+.heji {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+	margin-top: 10px;
+	padding: 0 3%;
+	text-align: right;
+	margin-bottom: 3.8rem;
+}
+
+.heji h1,
+.heji h2 {
+	padding: 2% 0;
+	font-size: 0.9rem;
+}
+
+.jiesuan {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 3.3rem;
+	border-top: solid 1px #ACACB4;
+	overflow: hidden;
+	background: #fff;
+	z-index: 333;
+}
+.jiesuan h1.pay_money {
+	height: 3.3rem;
+	width: 50%;
+	float: left;
+	text-align: center;
+	line-height: 3.3rem;
+	font-size: 0.9rem;
+}
+.jiesuan h1.pay_money #price_all {
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+.jiesuan article {
+	width: 50%;
+	float: left;
+	height: 3.3rem;
+	text-align: center;
+}
+
+.jiesuan article h1,
+.jiesuan article h2 {
+	height: 1.6rem;
+	line-height: 1.6rem;
+	font-size: 0.8rem;
+}
+
+.jiesuan button {
+	width: 50%;
+	line-height: 3.3rem;
+	height: 3.3rem;
+	display: inline-block;
+	text-align: center;
+	float: left;
+	color: #fff;
+	font-weight: 500;
+	font-size: 1.0rem;
+	background: #ff5301;
+	border-radius: 0;
+}
+
+.take_select {
+	width: 100%;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+.take_select .take_address {
+	width: 92%;
+	margin-left: 4%;
+	height: 2.6rem;
+	font-size: 0.9rem;
+	line-height: 2.6rem;
+}
+.take_address i {
+	display: inline-block;
+	height: 2.6rem;
+	float: left;
+	line-height: 2.6rem;
+}
+.take_address .show_address {
+	display: inline-block;
+	width: 75%;
+	height: 2.6rem;
+	line-height: 2.6rem;
+	overflow: hidden;
+	text-align: right;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+/*选择时间样式*/
+
+#take_time {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+	overflow: hidden;
+}
+
+#take_time p {
+	width: 92%;
+	color: #000000;
+	margin-left: 4%;
+	font-size: 0.9rem;
+	height: 2.6rem;
+	line-height: 2.6rem;
+}
+
+#take_time p i {
+	display: inline-block;
+	float: right;
+	width: 10%;
+	height: 2.6rem;
+	margin-right: 0.3rem;
+	background: url(http://yiyun.zhonyou.cn/webapp_img/go.png) no-repeat right center;
+	background-size: 1.4rem 1.4rem;
+}
+
+#take_time p s {
+	float: right;
+}

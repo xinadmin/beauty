@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/my_dingdan.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<title>商城我的订单</title>
+
+		<style type="text/css">
+		</style>
+	</head>
+
+	<body>
+		<header id="header"  class="mui-bar mui-bar-nav" style="box-shadow: none; border-bottom: solid 1px #F0F0F0;background-color:#fd4404 ;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff !important;font-size: 1.5rem;"></a>
+			<!--<s id="xuanze_order">
+			<button class="active">网上订单</button>
+		    <button >美容院订单</button>
+			</s>-->
+			<a class="mui-pull-right"><span class="mui-icon mui-icon-search" style="color: #fff;"></span></a>
+
+		</header>
+		<div class="mui-content">
+
+			<nav id="nav_all_order">
+				<ul class="dingdan_zhuangtai" id="dingdan_zhuangtai">
+					<li>
+						<p>待付款</p>
+					</li>
+					<li>
+						<p>待发货</p>
+					</li>
+					<li>
+						<p>待收货</p>
+					</li>
+					<li>
+						<p>待评价</p>
+					</li>
+				</ul>
+			</nav>
+			<div class="dingdan" id="content" >
+				<div id="dingdan_item" class="fukuan_list" style="display: none;">
+					<div class="item_fukuan_list">
+					</div>
+					<div id="xian" class="fukuan" style="display: none;">
+						<img src="http://yiyun.zhonyou.cn/webapp_img/kong.png" src="100px" />
+						<h1>您还没有相关的订单</h1>
+						<h2>去看看有哪些想买的</h2>
+					</div>
+				</div>
+				<div id="dingdan_item" class="item_fahuo" style="display: none;">
+					<div class="item_fahuo_list">
+					</div>
+					<div id="xian" class="fahuo" style="display: none;">
+						<img src="http://yiyun.zhonyou.cn/webapp_img/kong.png" />
+						<h1>您还没有相关的订单</h1>
+						<h2>去看看有哪些想买的</h2>
+					</div>
+				</div>
+				<div id="dingdan_item" class="item_shouhuo" style="display: none;">
+					<div class="item_shouhuo_list">
+					</div>
+					<div id="xian" class="shouhuo" style="display: none;">
+						<img src="http://yiyun.zhonyou.cn/webapp_img/kong.png" src="100px" />
+						<h1>您还没有相关的订单</h1>
+						<h2>去看看有哪些想买的</h2>
+					</div>
+				</div>
+				<div id="dingdan_item" class="item_pingjia" style="display: none;">
+					<div class="item_pingjia_list">
+
+					</div>
+					<div id="xian" class="pingjia" style="display: none;">
+						<img src="http://yiyun.zhonyou.cn/webapp_img/kong.png" />
+						<h1>您还没有相关的订单</h1>
+						<h2>去看看有哪些想买的</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script src="js/my_dingdan.js" type="text/javascript"></script>

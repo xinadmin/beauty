@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>入口页面</title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			var webmainpage;
+			var guidepage;
+			mui.plusReady(function() {
+				plus.storage.removeItem("is_member");
+				var launchFlag = plus.storage.getItem("launchFlag");
+				var guide = plus.storage.getItem("guide");
+
+				webmainpage = plus.webview.getWebviewById("tab-webview-main.html");
+				if(!guide) {
+					guidepage = mui.preload({
+						"id": 'guide',
+						"url": 'guide.html'
+					});
+				}
+				var main_loaded_flag = false;
+				if(!webmainpage) {
+					webmainpage = mui.preload({
+						"id": 'tab-webview-main.html',
+						"url": 'tab-webview-main.html'
+					});
+				} else {
+					main_loaded_flag = true;
+				}
+
+				webmainpage.addEventListener("loaded", function() {
+					main_loaded_flag = true;
+				});
+				var toMain = function() {
+					var id = setInterval(function() {
+						if(main_loaded_flag) {
+							clearInterval(id);
+							mui.fire(webmainpage, 'show', null);
+							webmainpage.show("slide-in-right", 300);
+						}
+					}, 300);
+				};
+				if(!launchFlag) {
+					guidepage.show("slide-in-right", 300);
+				} else {
+					toMain();
+				}
+			});
+		</script>
+		<style type="text/css">
+			body {
+				height: 100%;
+				width: 100%;
+				background-color: #333333;
+			}
+		</style>
+	</head>
+
+	<body>
+	</body>
+
+</html>

@@ -1,0 +1,78 @@
+body{
+	width: 100%;
+	height: 100%;
+	background-color: #f5abb8;
+}
+
+#head_portrait{
+    width: 6rem;
+    height: 6rem;
+    margin: 5rem auto 0;
+    
+    
+    border-radius: 50%;
+    background-color: #9b9898;
+}
+#head_portrait img{
+	width: 98%;
+     margin: auto auto ;
+    border-radius: 50%;
+}
+#User_name{
+	width: 95%;
+    height: 2.5rem;
+    border-bottom: 0.1rem solid gray;
+}
+#login_button{
+	width: 60%;
+	height: 2rem;
+	background-color: #f1c3cb;
+    border-radius: 8%;
+    color: #eeeeee;
+    line-height: 2rem;
+    text-align: center;
+    font-size: 1rem;
+    margin: 2rem auto;
+}
+#forget{
+	float: left;
+	font-size: 0.7rem;
+	color: #eeeeee;
+	margin-left: 0.51rem;
+}
+#register{
+	float: right;
+	font-size: 0.7rem;
+	color: #eeeeee;
+	margin-right: 0.51rem;
+}
+.input_form {
+	width: 100%;
+	margin: 0 auto
+}
+.input_bg {
+	width: 96%;
+	margin: 0 auto;
+	overflow: hidden;
+	border-bottom: solid 0.1rem #E3E3E3;
+ 
+}
+.input_bg image {
+	width: 1.5rem;
+	height: 1.5rem;
+	float: left;
+	margin: 1rem ;
+ 
+}
+input::-webkit-input-placeholder {
+    color: #fff;
+    }
+.input_form .input_bg input {
+    width: 10rem;
+    height: 1.4rem;
+    font-size: 1rem;
+    padding-left: 0.4rem;
+    color: #f9f9f9;
+    tap-highlight-color:rgba(0,0,0,0);
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>产品详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/chanpin_xiangqing.css" />
+		<style>
+
+		</style>
+	</head>
+
+	<body>
+		<div id="mui-content">
+			<div id="slider" class="mui-slider" style="display: block;z-index: 1;">
+				<img :src="picture" v-if="is_show" />
+				<ul class="mui-slider-group " id="mui-slider-group">
+					<!--<li class="mui-slider-item" v-for=" item in pic">
+						<a href="#">
+							<img :src="item.pic" data-preview-src="" data-preview-group="1" width="100%" height="100%">
+						</a>
+					</li>-->
+
+				</ul>
+				<div class="mui-slider-indicator" id="mui-slider-indicator">
+				</div>
+			</div>
+			<div class="mui-content">
+				<!--轮播图片-->
+				<!--产品介绍start-->
+				<div class="chanpin_jieshao">
+					<div class="chanpin_jieshao_name">
+						<p id="produce_name">{{goodsName}}</p>
+						<h1 class="">折后<s id="price">￥{{discountPrice}}</s><i class="old_price fr" style="padding-right: 2%;font-size: 0.9rem;color: #CCCCCC;text-decoration: line-through;">原价:{{promotionPrice}}</i></h1>
+						<!--<h1 class="">￥<s id="price">{{promotionPrice}}</s><i class="old_price col-gray" style="padding-left: 22px; text-decoration: line-through; display:none">123</i></h1>-->
+						<h2 class="yunfei">运费:{{shippingFee}}<s class="jifen_title" style="text-align: center;">{{jifen_title}}</s><span>销售量:<em>{{sales}}</em></span></h2>
+					</div>
+
+					<div class="chanpin_jieshao_canshu">
+						<ul id="list">
+							<li id="cuxiao">
+								促销 <i><img src="http://yiyun.zhonyou.cn/webapp_img/more.png"/></i>
+							</li>
+							<li id="canshu">
+								产品参数
+								<i><img src="http://yiyun.zhonyou.cn/webapp_img/more.png"/></i>
+							</li>
+						</ul>
+					</div>
+					<div class="chanpin_jieshao_pingjia">
+					</div>
+					<div class="chanpin_jieshao_dianpuming">
+						<img onerror="this.src='http://yiyun.zhonyou.cn/webapp_img/shop_logo.png'" :src="shopLogo" />
+						<div class="chanpin_jieshao_dianpuming_content">
+							<h1>商铺名</h1><br />
+							<h2 id="shop_name">{{shopName}}</h2>
+							<button  @tap="collection_goods()" class="all_goods">{{collection_title}}</button>
+							<button class="jinru_dianpu" @tap="go_shop()">进店逛逛</button>
+						</div>
+					</div>
+					<div id="produce_detail" style="color: #333333;" v-html="description">
+					</div>
+					<!--产品介绍end-->
+				</div>
+				<div class="lianxi_goumai">
+					<div class="lianxi_gouwuche">
+						<ul>
+							<li id="mi" class="shop_sj" @tap="openphone()">
+								<p><img src="http://yiyun.zhonyou.cn/webapp_img/phone.png" /></p>
+								<p>联系</p>
+							</li>
+							<li id="shop_log" class="shop_sj" @tap="go_shop()">
+								<img src="http://yiyun.zhonyou.cn/webapp_img/shop.png" />
+								<p>店铺</p>
+							</li>
+							<li id="gouwuche" class="shop_sj">
+								<img src="http://yiyun.zhonyou.cn/webapp_img/cart.png" />
+								<p>购物车</p>
+							</li>
+
+							<li id="join" class="shop_tiaoshi">
+								<span> 加入购物车</span></li>
+							<li id="buy" class="shop_tiaoshi">
+								<span>立即购买</span></li>
+						</ul>
+
+					</div>
+				</div>
+				<div class="chanpin_jieshao_canshu_content">
+					<div class="chanpin_jieshao_canshu_content_message">
+						<h1>产品参数</h1>
+						<div class="canshu_div">
+							<p>品牌:<s>依乐购</s></p>
+							<p>发货地:<s>{{address}}</s></p>
+							<p class="spe_more_line">规格:<s class="spe_more">{{spe}}</s></p>
+
+						</div>
+						<span>  <button id="wancheng" onclick="closecanshupage()">完成</button></span>
+					</div>
+				</div>
+
+				<div class="chanpin_jieshao_bg" id="chanpin_jieshao_bg">
+					<div class="chanpin_jieshao_fenlei">
+						<div class="chanpin_jieshao_fenglei_message clearfix">
+							<div id="pic_goods">
+								<img :src="picture" id="produce_img" onerror="this.src='http://yiyun.zhonyou.cn/webapp_img/moren.png'" width="150px" height="120px" />
+							</div>
+							<div class="chanpin_canshu">
+								<h1>￥<s class="sys_item_price">{{promotionPrice}}</s></h1>
+								<h2>库存: &nbsp;<s id="kucun">{{stock}}</s></h2>
+								<h3 id="produce_canshu" v-if="spec_true">{{produce_canshu}}</h3>
+							</div>
+							<i @tap="closeguigepage()"><img src="http://yiyun.zhonyou.cn/webapp_img/delete.png"/></i>
+						</div>
+						<div>
+							<ul class="sys_spec_text">
+								<p>{{specification}}</p>
+
+								<li data-id="item.id" id="sys_spec_text_list" v-for="item in spection">
+									<a href="javascript:;" :title="item.specifications" :num="item.stock" :price="item.price">{{item.specifications}}</a>
+								</li>
+							</ul>
+						</div>
+						<div class="shuliang">
+							<s class="fl">数量</s>
+							<div class="mui-numbox fr">
+								<button class="mui-btn mui-btn-numbox-minus" type="button" id="jian">-</button>
+								<input class="mui-input-numbox" type="number" value="1" id="number"></input>
+								<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+							</div>
+						</div>
+
+						<button id="queding">确定</button>
+					</div>
+				</div>
+			</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/mui.min.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script src="../js/mui.zoom.js"></script>
+<script src="../js/mui.previewimage.js"></script>
+<script type="text/javascript">
+	mui.previewImage();
+</script>
+<script type="text/javascript" src="js/shop_chanpin.js"></script>

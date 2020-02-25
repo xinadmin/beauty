@@ -1,0 +1,62 @@
+<view>
+  <view class="section section_gap">
+      <radio-group class="group" bindchange="radioChange" >
+        <label class="label-2" wx:for="{{radioItems}}" wx:key="index" >
+          <view class='jishi_a'>
+            <image src='/pages/img/jishi.jpg' id='jishi'></image>
+          <text class="label-2__text" for="{{item.meirongshi_name}}" ><text>{{item.meirongshi_name}}</text></text>
+          </view>
+          <radio value='{{item.meirongshi_name}}-{{item.mid}}' data-id='{{item.mid}}'></radio>
+        </label>
+      </radio-group>
+  </view>
+  <picker bindchange="bindPickerChange" value="{{indexs}}" range="{{array}}" open-type="getUserInfo">
+    <view class="picker">
+      <text>订单类型选择</text>
+      <view class='right_back_a'>
+        <text>{{array[indexs]}}</text>
+        <image src='/pages/img/right_back.jpg' id='right_back'></image>
+      </view>
+    </view>
+  </picker>
+
+<!-- 日期 -->
+<picker mode="date" value="{{date}}" start="{{tis}}" end="{{tiss}}" bindchange="bindDateChange">
+  <view class="tui-picker-detail">
+    <text class='tui-picker-content'>服务日期</text>
+    <view class='tui-picker-name'>
+      <text>{{date}}</text>
+      <image src='/pages/img/right_back.jpg' id='right_back'></image>
+    </view>
+  </view>
+</picker>
+
+<!-- 开始时间 -->
+<picker mode="time" value="{{date}}" start="09:00" end="22:00" bindchange="bindTimeChange">
+  <view class="tui-picker-detail">
+    <text class='tui-picker-content'>服务开始时间</text>
+    <view class='tui-picker-name'>
+      <text>{{time}}</text>
+      <image src='/pages/img/right_back.jpg' id='right_back'></image>
+    </view>
+  </view>
+</picker>
+
+<!-- 结束时间 -->
+  <view class="tui-picker-detail">
+    <text class='tui-picker-content'>服务结束时间</text>
+    <view class='tui-picker-name'>
+      <text>{{timess}}</text>
+      <image src='/pages/img/right_back.jpg' id='right_back'></image>
+    </view>
+  </view>
+
+<view class='juzhong'>
+  <!-- <navigator url='/pages/order_yuyue_success/order_yuyue_success'> -->
+    <button id='yuyue' bindtap='freeBooking'>免费预约</button>
+  <!-- </navigator> -->
+  
+</view>
+
+
+</view>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<title></title>
+		<style type="text/css">
+			.mui-bar {
+				background-color: #FF3300;
+			}
+			
+			.mui-content {
+				width: 96%;
+				margin: 2% auto;
+				background: #eeeeee;
+			}
+			
+			.chongzhi {
+				border: 1px solid #ff3300;
+				border-top: none;
+				width: 100%;
+				display: inline-block;
+				min-height: 30px;
+			}
+			
+			#new_tel {
+				background: #eeeeee;
+				width: 102%;
+				margin-left: -1%;
+				font-size: 1.0rem;
+				border-radius: 0;
+				border: none
+			}
+			
+			#qiehuan {
+				border: solid 1px #ddd;
+				height: 2.6rem;
+				line-height: 2.6rem;
+				width: 96%;
+				margin-left:2%  ;
+				background-color: rgba(0, 0, 0,0.03);
+				/*position: fixed;*/
+				/*left: 50%;*/
+				/*margin-left: -75px;*/
+				/*bottom: 0.6rem;*/
+			}
+			
+			.method_card {
+				width: 100%;
+				overflow: hidden;
+				/*display: none;*/
+			}
+			
+			.method_card .card_input {
+				width: 100%;
+				height: 50px;
+				text-align: center;
+				margin-bottom: 0.8rem;
+				
+			}
+			
+			.method_card .card_input input {
+				background-color: rgba(0, 0, 0, 0);
+				border: none;
+				height: 100%;
+				margin-bottom: 0.3rem;
+				text-align: center;
+				border: solid 1px #FF3300;
+				font-size: 0.9rem
+			}
+			.method_card .card_input input.select_input {
+				
+				font-size: 1.2rem
+			}
+			
+			.method_card .card_input .submit {
+				width: 100%;
+				margin: 2% 0;
+				background: #FF3300;
+				color: #fff;
+				padding: 3% 0;
+				font-size: 1.2rem;
+			}
+			
+			.chongzhi_num {
+				width: 100%;
+				margin: 0.6rem 0;
+				overflow: hidden;
+			}
+			
+			.chongzhi_num s {
+				display: inline-block;
+				width: 22%;
+				padding: 0.6rem 0;
+				font-size: 1.1rem;
+				text-align: center;
+				margin-bottom: 0.9rem;
+				margin-right: 0.4rem;
+				border: solid 1px #ddd;
+			}
+			
+			.chongzhi_num .active {
+				border-color: #2AC845;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #222222;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;color: #fff;">充值</span></button>
+		</header>
+		<div class="mui-content">
+			<div id="pay_chongzhi" style="display: none;">
+				<div class="chongzhi" style="">
+					<input type="tel" id="new_tel" />
+				</div>
+				<label style="padding: 2% 0;display: inline-block;">注意：充值方式目前接收微信支付</label>
+
+				<div class="chongzhi_num" id="chongzhi_num">
+					<s id="num_money">50</s>
+					<s id="num_money">100</s>
+					<s id="num_money">200</s>
+					<s id="num_money">300</s>
+					<s id="num_money">500</s>
+					<s id="num_money">1000</s>
+					<s id="num_money">2000</s>
+
+				</div>
+
+				<input type="button" value="充值" id="baocun" style="width: 100%;margin: 2% 0;background: #FF3300;color: #fff; padding: 3% 0;font-size: 1.2rem;" />
+			</div>
+
+			<div class="method_card" id="method_card">
+				<div class="card_input"><input type="text" oninput="select_input(this)" value="" placeholder="请输入充值卡的序列号" id="num_card"/></div>
+				<div class="card_input"><input type="text" oninput="select_input(this)" value="" placeholder="请输入充值卡的密码" id="num_pass"/></div>
+				<span>
+		    		充值卡充值，仅支持依乐购提供的充值卡(字母不区分大小写)
+		    	</span>
+				<div class="card_input"><input type="button" class="submit" id="submit_btn" value="充值" /></div>
+
+			</div>
+		</div>
+		<button id="qiehuan">切换现金充值</button>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	mui.init({
+		swipeBack: true
+	});
+	var uid;
+	var pays = {};
+	var price = null;
+	var orderNo = "";
+	var shop_id = "";
+	var order_id = "";
+    var url_app=mui.app_url();
+	function plusReady() {
+		// 获取支付通道
+		plus.payment.getChannels(function(channels) {
+			for(var i in channels) {
+				var channel = channels[i];
+				pays[channel.id] = channel;
+				checkServices(channel);
+			}
+		}, function(e) {
+			outLine('获取支付通道失败：' + e.message);
+		});
+	}
+	document.addEventListener('plusready', plusReady, false);
+	// 检测是否安装支付服务
+	function checkServices(pc) {
+		if(!pc.serviceReady) {
+			var txt = null;
+			switch(pc.id) {
+				case 'alipay':
+					txt = '检测到系统未安装“支付宝快捷支付服务”，无法完成支付操作，是否立即安装？';
+					break;
+				default:
+					txt = '系统未安装“' + pc.description + '”服务，无法完成支付，是否立即安装？';
+					break;
+			}
+			plus.nativeUI.confirm(txt, function(e) {
+				if(e.index == 0) {
+					pc.installService();
+				}
+			}, pc.description);
+		}
+	}
+	document.getElementById("qiehuan").addEventListener("tap", function() {
+		if($("#method_card").css("display") == "none") {
+			$(this).text("切换现金充值");
+			$("#method_card").show();
+			$("#pay_chongzhi").hide();
+		} else {
+			$(this).text("切换充值卡充值")
+			$("#method_card").hide();
+			$("#pay_chongzhi").show();
+		}
+	})
+	mui("body").on("tap", "#num_money", function() {
+		$("#chongzhi_num  > s").removeClass("active");
+		$(this).addClass("active").siblings().removeClass("active");
+		$("#new_tel").val($(this).text());
+
+	})
+
+	function change() {
+		var d = new Date();
+		var vYear = d.getFullYear();
+		var vMon = d.getMonth() + 1;
+		var vDay = d.getDate();
+		var h = d.getHours();
+		var m = d.getMinutes();
+		var se = d.getSeconds();
+		var ms = d.getMilliseconds();
+		billno = "" + vYear + (vMon < 10 ? "0" + vMon : vMon) + (vDay < 10 ? "0" + vDay : vDay) + (h < 10 ? "0" + h : h) + (m < 10 ? "0" + m : m) + (se < 10 ? "0" + se : se) + ms;
+		return billno;
+
+	};
+
+	document.getElementById("baocun").addEventListener("tap", function() {
+		var local = window.localStorage;
+		uid = local.getItem("uid");
+		var new_tel = $("#new_tel").val();
+		var out = change();
+		if(new_tel != null && new_tel != "") {
+			var reg = /^[1-9]\d*$/;
+			if(!reg.test(new_tel)) {
+				mui.toast("请整数的金额");
+				return false;
+			} else {
+				var wd = plus.nativeUI.showWaiting();
+				$.ajax({
+					url: url_app+"weixin/zhifuUser",
+					type: 'POST', //HTTP请求类型  
+					data: {
+						uid: uid,
+						recharge_money: new_tel,
+						out_trade_no: out
+					},
+					dataType: "json",
+					success: function(data) {
+						wd.close();
+						if(data != null) {
+							plus.payment.request(pays["wxpay"], data, function(result) {
+								mui.toast('----- 支付成功 -----');
+								$.ajax({
+									url: "http://yiyun.zhonyou.cn/weixin/updateUser",
+									type: 'POST', //HTTP请求类型  
+									data: {
+										uid: uid,
+										recharge_money: new_tel,
+										out_trade_no: out
+									},
+									dataType: "json",
+									success: function(data) {
+										wd.close();
+										if(data == 1) {
+											mui.back();
+										} else {
+											plus.nativeUI.alert('当前未支付', null, mui.toast("请重新支付"));
+										}
+									},
+									error: function() {
+										mui.toast("系统繁忙，支付失败，稍后再试");
+									}
+								});
+							}, function(e) {
+								plus.nativeUI.alert('当前未支付', null, mui.toast("请重新支付"));
+							});
+
+						} else {
+							wd.close();
+							mui.toast("系统繁忙，请稍后再试");
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						wd.close();
+						mui.toast("系统繁忙，稍后再试");
+
+					}
+				})
+			}
+		}
+	  else {
+	  	mui.toast("请输入充值金额");
+	  }
+	 })
+    function select_input (obj) {
+    	   var $this=$(obj);
+    	   if($this.val()!=""){
+    	   $this.addClass("select_input");
+    	   }else {
+    	   $this.removeClass("select_input");
+    	   	
+    	   }
+    }
+	document.getElementById("submit_btn").addEventListener("tap", function() {
+		var local = window.localStorage;
+		var num_card=$("#num_card").val();
+		var num_pass=$("#num_pass").val();
+		
+		var uid = local.getItem("uid");
+		var username = local.getItem("user_name");
+		if(!uid){
+			mui.toast("您当前未登录，请退出重新登录");
+			mui.back();
+			return ;
+		}else {
+			if(num_card==""||num_card==null ||num_pass=="" || num_pass==null){
+				mui.toast("请填写正确的卡号或密码");
+				return;
+			}
+	    var waiting = plus.nativeUI.showWaiting();
+		mui.ajax({
+			url: url_app+"api/FinanceCardController/insAddFinanceCard",
+			type: 'POST', //HTTP请求类型
+			data: {
+				number: num_card,
+				password: num_pass,
+				username: username,
+				ip: uid,
+				uid: uid
+			},
+			success: function(data) {
+				waiting.close();
+				if(data ==1){
+					mui.toast("充值成功");
+					mui.fire( plus.webview.getWebviewById("my_zijin"),"refresh",null);
+					mui.back();
+				}else if(data==2) {
+					mui.toast("充值卡已使用，请提供新的充值卡");
+				}else if(data==-1){
+					mui.toast("请提供正确的充值卡号与密码");
+				}else if(data==-3){
+					mui.toast("请联系管理员");
+				}else if(data==-0){
+					mui.toast("充值失败");
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+					mui.toast("系统繁忙，稍后再试");
+				
+
+			}
+		})
+		}
+	})
+
+</script>

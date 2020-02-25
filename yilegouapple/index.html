@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>首页</title>
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/newindex.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+		<script>
+			var int_day, int_hour, int_minute, int_second;
+			$(function() {
+				var hour = document.getElementById("hour");
+				var minuter = document.getElementById("minuter");
+				var miao = document.getElementById("miao");
+				count_down();
+			})
+
+			function count_down() {
+				var myDate = new Date();
+				var item1 = myDate.getFullYear();
+				var item2 = myDate.getMonth() + 1;
+				var item3 = myDate.getDate() + 1;
+				var item4 = myDate.getHours();
+				var item5 = myDate.getMinutes();
+				var item6 = myDate.getSeconds();
+
+				var myDate2 = new Date("" + item1 + "/" + item2 + "/" + item3 + " 00:00:00");
+				var time_distance = myDate2.getTime() - myDate.getTime();
+				int_day = Math.floor(time_distance / 86400000)
+				time_distance -= int_day * 86400000;
+				int_hour = Math.floor(time_distance / 3600000)
+				time_distance -= int_hour * 3600000;
+				int_minute = Math.floor(time_distance / 60000)
+				time_distance -= int_minute * 60000;
+				int_second = Math.floor(time_distance / 1000)
+				if(int_hour < 10)
+					int_hour = "0" + int_hour;
+				if(int_minute < 10)
+					int_minute = "0" + int_minute;
+				if(int_second < 10)
+					int_second = "0" + int_second;
+
+				hour.innerHTML = int_hour;
+
+				minuter.innerHTML = int_minute;
+
+				miao.innerHTML = int_second;
+
+				setTimeout("count_down()", 1000);
+			}
+			//进行倒计时显示
+			//	function run() {
+			//		--s;
+			//		if(s < 0) {
+			//			--m;
+			//			s = 59;
+			//		}
+			//		if(m < 0) {
+			//			--h;
+			//			m = 59
+			//		}
+			//		if(h < 0) {
+			//			s = 0;
+			//			m = 0;
+			//		}
+			//		showDiv.innerHTML = h + ":" + m + ":" + s;
+			//	}
+		</script>
+		<style type="text/css">
+			.mui-pull-bottom-tips {
+				display: block;
+				width: 100%;
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			
+			.mui-slider-indicator {
+				text-align: right;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--头部搜索框start-->
+		<header id="top">
+			<div class="top_bg">
+				<div class="huiyuanma" id="saoma">
+					<img src="http://yiyun.zhonyou.cn/webapp_img/saoma.png" />
+					<p>扫一扫</p>
+				</div>
+				<div class="huiyuanma fr" id="huiyuanma">
+					<img src="http://yiyun.zhonyou.cn/webapp_img/erweima.png" />
+					<p>会员码</p>
+				</div>
+				<p id="sousuo">
+					面膜
+				</p>
+			</div>
+		</header>
+		<!--头部搜索框end-->
+		<div id="content">
+			<!--轮播图start-->
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="http://yiyun.zhonyou.cn/webapp_img/banner4.jpg">
+						</a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="http://yiyun.zhonyou.cn/webapp_img/banner1.jpg">
+						</a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="http://yiyun.zhonyou.cn/webapp_img/banner2.jpg">
+						</a>
+					</div>
+					<div class="mui-slider-item" data-id="155">
+						<a href="#">
+							<img src="http://yiyun.zhonyou.cn/webapp_img/banner3.jpg">
+						</a>
+					</div>
+					<div class="mui-slider-item" data-id="236">
+						<a href="#">
+							<img src="http://yiyun.zhonyou.cn/webapp_img/banner4.jpg">
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="http://yiyun.zhonyou.cn/webapp_img/banner1.jpg">
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+
+				</div>
+			</div>
+			<!--轮播图end-->
+			<!--导航栏start-->
+			<nav>
+				<ul id="slide_nav">
+					<li class="meirong" id="meirong"  onclick="launchMiniProgram(this)">
+						美容
+					</li>
+					<li class="canyin" id="canyin"  onclick="launchMiniProgram(this)">
+						餐饮
+					</li>
+					<li class="buy_cart" id="buy_cart" onclick="meirongyuan_fujin()">
+						美具
+					</li>
+					<li class="yule" id="yule" onclick="launchMiniProgram(this)">
+						车美
+					</li>
+					<li class="luye" id="luye" onclick="no_set()">
+						旅业
+					</li>
+					<li class="more" id="more">
+					</li>
+				</ul>
+			</nav>
+			<!--导航栏end-->
+			<div class="fengge">
+			</div>
+			<!--礼包专区start-->
+			<div class="more_gift">
+				<span class="gift_title">礼包专区</span><span class="fr index_color_orange" onclick="no_set()">查看更多&nbsp;&nbsp;></span>
+			</div>
+			<!--礼包专区end-->
+			<div class="fengge">
+			</div>
+			<!--产品板块start-->
+			<div class="produce_classification">
+				<div class="fl produce_classification_index" id="meizhuang">
+					<div class="produce_classification_fl">
+						<div class="produce_classification_fl_title">
+							<span>限时抢购</span>
+							<s><i id="hour"></i>:<i id="minuter"></i>:<i id="miao"></i></s>
+							<h1>水透白细致再生原液蚕丝冰膜</h1>
+							<h2>给肌肤从未有过的水润感</h2>
+						</div>
+						<div class="produce_classification_fl_pic">
+							<img src="http://yiyun.zhonyou.cn/webapp_img/qianggou.png" />
+						</div>
+					</div>
+				</div>
+				<div class="fr produce_classification_second">
+					<div class="produce_classification_fr" id="youhaohuo">
+						<div class="produce_classification_fr_title">
+							<span>有好货</span>
+							<br />
+							<s>高颜值美货</s>
+							<img src="http://yiyun.zhonyou.cn/webapp_img/youhaohuo1.png" />
+						</div>
+						<div class="produce_classification_fr_img fl">
+							<img src="http://yiyun.zhonyou.cn/webapp_img/youhaohuo2.png" />
+						</div>
+					</div>
+					<div class="fengge">
+					</div>
+					<div class="produce_classification_fr_one_all">
+						<div class="fl produce_classification_fr_one" id="aiguanjie">
+							<h1>爱逛街</h1>
+							<h2>超热网红款</h2>
+							<img src="http://yiyun.zhonyou.cn/webapp_img/aiguanjie1.png" />
+							<img src="http://yiyun.zhonyou.cn/webapp_img/aiguanjie2.png" />
+						</div>
+						<div class="fr produce_classification_fr_one" id="bimaiqingdan">
+							<h1 class="">必买清单</h1>
+							<h2>一站式攻略</h2>
+							<img src="http://yiyun.zhonyou.cn/webapp_img/bimai1.png" />
+							<img src="http://yiyun.zhonyou.cn/webapp_img/bimai2.png" />
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<!--化妆品板块end-->
+			<div class="fengge">
+			</div>
+			<div class="all_produce">
+				<!--猜你喜欢板块start-->
+				<div class="love_produce">
+					<p><s>猜你喜欢</s></p>
+					<div class="love_produce_title"><span>全球扫货</span><span>精选特卖</span><span>100%正品保障</span></div>
+					<div class="love_produce_list">
+
+						<article  v-for="item in yagao" @tap="open_produce_detail(item)">
+							<div class="produce_bg">
+								<img :src="item.picture" />
+								<span style="display: inline-block;">{{item.goodsName}}</span>
+								<br />
+								<i>促销价:<span class="index_color_red">¥</span><em class="index_color_red">{{item.promotionPrice}}</em></i>
+								<br />
+								<s>¥{{item.price}}</s>
+								<div class="lgbd">
+									乐购币抵扣{{item.pointExchange}}元
+								</div>
+							</div>
+						</article>
+					</div>
+
+				</div>
+				<!--猜你喜欢板块end-->
+
+				<div class="fengge">
+				</div>
+				<!--广告banner图start-->
+				<div id="slider" class="mui-slider point_bg">
+					<div class="mui-slider-group mui-slider-loop">
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href=" ">
+								<img src="http://yiyun.zhonyou.cn/webapp_img/point_bg1.jpg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="http://yiyun.zhonyou.cn/webapp_img/point_bg2.jpg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="http://yiyun.zhonyou.cn/webapp_img/point_bg1.jpg">
+							</a>
+						</div>
+
+						<!-- 第三张 -->
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="http://yiyun.zhonyou.cn/webapp_img/point_bg2.jpg">
+							</a>
+						</div>
+					</div>
+
+				</div>
+				<!--广告banner图end-->
+				<div class="fengge">
+				</div>
+				<div class="gg_tu">
+					<img src="http://yiyun.zhonyou.cn/webapp_img/gg_tu_a.png" / id="gg_tu_a" @tap="meirongyuan_fujin()">
+					<div class="gg_tu_right">
+						<img src="http://yiyun.zhonyou.cn/webapp_img/gg_tu_b.png" / id="gg_tu_b" @tap="meirongyuan_fujin()">
+						<img src="http://yiyun.zhonyou.cn/webapp_img/gg_tu_c.png" / id="gg_tu_c" @tap="meirongyuan_fujin()">
+					</div>
+					
+					<!--<div class="gg_tu_btn">
+					<img src="http://yiyun.zhonyou.cn/webapp_img/gg_tu_d.png"/ id="gg_tu_d">
+					<img src="http://yiyun.zhonyou.cn/webapp_img/gg_tu_e.png"/ id="gg_tu_e">
+				</div>-->
+				</div>
+
+				<!--专场end-->
+
+				<div class="fengge">
+				</div>
+				<!--进口水果start-->
+				<div class="more_gift">
+					<span class="gift_title">热销商品</span><span class="fr index_color_orange" onclick="open_all_goods()">查看更多&nbsp;&nbsp;></span>
+				</div>
+				<!--进口水果end-->
+
+				<div class="fengge">
+				</div>
+				<div id="chanpin_list">
+					<ul class="mui-table-view" style="border-top: none;">
+						<li id="list_item" v-for="item in items" @tap="open_produce_detail(item)">
+							<a href="javascript:;">
+								<div class="produce_img">
+									<img :src="item.picture" onerror="this.src='img/moren.png'"> </div>
+								<div class="produce_item">
+									<h1>{{item.goodsName}}</h1>
+									<div class="biaoqian">
+										<span class="biao_a">乐购币抵扣{{item.pointExchange}}元</span>
+										<span class="biao_b">会员价¥{{(item.promotionPrice*0.95).toFixed(2)}}</span>
+									</div>
+									<h2><s class="fl index_color_red">￥<i class="price "> <span style="font-size: 1.0rem;float: unset;color: red;">{{item.promotionPrice}}</span></i>  </s>
+										<span>{{item.count_num}}人已付款</span></h2>
+								</div>
+							</a>
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
+
+			<div class="fengge">
+			</div>
+
+		</div>
+
+		<div class="eweima_tanchuan">
+			<img src="" id="tanchuang_bg" />
+			<div class="erweima_tuan">
+				<span class="back" id="back"></span>
+				<!--<span class="baocun" id="baocun">保存</span>-->
+
+			</div>
+		</div>
+		</div>
+	</body>
+
+</html>
+<script src="js/mui.pullToRefresh.js"></script>
+<script src="js/mui.pullToRefresh.material.js"></script>
+<script type="text/javascript" src="js/new_index.js"></script>

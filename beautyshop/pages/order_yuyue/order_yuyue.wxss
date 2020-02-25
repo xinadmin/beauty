@@ -1,0 +1,113 @@
+page {
+  background-color:#EBEBEB; 
+}
+.list_yuyue
+ {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 172rpx;
+}
+.list_yuyue .list_yuyue_item {
+  width: 97%;
+  margin: 20rpx auto;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 20rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.list_yuyue .list_yuyue_item .time {
+  font-size: 26rpx;
+  
+}
+.list_yuyue .list_yuyue_item .list_yuyue_startime,.list_yuyue .list_yuyue_item .list_yuyue_endtime {
+  font-size: 26rpx;
+  height: 66rpx;
+  line-height:66rpx 
+  
+}
+.beauty {
+  display: inline-block;
+  width: 150rpx;
+  height: 120rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  border: solid 1px #ddd;
+  text-align: center;
+}
+.beauty .beauty_title {
+  display: inline-block;
+  width: 150rpx;
+  font-size: 26rpx;
+  float: left;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #FF9A9E;
+  color: #fff;
+}
+.beauty .beauty_name {
+ display: inline-block;
+  width: 130rpx;
+   height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+}
+.title{
+ width: 100%;
+  overflow: hidden;
+  height: 86rpx;
+
+  line-height: 86rpx;
+position: fixed;
+  left: 0;
+  bottom: 86rpx;
+  color: #FF9A9E;
+  text-align: center;
+}
+.add_yuyue {
+  display:block;
+  width: 100%;
+  overflow: hidden;
+  height: 86rpx;
+  line-height: 86rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 29rpx;
+  background-color: #FF9A9E;
+}
+.qian{
+  border-top: 1rpx solid #cccccc;
+  
+  position: relative;
+  display: block;
+  padding: 20rpx;
+  height: 90rpx;
+  background-color:white;
+  width:97%;
+  margin:20rpx auto;
+  box-sizing:border-box;
+
+}
+.qiand{
+  padding: 0;
+  margin: 0;
+  border-radius: 6rpx;
+  width: 140rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
+  position: absolute;
+  right: 30rpx;
+}
+#yiqian{
+  color: #FF9A9E;
+  font-size: 28rpx;
+  position: absolute;
+  right:55rpx;
+  top:165rpx;
+
+}

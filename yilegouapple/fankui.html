@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" class="feedback">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>问题反馈</title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #FF3300;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<button id="baocun" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right" style="color: #fff;">发送</button>
+			<h1 class="mui-title" style="color: #fff;">问题反馈</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div class="mui-inline">问题和意见</div>
+			</div>
+			<div class="row mui-input-row">
+				<textarea id='question' class="mui-input-clear question" placeholder="请详细描述你的问题和意见..."></textarea>
+			</div>
+		</div>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true
+			});
+			var url_app=mui.app_url();
+			mui.plusReady(function(){
+			document.getElementById("baocun").addEventListener("tap", function() {
+			var new_tel = $("#question").val();
+			var uid=window.localStorage.getItem("uid");
+			var user_name=window.localStorage.getItem("user_name");
+			if(uid !="" || uid !=null){
+			if(new_tel != null && new_tel!="" ) {
+				var wd = plus.nativeUI.showWaiting();
+				mui.ajax(url_app+'problem_feedback/insert', {
+					type: 'POST', //HTTP请求类型  
+					timeout: 10000, //超时时间设置为10秒；
+					data: {
+						content: new_tel, //新改号码
+						uid: uid,
+						userName:user_name
+					},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+					success: function(data) {
+						wd.close();
+						if(data == 1) {
+							mui.toast("反馈成功，我们会尽快对你的反馈进行处理");
+							mui.back();
+						} else {
+							mui.toast("系统繁忙");
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；     
+						wd.close();
+                        mui.toast("系统繁忙，稍后再试");
+					}
+				});
+			} else {
+				mui.toast("请完善再进行修改");
+			}
+			} else {
+				mui.toast("当前无法反馈，请退出重新登录进来");
+				
+			}
+		});
+			})
+		</script>
+	</body>
+
+</html>

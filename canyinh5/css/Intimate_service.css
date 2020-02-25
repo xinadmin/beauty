@@ -1,0 +1,101 @@
+.Intimate_service_bg{
+	width: 100%;
+	height: 11rem;
+	border-bottom: 0.5rem solid #EAEAEA;
+}
+
+.Intimate_service_bg img{
+	width: 100%;
+	height: 100%;
+}
+
+.laba{
+	width: 90%;
+	height:3rem;
+	line-height: 3rem;
+	margin: 0 auto;
+	/* background-color: #469BD4; */
+}
+
+.laba_pic{
+	width:1.3rem;
+	height: 1.25rem;
+	float: left;
+}
+
+.laba_pic img{
+	width:100%;
+	height: 100%;
+}
+
+.laba span{
+	float: left;
+	margin: 0.08rem 0 0 0.625rem;
+}
+
+.eating{
+	color: #FD5959;
+	font-weight: bold;
+}
+
+.if_need_server{
+	width: 90%;
+	height: 1.875rem;
+	margin: 0 auto;
+}
+
+.if_need_server span{
+	float: left;
+	font-size: 0.875rem;
+	color: #656565;
+}
+
+.service_list{
+	width: 90%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.add_cai_pic,.hujiao_pic,.fuwu_pic,.pingjia_pic{
+	width: 90%;
+	height:9rem;
+	text-align: center;
+	background-image: url(../image/jiacan.png);
+	background-size:100% 100%;
+	position: relative;
+	margin: 0 auto;
+}
+
+.hujiao_pic{
+	background-image: url(../image/fuwu.png);
+}
+
+.fuwu_pic{
+	background-image: url(../image/hujiao.png);
+}
+
+.pingjia_pic{
+	background-image: url(../image/pingjia.png);
+}
+
+.add_cai_tex{
+	width:8rem;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	text-align: center;
+	background-color: #FD5A5B;
+	color: white;
+	border: 0.0625rem solid #FD5A5B;
+	border-radius: 2rem;
+	position: absolute;
+	 margin: auto; 
+	 top: 0; left: 0; bottom: 0; right: 0; 
+}
+
+.dixian{
+	width: 100%;
+	height: 3rem;
+	line-height: 3rem;
+	text-align: center;
+	color: #8B8B8B;
+}

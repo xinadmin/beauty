@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>产品搜索列表</title>
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/sousuo_list.css" />
+		<link rel="stylesheet" href="css/chanpin_pailie_danlie.css" id="link1" />
+		<style type="text/css">
+		</style>
+	</head>
+
+	<body >
+		<header id="header_sousuo">
+			<i class="mui_back mui-action-back"></i>
+			<h1 style="color: #fff;">依乐购</h1>
+		</header>
+		<div class="mui-content">
+			<div class="tiaojian" id="tiaojian">
+				<ul>
+					<li class="xuanze">
+						<a class="jiashen" title="1"><i class="xuanze_title">综合排序</i><s><img id="img" src="http://yiyun.zhonyou.cn/webapp_img/sanjiaoxing_red_down.png"/></s></a>
+						<div class="xuanze_bg">
+							<dl>
+								<dd>
+									<a title="综合排序">综合排序</a><s class="dagou"></s></dd>
+								<dd>
+									<a title="价格由高到低" data-id="2">价格由高到低</a><s></s></dd>
+								<dd>
+									<a title="价格由低到高" data-id="1">价格由低到高</a><s></s></dd>
+							</dl>
+						</div>
+					</li>
+					<li>
+						<a title="2" href="javascript:;">销量优先</a>
+					</li>
+
+				</ul>
+				<a href="javascript:;" id="qiehuan" onclick="qiehuan()"><img src="http://yiyun.zhonyou.cn/webapp_img/danhang.png" class="img_pailie" /></a>
+				<a href="javascript:;" id="shuaixuan">筛选<img src="http://yiyun.zhonyou.cn/webapp_img/shuaixuan.png" /></a>
+			</div>
+			<div id="xian" class="pingjia" style="display: none; text-align: center;margin-top: 120px;">
+				<img src="img/kong.png" src="100px" />
+				<h1 style="font-size: 0.9rem;">当前商城无此件商品</h1>
+			</div>
+			<div class="chanpin_list">
+				<ul>
+					<li v-for="item in items" @tap="open_detail(item)">
+						<div id="pic_div"> <img :src="item.picture"  onerror="this.src='http://yiyun.zhonyou.cn/upload/product_img/2018-10-25/fe54f68f-e251-4bcb-b870-1d8b7778e9aa.jpg'"  />
+						</div>
+						<div class="fr chanpin_list_content">
+							<p>{{item.goodsName}}</p>
+							
+							<div class="other_gods_content">
+							<span class="sale_price fl">￥{{item.promotionPrice}}</span><s class="original_price fl">￥{{item.price}}</s> <i class="zhe_num">9.5折</i><br />
+							<span class="zhe_price">折后价￥{{item.zhePrice}}</span><span class="fr sales">已售{{item.sales}}</span><br />
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script src="js/mui.pullToRefresh.js"></script>
+<script src="js/mui.pullToRefresh.material.js"></script>
+<script type="text/javascript" src="js/suosou_list.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script>
+	var webview_detail;
+	var value, data_id;
+	var url_app=mui.app_url();
+	(function($) {
+		$.ready(function() {
+			//循环初始化所有下拉刷新，上拉加载。
+			$(".mui-content").pullToRefresh({
+				up: {
+					callback: function() {
+						var self = this;
+						setTimeout(function() {
+							pulluploading();
+							self.endPullUpToRefresh();
+						}, 1000);
+					}
+				}
+			});
+
+		});
+		//打开产品详情页
+	})(mui);
+	mui.init({
+		swipeBack: true
+	});
+	var news = new Vue({
+		el: '.mui-content',
+		data: getDefaultData(),
+		methods: {
+			resetData: function() { //重置数据
+				Object.assign(this.$data, getDefaultData());
+			}
+		}
+	});
+
+	function getDefaultData() {
+		return {
+			items: [], //列表信息流数据
+			uid: "",
+			pageNum: "",
+			sales: "",
+			guize: ""
+
+		}
+	}
+
+	function pulluploading() {
+		if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+			plus.nativeUI.toast('似乎已断开与互联网的连接', {
+				verticalAlign: 'bottom'
+			});
+			return;
+		}
+		if(!news.pageNum) {
+			news.pageNum = 1
+		} else {
+			news.pageNum += 1;
+		}
+		if(news.guize == 2) {
+			sousuo_price(2, news.pageNum, 8);
+		} else if(news.guize == 1) {
+			sousuo_price(1, news.pageNum, 8);
+		} else if(news.guize == 3) {
+			sousuo_sales(2, news.pageNum, 8);
+		} else {
+			mui.getJSON(url_app+"nsgoods/select?PageNum=" + news.pageNum + "&pageSize=6", function(rsp) {
+				news.pageNum = rsp.pageNum;
+				if(rsp.list && rsp.list.length > 0) {
+					news.items = news.items.concat(convert(rsp.list));
+				} else {
+					mui.toast("当前无更多商品");
+				}
+			});
+		}
+	}
+
+	function convert(items) {
+		var newItems = [];
+		items.forEach(function(item) {
+			newItems.push({
+				 goodsId: item.goodsId,
+				goodsName: item.goodsName,
+				price: (item.promotionPrice * 1.2).toFixed(2),
+				picture: item.picture, //商品所有图片/
+				sales: item.sales,
+				promotionPrice: (item.promotionPrice).toFixed(2), //商品促销价格
+				zhePrice: (item.promotionPrice * 0.95).toFixed(2)
+			});
+		});
+		return newItems;
+	}
+	mui.plusReady(function() {
+		webview_detail = plus.webview.getWebviewById("chanpin_xiangqing");
+		if(!webview_detail) {
+			webview_detail = mui.preload({
+				url: 'chanpin_xiangqing.html',
+				id: 'chanpin_xiangqing',
+				styles: {
+					popGesture: "close",
+					titleNView: {
+						autoBackButton: true,
+						backgroundColor: '#f7f7f7',
+						titleText: "产品详情",
+						splitLine: {
+							color: '#cccccc'
+						},
+						type: "transparent"
+					},
+					statusbar: {
+						background: "#ddd"
+					},
+					show: {
+						event: 'loaded'
+					},
+					waiting: {
+						autoShow: true
+					},
+
+				}
+			});
+		}
+		var self = plus.webview.currentWebview();
+		self.addEventListener("hide", function(e) {
+			window.scrollTo(0, 0);
+			self.reload(true);
+			news.resetData();
+		}, false);
+		self.setStyle({
+			scrollIndicator: 'none'
+		});
+	})
+	window.addEventListener("goods_show", function(evt) {
+		var wd = plus.nativeUI.showWaiting();
+		mui.getJSON(url_app+"nsgoods/select?PageNum=" + news.pageNum + "&pageSize=6", function(rsp) {
+			news.pageNum = rsp.pageNum;
+			if(rsp.list && rsp.list.length > 0) {
+				news.items = news.items.concat(convert(rsp.list));
+			} else {
+				mui.toast("当前商品下拉为空");
+			}
+			wd.close();
+		});
+	})
+	//  打开产品详情
+	function open_detail(item) {
+		mui.fire(webview_detail, 'get_detail', {
+			goodsId: item.goodsId //产品id
+		});
+		setTimeout(function() {
+			webview_detail.show("slide-in-right", 300);
+		}, 150);
+	}
+	$(function() {
+		var header_height = $("#header_sousuo").height();
+		var nav_height = $(".tiaojian").height();
+		var height = header_height + nav_height;
+		$(".xuanze_bg").css("top", "5.45rem");
+		$(".xuanze_bg > dl >dd ").click(function() {
+			var title = $(this).children("a").attr("title");
+			var index = $(this).index();
+
+			if(index == 0) {
+				news.resetData();
+				pulluploading();
+			} else {
+				var id = $(this).children("a").attr("data-id");
+				news.resetData();
+				news.guize = id;
+				news.pageNum = 1;
+				news.price_sorting = id;
+				sousuo_price(id, news.pageNum, 8);
+				//
+			}
+			$(this).children("s").addClass("dagou");
+			$(".xuanze_title").text(title);
+			$(this).siblings().children("s").removeClass("dagou");
+			$("#img").attr('src', "http://yiyun.zhonyou.cn/webapp_img/sanjiaoxing-down.png");
+		})
+
+		$(".tiaojian > ul > li ").click(function() {
+			$(this).siblings().children("a").removeClass("jiashen");
+			var index = $(this).index();
+			var title = $(this).children("a").attr("title");
+			if(index == 0) {
+				var display = $(".xuanze_bg").css("display");
+				$(this).children("a").addClass("jiashen");
+				if(display == 'none') {
+					$(".xuanze_bg").css("display", 'block');
+					$("#img").attr('src', "http://yiyun.zhonyou.cn/webapp_img/sanjiaoxing_red_up.png");
+				} else {
+					$(".xuanze_bg").css("display", 'none');
+					$("#img").attr('src', "http://yiyun.zhonyou.cn/webapp_img/sanjiaoxing_red_down.png");
+				}
+			} else {
+				$(this).children("a").addClass("jiashen");
+				$(".xuanze_bg").css("display", 'none');
+				$("#img").attr('src', "http://yiyun.zhonyou.cn/webapp_img/sanjiaoxing-down.png");
+				news.resetData();
+				news.pageNum = 1;
+				news.guize = 3;
+				sousuo_sales(2, news.pageNum, 8);
+			}
+		})
+
+		$(".shuaigxuan_two > ul > li > a").click(function() {
+			var height = $(this).siblings("ul").css("height");
+			var img_src = $(this).find("img").attr("src");
+			if(height == "0px" && img_src == "http://yiyun.zhonyou.cn/webapp_img/xiala.png") {
+				$(this).find("img").attr("src", "http://yiyun.zhonyou.cn/webapp_img/shouqi.png");
+				$(this).siblings("ul").css("height", "100%");
+			} else {
+				$(this).find("img").attr("src", "http://yiyun.zhonyou.cn/webapp_img/xiala.png");
+
+				$(this).siblings("ul").css("height", "0");
+			}
+		})
+	})
+	//	//价格排序
+	function sousuo_price(item1, item2, item3) {
+		var wd = plus.nativeUI.showWaiting();
+		mui.getJSON(url_app+"nsgoods/selectallsort?price=" + item1 + "&pageNum=" + item2 + "&pageSize=" + item3 + "", function(rsp) {
+			if(rsp.list && rsp.list.length > 0) {
+				news.items = news.items.concat(convert(rsp.list));
+			} else {
+				mui.toast("当前商品为空");
+			}
+			wd.close();
+		});
+	}
+	//	//销量排序
+	function sousuo_sales(item1, item2, item3) {
+		var wd = plus.nativeUI.showWaiting();
+		mui.getJSON(url_app+"nsgoods/selectallsort?realSales=" + item1 + "&pageNum=" + item2 + "&pageSize=" + item3 + "", function(rsp) {
+			if(rsp.list && rsp.list.length > 0) {
+				news.items = news.items.concat(convert(rsp.list));
+			} else {
+				mui.toast("当前商品为空");
+			}
+			wd.close();
+		});
+	}
+	mui.back = function() {
+		plus.webview.currentWebview().hide("auto", 300);
+	}
+</script>

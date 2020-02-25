@@ -1,0 +1,46 @@
+<view>
+  <view class='head_mei'>
+    <view class='head_mei_a'>{{shop_name}}</view>
+    <view class='head_mei_b'>{{ fuwu_title}}</view>
+  </view>
+  <view class='boby_mei'>
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>付款方式</text>
+      <text class='boby_mei_font'>微信付款</text>
+    </view>
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>消费来源</text>
+      <text class='boby_mei_font'>美容院消费</text>
+    </view>
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>消费商品</text>
+      <text class='boby_mei_font'>{{meal_name}}</text>
+    </view>
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>预约时间</text>
+      <text class='boby_mei_font'>{{time}}</text>
+    </view>
+   
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>服务内容</text>
+      <text class='boby_mei_font'>{{yuyue_body}}</text>
+    </view>
+   
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>服务美容师</text>
+      <text class='boby_mei_font'>{{beautician_name}}</text>
+    </view>
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>美容院地址</text>
+      <text class='boby_mei_font font_chang'>{{shop_address}}</text>
+    </view>
+  </view>
+  <view class='bottom_a' bindtap='valuation' wx:if="{{fuwu}}">
+    <image src='http://yiyun.zhonyou.cn/webapp_img/pingjia.png' class='bottom_tu'></image>
+    <text style='margin-left:10rpx;'>对本次服务进行评价</text>
+  </view>
+  <view class='bottom_a' bindtap='tel'>
+    <image src='http://yiyun.zhonyou.cn/webapp_img/lianxi.png' class='bottom_tu'></image>
+    <text style='margin-left:10rpx;'>联系卖家</text>
+  </view>
+</view>

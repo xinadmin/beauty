@@ -1,0 +1,33 @@
+<view class='logo_top'>
+<view class='logo_top_div'>
+<image src='../img/touxiang.png' width="120rpx"></image>
+</view>
+<view class='beauty_name'>{{meirongshiName}}</view>
+<view class='qiandao_div'>
+<image src='../img/qiandao.png'></image>
+</view>
+</view>
+<view class='list_item'>
+<view class='address_all'>
+<view class='address_message'>{{meirongAddress}}</view>
+
+<image src='../img/dianhua.png' bindtap="tel"></image>
+</view>
+
+<view class='list_item_nav'>
+<navigator url='/pages/bespeak/bespeak?mid={{mid}}'>
+ <view class='list_item_nav_one' id='last'>
+    预约列表 <s>{{count}}人订过</s>
+ </view>
+ </navigator>
+ <view class='list_item_nav_one'>
+    会员列表 <s></s>
+ </view>
+ <view class='list_item_nav_one'>
+    本月列表 <s></s>
+ </view>
+ <view class='list_item_nav_one'>
+    累积绩效 <s></s>
+ </view>
+</view>
+</view>

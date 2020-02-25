@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>登陆</title>
+<link rel="stylesheet" href="../css/mui.min.css" />
+<link rel="stylesheet" href="../css/base.css" />
+<link rel="stylesheet" href="css/loginstyle.css">
+<link rel="stylesheet" href="css/common_login.css">
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/mui.min.js" type="text/javascript"></script>
+<script src="js/app.js"></script>
+<script>
+	(function($, doc) {
+		$.init({
+			statusBarBackground: '#f7f7f7'
+		});
+		var url_app = mui.app_url();
+		$.plusReady(function() {
+			plus.screen.lockOrientation("portrait-primary");
+			//第三方登录
+			var authBtns = ['weixin']; //配置业务支持的第三方登录
+			var auths = {};
+			var oauthArea = doc.querySelector('.oauth-area');
+			plus.oauth.getServices(function(services) {
+				for(var i in services) {
+					var service = services[i];
+					auths[service.id] = service;
+					if(~authBtns.indexOf(service.id)) {
+						var isInstalled = app.isInstalled(service.id);
+						var btn = document.createElement('div');
+						//如果微信未安装，则为不启用状态
+						btn.setAttribute('class', 'oauth-btn' + (!isInstalled && service.id === 'weixin' ? (' disabled') : ''));
+						btn.authId = service.id;
+						btn.style.backgroundImage = 'url("img/weixin1.png")'
+						oauthArea.appendChild(btn);
+					}
+				}
+				$(oauthArea).on('tap', '.oauth-btn', function() {
+					if(this.classList.contains('disabled')) {
+						plus.nativeUI.toast('您尚未安装微信客户端');
+						return;
+					}
+					var auth = auths[this.authId];
+					var waiting = plus.nativeUI.showWaiting();
+					auth.login(function() {
+
+						plus.nativeUI.toast("登录认证成功");
+						auth.getUserInfo(function() {
+							plus.nativeUI.toast("获取用户信息成功");
+							var name = auth.userInfo.nickname || auth.userInfo.name;
+							var openid = auth.userInfo.openid;
+							var headimg = auth.userInfo.headimgurl;
+							app.createState(name, function() {
+								mui.ajax({
+									url: url_app + "weixin/selWeixin",
+									type: "POST",
+									data: {
+										weixin_code: name,
+										openid: openid,
+										headimg: headimg
+									},
+									headers: {
+										'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+									},
+									timeout: 8000,
+									success: function(data) {
+										waiting.close();
+										window.localStorage.setItem("wxopenid", openid);
+										mui.back();
+									},
+									error: function(XMLHttpRequest, textStatus, errorThrown) {
+										waiting.close();
+										error_prompt("系统繁忙，稍后再试");
+									}
+								});
+								//								mui.back();
+							});
+						}, function(e) {
+							plus.nativeUI.toast("获取用户信息失败：" + e.message);
+						});
+					}, function(e) {
+						waiting.close();
+						plus.nativeUI.toast("登录认证失败：" + e.message);
+					});
+				});
+			}, function(e) {
+				oauthArea.style.display = 'none';
+				plus.nativeUI.toast("获取登录认证失败：" + e.message);
+			});
+			// close splash
+			setTimeout(function() {
+				//关闭 splash
+				plus.navigator.closeSplashscreen();
+			}, 600);
+			window.addEventListener('resize', function() {
+				oauthArea.style.display = document.body.clientHeight > 400 ? 'block' : 'none';
+			}, false);
+
+		});
+	}(mui, document));
+</script>
+<style type="text/css">
+	#resigter {
+		background-color: #E2E2E2;
+	}
+	
+	.mui-content-padded {
+		margin-top: 25px;
+	}
+	
+	.mui-btn {
+		padding: 10px;
+	}
+	
+	.link-area {
+		display: block;
+		margin-top: 25px;
+		text-align: center;
+	}
+	
+	.spliter {
+		color: #bbb;
+		padding: 0px 8px;
+	}
+	
+	.oauth-area {
+		position: absolute;
+		bottom: 20px;
+		left: 0px;
+		text-align: center;
+		width: 100%;
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	.oauth-area .oauth-btn {
+		display: inline-block;
+		width: 50px;
+		height: 50px;
+		background-size: 30px 30px;
+		background-position: center center;
+		background-repeat: no-repeat;
+		margin: 0px 20px;
+		/*-webkit-filter: grayscale(100%); */
+		border: solid 1px #ddd;
+		border-radius: 25px;
+	}
+	
+	.oauth-area .oauth-btn:active {
+		border: solid 1px #aaa;
+	}
+	
+	.oauth-area .oauth-btn.disabled {
+		background-color: #ddd;
+	}
+</style>
+
+<body>
+	<div style="height:100%;width: 200%;overflow-x: hidden;position: fixed;left: 0;top: 0;" id="login_register_content">
+		<div style="width: 50%;height: 100%;float: left;position: relative;">
+			<!--头部start-->
+			<header class="login_form">
+				<div>
+					<span class="mui-action-back"></span>
+					<button id="resigter">注册</button>
+				</div>
+			</header>
+			<!--头部end-->
+			<!--登录输入start-->
+			<div class="form_login">
+				<div class="form_login_username mui-input-row">
+					<input type="text" class="username mui-input-clear" id="username" oninput="oninput_select(this)" placeholder="请输入手机号/账号" onfocus="input_focus(this)" onblur="input_blur(this)" onkeyup="checkInput(this)" />
+				</div>
+				<div class="form_login_password mui-input-row" id="form_login_password">
+					<input type="password" placeholder="请输入密码" class="login_password mui-input-clear" oninput="oninput_select(this)" id="login_password" onfocus="input_focus(this)" onblur="input_blur(this)" onkeyup="checkInput(this)" />
+				</div>
+
+				<div class="form_login_code" id="form_login_code" style="display: none;">
+					<input type="tel" placeholder="请输入验证码" class="login_code" id="login_code" onfocus="oninput_select(this)" oninput="input_focus()" onkeyup="checkInput(this)" /><button id="code_take" onclick="sendCode(this)">获取验证码</button>
+				</div>
+				<div class="form_login_btn">
+					<input type="button" value="登录" id="login_ok" disabled="disabled" />
+				</div>
+				<div class="form_login_method">
+					<span class="methor_login_title" onclick="method_login(this)">手机验证码登录</span>
+					<span class="fr" id="upset_password">忘记密码</span>
+				</div>
+			</div>
+			<div class="mui-content-padded oauth-area">
+
+			</div>
+		</div>
+
+		<div style="width: 50%;height: 100%;float: left;" id="register_content">
+			<header class="register_form">
+				<div>
+					<h1>
+			<span id="back_login_page"></span>
+			<s id="close_register_page"></s>
+			注册
+			</h1>
+				</div>
+			</header>
+			<!--头部end-->
+			<!--登录输入start-->
+			<div class="form_login">
+				<div class="form_login_username mui-input-row">
+					<input type="tel" class="tel mui-input-clear" id="tel" oninput="oninput_select()" placeholder="请输入手机号" oninput="oninput_select(this)" onfocus="input_focus(this)" onblur="input_blur(this)" onkeyup="checkInput(this)" />
+				</div>
+
+				<div class="form_login_code mui-input-row">
+					<input type="tel" placeholder="请输入验证码" oninput="oninput_select()" class="code" id="code" onkeyup="checkInput_code(this)" oninput="oninput_select(this)" onfocus="input_focus(this)" /><button id="code_take" onclick="sendCode(this)">获取验证码</button>
+				</div>
+				<div class="form_login_password mui-input-row">
+					<input type="password" placeholder="请输入登录密码" oninput="oninput_select()" class="password mui-input-clear" onfocus="input_focus(this)" oninput="oninput_select(this)" onblur="input_blur(this)" id="password" onkeyup="checkInput(this)" />
+				</div>
+				<!--<div id="error_password" style="text-align: center;color: #99cc33;height: 45px;line-height: 45px;display: none;">密码必须由数字、字符、特殊字符三种中的两种组成</div>-->
+				<div class="form_login_yaoqing_code mui-input-row" style="display: none;">
+					<input type="text" placeholder="可输入邀请码" onfocus="input_check_isnull(this)" class="yaoqing_code mui-input-clear" id="yaoqing_code" />
+				</div>
+				<div class="form_login_btn">
+					<input type="button" value="注册" id="register_ok" disabled="disabled" />
+				</div>
+				<div class="service">
+					<span><em id="select_service" class="active" onclick="ok_service()"></em>我已阅读必同意遵守<s id="service_page">依乐购服务条款</s></span>
+				</div>
+			</div>
+			<!--登录输入end-->
+		</div>
+
+	</div>
+	<div class="error_bg">
+		<span></span>
+	</div>
+	<div class="tishi_bottom">
+		<div class="tishi_bottom_content">
+			<span>该功能在后续开发中</span>
+			<br />
+			<i>如有需要:请联系<s>020-22126878</s></i>
+		</div>
+	</div>
+
+</body>
+
+</html>
+<script>
+	var nums = 60;
+	var show;
+	var show1;
+	var check1 = ""; //用户填写判断用户名参数
+	var check2 = ""; //用户填写判断密码参数
+	var check3 = ""; //手机号填写判断参数
+	var check4 = ""; //密码参数判断
+	var wd = null; //加载参数
+	var i = false; //判断切换的登录方式为哪种   i不为空为验证码   非空为用户密码登录
+	var send_code = null; //发送状态
+	var select_service = true;
+	var templateId = 217803;
+	var wt = null;
+	var winHeight = $(window).height(); //获取当前页面高度
+	var url_app = mui.app_url();
+	$(window).resize(function() {
+		var thisHeight = $(this).height();
+		if(winHeight - thisHeight > 50) {
+			//当软键盘弹出，在这里面操作
+			$('.login_other_method').hide();
+		} else {
+			//当软键盘收起，在此处操作
+			$('.login_other_method').show();
+			input_check_isnull();
+
+		}
+	});
+	//	预加载
+	mui.plusReady(function() {
+		var self = plus.webview.currentWebview();
+		self.addEventListener("hide", function(e) {
+			location.reload();
+		}, false);
+		mui("body").on("tap", "#login_ok", function(evt) {
+			if(wd) {
+				return;
+			}
+			var username = $("#username").val().replace(/(^\s*)|(\s*$)/g, ''); //会员名
+			var storage = window.localStorage;
+			if(i) {
+				var code = $("#login_code").val().replace(/(^\s*)|(\s*$)/g, ''); //会员密码//
+				wd = plus.nativeUI.showWaiting();
+				mui.ajax({
+					url: url_app + "SysUser/usersmsLogin",
+					type: "POST",
+					data: {
+						phone: username,
+						Code: code
+					},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+					timeout: 10000,
+					success: function(data) {
+						wd.close();
+						wd = null;
+						if(data == 1) {
+							plus.nativeUI.toast("登录成功");
+							mui.back();
+							storage.setItem("userAccount", username);
+
+						} else if(data == -3) {
+							error_prompt("请重新获取验证码");
+
+						} else if(data == -1) {
+							error_prompt("系统繁忙，稍后再试");
+						} else {
+							error_prompt("验证码不对或已过期，请重新获取");
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						wd.close();
+						wd = null;
+						error_prompt("系统繁忙，稍后再试");
+					}
+				});
+			} else {
+				usercheck();
+				if(check2 == "1" && check1 == "1") {
+					var password = $("#login_password").val().replace(/(^\s*)|(\s*$)/g, ''); //会员密码//
+					wd = plus.nativeUI.showWaiting();
+					mui.ajax({
+						url: url_app + "SysUser/seluserNameORuserTel",
+						type: "POST",
+						data: {
+							userNameORuserTel: username,
+							userPassword: password
+						},
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+						},
+						timeout: 10000,
+						success: function(data) {
+							wd.close();
+							wd = null;
+							if(data === "2") {
+								plus.nativeUI.toast("登录成功");
+								mui.back();
+								storage.setItem("userAccount", username);
+							} else {
+								error_prompt("密码输入错误或账号不存在");
+
+							}
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							wd.close();
+							wd = null;
+							error_prompt("系统繁忙，稍后再试");
+						}
+					});
+				} else {
+					return false;
+				}
+			}
+		});
+		mui("body").on("tap", "#register_ok", function(evt) {
+			if(wt) {
+				return;
+			}
+			var tel = $("#tel").val(); //会员名
+			var password = $("#password").val(); //会员密码//
+			var yaoqing_code = $("#yaoqing_code").val(); //会员邀请码
+			var person_code = createCode();
+			var code = $("#code").val();
+			usercheck_register();
+			if(check4 == "1" && check3 == "1") {
+				var storage = window.localStorage;
+
+				wt = plus.nativeUI.showWaiting();
+				mui.ajax({
+					url: url_app + "SysUser/usersmsInsert",
+					type: "POST",
+					data: {
+						userName: tel,
+						userTel: tel,
+						userPassword: password,
+						yaoqingCode: yaoqing_code,
+						personCode: person_code,
+						Code: code,
+
+					},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+					timeout: 8000,
+					success: function(data) {
+						wt.close();
+						wt = null;
+						if(data == 1) {
+							plus.nativeUI.toast("注冊成功");
+							storage.setItem("userAccount", tel);
+							mui.back();
+						} else if(data == -1) {
+							error_prompt("系统繁忙,请稍后再试");
+						} else if(data == -2) {
+							error_prompt("验证码不正确，,请重新获取");
+						} else if(data == -3) {
+							error_prompt("验证码不存在，,请重新获取");
+						} else if(data == -4) {
+							error_prompt("邀请码不存在，,请重新填写");
+						} else {
+							error_prompt("用户已存在");
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						wt.close();
+						wt = null;
+						error_prompt("系统繁忙，稍后再试");
+					}
+				})
+			} else {
+				return false;
+			}
+		});
+	});
+
+	function oninput_select() {
+		input_check_isnull();
+	}
+	mui('#username')[0].addEventListener('focus', function() {　　　　　
+		mui(".mui-icon-clear")[0].addEventListener('tap', function() {
+			$("#login_ok").removeClass("active");
+			$("#login_ok").attr("disabled", true);
+			$("#register_ok").removeClass("active");
+			$("#register_ok").attr("disabled", true);　　　　
+		});
+	})
+	mui('#login_password')[0].addEventListener('focus', function() {　　　　　
+		mui(".mui-icon-clear")[1].addEventListener('tap', function() {
+			$("#login_ok").removeClass("active");
+			$("#login_ok").attr("disabled", true);
+			$("#register_ok").removeClass("active");
+			$("#register_ok").attr("disabled", true);　　　　
+		});
+	})
+	mui('#tel')[0].addEventListener('focus', function() {　　　　　
+		mui(".mui-icon-clear")[2].addEventListener('tap', function() {
+			$("#login_ok").removeClass("active");
+			$("#login_ok").attr("disabled", true);
+			$("#register_ok").removeClass("active");
+			$("#register_ok").attr("disabled", true);　　　　
+		});
+	})
+	mui('#password')[0].addEventListener('focus', function() {　　　　　
+		mui(".mui-icon-clear")[3].addEventListener('tap', function() {
+			$("#login_ok").removeClass("active");
+			$("#login_ok").attr("disabled", true);
+			$("#register_ok").removeClass("active");
+			$("#register_ok").attr("disabled", true);　　　　
+		});
+	})
+	//  登录前检查
+	function usercheck() {
+		var reg = /^[\da-zA-Z_\u4e00-\u9f5a]{3,16}$/;
+		var reg3 = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?![,\.#%'\+\*\-:;^_`]+$)[,\.#%'\+\*\-:;^_`0-9A-Za-z]{8,16}$/;
+		if($(".username").val().length > 16 || $(".username").val().length < 3) {
+			error_prompt("账户与手机号长度在3位到16位之间");
+			check1 = "";
+		} else if(!reg.test($(".username").val())) {
+			error_prompt("登录账户用由中文，字母，数字任意组合");
+			check1 = "";
+		}
+		if($("#login_password").val().length > 16 || $("#login_password").val().length < 8) {
+			error_prompt("密码长度在8位到16位之间");
+			check2 = "";
+		} else if(!reg3.test($("#login_password").val())) {
+			error_prompt("密码必须由数字、字符、特殊字符三种中的两种组成");
+			check2 = "";
+		} else {
+			check1 = "1";
+			check2 = "1";
+		}
+	}
+
+	function usercheck_register() {
+		var reg = /^1[34578]\d{9}$/;
+		var reg3 = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?![,\.#%'\+\*\-:;^_`]+$)[,\.#%'\+\*\-:;^_`0-9A-Za-z]{8,16}$/;
+		if($("#tel").val().length < 11 || $("#tel").val().length > 11) {
+			error_prompt("手机号长度不能少于11位");
+			check3 = "";
+		} else if(!(reg.test($("#tel").val()))) {
+			error_prompt("注冊账户为11位的手机号码");
+			check3 = "";
+		} else if($("#password").val().length > 16 || $("#password").val().length < 8) {
+			error_prompt("密码长度在8位到16位之间");
+			check4 = "";
+		} else if(!reg3.test($("#password").val())) {
+			error_prompt("密码必须由数字、字符、特殊字符三种中的两种组成");
+			check4 = "";
+		} else {
+			check3 = "1";
+			check4 = "1";
+		}
+	}
+	// 发送验证码
+	function sendCode(thisBtn) {
+		var $this = $(thisBtn);
+		var tel = $this.parent(".form_login_code").siblings(".form_login_username").children("input").val();
+		if(tel == "" || tel == null) {
+			error_prompt("手机号不能为空");
+		} else if(!(/^1[34578]\d{9}$/.test(tel))) {
+			error_prompt("请输入正确号码");
+		} else {
+			if(send_code) {
+				error_prompt("短信已发送，请勿多次操作");
+			} else {
+				$.ajax({
+					url: url_app + "tencent/sms",
+					type: "POST",
+					data: {
+						phone: tel,
+						templateId: templateId
+
+					},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+					timeout: 10000,
+					success: function(data) {
+						if(data == 1) {
+							send_code = "1";
+							$this.attr("disabled", true); //将按钮置为不可点击
+							$this.text(nums + '秒后可重新获取');
+							$this.addClass("active");
+							$(".error_bg span").text("验证码已下发，请注意查收");
+							$(".error_bg").animate({
+								top: 0
+							}, "slow");
+							setTimeout(function() {
+								$(".error_bg").animate({
+									top: "-3.6rem"
+								}, "slow");
+							}, 2000);
+							clock = setInterval(function() {
+								nums--;
+								if(nums > 0) {
+									$this.text(nums + '秒后可重新获取');
+								} else {
+									send_code = null;
+									clearInterval(clock); //清除js定时器
+									$this.attr("disabled", false);
+									$this.text('点击发送验证码');
+									$this.attr("class", "");
+									nums = 60; //重置时间
+								}
+							}, 1000);
+						} else {
+							error_prompt("系统繁忙，稍后再试");
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						error_prompt("当前系统在维护，请稍后再试");
+					}
+				})
+			}
+		}
+	}
+
+	function method_login(obj) {
+		var $this = $(obj);
+		if(!i) {
+			$this.text("账户密码登录");
+			$("#username").attr("placeholder", "请输入手机号");
+			$("#form_login_code").show();
+			$("#form_login_password").hide();
+			input_check_isnull();
+			i = true;
+		} else {
+			$this.text("手机验证码登录");
+			$("#username").attr("placeholder", "请输入账号或手机号");
+			$("#form_login_code").hide();
+			$("#form_login_password").show();
+			input_check_isnull();
+			i = false;
+		}
+	}
+	//	输入框无论输入为空还是有值都隐藏删除按钮
+	function input_blur(obj) {
+
+		var $this = $(obj);
+		$("#login_ok").removeClass("active");
+		$("#login_ok").attr("disabled", true);
+		$("#register_ok").removeClass("active");
+		$("#register_ok").attr("disabled", true);
+	}
+	//输入框获取焦点事件
+	function input_focus(obj) {
+		var $this = $(obj);
+		if($this.attr("id") == "password") {
+			$(".error_bg span").text("密码必须由数字、字符、特殊字符三种中的两种组成,8位到16位");
+			$(".error_bg").animate({
+				top: 0
+			}, "slow");
+
+			setTimeout(function() {
+				$(".error_bg").animate({
+					top: "-7.2rem"
+				}, "slow");
+			}, 3000);
+		}
+		if($this.val() != "") {
+			input_check_isnull();
+		} else {
+			$("#login_ok").removeClass("active");
+			$("#login_ok").attr("disabled", true);
+			$("#register_ok").removeClass("active");
+			$("#register_ok").attr("disabled", true);
+		}
+	}
+	//  检查输入是否为空,为按钮是否能点击进行判断
+	function checkInput(element) {
+		var value = $(element).val();
+		if(value != null && '' != value) {
+			input_check_isnull();
+
+		} else {
+			$("#login_ok").removeClass("active");
+			$("#login_ok").attr("disabled", true);
+			$("#register_ok").removeClass("active");
+			$("#register_ok").attr("disabled", true);
+		}
+	}
+
+	function checkInput_code(element) {
+		var value = $(element).val();
+		if(value != null && '' != value) {
+			input_check_isnull();
+
+		} else {
+			$("#register_ok").removeClass("active");
+			$("#register_ok").attr("disabled", true);
+		}
+	}
+	//  输入框不为空时检查其他输入框内容是否为空
+	function input_check_isnull() {
+		if($("#username").val() != null && $("#username").val() != "" && $("#login_code").val() != null && $("#login_code").val() != "") {
+			$("#login_ok").addClass("active");
+			$("#login_ok").attr("disabled", false);
+		} else if($("#username").val() != null && $("#username").val() != "" && $("#login_password").val() != null && $("#login_password").val() != "") {
+			$("#login_ok").addClass("active");
+			$("#login_ok").attr("disabled", false);
+		} else if($("#tel").val() != null && $("#tel").val() != "" && $("#password").val() != null && $("#password").val() != "" && $("#code").val() != null && $("#code").val() != "" && select_service == true) {
+			$("#register_ok").addClass("active");
+			$("#register_ok").attr("disabled", false);
+		} else {
+			$("#login_ok").removeClass("active");
+			$("#login_ok").attr("disabled", true);
+			$("#register_ok").removeClass("active");
+			$("#register_ok").attr("disabled", true);
+		}
+
+	}
+	//	一键登录按钮事件
+	mui(".login_other_method_content").on("tap", "span", function() {
+		$(".tishi_bottom").show();
+		$(".tishi_bottom_content").animate({
+			bottom: 0
+		}, "slow");
+	})
+	//隐藏一键登录提示	
+	$(".tishi_bottom").click(function() {
+		$(".tishi_bottom_content").animate({
+			bottom: "-12%"
+		}, "slow");
+		$(this).hide();
+	})
+	//注册切换界面
+	document.getElementById("resigter").addEventListener("tap", function() {
+		templateId = 219072;
+		$("#login_register_content").animate({
+			left: "-100%"
+		}, "300");
+	})
+	//关闭注册按钮事件	
+	document.getElementById("close_register_page").addEventListener("tap", function() {
+		templateId = 217803;
+		$("#login_register_content").animate({
+			left: "0%"
+		}, "300");
+		mui_old_back();
+	})
+	//注册界面返回登录界面	
+	document.getElementById("back_login_page").addEventListener("tap", function() {
+		templateId = 217803;
+		$("#login_register_content").animate({
+			left: "0%"
+		}, "300");
+	})
+	//更改密码页面	
+	document.getElementById("upset_password").addEventListener("tap", function() {
+		mui.openWindow({
+			id: "upset_password",
+			url: "upset_password.html"
+		})
+	})
+	//		服务条款跳转
+	document.getElementById("service_page").addEventListener("tap", function() {
+		mui.openWindow({
+			id: "fuwu_tiaokuan",
+			url: "../fuwu_tiaokuan.html"
+		})
+	})
+
+	function ok_service() {
+		if(!select_service) {
+			$("#select_service").addClass("active");
+			select_service = true;
+			input_check_isnull();
+		} else {
+			$("#select_service").removeClass("active");
+			select_service = false;
+			$("#register_ok").removeClass("active");
+			$("#register_ok").attr("disabled", true);
+		}
+	}
+	//	错误提示
+	function error_prompt(item) {
+		$(".error_bg span").text(item);
+		$(".error_bg").animate({
+			top: 0
+		}, "slow");
+		setTimeout(function() {
+			$(".error_bg").animate({
+				top: "-7.2rem"
+			}, "slow");
+		}, 2000);
+	}
+	//	错误提示动画演示
+	var mui_old_back = mui.back;;
+	mui.back = function() {
+		plus.webview.currentWebview().hide("auto", 300);   
+		mui_old_back();      
+	};
+
+	function createCode() {
+		code = "";
+		var codeLength = 5; //验证码的长度  
+		var random = new Array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+			'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9'); //随机数  
+		for(var i = 0; i < codeLength; i++) { //循环操作  
+			var index = Math.floor(Math.random() * 52); //取得随机数的索引（0~35）  
+			code += random[index]; //根据索引取得随机数加到code上  
+		}
+		return code;
+	}
+</script>

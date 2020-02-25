@@ -1,0 +1,33 @@
+
+<view class="my_list">
+
+			
+				<view class='list_item'>
+					会员名<s id="name" class="fr">{{username}}</s>
+				</view>
+				<view class='list_item'>
+					手机号码<s id="tel" class="fr">{{userTel}}</s>
+				</view>
+        	<view class='list_item'>
+					身份证号<s id="idcard" class="fr">{{idcard}}</s>
+				</view>
+        
+		</view>
+<view class="my_list">
+
+			<navigator url='../upset_password/upset_password'>
+				<view class='list_item'>
+					修改密码
+				</view>
+			</navigator>	
+		</view>    
+<view class="my_list">
+
+			
+				<view class='list_item' bindtap="sign_out">
+					切换账号
+				</view>
+					<view class='list_item' bindtap="sign_out">
+						退出
+				</view>
+		</view>     

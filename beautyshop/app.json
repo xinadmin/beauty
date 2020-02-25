@@ -1,0 +1,79 @@
+{
+  "pages": [
+    "pages/login_auth/login_auth",
+    "pages/index/index",
+    "pages/Beauty/Beauty",
+    "pages/order/order",
+    "pages/my/my",
+    "pages/switchcity/switchcity",
+    "pages/my_beauty/my_beauty",
+    "pages/login/login",
+    "pages/getBack/getBack",
+    "pages/upset_password/upset_password",
+    "pages/more_produce/more_produce",
+    "pages/order_yuyue/order_yuyue",
+    "pages/order_detail/order_detail",
+    "pages/placeOrder/placeOrder",
+    "pages/coin/coin",
+    "pages/Beauty_detail/Beauty_detail",
+    "pages/bonus/bonus",
+    "pages/bespeak/bespeak",
+    "pages/logs/logs",
+    "pages/setup/setup",
+    "pages/store/store",
+    "pages/order_yuyue_add/order_yuyue_add",
+    "pages/buySuccess/buySuccess",
+    "pages/logs_a/logs_a",
+    "pages/dealValuation/dealValuation",
+    "pages/search/search",
+    "pages/order_yuyue_success/order_yuyue_success",
+    "pages/serviceValuation/serviceValuation",
+    "pages/balanceDetail/balanceDetail",
+    "pages/my_beauty_yuyue_confirm/my_beauty_yuyue_confirm",
+    "pages/succeed/succeed"
+  
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#ec708a",
+    "borderStyle": "#cccccc",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/pages/img/5.png",
+        "selectedIconPath": "/pages/img/1.png"
+      },
+      {
+        "pagePath": "pages/Beauty/Beauty",
+        "text": "门店",
+        "iconPath": "/pages/img/6.png",
+        "selectedIconPath": "/pages/img/2.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "/pages/img/7.png",
+        "selectedIconPath": "/pages/img/3.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/pages/img/8.png",
+        "selectedIconPath": "/pages/img/4.png"
+      }
+    ]
+  },
+  "debug": true,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

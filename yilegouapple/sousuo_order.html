@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<title>产品搜索</title>
+		<style type="text/css">
+			body {
+				background-color: #f4f4f4;
+			}
+			header.header {
+				width: 100%;
+				overflow: hidden;
+			}
+			header.header span {
+			 width: 12%;
+			 height: 35px;
+			 line-height: 35px;
+			 background: url(img/nav/delete.png) no-repeat 5px center;
+			 background-size: 30px 30px;
+			}
+			header.header #input_name {
+			 width: 76%;
+			 height: 55px;
+			}
+			header.header #input_name input {
+			 background-color: #fff;
+			 border: none;
+			 border-radius: 0;
+			 width: 50%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header">
+			<span></span>
+			<div id="input_name">
+			<input type="text" placeholder="搜搜内容"/>
+			</div>
+			<span>搜索订单</span>
+		</div>
+		<div id="sousuo_history">
+			<p>搜索历史</p>
+            <span>电视</span>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	mui.init();
+	var soulistpage = null;
+    var url_app=mui.app_url();
+	
+	mui.plusReady(function() {
+		$('#sousuokuang_message').attr("autofocus",true);
+		document.activeElement.focus(); //隐藏软键盘
+		soulistpage = mui.preload({
+			url: 'sousuo_list.html',
+			id: 'sousuo_list',
+		})
+	})
+	window.addEventListener("focus_input", function() {
+		$("#sousuokuang_message").focus();
+		document.activeElement.focus();
+	})
+    
+	function checkInput(element) {
+		var value = $(element).val();
+		if(value != null && '' != value) {
+			$(element).parent().children('s').removeClass('none');
+		} else {
+			$(element).parent().children('s').addClass('none');
+		}
+	}
+
+	function clearInput(element) {
+		$(element).parent().children('#sousuokuang_message').val('');
+		$(element).parent().children('#sousuokuang_message').focus();
+		$(element).addClass('none');
+	}
+	mui("#nav_item").on("tap","s",function(){
+	    var delete_id=$(this);
+	    $(this).parent("span").remove();
+	})
+	mui("body").on("tap","i",function(){
+		var sousuo_value = $(this).text();
+		if(!sousuo_value) {
+			return false;
+		}
+		mui.fire(soulistpage, 'get_listdetail', {
+			value: sousuo_value //产品id
+		});
+		setTimeout(function() {
+			soulistpage.show("slide-in-right", 300);
+		}, 150);
+	});
+</script>

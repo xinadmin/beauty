@@ -1,0 +1,96 @@
+<view class="container">
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh"> 
+  <!--轮播-->
+  <swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#fd9827"indicator-color="#fae3e8" style="height: 210px;">
+    <block wx:for="{{imgUrls}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image"  />
+      </swiper-item>
+    </block>
+
+  </swiper>
+
+  <!-- 导航栏 -->
+  <view id='navigation'>
+    <view class='navigation_a'>
+      <image src='/pages/img/column_a.png' class='column'></image>
+      <view class='navigation_a_font'>最新活动</view>
+    </view>
+    <view class='navigation_a'>
+    <navigator url='/pages/service/service'>
+      <image src='/pages/img/column_b.png' class='column'></image>
+      <view class='navigation_a_font'>贴心服务</view>
+    </navigator>
+    </view>
+    
+    <view class='navigation_a'>
+      <navigator url='/pages/merchant/merchant'>
+        <image src='/pages/img/column_c.png' class='column'></image>
+        <view class='navigation_a_font'>预约/订位</view>
+      </navigator>
+    </view>
+    
+    <view class='navigation_a'>
+      <image src='/pages/img/column_d.png' class='column'></image>
+      <view class='navigation_a_font'>更多服务</view>
+    </view>
+  </view>
+
+  <!-- 附近商家列表 -->
+  <view id='sj_list'>
+    <view class='sj_list_a'>
+      <view class='fjsj'>
+      <image src='/pages/img/business.png' class='sj_tu'></image>附近商家
+      </view>
+      <view class='more'>
+      更多<image src='/pages/img/right.png' class='right_tu'></image>
+      </view>
+    </view>
+
+<view  wx:for="{{shoplist}}"  wx:key="unique">
+    <navigator url='/pages/dot/dot?bid={{item.bId}}&type=1'>
+    <view class='sj_list_b'>
+      <view class='sj_list_b_right'>
+        <image src='{{item.bImage}}' class='business_tou'></image>
+        <view class='dianzi'>
+          <view class='dianming'>{{item.bShop}}</view>
+          <view>
+            <image src='/pages/img/xing.png' id='xing'></image>
+            <image src='/pages/img/xing.png' id='xing'></image>
+            <image src='/pages/img/xing.png' id='xing'></image>
+            <image src='/pages/img/xing.png' id='xing'></image>
+            <image src='/pages/img/xing.png' id='xing'></image>
+            <text class='dafen'>5.0分</text>
+          </view>
+        </view>
+      </view>
+      <view class='diqu'>
+        <view class='diqu_a'>{{item.bAddress}}</view>
+        <view class='diqu_b' style="text-align:right">{{item.translate}}</view>
+      </view>
+      <!-- <view class='evaluate'>
+        <text class='evaluate_a'>特味火锅</text>
+        <text class='evaluate_a'>特味火锅</text>
+        <text class='evaluate_a'>特味火锅</text>
+        <text class='evaluate_a'>特味火锅</text>
+      </view> -->
+      <view class='merchandise' >
+
+         <block wx:for='{{item.shopImage}}' wx:for-item='images'  wx:key="unique">
+        <image  src='{{images}}' class='food'></image>
+        </block > 
+      </view>
+    </view>
+    </navigator>
+  </view>
+  </view>
+</scroll-view>  
+
+  <!-- 滑动刷新样式 -->
+    <view class="body-view">  
+        <loading hidden="{{hidden}}" bindchange="loadingChange">  
+            加载中...  
+        </loading>  
+    </view>  
+</view>

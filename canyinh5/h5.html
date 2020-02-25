@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas3" width="300" height="400"></canvas>
+
+		<canvas id="canvas2" width="300" height="400"></canvas>
+
+		<canvas id="canvas1" width="300" height="400"></canvas>
+
+		<canvas id="canvas" width="300" height="400"></canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas=document.getElementById("canvas");
+		var context = canvas.getContext("2d");
+		context.fillStyle="#EEEEEE";
+		context.fillRect(0,0,300,400);
+		var dx=150;
+		var dy=150;
+		var s=100;
+		context.beginPath();
+		context.fillStyle="rbg(100,255,100)";
+		context.strokeStyle="rgb(0,0,100)";
+		var x =Math.sin(0);
+		var y=Math.cos(0);
+		context.moveTo(100,150)
+			var dig=Math.PI/15*11;
+			for(var i=0; i<30;i++){
+				var x =Math.sin(i*dig);
+				var y =Math.cos(i*dig);
+				console.log(x);
+				console.log(y);
+				 context.lineTo(dx+x*s,dy+y*s);
+			}
+			context.closePath();
+			context.fill();
+			context.stroke()
+			
+			var canvas1=document.getElementById("canvas1");
+			var context1 = canvas1.getContext("2d");
+			context1.fillStyle="#eeeeef";
+			context1.fillRect(0,0,600,700);
+			for (var j=0 ;j<10;j++){
+			context1.beginPath();
+			context1.arc(j*25,j*25,j*10,0,2*Math.PI,true);
+			context1.closePath();
+			context1.fillStyle="rgba(255,0,0,0.25)";
+			context1.fill();
+			 }
+			 var canvas2=document.getElementById("canvas2");
+			 var context2 = canvas2.getContext("2d");
+			 context2.fillStyle="#eeeeef";
+			 context2.fillRect(0,0,600,700)
+			 context2.beginPath();
+			 context2.moveTo(46,80);
+			 context2.fillStyle="red"
+			 context2.quadraticCurveTo(36,136,160,60);
+			  context2.quadraticCurveTo(10,172,45,78);
+			  context1.closePath();
+			 context2.stroke();
+			 
+			  var canvas3=document.getElementById("canvas3");
+			 var context3 = canvas3.getContext("2d");
+			 context3.fillStyle="#eeeeef";
+			 context3.fillRect(0,0,600,700)
+			 context3.translate(200,50);
+			 context3.fillStyle="rgba(255,0,0,0.25)";
+				for(var i=0 ;i<50;i++){
+					
+					context3.translate(25,25);
+					context3.scale(0.95,0.95);
+					context3.rotate(Math.PI/10);
+					context3.fillRect(0,0,100,50)
+					
+				}
+			</script>
+</html>

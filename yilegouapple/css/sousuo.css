@@ -1,0 +1,112 @@
+  .mui-bar {
+				padding-right: 0;
+				background: #fd4404;
+				min-height: 3.2rem;
+			}
+			.mui-content {
+	background: #EEEEEE;
+}
+			.delete_page {
+				float: left;
+				width: 8%;
+				height: 3.0rem;
+				background: url(http://yiyun.zhonyou.cn/webapp_img/close.png) no-repeat center center ;
+				background-size:38px 38px;
+				margin-right: 3%;
+			}
+			.sousuo_btn {
+				float: right;
+				width: 8%;
+				height: 3.2rem;
+				background: url(http://yiyun.zhonyou.cn/webapp_img/sousuo1.png) no-repeat center center ;
+				background-size:30px 34px;
+				margin-right: 3%;
+			}
+			#sousuokuang {
+				float: left;
+				width:74%;
+				height: 2.8rem;
+				position: relative;
+				right: 0;
+			}
+			
+			#outer_sousuo {
+				position: relative;
+				width: 100%;
+				display: inline-block;
+				color: #080808;
+				z-index: 1;
+				height: 2.2rem;
+				overflow: hidden;
+				margin-top: 0.5rem;
+				background: #fff;
+				border-radius: 7px;
+			}
+			
+			#outer_sousuo #sousuokuang_message {
+				border: none;
+				padding: 0;
+				margin: 0;
+				outline-style: none;
+				width: 85%;
+				float: left;
+				display: inline-block;
+				color: #080808;
+				font-size: 1.0rem;
+				z-index: 22;
+				height: 100%;
+				padding-left: 2.2rem;
+				background: url(http://yiyun.zhonyou.cn/webapp_img/sousuo.png) no-repeat 5px center ;
+				background-size:22px 22px;
+				
+			}
+			
+			#outer_sousuo s {
+				width: 15%;
+				min-height: 2.2rem;
+				position: absolute;
+				z-index: 999rem;
+				right: 6%;
+				background: url(http://yiyun.zhonyou.cn/webapp_img/delete_input.png) no-repeat right center;
+				background-size: 1.4rem 1.4rem;
+				color: #000000;
+			}
+			
+			.none {
+				display: none;
+			}
+			
+			#nav_item p {
+				color: #999999;
+				width: 92%;
+				margin: 0 auto;
+				font-weight: 500;
+				height: 2.5rem;
+				line-height: 2.5rem;
+				font-size: 1.1rem;
+				
+			}
+			
+			#nav_item span {
+					display: block;
+				width: 92%;
+				margin: 0 auto;
+				height: 2.5rem;
+				line-height: 2.5rem;
+			}
+			#nav_item span i {
+				display: inline-block;
+			height: 2.5rem;
+			width:80%;
+				line-height: 2.5rem;
+				color: #333333;
+				font-weight: 600;
+				font-size: 0.9rem;
+			}
+      	#nav_item span s {
+      		float: right;
+      		height: 2.5rem;
+      		width: 28px;
+      		background: url(http://yiyun.zhonyou.cn/webapp_img/close_small.png) no-repeat right center ;
+      		background-size: 25px 25px;
+      		}

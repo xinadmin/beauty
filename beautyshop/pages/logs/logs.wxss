@@ -1,0 +1,381 @@
+.bg{
+  background-color: white;
+  padding:30rpx 0;
+  padding-left:35rpx;
+  border-bottom:25rpx solid #fbf7f8;
+}
+.jia_a{
+  color: #fb989d;
+  margin-top: 25rpx;
+}
+.jia_a_a{
+  font-size: 50rpx;
+}
+.jia_a_b{
+  font-size: 28rpx;
+  text-decoration:line-through;
+}
+.jia_b{
+  font-size:20rpx;
+  color: #767676;
+}
+.avai{
+  width: 100%;
+  padding: 30rpx 0 30rpx 40rpx;
+  border-bottom:25rpx solid #fbf7f8;
+  height:150rpx;
+  display: flex;
+  align-items: center;
+}
+.available{
+  font-size: 30rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom:1rpx solid #fbf7f8;
+  text-indent: 30rpx;
+}
+.available_a{
+  width: 75%;
+  float: left;
+}
+.available_a_a{
+  font-size: 28rpx; 
+  
+}
+.available_a_b{
+  font-size: 24rpx; 
+  margin: 20rpx 0;
+  color:#888;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.available_a_c{
+  font-size: 24rpx;
+  color:#888;
+  display: flex;
+  align-items: center;
+}
+.available_a_c .position_a{
+  width: 30rpx;
+  height: 30rpx;
+  display: inline-block;
+}
+.available_a_c .position_b{
+  margin-left: 15rpx;
+}
+#phone{
+  width: 50rpx;
+  height: 50rpx;
+  border-left: 1rpx solid #cccccc;
+  padding: 20rpx 0 20rpx 40rpx;
+}
+.commodity{
+  font-size: 28rpx;
+  padding: 20rpx 50rpx 20rpx 30rpx;
+  border-bottom:25rpx solid #fbf7f8;
+}
+.commodity_a{
+  font-size:32rpx;
+  
+}
+.commodity_b{
+  margin: 40rpx 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+}
+.commodity_c{
+  font-size:28rpx;
+}
+.commodity_d{
+  font-size:26rpx;
+  margin-top: 40rpx;
+  color:#888;
+  width: 100%;
+  text-align: right;
+}
+.wentu{
+  padding: 0 30rpx;
+  border-bottom:25rpx solid #fbf7f8;
+}
+.wentu_hade{
+  font-size:32rpx;
+  border-bottom: 1rpx solid #cccccc;
+  padding: 20rpx 0;
+}
+.xq{
+  background-color: white;
+  font-size: 25rpx;
+  margin-top: 20rpx;
+}
+#xing{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 0 5rpx;
+}
+.ping_hade{
+  font-size: 30rpx;
+  color:#888;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #cccccc;
+  padding:20rpx 0;
+
+}
+.logo_tou_a{
+  display: inline-block;
+  border-radius: 50%;
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+  margin-right: 20rpx;
+}
+.user_ping{
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #cccccc;
+}
+.user_ping_a{
+  overflow:hidden;
+  
+}
+.tu_center{
+  text-align: center;
+  width:100%;
+
+}
+.tu_center_a{
+  width: 180rpx;
+  height: 180rpx;
+  margin:20rpx 5rpx;
+}
+.dafen{
+  padding:20rpx 0;
+  display:flex;
+  align-items:center;
+
+}
+#check{
+  font-size: 28rpx;
+  text-align: center;
+  color: #cccccc;
+  margin: 10rpx 0;
+}
+.wentu_more{
+  font-size:32rpx;
+  border-bottom:1rpx solid #cccccc;
+  padding:20rpx 0;
+  width: 96%;
+  margin: 0 auto 5rpx;
+  display: flex;
+  justify-content: space-between;
+
+}
+.more_one{
+  padding-bottom: 180rpx;
+  width: 100%;
+}
+.more_a{
+  width: 48%;
+  border: 1rpx solid #cccccc;
+  display: inline-block;
+  margin-left: 8rpx;
+  margin-top: 20rpx;
+
+}
+.more_a_tu{
+  width: 100%;
+  height: 200rpx;
+}
+.geng_shou{
+  color:#fb989d;
+  display: inline-block;
+}
+.geng_jia{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.bottom_tu_all{
+  margin-left: 10rpx;
+  position: relative;
+}
+.bottom_info{
+  position:absolute;
+  color:white;
+  background-color:#ffb8c7;
+  border-radius:17rpx;
+  width:70rpx;
+  height:30rpx;
+  line-height:30rpx;
+  font-size:20rpx;
+  text-align:center;
+  top: 10rpx;
+  left: 70rpx;
+}
+.bottom_tu{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 20rpx;
+}
+.bottom{
+  width: 100%;
+  height:140rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  
+}
+#purchase{
+  width: 250rpx;
+  height: 100rpx;
+  margin-right: 30rpx;
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    z-index: 9000;
+    opacity: 0.7;
+}
+.modalDlg {
+    width:100%;
+    height:80%;
+    position:fixed;
+    bottom:0;
+    z-index:9999;
+    background-color:#fff;
+    border-top-left-radius: 10rpx;
+    border-top-right-radius: 10rpx;
+}
+.gou_tu{
+  display: inline-block;
+  width: 200rpx;
+  height: 200rpx;
+}
+.product{
+  width: 100%;
+}
+.product_a{
+  padding: 30rpx 30rpx;
+  display:flex;
+  align-items:center;
+}
+.dan{
+  background-color: #fb989d;
+  display: inline-block;
+  width: 115rpx;
+  height: 60rpx;
+  border-radius: 10rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size:26rpx; 
+  color: white;
+  margin: 30rpx;
+}
+.product_b{
+  padding: 30rpx 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30rpx;
+  border-top: 1rpx solid #e4e4e4;
+  border-bottom: 1rpx solid #e4e4e4;
+}
+.car_item_wrap{
+  display: inline-block;
+
+}
+.car_item_operate {
+    display: inline-block;
+    float: right;
+}
+.car_item_btn {
+    display: inline-block;
+    width: 52rpx;
+    height: 48rpx;
+    text-align: center;
+    line-height: 56rpx;
+    border: 1px solid #B2B2B2;
+    color: #929292;
+}
+.car_item_num {
+    display: inline-block;
+    width: 80rpx;
+    height: 48rpx;
+    text-align: center;
+    line-height: 56rpx;
+    border-top: 1px solid #B2B2B2;
+    border-bottom: 1px solid #B2B2B2;
+    position: relative;
+    color: #929292;
+}
+.car_item_del {
+    display: inline-block;
+    width: 52rpx;
+    height: 48rpx;
+    background-image: url(../../image/shanchu.png);
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    float: right;
+    margin-left: 15px;
+}
+#suer{
+  background-color: #ffa6b2;
+  font-size: 32rpx;
+  color: white;
+  position: fixed;
+  bottom: 50rpx;
+  width: 80%;
+  border-radius: 40rpx;
+  display: inline-block;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#xiala{
+  width: 30rpx;
+  height: 30rpx;
+  display: inline-block;
+}
+#guanbi{
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 20rpx;
+}
+.pdetail_text{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;  
+  overflow: hidden;
+}
+.pname_text{
+  font-size:26rpx;
+  text-overflow: ellipsis; 
+  overflow: hidden; 
+  white-space: nowrap;
+}
+.pdetail_produce {
+  font-size:28rpx;
+  margin:30rpx 0;
+  min-height: 40rpx;
+  line-height: 40rpx;
+}
+@import "../../common/common.wxss";
+.produce_list_litem {
+margin-bottom: 140rpx;
+}

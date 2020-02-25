@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<title>产品评价</title>
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/goods_evalution.css" />
+		<style type="text/css">
+
+		</style>
+		
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav"  style="background-color: #FD4404;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">评价</h1>
+		</header>
+		<div class="mui-content">
+
+			<div class="chanping_pingji clearfix">
+				<ul>
+					<li><button class="active">全部</button></li>
+					<li><button>好评</button></li>
+					<li><button>中评</button></li>
+					<li><button>差评</button></li>
+
+				</ul>
+
+			</div>
+			<div class="pingjia_content">
+
+				<div class="pingjia">
+					<ul id="content_1">
+					</ul>
+					<div id="xian" class="pingjia1" style="display: none;padding-top: 100px; text-align: center;">
+						<h1 style="font-size: 0.9rem;">该商品无任何评价</h1>
+					</div>
+				</div>
+				<div class="pingjia" style="display: none;">
+					<ul id="content_2">
+					</ul>
+					<div id="xian" class="pingjia2" style="display: none;padding-top: 100px; text-align: center;">
+						<h1 style="font-size: 0.9rem;">该商品无任何评价</h1>
+					</div>
+				</div>
+				<div class="pingjia" style="display: none;">
+					<ul id="content_3">
+					</ul>
+					<div id="xian" class="pingjia3" style="display: none;padding-top: 100px; text-align: center;">
+						<h1 style="font-size: 0.9rem;">该商品无任何评价</h1>
+					</div>
+				</div>
+				<div class="pingjia" style="display: none;">
+					<ul id="content_4">
+					</ul>
+					<div id="xian" class="pingjia4" style="display: none;padding-top: 100px; text-align: center;">
+						<h1 style="font-size: 0.9rem;">该商品无任何评价</h1>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script>
+	mui.init({
+		swipeBack: true
+	});
+	var goodsid;
+	var url_app=mui.app_url();
+	mui.plusReady(function() {
+		var self = plus.webview.currentWebview();
+		self.addEventListener("hide", function(e) {
+			$("#content_1").html("");
+			$("#content_2").html("");
+			$("#content_3").html("");
+			$("#content_4").html("");
+			$("#xian").hide();
+		}, false);
+		self.setStyle({
+			scrollIndicator: 'none'
+		});
+	})
+
+
+	window.addEventListener('pingjia', function(event) {
+		    $(".pingjia1").hide();
+			$(".pingjia2").hide();
+			$(".pingjia3").hide();
+			$(".pingjia4").hide();
+		 goodsid = event.detail.id;
+		var shopid = event.detail.sid;
+		if(!goodsid) {
+			return;
+		}
+		mui.get(url_app+"NsGoodsEvaluate/selectBygoodsId?goodsId="+goodsid+"", function(rsp) {
+			if(rsp!="") {
+				$("#content_1").html(rsp);
+				pinglun();
+			} else {
+				$(".pingjia1").show();
+			}
+		})
+	})
+function pinglun(){
+	mui.get(url_app+"NsGoodsEvaluate/selectBygoodsId?goodsId="+goodsid+"&type=1", function(rsp) {
+			if(rsp!="") {
+				$("#content_2").html(rsp);
+			} else {
+			}
+		})
+		mui.get(url_app+"NsGoodsEvaluate/selectBygoodsId?goodsId="+goodsid+"&type=2", function(rsp) {
+			if(rsp!="") {
+				$("#content_3").html(rsp);
+			} else {
+			}
+		})
+		mui.get(url_app+"NsGoodsEvaluate/selectBygoodsId?goodsId="+goodsid+"&type=3", function(rsp) {
+			if(rsp!="") {
+				$("#content_4").html(rsp);
+			} else {
+			}
+		})
+}
+	$(function() {
+		$(".chanping_pingji > ul > li").click(function() {
+			$(this).find("button").addClass("active");
+			$(this).siblings().find("button").removeClass("active");
+			var index = $(this).index();
+			$(".pingjia_content > div ").eq(index).show().siblings().hide();
+		})
+	})
+	mui.back = function() {
+		plus.webview.currentWebview().hide("auto", 300);
+	}
+</script>

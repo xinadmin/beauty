@@ -1,0 +1,19 @@
+<view>
+<view class='hade-a'>
+   
+    <view class='hade-b'>
+      <image src="/pages/img/position.png" class='personal' />
+   <navigator url='/pages/switchcity/switchcity'>
+      <text style='font-size:28rpx;color:#ed708a' class='cityLength'>{{city}}</text>
+    </navigator>
+    </view>
+   
+    <view class='hade-c' bindtap="hopSearch">
+      <image src='/pages/img/search.png' class='search' />
+      <input placeholder="大家都在搜索" placeholder-class="phcolor" class='search-a'disabled='false' />
+    </view>
+    <view>
+
+    </view>
+  </view>
+  </view>

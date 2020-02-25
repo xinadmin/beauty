@@ -1,0 +1,82 @@
+.Order_evaluation{
+	width: 90%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.oe_header{
+	width: 100%;
+	height: 6.25rem;
+	/* background-color: #00A0DC; */
+	margin-top: 1.25rem;
+}
+.service{
+	margin-top: 1.25rem;
+}
+
+.service,.Wordof_mouth{
+	width: 100%;
+	height:2rem;
+	
+}
+
+.service span,.Wordof_mouth span,.service_pic{
+	float: left;
+}
+
+.service_pic img{
+	width:1.25rem;
+	height:1.25rem ;
+}
+
+		.suggested_back{
+				width: 95%;
+				height: 10rem;
+				border: 0.06rem solid #E2E2E2;
+				margin: 0 auto;
+				margin-top: 0.9375rem;
+			}
+			.suggested_inp{
+				width: 100%;
+				height: 5rem;
+				/* background-color: #000000; */
+				/* float: left; */
+			}
+			.input{
+				width: 100%;
+				height: 5rem;
+				border: none;
+				
+			}
+			
+			input::-webkit-input-placeholder {
+			         font-size: 1rem;
+			         text-align: left;
+			}
+			
+			.suggested_pic{
+				width: 100%;
+				height: 5rem;
+				position: relative;
+				/* background-color:palegoldenrod; */
+			}		
+			
+			.addpicture{
+				width: 4rem;
+				height: 4rem;
+				float: left;
+				margin: 0 0 0.625rem 0.625rem;
+				
+			}
+			.addpicture img{
+				width: 100%;
+				height: 100%;
+			}
+			.suggested_pic_rg{
+				float: right;
+				position:absolute;
+				right:0;
+				bottom:0;
+				color: #B7B7B7;
+				margin: 0 0.625rem 0.625rem 0;
+			}

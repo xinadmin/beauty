@@ -1,0 +1,56 @@
+page {
+  background-color: #FBF7F8;
+}
+.head_mei{
+  border-bottom: 1rpx solid #efefef;
+  height: 150rpx;
+  background-color: white;
+  padding-top:30rpx; 
+}
+.head_mei_a{
+  font-size: 32rpx;
+  text-align: center;
+  
+}
+.head_mei_b{
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.boby_mei{
+  background-color: white;
+  padding: 40rpx 20rpx;
+}
+.boby_mei_a{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60rpx;
+  
+}
+.boby_mei_font{
+  font-size: 28rpx;
+}
+.font_color{
+  color: #454545;
+}
+.font_chang{
+  max-width: 500rpx;
+  text-overflow: ellipsis; 
+  overflow: hidden; 
+  white-space: nowrap;
+}
+.bottom_a{
+  background-color: white;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  padding-left: 20rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+.bottom_tu{
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+}

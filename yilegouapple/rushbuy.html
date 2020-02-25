@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Hello MUI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/mui.min.css">
+	<link rel="stylesheet" href="css/rushby.css">
+	
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script>
+		var int_day, int_hour, int_minute, int_second;
+		var item4 = 0;
+		var item1 = 0;
+		var item2 = 0;
+		var item3 = 0;
+
+		$(function() {
+			var myDate9 = new Date();
+			item1 = myDate9.getHours();
+			item2 = myDate9.getHours();
+			item3 = myDate9.getHours();
+			item4 = myDate9.getHours();
+
+			if(item1 < 12) {
+				if(item1 > 9) {
+					if(item1 >= 10) {
+						count_down(12, 1, 1);
+					}
+				} else {
+					count_down(10, 1, 0);
+				}
+			} else {
+
+				$("#time_one").html("<div class='rush_title' id='rush_title1'>抢购已结束，下次敬请期待<span>已结束<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+			}
+			if(item2 < 14) {
+				if(item2 > 11) {
+					if(item2 >= 12) {
+						count_down_two(14, 2, 1);
+					}
+				} else {
+					count_down_two(12, 2, 0);
+					$("#time_two").html("<div class='rush_title' id='rush_title2'>抢购未开始，敬请期待<span>未开始<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+				}
+			} else {
+				$("#time_two").html("<div class='rush_title' id='rush_title2'>抢购已结束，下次敬请期待<span>已结束<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+
+			}
+			if(item3 < 20) {
+				if(item3 > 13) {
+					if(item3 >= 14) {
+						count_down_three(20, 3, 1);
+					}
+				} else {
+					count_down_three(14, 3, 0);
+					$("#time_three").html("<div class='rush_title' id='rush_title2'>抢购未开始，敬请期待<span>未开始<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+				}
+			} else {
+				$("#time_three").html("<div class='rush_title' id='rush_title3'>抢购已结束，下次敬请期待<span>已结束<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+
+			}
+			if(item4 < 22) {
+				if(item4 > 19) {
+					if(item4 >= 20) {
+						count_down_four(22, 4, 1);
+					}
+				} else {
+					count_down_four(20, 4, 0);
+					$("#time_four").html("<div class='rush_title' id='rush_title2'>抢购未开始，敬请期待<span>未开始<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+				}
+			} else {
+				$("#time_four").html("<div class='rush_title' id='rush_title4'>抢购已结束，下次敬请期待<span>已结束<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+
+			}
+		})
+
+		function count_down(item, index_num, start) {
+			var starts = start;
+			if(starts == 0) {
+				$("#time_one").html("<div class='rush_title' id='rush_title1'>抢购未开始，敬请期待<span>距离开始<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+
+			} else {
+				$("#time_one").html("<div class='rush_title' id='rush_title1'>抢购已开始<span>距离结束<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+			}
+			var items = item;
+			var index_num = index_num;
+			var myDate = new Date();
+			var item1 = myDate.getFullYear();
+			var item2 = myDate.getMonth() + 1;
+			var item3 = myDate.getDate();
+			var myDate2 = new Date("" + item1 + "/" + item2 + "/" + item3 + " " + items + ":00:00");
+			var time_distance = myDate2.getTime() - myDate.getTime();
+			int_day = Math.floor(time_distance / 86400000)
+			time_distance -= int_day * 86400000;
+			int_hour = Math.floor(time_distance / 3600000)
+			time_distance -= int_hour * 3600000;
+			int_minute = Math.floor(time_distance / 60000)
+			time_distance -= int_minute * 60000;
+			int_second = Math.floor(time_distance / 1000)
+			if(int_hour < 10)
+				int_hour = "0" + int_hour;
+			if(int_minute < 10)
+				int_minute = "0" + int_minute;
+			if(int_second < 10)
+				int_second = "0" + int_second;
+			$("body #rush_title" + index_num + "").children("span").children(".first_hour").text(int_hour);
+			$("body #rush_title" + index_num + "").children("span").children(".first_minuter").text(int_minute);
+			$("body #rush_title" + index_num + "").children("span").children(".first_miao").text(int_second);
+			setTimeout("count_down(" + items + "," + index_num + "," + start + ")", 1000);
+		}
+
+		function count_down_two(item, index_num, start) {
+			var starts = start
+			if(starts == 0) {
+				$("#time_two").html("<div class='rush_title' id='rush_title2'>抢购未开始，敬请期待<span>距离开始<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+			} else {
+				$("#time_two").html("<div class='rush_title' id='rush_title2'>抢购已开始<span>距离结束<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+			}
+			var items = item;
+			var index_num = index_num;
+			var myDate = new Date();
+			var item1 = myDate.getFullYear();
+			var item2 = myDate.getMonth() + 1;
+			var item3 = myDate.getDate();
+			var myDate2 = new Date("" + item1 + "/" + item2 + "/" + item3 + " " + items + ":00:00");
+			var time_distance = myDate2.getTime() - myDate.getTime();
+			int_day = Math.floor(time_distance / 86400000)
+			time_distance -= int_day * 86400000;
+			int_hour = Math.floor(time_distance / 3600000)
+			time_distance -= int_hour * 3600000;
+			int_minute = Math.floor(time_distance / 60000)
+			time_distance -= int_minute * 60000;
+			int_second = Math.floor(time_distance / 1000)
+			if(int_hour < 10)
+				int_hour = "0" + int_hour;
+			if(int_minute < 10)
+				int_minute = "0" + int_minute;
+			if(int_second < 10)
+				int_second = "0" + int_second;
+			$("body #rush_title" + index_num + "").children("span").children(".first_hour").text(int_hour);
+			$("body #rush_title" + index_num + "").children("span").children(".first_minuter").text(int_minute);
+			$("body #rush_title" + index_num + "").children("span").children(".first_miao").text(int_second);
+			setTimeout("count_down_two(" + items + "," + index_num + "," + start + ")", 1000);
+		}
+
+		function count_down_three(item, index_num, start) {
+			var starts = start
+			if(starts == 0) {
+				$("#time_three").html("<div class='rush_title' id='rush_title3'>抢购未开始，敬请期待<span>距离开始<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+			} else {
+				$("#time_three").html("<div class='rush_title' id='rush_title3'>抢购已开始<span>距离结束<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+			}
+			var items = item;
+			var index_num = index_num;
+			var myDate = new Date();
+			var item1 = myDate.getFullYear();
+			var item2 = myDate.getMonth() + 1;
+			var item3 = myDate.getDate();
+			var myDate2 = new Date("" + item1 + "/" + item2 + "/" + item3 + " " + items + ":00:00");
+			var time_distance = myDate2.getTime() - myDate.getTime();
+			int_day = Math.floor(time_distance / 86400000)
+			time_distance -= int_day * 86400000;
+			int_hour = Math.floor(time_distance / 3600000)
+			time_distance -= int_hour * 3600000;
+			int_minute = Math.floor(time_distance / 60000)
+			time_distance -= int_minute * 60000;
+			int_second = Math.floor(time_distance / 1000)
+			if(int_hour < 10)
+				int_hour = "0" + int_hour;
+			if(int_minute < 10)
+				int_minute = "0" + int_minute;
+			if(int_second < 10)
+				int_second = "0" + int_second;
+			$("body #rush_title" + index_num + "").children("span").children(".first_hour").text(int_hour);
+			$("body #rush_title" + index_num + "").children("span").children(".first_minuter").text(int_minute);
+			$("body #rush_title" + index_num + "").children("span").children(".first_miao").text(int_second);
+			setTimeout("count_down_three(" + items + "," + index_num + "," + starts + ")", 1000);
+		}
+
+		function count_down_four(item, index_num, start) {
+			var starts = start
+			if(starts == 0) {
+				$("#time_four").html("<div class='rush_title' id='rush_title4'>抢购未开始，敬请期待<span>距离开始<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+			} else {
+				$("#time_four").html("<div class='rush_title' id='rush_title4'>抢购已开始<span>距离结束<em class='first_hour'>00</em>:<em class='first_minuter'>00</em>:<em class='first_miao'>00</em></span></div>");
+			}
+			var items = item;
+			var index_num = index_num;
+			var myDate = new Date();
+			var item1 = myDate.getFullYear();
+			var item2 = myDate.getMonth() + 1;
+			var item3 = myDate.getDate();
+			var myDate2 = new Date("" + item1 + "/" + item2 + "/" + item3 + " " + items + ":00:00");
+			var time_distance = myDate2.getTime() - myDate.getTime();
+			int_day = Math.floor(time_distance / 86400000)
+			time_distance -= int_day * 86400000;
+			int_hour = Math.floor(time_distance / 3600000)
+			time_distance -= int_hour * 3600000;
+			int_minute = Math.floor(time_distance / 60000)
+			time_distance -= int_minute * 60000;
+			int_second = Math.floor(time_distance / 1000)
+			if(int_hour < 10)
+				int_hour = "0" + int_hour;
+			if(int_minute < 10)
+				int_minute = "0" + int_minute;
+			if(int_second < 10)
+				int_second = "0" + int_second;
+			$("body #rush_title" + index_num + "").children("span").children(".first_hour").text(int_hour);
+			$("body #rush_title" + index_num + "").children("span").children(".first_minuter").text(int_minute);
+			$("body #rush_title" + index_num + "").children("span").children(".first_miao").text(int_second);
+			setTimeout("count_down_four(" + items + "," + index_num + "," + start + ")", 1000);
+		}
+	</script>
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav" style="background:#ff3300 ;box-shadow: none;color: #fff;">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+		<h1 class="mui-title" style="color: #fff;font-size: 1.2rem;font-weight: 600;">乐购秒杀</h1>
+	</header>
+	<div class="mui-content">
+		<div id="slider" class="mui-slider mui-fullscreen" style="background-color: #fff;">
+			<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background: #ff3300;border-bottom: none; padding-bottom: 0;">
+				<div class="mui-scroll" style="background: #ff3300;color:#fff;width: 100%">
+					<a class="mui-control-item mui-active" href="#item1mobile">
+						<s>10:00</s>
+						<i>抢购中</i>
+					</a>
+					<a class="mui-control-item" href="#item2mobile">
+						<s>12:00</s>
+						<i>抢购中</i>
+					</a>
+					<a class="mui-control-item" href="#item3mobile">
+						<s>14:00</s>
+						<i>抢购中</i>
+					</a>
+					<a class="mui-control-item" href="#item4mobile">
+						<s>20:00</s>
+						<i>抢购中</i>
+					</a>
+				</div>
+			</div>
+			<div class="mui-slider-group" style="box-shadow: none;border: none;">
+				<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+					<div id="scroll1" class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<div id="time_one">
+							</div>
+							<ul class="mui-table-view" id="item1" data-id="1">
+								<li v-for="item in items">
+									<div class="goods_pic">
+										<img :src="item.nsgoods.picture" width="90px" height="90px" />
+									</div>
+									<div class="goods_content" @tap="open_detail(item)">
+										<h1 class="goods_content_name">{{item.nsgoods.goodsName}}</h1>
+										<!--<p class="goods_content_discount_title">乐购币抵扣{{item.nsgoods.pointExchange}}￥</p><br />-->
+										<span class="goods_content_price">抢购价：￥<i>{{item.price}}</i>
+                                    	<br />
+                                    	<s class="goods_content_cost_price">￥{{item.nsgoods.promotionPrice}}</s>
+                                    	
+											</span>
+										<span class="goods_content_buy" v-if=" new Date().getHours() > 9 &&  new Date().getHours() < 12">立即抢购</span>
+										<span class="goods_content_buy" v-if=" new Date().getHours() <10 " style="background-color:#ddd">未开始</span>
+										<span class="goods_content_buy" v-if=" new Date().getHours() >12 " style="background-color:#ddd">已结束</span>
+										<!--<span class="goods_content_sales_num" v-if=" new Date().getHours() > 9 &&  new Date().getHours() < 12">剩余{{item.stock}}件</span>-->
+										<span class="goods_content_sales_num" >仅限200件</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="item2mobile" class="mui-slider-item mui-control-content">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<div id="time_two">
+
+							</div>
+							<!--<div class="rush_title" id="rush_title2">抢购中，先下单先得哦<span>距离结束<em class="hour">05</em>:<em class="minuter">25</em>:<em class="miao">05</em></span></div>-->
+							<ul class="mui-table-view" id="item1" data-id="2">
+								<li v-for="item in item1">
+									<div class="goods_pic">
+										<img :src="item.nsgoods.picture" width="90px" height="90px" />
+									</div>
+									<div class="goods_content" @tap="open_detail(item)">
+										<h1 class="goods_content_name">{{item.nsgoods.goodsName}}</h1>
+										<!--<p class="goods_content_discount_title">乐购币抵扣{{item.nsgoods.pointExchange}}￥</p><br />-->
+										<span class="goods_content_price">抢购价：￥<i>{{item.price}}</i>
+                                    	<br />
+                                    	<s  class="goods_content_cost_price">￥{{item.nsgoods.promotionPrice}}</s>
+											</span>
+										<!--<span class="goods_content_buy" @tap="open_detail(item)">立即抢购</span>-->
+										<span class="goods_content_buy" v-if=" new Date().getHours() > 11 &&  new Date().getHours() < 14">立即抢购</span>
+										<span class="goods_content_buy" v-if=" new Date().getHours() <12 " style="background-color:#ddd">未开始</span>
+										<span class="goods_content_buy" v-if=" new Date().getHours() >14 " style="background-color:#ddd">已结束</span>
+										<!--<span class="goods_content_sales_num" v-if=" new Date().getHours() > 11 &&  new Date().getHours() < 14">剩余{{item.stock}}件</span>-->
+										<span class="goods_content_sales_num">仅限200件</span>
+
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="item3mobile" class="mui-slider-item mui-control-content">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<div id="time_three">
+
+							</div>
+							<!--<div class="rush_title" id="rush_title3">抢购中，先下单先得哦<span>距离结束<em class="hour">05</em>:<em class="minuter">25</em>:<em class="miao">05</em></span></div>-->
+							<ul class="mui-table-view" id="item1" data-id="3">
+								<li v-for="item in item2">
+									<div class="goods_pic">
+										<img :src="item.nsgoods.picture" width="90px" height="90px" />
+									</div>
+									<div class="goods_content" @tap="open_detail(item)">
+										<h1 class="goods_content_name">{{item.nsgoods.goodsName}}</h1>
+										<!--<p class="goods_content_discount_title">乐购币抵扣{{item.nsgoods.pointExchange}}￥</p><br />-->
+										<span class="goods_content_price">抢购价：￥<i>{{item.price}}</i>
+                                    	<br />
+                                    	<s  class="goods_content_cost_price">￥{{item.nsgoods.promotionPrice}}</s>
+											</span>
+										<!--<span class="goods_content_buy" @tap="open_detail(item)">立即抢购</span>-->
+										<span class="goods_content_buy" v-if=" new Date().getHours() > 13 &&  new Date().getHours() < 20">立即抢购</span>
+										<span class="goods_content_buy" v-if=" new Date().getHours() <14 " style="background-color:#ddd">未开始</span>
+										<span class="goods_content_buy" v-if=" new Date().getHours() >19 " style="background-color:#ddd">已结束</span>
+										<!--<span class="goods_content_sales_num" v-if=" new Date().getHours() > 13 &&  new Date().getHours() < 20">剩余{{item.stock}}件</span>-->
+										<span class="goods_content_sales_num">仅限200件</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="item4mobile" class="mui-slider-item mui-control-content">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<div id="time_four">
+
+							</div>
+							<!--<div class="rush_title" id="rush_title4">抢购中，先下单先得哦<span>距离结束<em class="hour">05</em>:<em class="minuter">25</em>:<em class="miao">05</em></span></div>-->
+							<ul class="mui-table-view" id="item1" data-id="4">
+								<li v-for="item in item3">
+									<div class="goods_pic">
+										<img :src="item.nsgoods.picture" width="90px" height="90px" />
+									</div>
+									<div class="goods_content" @tap="open_detail(item)">
+										<h1 class="goods_content_name">{{item.nsgoods.goodsName}}</h1>
+										<!--<p class="goods_content_discount_title">乐购币抵扣{{item.nsgoods.pointExchange}}￥</p><br />-->
+										<span class="goods_content_price">抢购价：￥<i>{{item.price}}</i>
+                                    	<br />
+                                    	<s  class="goods_content_cost_price">￥{{item.nsgoods.promotionPrice}}</s>
+                                    	
+											</span>
+										<span class="goods_content_buy" v-if=" new Date().getHours() > 19 &&  new Date().getHours() < 24">立即抢购</span>
+										<span class="goods_content_buy" v-if=" new Date().getHours() <20 " style="background-color:#ddd">未开始</span>
+										<span class="goods_content_buy" v-if=" new Date().getHours() >=24" style="background-color:#ddd">已结束</span>
+										<!--<span class="goods_content_sales_num" v-if=" new Date().getHours() > 19 &&  new Date().getHours() < 22">剩余{{item.stock}}件</span>-->
+										<span class="goods_content_sales_num">仅限200件</span>
+
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script src="js/mui.min.js"></script>
+	<script src="js/mui.pullToRefresh.js"></script>
+	<script src="js/mui.pullToRefresh.material.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack: true
+		});
+		var url_app = mui.app_url();
+		var webview_detail = null;
+
+		function getDefault() {
+			return {
+				items: [], //列表信息流数据
+				item1: [],
+				item2: [],
+				item3: [],
+				uid: "",
+				pageNum: "",
+				pageone: "",
+				pagetwo: "",
+				pagethree: "",
+				pagefour: ""
+			}
+		}
+		var news = new Vue({
+			el: '#slider',
+			data: getDefault(),
+			methods: {
+				resetData: function() { //重置数据
+					Object.assign(this.$data, getDefault());
+				}
+			},
+
+		});
+		(function($) {
+			//阻尼系数
+			var deceleration = mui.os.ios ? 0.003 : 0.0009;
+			$('.mui-scroll-wrapper').scroll({
+				bounce: false,
+				indicators: true, //是否显示滚动条
+				deceleration: deceleration
+			});
+			$.ready(function() {
+				//循环初始化所有下拉刷新，上拉加载。
+				$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+					$(pullRefreshEl).pullToRefresh({
+						up: {
+							callback: function() {
+								var self = this;
+								setTimeout(function() {
+									var ul = self.element.querySelector('.mui-table-view');
+									var item = ul.getAttribute("data-id");
+									item_list(item);
+									self.endPullUpToRefresh();
+								}, 1000);
+							}
+						}
+					});
+				});
+
+			});
+
+		})(mui);
+		mui.plusReady(function() {
+
+			var wd = plus.nativeUI.showWaiting();
+			mui.getJSON(url_app + "rushbuy/page?starTime=2019-1-17 10:00:00&endTime=2019-1-17 12:00:00", function(rsp) {
+				news.pageone = rsp.pageNum;
+				if(rsp.list && rsp.list.length > 0) {
+					news.items = news.items.concat(convert(rsp.list));
+				} else {
+					mui.toast("当前商品数据为空");
+				}
+				wd.close();
+			});
+			mui.getJSON(url_app + "rushbuy/page?starTime=2019-1-17 12:00:00&endTime=2019-1-17 14:00:00", function(rsp) {
+				news.pagetwo = rsp.pageNum;
+				if(rsp.list && rsp.list.length > 0) {
+					news.item1 = news.item1.concat(convert(rsp.list));
+				} else {
+					mui.toast("当前商品数据为空");
+				}
+			});
+			mui.getJSON(url_app + "rushbuy/page?starTime=2019-1-17 14:00:00&endTime=2019-1-17 20:00:00", function(rsp) {
+				news.pagethree = rsp.pageNum;
+				if(rsp.list && rsp.list.length > 0) {
+					news.item2 = news.item2.concat(convert(rsp.list));
+				} else {
+					mui.toast("当前商品数据为空");
+				}
+				wd.close();
+			});
+			mui.getJSON(url_app + "rushbuy/page?starTime=2019-1-17 20:00:00&endTime=2019-1-17 22:00:00", function(rsp) {
+				news.pagefour = rsp.pageNum;
+				if(rsp.list && rsp.list.length > 0) {
+					news.item3 = news.item3.concat(convert(rsp.list));
+				} else {
+					mui.toast("当前商品数据为空");
+				}
+				wd.close();
+			});
+			webview_detail = plus.webview.getWebviewById("rushby");
+			if(!webview_detail) {
+				webview_detail = mui.preload({
+					url: "rushby.html",
+					id: "rushby",
+					styles: {
+						popGesture: "close",
+						titleNView: {
+							autoBackButton: true,
+							backgroundColor: '#f7f7f7',
+							titleText: "产品详情",
+							splitLine: {
+								color: '#cccccc'
+							},
+							type: "transparent"
+						},
+						statusbar: {
+							background: "#ddd"
+						},
+						show: {
+							event: 'loaded'
+						},
+						waiting: {
+							autoShow: true
+						},
+
+					}
+				})
+			}
+			var self = plus.webview.currentWebview();
+			self.setStyle({
+				scrollIndicator: 'none'
+			});
+
+		})
+
+		function convert(items) {
+			var newItems = [];
+			items.forEach(function(item) {
+				var time = item.start_time.split(" ")[1].slice(0, 2);
+				if(time.slice(0, 1).indexOf("0") != -1) {
+					time = time.slice(1, 2);
+				}
+				newItems.push({
+					goods_id: item.goods_id,
+					price: (item.price).toFixed(2),
+					nsgoods: item.nsgoods,
+					time: time,
+					stock: item.stock, //商品所有图片/
+					id: item.id
+				});
+			});
+			return newItems;
+		}
+
+		function open_detail(item) {
+			//触发子窗口变更新闻详情
+			if(!item.goods_id) {
+				mui.toast("当前页面未加载完,请稍后");
+				return false;
+			}
+			mui.fire(webview_detail, 'get_detail', {
+				goodsId: item.goods_id, //产品id
+				price: item.price, //产品id
+				time: item.time,
+				rushbuyid: item.id,
+				stock:item.stock
+			});
+			setTimeout(function() {
+				webview_detail.show("slide-in-right", 300);
+			}, 150);
+		}
+
+		function item_list(item) {
+			if(item == 1) {
+				if(!news.pageone) {
+					news.pageone = 1;
+				} else {
+					++news.pageone;
+				}
+				mui.getJSON(url_app + "rushbuy/page?starTime=2019-1-17 10:00:00&endTime=2019-1-17 12:00:00&pageNum=" + news.pageone + "", function(rsp) {
+					if(rsp.list && rsp.list.length > 0) {
+						news.items = news.items.concat(convert(rsp.list));
+					} else {
+						mui.toast("当前無更多商品");
+					}
+				});
+			} else if(item == 2) {
+				if(!news.pagetwo) {
+					news.pagetwo = 1;
+				} else {
+					++news.pagetwo;
+				}
+				mui.getJSON(url_app + "rushbuy/page?starTime=2019-1-17 12:00:00&endTime=2019-1-17 14:00:00&pageNum=" + news.pagetwo + "", function(rsp) {
+					if(rsp.list && rsp.list.length > 0) {
+						news.item1 = news.item1.concat(convert(rsp.list));
+					} else {
+						mui.toast("当前無更多商品");
+
+					}
+				});
+			} else if(item == 3) {
+				if(!news.pagethree) {
+					news.pagethree = 1;
+				} else {
+					++news.pagethree;
+				}
+				mui.getJSON(url_app + "rushbuy/page?starTime=2019-1-17 14:00:00&endTime=2019-1-17 20:00:00&pageNum=" + news.pagethree + "", function(rsp) {
+					if(rsp.list && rsp.list.length > 0) {
+						news.item2 = news.item2.concat(convert(rsp.list));
+					} else {
+						mui.toast("当前無更多商品");
+
+					}
+				});
+			} else if(item == 4) {
+				if(!news.pagefour) {
+					news.pagefour = 1;
+				} else {
+					++news.pagefour;
+				}
+
+				mui.getJSON(url_app + "rushbuy/page?starTime=2019-1-17 20:00:00&endTime=2019-1-17 22:00:00&pageNum=" + news.pagefour + "", function(rsp) {
+					if(rsp.list && rsp.list.length > 0) {
+						news.item3 = news.item3.concat(convert(rsp.list));
+					} else {
+						mui.toast("当前無更多商品");
+					}
+				});
+			}
+		}
+	</script>
+
+</body>
+
+</html>

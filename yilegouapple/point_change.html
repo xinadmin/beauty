@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+		<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<title>积分抵扣</title>
+		<style type="text/css">
+			
+			html {
+				background-color: #fff;
+			}
+			.fixed {
+				position: fixed;
+				left: 0;
+			}
+			#nav_li {
+				width: 100%;
+				overflow: hidden;
+				background-color: #fff;
+				border-bottom: solid 1px #F4F4F4;
+			}
+			
+			#nav_li li {
+				width: 25%;
+				float: left;
+				text-align: center;
+			}
+			
+			#nav_li li s {
+				display: inline-block;
+				height: 2.6rem;
+				line-height: 2.6rem;
+				margin-bottom: 1px;
+				font-size: 0.9rem
+			}
+			
+			#nav_li li s.active {
+				border-bottom: solid 1px #FF3300;
+			}
+			
+			.point_list {
+				width: 100%;
+				overflow: hidden;
+				background-color: #fff;
+				display: none;
+			}
+			
+			.point_list .point_list_content {
+				width: 100%;
+				border-bottom: solid 1px #F4F4F4;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			.point_list .point_list_content .point_list_content_pic {
+				width: 20%;
+				float: left;
+				margin: 0.6rem;
+			}
+			
+			.point_list .point_list_content .point_list_content_pic img {
+				width: 100%;
+			}
+			
+			.point_list .point_list_content .point_list_content_message {
+				float: left;
+				width: 70%;
+				max-height: 6.6rem;
+				padding: 0.6rem;
+				overflow: hidden;
+			}
+			
+			.point_list .point_list_content .point_list_content_message .point_list_content_message_pname {
+				width: 80%;
+				display: inline-block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				height: 1.8rem;
+				font-size: 1.0rem;
+				color: #222222;
+				font-weight: 600;
+				line-height: 1.8rem;
+				box-sizing: border-box;
+			}
+			
+			.point_list .point_list_content .point_list_content_message .point_list_content_message_point {
+				display: inline-block;
+				height: 1.8rem;
+				font-size: 1.0rem;
+				color: #DD524D;
+				line-height: 1.8rem;
+			}
+			
+			.point_list .point_list_content .point_list_content_message .point_list_content_message_sales {
+				display: inline-block;
+				height: 1.5rem;
+				font-size: 0.9rem;
+				color: #B2B2B2;
+			}
+			
+			.point_list .point_list_content .poing_buy {
+				display: inline-block;
+				font-size: 0.9rem;
+				color: #B2B2B2;
+				border: solid 1px #FF0000;
+				color: #FF0000;
+				height: 1.8rem;
+				line-height: 1.8rem;
+				padding: 0rem 0.6rem;
+				position: absolute;
+				right: 0.6rem;
+				top: 50%;
+				margin-top: -0.9rem;
+			}
+			
+			.point_list .point_list_content .poing_buy:active {
+				background-color: #FF0000 !important;
+				color: #fff;
+			}
+			
+			/*.point_list .point_list_content .poing_buy:hover {
+				background-color: #FF0000 !important;
+				color: #fff;
+				
+			}*/
+			.size_font {
+				font-size: 0.8rem;
+				font-weight: 500;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" id="mui-bar" style="box-shadow: none;background-color: #FF3300;border-bottom: solid 1px #ddd;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">乐购币兑换</h1>
+
+		</header>
+		<div class="mui-content">
+			<ul  id="nav_li">
+				<li><s class="active">全部</s></li>
+				<li><s>1-99</s></li>
+				<li><s>100-999</s></li>
+				<li><s>1000-9999</s></li>
+
+			</ul>
+			<div class="point_list">
+				<article class="point_list_content" v-for="item in items" @tap="open_detail(item)">
+					<div class="point_list_content_pic">
+						<img :src="item.picture" />
+					</div>
+					<div class="point_list_content_message">
+						<span class="point_list_content_message_pname">{{item.goodsName}}</span><br />
+						<s class="point_list_content_message_point">乐购币{{item.pointExchange}}个</s><span class="size_font">抵现金</span><br />
+						<i class="point_list_content_message_sales">已兑换{{item.count_num}}件</i>
+					</div>
+					<button class="poing_buy">马上兑</button>
+				</article>
+			</div>
+			<div class="point_list">
+				<!--<article class="point_list_content">
+					<div class="point_list_content_pic">
+						<img src="http://yiyun.zhonyou.cn/upload/product_img/2018-10-25/37dea1ff-0e2d-42d6-988f-85bbe9ab313a.jpg" />
+					</div>
+					<div class="point_list_content_message">
+						<span class="point_list_content_message_pname">色发射点反对发射点犯得上方法</span><br />
+						<s class="point_list_content_message_point">230积分</s><br />
+						<i class="point_list_content_message_sales">已兑换100件</i>
+					</div>
+					<button class="poing_buy">马上兑</button>
+				</article>-->
+				<article class="point_list_content" v-for="item in items" @tap="open_detail(item)" v-if="item.show">
+					<div class="point_list_content_pic">
+						<img :src="item.picture" />
+					</div>
+					<div class="point_list_content_message">
+						<span class="point_list_content_message_pname">{{item.goodsName}}</span><br />
+						<s class="point_list_content_message_point">乐购币{{item.pointExchange}}个</s><span class="size_font">抵现金</span><br />
+						<i class="point_list_content_message_sales">已兑换{{item.count_num}}件</i>
+					</div>
+					<button class="poing_buy">马上兑</button>
+				</article>
+			</div>
+			<div class="point_list">
+			<article class="point_list_content" v-for="item in items" @tap="open_detail(item)" v-if="!item.show">
+					<div class="point_list_content_pic">
+						<img :src="item.picture" />
+					</div>
+					<div class="point_list_content_message">
+						<span class="point_list_content_message_pname">{{item.goodsName}}</span><br />
+						<s class="point_list_content_message_point">乐购币{{item.pointExchange}}个</s><span class="size_font">抵现金</span><br />
+						<i class="point_list_content_message_sales">已兑换{{item.count_num}}件</i>
+					</div>
+					<button class="poing_buy">马上兑</button>
+				</article>
+			</div>
+			<div class="point_list">
+				<!--<article class="point_list_content">
+					<div class="point_list_content_pic">
+						<img src="http://yiyun.zhonyou.cn/upload/product_img/2018-10-25/37dea1ff-0e2d-42d6-988f-85bbe9ab313a.jpg" />
+					</div>
+					<div class="point_list_content_message">
+						<span class="point_list_content_message_pname">色发射点反对发射点犯得上方法</span><br />
+						<s class="point_list_content_message_point">230积分</s><br />
+						<i class="point_list_content_message_sales">已兑换100件</i>
+					</div>
+					<button class="poing_buy">马上兑</button>
+				</article>-->
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script>
+	var webview_detail = null;
+	var news = new Vue({
+		el: '.mui-content',
+		data: {
+			items: [], //列表信息流数据
+			items1: [],
+			items2: [],
+			items3: []
+		}
+	});
+
+	function open_detail(item) {
+		//触发子窗口产品详情
+		if(!item.goodsId) {
+			mui.toast("当前页面未加载完,请稍后");
+			return false;
+		}
+		mui.fire(webview_detail, 'get_detail', {
+			goodsId: item.goodsId, //产品id
+			picture: item.picture //产品id
+
+		});
+		setTimeout(function() {
+			webview_detail.show("slide-in-right", 300);
+		}, 150);
+	}
+
+	function convert(items) {
+		var newItems = [];
+		var show=false;
+		items.forEach(function(item) {
+			if(item.pointExchange==0){
+				return false;
+			}else {
+			if(1<item.pointExchange &&item.pointExchange< 99){
+				show=true
+			}else if (item.pointExchange > 99) {
+				show=false
+			}
+			newItems.push({
+				goodsId: item.goodsId,
+				goodsName: item.goodsName,
+				price: ((item.promotionPrice).toFixed(2)*0.95-(item.pointExchange).toFixed(2)).toFixed(2),
+				picture: item.picture, //商品所有图片/
+				pointExchange: item.pointExchange,
+				promotionPrice: (item.promotionPrice * 0.95).toFixed(2), //商品促销价格
+			    count_num:Math.ceil(Math.random()*1000),
+			    show:show
+			    
+			});
+			}
+		});
+		return newItems;
+	}
+	mui.init({
+		swipeBack: true
+	});
+	var url_app = mui.app_url();
+	mui.plusReady(function() {
+		$(".mui-content > .point_list").eq(0).show();
+		mui.getJSON(url_app + "nsgoods/select?PageNum=1&pageSize=300", function(rsp) {
+			if(rsp.list) {
+				news.items = news.items.concat(convert(rsp.list));
+			} else {
+				mui.toast("当前商品为空");
+
+			}
+		})
+		webview_detail = plus.webview.getWebviewById("chanpin_xiangqing");
+		if(!webview_detail) {
+			webview_detail = mui.preload({
+				url: 'chanpin_xiangqing.html',
+				id: 'chanpin_xiangqing',
+				styles: {
+					popGesture: "close",
+					titleNView: {
+						autoBackButton: true,
+						backgroundColor: '#f7f7f7',
+						titleText: "产品详情",
+						splitLine: {
+							color: '#cccccc'
+						},
+						type: "transparent"
+					},
+					statusbar: {
+						background: "#ddd"
+					},
+					show: {
+						event: 'loaded'
+					},
+					waiting: {
+						autoShow: true
+					},
+
+				}
+			});
+		}
+		mui("#nav_li").on("tap", "li", function() {
+			$("#nav_li li ").children("s").removeClass("active");
+			$(this).children("s").addClass("active");
+			var index_num = $(this).index();
+			$(".mui-content > .point_list").eq(index_num).show().siblings(".point_list").hide();
+		})
+	})
+	function scroll() { // 开始封装自己的scrollTop
+				if(window.pageYOffset != null) { // ie9+ 高版本浏览器
+					// 因为 window.pageYOffset 默认的是  0  所以这里需要判断
+					return {
+						left: window.pageXOffset,
+						top: window.pageYOffset
+					}
+				} else if(document.compatMode === "CSS1Compat") { // 标准浏览器   来判断有没有声明DTD
+					return {
+						left: document.documentElement.scrollLeft,
+						top: document.documentElement.scrollTop
+					}
+				}
+				return { // 未声明 DTD
+					left: document.body.scrollLeft,
+					top: document.body.scrollTop
+				}
+			}
+
+			window.onload = function() {
+				var top = document.getElementById("mui-bar");
+				var item_fenlei = document.getElementById("nav_li");
+
+				var height1 = top.offsetHeight;
+				var height2 = item_fenlei.offsetHeight;
+				var top_hegiht = height1 + height2;
+				window.onscroll = function() {
+					if(scroll().top > top_hegiht) {
+						item_fenlei.className += " fixed";
+						item_fenlei.style.marginTop = top.offsetHeight + "px";
+					} else {
+						item_fenlei.className = "";
+						item_fenlei.style.marginTop = 0;
+					}
+				}
+			}
+</script>

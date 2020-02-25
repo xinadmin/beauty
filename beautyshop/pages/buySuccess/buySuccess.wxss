@@ -1,0 +1,41 @@
+.hade-fu{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+.logo_tou{
+  text-align: center;
+  margin-top: 70rpx;
+}
+.logo_tou_a{
+  display: inline-block;
+  border-radius: 50%;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.men{
+  text-align: center;
+  font-size: 34rpx;
+  margin: 30rpx 0;
+}
+.qian{
+  text-align: center;
+  font-size: 50rpx;
+  margin-bottom: 100rpx;
+}
+.status{
+  margin: 40rpx 0;
+}
+.status_a{
+  display: inline-block;
+  color: #8d8d8d;
+  font-size: 30rpx;
+  margin-left: 100rpx;
+  width: 140rpx;
+}
+.status_b{
+  font-size: 30rpx;
+  margin-left: 50rpx;
+}

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<title>商品收藏</title>
+
+		<style type="text/css">
+			body {
+				background-color: #F4F4F4;
+				overflow: hidden;
+			}
+				.mui-content {
+				background-color: #f4F4F4;
+			}
+			.fixed {
+				position: fixed;
+				left: 0;
+				top: 0;
+			}
+			
+			
+			.nav_list{
+				width: 100%;
+				height: 2.6rem;
+				line-height: 2.6rem;
+				border-bottom: solid 1px #eeeeee;
+				background-color: #fff;
+				position: fixed;
+			left: 0;
+			bottom: 0;
+			z-index: 999;
+			}
+			
+			.nav_list span {
+				display: inline-block;
+				float: left;
+				width: 25%;
+				height: 100%;
+				text-align: center;
+				font-size: 0.8rem;
+			}
+			
+			.nav_list span.active {
+				border-bottom: solid 2px #ff4404;
+			}
+			
+			.temai_div {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				padding: 0.4rem 0 2.6rem;
+			}
+			
+			.temai_div .div1 {
+				float: left;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background-color: #fff;
+				box-sizing: border-box;
+				display: none;
+			}
+			
+			.div1 .div1_one {
+				float: left;
+				width: 100%;
+				height: 6.5rem;
+				border-bottom: solid 1px #ddd;
+				overflow: hidden;
+			}
+			
+			.div_pic {
+				float: left;
+				width: 15%;
+				min-width: 5.2rem;
+				height: 5.3rem;
+				min-height: 5.3rem;
+				max-height: 6.3rem;
+				margin: 0.6rem;
+				overflow: hidden;
+			}
+			
+			.div_pic img {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			
+			.div_content {
+				float: left;
+				width: 68%;
+				overflow: hidden;
+				padding: 0.6rem 0.6rem 0.6rem 0;
+				position: relative;
+			}
+			
+			.div_content .div_content_pname {
+				float: left;
+				width: 90%;
+				line-height: 1.4rem;
+				height: 2.8rem;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+			}
+			.div_content .div_content_price1 {
+				color: #222222;
+				font-weight: 500;
+				font-size: 1.0rem;
+				height: 2.3rem;
+				line-height: 2.3rem;
+			}
+			.div_content .div_content_price1 .div_content_price2 {
+				color: #D3D3D3;
+				font-weight: 400;
+				text-decoration: line-through;
+				font-size: 0.8rem;
+			}
+			.div_content .div_content_price1 .div_content_price3 {
+				color: #D3D3D3;
+				display: inline-block;
+				padding-left: 0.3rem;
+				font-size: 0.8rem;
+			}
+			.div_content .div_content_buy {
+				position: absolute;
+				display: inline-block;
+				width: 1.6rem;
+				height: 1.6rem;
+				background-color: #E43692;
+				right: 0.6rem;
+				top: 60%;
+				border-radius: 50%;
+			}
+			.div_content .div_content_buy img {
+				display: block;
+				width: 1.2rem;
+				height: 1.2rem;
+				margin: 0.2rem 0.2rem;
+			}
+			.history {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background-color: #F4F4F4;
+			}
+			.div1_history {
+				width: 47%;
+				float: left;
+				margin: 0% 0 2% 2%;
+				background-color: #fff;
+			}
+			.div1_history .div1_history_pic {
+				width: 100%;
+				max-height: 9.6rem;
+				overflow: hidden;
+				background-color: #fff;
+			}
+			.div1_history .div1_history_pic img {
+				width: 100%;
+				height: 100%;
+			}
+			.div1_history_content {
+				width: 95%;
+				margin: 0 auto;
+			}
+			.div1_history_content .div1_history_content_price {
+				margin: 0 auto;
+				height: 2.2rem;
+				line-height: 2.2rem;
+				font-size: 1.0rem;
+				color: #222222;
+				padding-left: 0.7rem;
+			}
+			.div1_history_content .div1_history_content_price s {
+				display: inline-block;
+				font-size: 0.8rem;
+				color: #999999;
+				font-weight: 400;
+			}
+			.div1_history_content .div1_history_content_pname  {
+				display: inline-block;
+				font-size: 0.75rem;
+				color: #222222;
+				height: 2.2rem;
+				margin-bottom: 0.6rem;
+				padding: 0 0.4rem;
+				line-height: 1.1rem;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+			}
+			.brank {
+				width: 100%;
+			}
+			.brank_list {
+				width: 100%;
+				height: 6.0rem;
+				overflow: hidden;
+				border-bottom: #F4F4F4;
+			}
+				.brank_list .brank_pic {
+				float: left;
+				width: 20%;
+				height: 4.2rem;
+				border: solid 1px #E3E3E3;
+			   margin: 0.9rem;
+			}
+				.brank_list .brank_pic img {
+				width: 98%;
+			}
+			.brank_list  .brank_content {
+				float: left;
+				width: 70%;
+				height: 100%;
+				position: relative;
+			}
+			.brank_list  .brank_content span {
+				display: inline-block;
+				margin-top: 0.9rem;
+				font-weight: 600;
+				font-size: 1.1rem;
+			}
+			.brank_list  .brank_content img {
+				display: inline-block;
+				position: absolute;
+				right: 0.8rem;
+				top: 50%;
+				width: 2.4rem;
+				height: 2.4rem;
+				margin-top:-1.2rem ;
+			}
+		</style>
+	</head>
+
+		<body>
+		<header id="top" class="mui-bar mui-bar-nav" style="background-color: #fff;box-shadow: none;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #222222;"></a>
+			<h1 class="mui-title" style="color: #222222;">我的收藏</h1>
+		</header>
+		<div class="mui-content">
+			<nav class="nav_list mui-bar-tab mui-bar" style="border-top: none;box-shadow: none;" id="nav_list">
+				<span class="active">我的专属</span>
+				<span>商品收藏</span>
+				<span>品牌收藏</span>
+				<span>我的足迹</span>
+			</nav>
+			<div class="temai_div" id="temai_div">
+
+				<div class="div1">
+					<div class="history">
+						<article class="div1_history" v-for="item in items" @tap="open_detail(item)">
+							<div class="div1_history_pic">
+								<img :src="item.picture" onerror="this.src='img/moren.png'"/>
+							</div>
+							<div class="div1_history_content">
+								<span class="div1_history_content_price">￥{{item.promotionPrice}} <s>￥{{item.price}} </s></span><br />
+								<span class="div1_history_content_pname">{{item.goodsName}}</span>
+							</div>
+						</article>
+
+					</div>
+				</div>
+				<div class="div1">
+					<article class="div1_one" v-for="item in items1" @tap="open_detail(item)">
+						<div class="div_pic">
+							<img :src="item.picture" onerror="this.src='img/moren.png'"/>
+						</div>
+						<div class="div_content">
+
+							<span class="div_content_pname">{{item.goodsName}}</span><br />
+							<span class="div_content_price1">￥{{item.Price}} <s class="div_content_price2">￥{{item.logPrice}} </s><i
+								 class="div_content_price3">9.5折</i></span>
+							<span class="div_content_buy"><img src="img/gouwuche.png" /></span>
+						</div>
+					</article>
+
+				</div>
+				<div class="div1">
+					<div class="brank">
+						<div class="brank_list" v-for="item in items2" >
+							<div class="brank_pic">
+								<img :src="item.shopLogo" onerror="this.src='http://yiyun.zhonyou.cn/webapp_img/shop_logo.png'" />
+							</div>
+							<div class="brank_content">
+								<span>{{item.shopName}}</span>
+								<img src="img/shoplogo.png" />
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="div1">
+					<div class="history">
+						<article class="div1_history" v-for="item in items3" @tap="open_detail(item)">
+							<div class="div1_history_pic">
+								<img :src="item.picture" onerror="this.src='img/moren.png'"/>
+							</div>
+							<div class="div1_history_content">
+								<span class="div1_history_content_price">￥{{item.promotionPrice}} <s>￥{{item.price}} </s></span><br />
+								<span class="div1_history_content_pname">{{item.goodsName}}</span>
+							</div>
+						</article>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script>
+	var local = window.localStorage;
+	mui.init({
+		swipeBack: true
+	});
+	var url_app = mui.app_url();
+	var news = new Vue({
+		el: '.temai_div',
+		data: {
+			items: [], //列表信息流数据
+			items1: [],
+			items2: [],
+			items3: [],
+			pageNum: ""
+		}
+	});
+
+	function convert(items) {
+		var newItems = [];
+		items.forEach(function(item) {
+			newItems.push({
+				goodsId: item.goodsId,
+				goodsName: item.goodsName,
+				price: (item.price).toFixed(2),
+				picture: item.picture, //商品所有图片/
+				promotionPrice: (item.promotionPrice).toFixed(2) //商品促销价格
+			});
+		});
+		return newItems;
+	}
+
+	function convert_collect(items) {
+		var newItems = [];
+		items.forEach(function(item) {
+			newItems.push({
+				goodsId: item.favId, //商家/商品id
+				shopId: item.shopId, //商家id
+				shopName: item.shopName, //商家名
+				shopLogo: item.shopLogo, //商家logo
+				goodsName: item.goodsName, //商品名字
+				picture: item.goodsImage, //商品图片
+				logPrice: item.logPrice, //商品价格
+				Price: (parseFloat(item.logPrice) * 0.95).toFixed(2)
+			});
+		});
+		return newItems;
+	}
+
+	mui.plusReady(function() {
+		$(".div1").eq(0).show();
+		var search_val = local.getItem("search");
+		if(!search_val) {
+			mui.getJSON(url_app + "nsgoods/select?PageNum=1&pageSize=8", function(rsp) {
+				if(rsp.list) {
+					news.items = news.items.concat(convert(rsp.list));
+				} else {
+					mui.toast("当前商品为空");
+
+				}
+			})
+		} else {
+			var search_all = search_val.split(",");
+			var search_all_length = search_all.length;
+			if(search_all_length==1){
+			sousuo(search_all[Math.floor(Math.random() * search_all_length)], 1);
+		   }else {
+			sousuo_1(search_all[Math.floor(Math.random() * search_all_length)], 1);
+		   	sousuo_2(search_all[Math.floor(Math.random() * search_all_length)], 1);
+		   }
+			}
+
+		var collection_uid = local.getItem("uid");
+		if(!collection_uid) {
+			return false;
+		}
+		mui.getJSON(url_app + "SysUserFavorites/selcollectgoodsorshop?uid=" + collection_uid + "&favType=goods", function(rsp) {
+			if(rsp) {
+				news.items1 = news.items1.concat(convert_collect(rsp));
+			} else {
+				mui.toast("当前商品为空");
+
+			}
+		})
+		mui.getJSON(url_app + "SysUserFavorites/selcollectgoodsorshop?uid=" + collection_uid + "&favType=shop", function(rsp) {
+			if(rsp) {
+				news.items2 = news.items2.concat(convert_collect(rsp));
+			} else {
+				mui.toast("当前商品为空");
+
+			}
+		})
+		webview_detail = plus.webview.getWebviewById("chanpin_xiangqing");
+		if(!webview_detail) {
+			webview_detail = mui.preload({
+				url: 'chanpin_xiangqing.html',
+				id: 'chanpin_xiangqing',
+				styles: {
+					popGesture: "close",
+					titleNView: {
+						autoBackButton: true,
+						backgroundColor: '#f7f7f7',
+						titleText: "产品详情",
+						splitLine: {
+							color: '#cccccc'
+						},
+						type: "transparent"
+					},
+					statusbar: {
+						background: "#ddd"
+					},
+					show: {
+						event: 'loaded'
+					},
+					waiting: {
+						autoShow: true
+					},
+
+				}
+			});
+		}
+	})
+
+	function sousuo(item1, item2) {
+
+		mui.getJSON(url_app + "nsgoods/selectBykeywords?keywords=" + item1 + "&pageNum=" + item2 + "", function(rsp) {
+			news.pageNum = rsp.pageNum;
+			if(rsp.list && rsp.list.length > 0) {
+				news.items = convert(rsp.list).concat(news.items);
+				news.items3 = convert(rsp.list).concat(news.items3);
+			} else {
+                       mui.toast("当前无更多推荐") 
+			}
+		});
+	}
+    function sousuo_2(item1, item2){
+    	mui.getJSON(url_app + "nsgoods/selectBykeywords?keywords=" + item1  + "&pageNum=" + item2 + "", function(rsp) {
+					news.pageNum = rsp.pageNum;
+					if(rsp.list && rsp.list.length > 0) {
+						news.items = convert(rsp.list).concat(news.items);
+					} else {
+                       mui.toast("当前无更多推荐") 
+					}
+				});
+    }
+       function sousuo_1(item1, item2){
+    	mui.getJSON(url_app + "nsgoods/selectBykeywords?keywords=" + item1 + "&pageNum=" + item2 + "", function(rsp) {
+					news.pageNum = rsp.pageNum;
+					if(rsp.list && rsp.list.length > 0) {
+						news.items3 = convert(rsp.list).concat(news.items3);
+					} else {
+                       mui.toast("当前无更多推荐") 
+					}
+				});
+    }
+	function open_detail(item) {
+		//触发子窗口产品详情
+		if(!item.goodsId) {
+			mui.toast("当前页面未加载完,请稍后");
+			return false;
+		}
+		mui.fire(webview_detail, 'get_detail', {
+			goodsId: item.goodsId, //产品id
+			picture: item.picture //产品id
+
+		});
+		setTimeout(function() {
+			webview_detail.show("slide-in-right", 300);
+		}, 150);
+	}
+	mui("nav").on("tap", "span", function() {
+		$(this).addClass("active").siblings("span").removeClass("active");
+		var index = $(this).index();
+		$(".temai_div .div1").eq(index).show().siblings(".div1").hide();
+	})
+</script>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<title></title>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/zhangdan.css" />
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;border-bottom: solid 1px #E1E1E1;">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #000000;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;font-weight: 500;">账单</span></button>
+
+		</header>
+		<div class="my_zhangdan mui-content">
+			<!-- <p class="zhangdan">本月</p> -->
+			<ul class="zhangdan_list">
+			</ul>
+
+		</div>
+		<!--个人信息列表项end-->
+
+	</body>
+
+</html>
+<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="js/mui.min.js"></script>
+<script>
+	mui.init({
+		swipeBack: true
+	});
+	var html = "";
+    var url_app=mui.app_url();
+	mui.plusReady(function() {
+		var uid = plus.webview.currentWebview().uid;
+		mui.get(url_app+"SysUserAccount/selecttypeByUid?Uid=" + uid + "", function(data) {
+			if(data && data.length > 0) {
+				$.each(data, function(i, item) {
+					html += "<li data-id='2'>";
+					html += "<h1>美容院</h1>";
+					html += "<h2>服务费</h2>";
+					html += "<h3><s>" + dateUtils.format(timestampToTime(item.createTime)) + "</s></h3>";
+
+					html += "<i>+" + item.number + "</i>";
+					html += "</li>";
+				})
+				$(".zhangdan_list").append(html);
+			}
+		})
+	})
+
+// 	mui('.zhangdan_list').on('tap', 'li', function(evt) {
+// 		mui.openWindow({
+// 			url: "zhangdan_xiangqing.html",
+// 			id: "zhangdan_xiangqing",
+// 			extras: {
+// 				ids: $(this).attr("data-id"),
+// 				yongjin: $(this).children("i").text()
+// 			}
+// 		})
+// 	});
+// 
+	function timestampToTime(timestamp) {
+		var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+		var Y = date.getFullYear() + '-';
+		var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+		var D = date.getDate() + ' ';
+		var h = date.getHours() + ':';
+		var m = date.getMinutes() + ':';
+		var s = date.getSeconds();
+		return Y + M + D + h + m + s;
+	}
+	var dateUtils = {
+		UNITS: {
+			'年': 31557600000,
+			'月': 2629800000,
+			'天': 86400000,
+			'小时': 3600000,
+			'分钟': 60000,
+			'秒': 1000
+		},
+		humanize: function(milliseconds) {
+			var humanize = '';
+			mui.each(this.UNITS, function(unit, value) {
+				if(milliseconds >= value) {
+					humanize = Math.floor(milliseconds / value) + unit + '前';
+					return false;
+				}
+				return true;
+			});
+			return humanize || '刚刚';
+		},
+		format: function(dateStr) {
+			var date = this.parse(dateStr)
+			var diff = Date.now() - date.getTime();
+			if(diff < this.UNITS['天']) {
+				return this.humanize(diff);
+			}
+
+			var _format = function(number) {
+				return(number < 10 ? ('0' + number) : number);
+			};
+			return date.getFullYear() + '/' + _format(date.getMonth() + 1) + '/' + _format(date.getDay()) + '-' + _format(date.getHours()) + ':' + _format(date.getMinutes());
+		},
+		parse: function(str) { //将"yyyy-mm-dd HH:MM:ss"格式的字符串，转化为一个Date对象
+			var a = str.split(/[^0-9]/);
+			return new Date(a[0], a[1] - 1, a[2], a[3], a[4], a[5]);
+		}
+	};
+</script>

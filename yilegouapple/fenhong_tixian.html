@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<title>分红提现</title>
+		<style type="text/css">
+			#customersbg {
+				background: #fff;
+			}
+			
+			#customers {
+				text-align: center;
+				width: 100%;
+			}
+			
+			#customers th {
+				width: 25%;
+				font-size: 1.1em;
+				padding-top: 5px;
+				padding-bottom: 4px;
+				background: #CCCCCC;
+				color: #fd4404;
+			}
+			
+			#customers tr {
+				border-bottom: solid 1px #EEEEEE;
+			}
+			
+			#customers tr:last-child {
+				border: none;
+			}
+			
+			#customers td {
+				padding-top: 5px;
+				padding-bottom: 4px;
+				color: #333333;
+			}
+			
+			#customers td:nth-child(2) {
+				color: #333333;
+			}
+			
+			#customers td:nth-child(3) {
+				color: #333333;
+			}
+			
+			#customers tr {
+				width: 100%;
+				border-bottom: 1px solid #CDCDCD;
+			}
+			
+			#customers tr:last-child {
+				border-bottom: none;
+			}
+			
+			#coin {
+				width: 100%;
+				overflow: hidden;
+				background: #fff;
+				padding: 0.6rem 0;
+				border-bottom: solid 1px #EEEEEE;
+			}
+			
+			#coin_message {
+				width: 100%;
+				min-height: 3.6rem;
+				border-right: solid 1px #ddd;
+				overflow: hidden;
+				padding: 0.6rem 0.6rem 0.9rem 0.6rem;
+				position: relative;
+				border-bottom: solid 1px #EEEEEE;
+			}
+			
+			#coin_message:last-child {
+				border: none;
+			}
+			
+			#coin_message h1 {
+				width: 100%;
+				height: 1.5rem;
+				line-height: 1.5rem;
+				color: #666666;
+				font-size: 0.8rem;
+			}
+			
+			#coin_message span {
+				height: 1.8rem;
+				line-height: 1.8rem;
+				color: #ff9900;
+				font-weight: 600;
+				font-size: 1.4rem;
+			}
+			
+			#coin_message .operation {
+				height: 2.0rem;
+				display: inline-block;
+				line-height: 2.0rem;
+				color: #333333;
+				border: solid 1px #999999;
+				padding: 0 1.0rem;
+				font-size: 0.9rem;
+				position: absolute;
+				right: 0.6rem;
+				top: 50%;
+				font-weight: 600;
+				margin-top: -1.0rem;
+			}
+			#coin_message .operation:active  {
+			  	color: #fff;
+			background-color: #ff3300;
+			border-color:#ff3300 ;
+			  }
+			#account {
+				width: 100%;
+				overflow: hidden;
+				background: #fff;
+			}
+			
+			#set_bank_account {
+				width: 100%;
+				text-align: center;
+				overflow: hidden;
+				background: #fff;
+				padding: 0.3rem 0 0.6rem;
+				color: #fff;
+				display: none;
+			}
+			
+			#set_bank_account h1 {
+				width: 80%;
+				height: 2.0rem;
+				line-height: 2.0rem;
+				margin: 0 auto;
+				color: #888888;
+				font-size: 0.8rem;
+			}
+			
+			#set_bank_account button {
+				width: 80%;
+				height: 2.2rem;
+				line-height: 2.2rem;
+				margin: 0 auto;
+				color: #888888;
+				background: #ff3300;
+				color: #fff;
+				font-size: 0.9rem;
+			}
+			
+			#set_bank_account button:active {
+				color: #fff;
+				background-color: #ff3300;
+			}
+			
+			#bank_account {
+				width: 100%;
+				overflow: hidden;
+				background: #fff;
+				padding: 0.3rem 0;
+				text-align: center;
+				display: none;
+			}
+			
+			#bank_account h1 {
+				width: 100%;
+				height: 1.8rem;
+				line-height: 1.8rem;
+				margin: 0 auto;
+				color: #ff3300;
+				font-size: 0.9rem;
+				font-weight: 600;
+			}
+			
+			#bank_account h2 {
+				width: 100%;
+				height: 2.0rem;
+				line-height: 2.0rem;
+				margin: 0 auto;
+				color: #333333;
+				font-size: 1.2rem;
+			}
+			
+			#xuzhi {
+				width: 100%;
+				overflow: hidden;
+				background: #E1E1E1;
+			}
+			
+			#xuzhi {
+				padding: 0.4rem;
+				line-height: 1.3rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--header头部个人信息titlestart-->
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;background-color: #fd4404;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">申请提现</h1>
+		</header>
+		<!--header头部个人信息title end-->
+		<div class="mui-content" id="content">
+			<div id="coin">
+				<div id="coin_message">
+					<h1>可转存金额(元)</h1>
+					<span>{{coin}}</span><button id="transfer" class="operation" @tap="zhuangcun_fuwu()">转存</button>
+				</div>
+				<div id="coin_message">
+					<h1>可提现金额(元)</h1>
+					<span>{{balance}}</span><button id="put_forward" class="operation">提现</button>
+				</div>
+			</div>
+			<div id="account">
+				<div id="set_bank_account">
+					<h1>提现将会返回到你的银行卡</h1>
+					<button @tap="set_bank()">现在绑定银行卡</button>
+				</div>
+				<div id="bank_account">
+					<h1>提现到账账户</h1>
+					<h2>{{account_number}}</h2>
+				</div>
+			</div>
+			<div id="xuzhi">
+				<p>每日可提现一次，单笔提现最低上限50元,一次性提现全部金额</p>
+				<p>8:00-17:00间提现,当天处理;17:00-8:00间提现，次日处理</p>
+				<p>如有疑问：联系020-22126878</p>
+
+			</div>
+			<div id="customersbg">
+				<table id="customers">
+					<tr>
+						<th>提现金额</th>
+						<th>申请时间</th>
+						<th>提现状态</th>
+						<th>处理时间</th>
+					</tr>
+					<tr v-for="item in items">
+						<td>{{item.cash}}</td>
+						<td>{{item.askForDate}}</td>
+						<td>{{item.status}}</td>
+						<td>{{item.paymentDate}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script src="js/vue.min.js" type="text/javascript"></script>
+<script>
+	mui.init({
+		swipeBack: true //启用右滑关闭功能
+	});
+	var url_app=mui.app_url();
+	var news = new Vue({
+		el: "#content",
+		data: {
+			coin: 0.00,
+			uid: "",
+			branch_bank_name: "",
+			realname: "",
+			account_number: "",
+			real_number:"",
+			mobile: "",
+			withdraw_no: "",
+			date: "",
+			items: [],
+			balance: 0.00,
+			serviceCharge:0,
+			is_show:false
+		}
+	})
+	// 遍歷提现记录
+	function convert(items) {
+		var newItems = [];
+		var tixian_status = null;
+		var pay_time = null;
+
+		items.forEach(function(item) {
+			if(item.status == 0) {
+				tixian_status = "未到账";
+			} else if(item.status == 1) {
+				tixian_status = "已到账";
+
+			} else {
+				tixian_status = "取消";
+
+			}
+			if(item.paymentDate == null) {
+				pay_time = "----";
+			} else {
+				pay_time = item.paymentDate;
+			}
+			newItems.push({
+				withdrawNo: item.withdrawNo,
+				uid: item.uid,
+				bankName: item.bankName,
+				accountNumber: item.accountNumber,
+				realname: item.realname,
+				mobile: item.mobile,
+				cash: item.cash,
+				askForDate: item.askForDate,
+				status: tixian_status,
+				paymentDate: pay_time
+			});
+		});
+		return newItems;
+	}
+	mui.plusReady(function() {
+		var current = plus.webview.currentWebview();
+		news.uid=window.localStorage.getItem("uid");
+		if(!news.uid) {
+			return false;
+		}
+			mui.ajax({
+			url: url_app+'SysUserAccount/selSysUserAccountTJuid', //用户账户查询,
+			data: {
+				uid: news.uid
+			},
+			type: 'post',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			},
+			datatype: 'json',
+			success: function(data) {
+				//解析数组
+				if(!data) {
+					mui.toast("系统繁忙,请重新登录");
+				} else {
+						news.balance = data.balance.toFixed(2);
+						news.coin = data.fenhong.toFixed(2);
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				mui.toast("系统繁忙,请重新登录");
+			}
+		})
+		var wd = plus.nativeUI.showWaiting();
+		mui.getJSON(url_app+"SysUserBankAccount/selTJuidANDisDefault?uid=" + news.uid + "&isDefault=1", function(data) {
+			if(!data) {
+				$("#set_bank_account").show();
+				return false;
+			}
+			news.branch_bank_name = data.branchBankName;
+			news.realname = data.realname;
+			news.real_number = data.accountNumber;
+			news.account_number = data.accountNumber.substr(0, 3) + '******' + data.accountNumber.substr(15);
+			news.mobile = data.mobile;
+			$("#bank_account").show();
+		})
+		mui.getJSON(url_app+"SysUserBalanceWithdraw/selTJuid?uid=" + news.uid + "", function(rsp) {
+			wd.close();
+
+			if(rsp && rsp.length > 0) {
+				news.items = news.items.concat(convert(rsp));
+			} else {
+				return;
+			}
+		})
+
+	})
+
+	function change() {
+		var d = new Date();
+		var vYear = d.getFullYear();
+		var vMon = d.getMonth() + 1;
+		var vDay = d.getDate();
+		var h = d.getHours();
+		var m = d.getMinutes();
+		var se = d.getSeconds();
+		var ms = d.getMilliseconds();
+		billno = "" + vYear + (vMon < 10 ? "0" + vMon : vMon) + (vDay < 10 ? "0" + vDay : vDay) + (h < 10 ? "0" + h : h) + (m < 10 ? "0" + m : m) + (se < 10 ? "0" + se : se) + ms;
+		return billno;
+
+	};
+
+	function set_bank() {
+		mui.openWindow({
+			url: "tianjia_card.html",
+			id: "tianjia_card"
+		})
+	}
+	window.addEventListener("bank_update", function(evt) {
+		$("#set_bank_account").hide();
+		news.branch_bank_name = evt.detail.branchBankName;
+		news.realname = evt.detail.realname;
+		news.mobile = evt.detail.mobile;
+		news.real_number = evt.detail.accountNumber;
+		news.account_number = evt.detail.accountNumber.substr(0, 3) + '******' + evt.detail.accountNumber.substr(15);
+		$("#bank_account").show();
+
+	})
+
+	document.getElementById("put_forward").addEventListener("tap", function() {
+		var localdate = new Date();
+		news.date = localdate.toLocaleString();
+		if(parseInt(news.balance) >= 0 && parseInt(news.balance) < 50) {
+			mui.toast("当前金额不满足最低提现额度");
+			return false;
+		} 
+			if(!news.real_number) {
+				mui.toast("请添加银行卡再进行提现");
+				return false;
+			}
+
+			news.withdraw_no = change();
+			mui.ajax({
+				url: url_app+'SysUserBalanceWithdraw/insSysUserBalanceWithdraw',
+				data: {
+					withdrawNo: news.withdraw_no,
+					cash: news.balance,
+					uid: news.uid,
+					bankName: news.branch_bank_name,
+					realname: news.realname,
+					accountNumber: news.real_number,
+					mobile: news.mobile
+				},
+				headers: {
+					'Content-Type': 'application/x-yiyun-form-urlencoded;charset=UTF-8'
+				},
+				success: function(data) {
+					if(data == 1) {
+						mui.toast("你的提现已提交");
+						$("table").append("<tr><td>" + news.balance + "</td><td>" + news.date + "</td><td>转账中</td><td>--</td><tr>")
+						news.balance = "0.00";
+						
+					} else {
+						mui.toast("系統繁忙,请稍後再試");
+					}
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					mui.toast("系統繁忙,稍後再試");
+				}
+			});
+	
+	});
+		 function zhuangcun_fuwu(){
+		 	if(parseInt(news.coin) == 0.00) {
+			 	mui.toast("当前金额不满足最低转存额度");
+			 	return false;
+			 } 
+			 mui.ajax({
+			 	url: url_app+'SysUserAccount/updatauserbanlancebyfenhong',
+			 	data: {
+			 		coin: news.coin,
+			 		uid: news.uid
+			 	},
+			 	headers: {
+			 		'Content-Type': 'application/x-yiyun-form-urlencoded;charset=UTF-8'
+			 	},
+			 	success: function(data) {
+			 		if(data == 1) {
+			 			mui.toast("转存已成功");
+			 			news.balance=(parseFloat(news.balance)+parseFloat(news.coin)).toFixed(2);
+			 			news.coin = 0.00;
+			 		} else {
+			 			mui.toast("系統繁忙,请稍後再試");
+			 		}
+			 	},
+			 	error: function(XMLHttpRequest, textStatus, errorThrown) {
+			 		mui.toast("系統繁忙,稍後再試");
+			 	}
+			 });
+	};
+</script>

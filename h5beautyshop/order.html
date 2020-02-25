@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>订单</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="css/base.css"/>
+	<link rel="stylesheet" href="css/order.css"/>
+</head>
+<body>
+	<!-- 定位开始 -->
+	<div class="header">
+	  <div class="location">
+	     	<img class="location_img" src="images/position.png">
+	         <div class="dizhi">广州市</div>
+      </div>
+      <!-- 定位结束 -->
+      <!-- 头部搜索栏开始 -->
+      <div class="sousuo">
+      	<img src="images/search.png">
+        <p>搜索更多商品</p> 
+      </div> 
+	</div>
+	<!-- 头部搜索栏结束 -->
+		<nav class="my_list">
+		    <ul class="hang"> 
+		    	<li class="total active"><a href="#" data-toggle="tab">全部</a></li>
+		        <li class="service"><a href="#" data-toggle="tab">服务</a></li>
+		        <li class="payment"><a href="#" data-toggle="tab">待付款</a></li>
+		        <li class="deulvery_goods"><a href="#" data-toggle="tab">待提货</a></li>
+		        <li class="evaluate"><a href="#" data-toggle="tab">待评价</a></li>
+		    </ul>
+		</nav>
+    <div class="A">
+    	<div class="ware">
+    		<div class="name">依云美容院</div>
+    		<div class="bao">
+    			    <img src="images/facialMask_a.png">
+    			<div class="title_box">
+    				<div id="goods_name">黄金植液多面膜</div>
+    				<div id="value">￥399.9</div>
+    			</div>
+    			<div class="number">×1</div>
+    			<div class="totle">399.9</div>
+    		</div>
+    	</div>
+    </div>
+    <div class="B">
+    	<div class="ware">
+    		<div class="name">众友美容院</div>
+    		<div class="bao">
+    			    <img src="images/facialMask_a.png">
+    			<div class="title_box">
+    				<div id="goods_name">植液多面膜</div>
+    				<div id="value">￥200.9</div>
+    			</div>
+    			<div class="number">×1</div>
+    			<div class="totle">200.9</div>
+    		</div>
+    	</div>
+    </div>
+    <div class="C"><img src="images/fuwu(2).png" alt=""></div>
+    <div class="D"><img src="images/fuwu(3).png" alt=""></div>
+    <div class="E"><img src="images/fuwu_gray(2).png" alt=""></div>
+
+</body>
+</html>
+<script type="text/javascript" src="js/beauty_care.js"></script>
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+   
+
+      $(document).ready(function(){
+            $(".total").click(function(){
+                  // $(this).addClass("active");
+                  // $(".service").removeClass("active");
+                  // $(".payment").removeClass("active");
+                  // $(".deulvery_goods").removeClass("active");
+                  // $(".evaluate").removeClass("active");
+                  $(".A").show();
+                  $(".B").hide();
+                  $(".C").hide();
+                  $(".D").hide();
+                  $(".E").hide();
+                  
+            })
+      
+
+      
+            $(".service").click(function(){
+                  // $(this).addClass("active");
+                  // $(".total").removeClass("active");
+                  // $(".payment").removeClass("active");
+                  // $(".deulvery_goods").removeClass("active");
+                  // $(".evaluate").removeClass("active");
+                  $(".B").show();
+                  $(".A").hide();
+                  $(".C").hide();
+                  $(".D").hide();
+                  $(".E").hide();
+                  
+            })
+      
+
+     
+            $(".payment").click(function(){
+                  // $(this).addClass("active");
+                  // $(".total").removeClass("active");
+                  // $(".service").removeClass("active");
+                  // $(".deulvery_goods").removeClass("active");
+                  // $(".evaluate").removeClass("active");
+                  $(".C").show();
+                  $(".A").hide();
+                  $(".B").hide();
+                  $(".D").hide();
+                  $(".E").hide();
+                  
+            })
+   
+
+    
+            $(".deulvery_goods").click(function(){
+                  // $(this).addClass("active");
+                  // $(".total").removeClass("active");
+                  // $(".service").removeClass("active");
+                  // $(".payment").removeClass("active");
+                  // $(".evaluate").removeClass("active");
+                  $(".D").show();
+                  $(".A").hide();
+                  $(".B").hide();
+                  $(".C").hide();
+                  $(".E").hide();
+                  
+            })
+      
+            $(".evaluate").click(function(){
+                  // $(this).addClass("active");
+                  // $(".total").removeClass("active");
+                  // $(".service").removeClass("active");
+                  // $(".payment").removeClass("active");
+                  // $(".deulvery_goods").removeClass("active");
+                  $(".E").show();
+                  $(".A").hide();
+                  $(".B").hide();
+                  $(".C").hide();
+                  $(".D").hide();
+                  
+            })
+      })
+	</script>

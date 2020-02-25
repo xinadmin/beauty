@@ -1,0 +1,20 @@
+.body{
+  width: 100%;
+ 
+}
+#mingxi{
+  width:126rpx;
+  height:47rpx;
+  font-size:28rpx;
+  float:right;
+  color:black;
+  margin: 20rpx 20rpx 0 0;
+}
+#jiner{
+  width:100%;
+  font-size:60rpx;
+  color:black;
+  position: absolute;
+  top: 400rpx;
+  text-align: center;
+}

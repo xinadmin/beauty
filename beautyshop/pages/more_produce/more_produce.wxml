@@ -1,0 +1,144 @@
+<view class='nav'>
+  <view id='nav_item' class="{{selected?'active':''}}" bindtap="selected">全部</view>
+  <view id='border'>|</view>
+  <view id='nav_item' class="{{selected1?'active':''}}" bindtap="selected1">单品</view>
+  <view id='border'>|</view>
+  <view id='nav_item' class="{{selected2?'active':''}}" bindtap="selected2">沙龙装</view>
+  <view id='border'>|</view>
+  <view id='nav_item' class="{{selected3?'active':''}}" bindtap="selected3">原液</view>
+  <view id='border'>|</view>
+  <view id='nav_item' class="{{selected4?'active':''}}" bindtap="selected4">面部套盒</view>
+  <view id='border'>|</view>
+  <view id='nav_item' class="{{selected5?'active':''}}" bindtap="selected5">身体套盒</view>
+
+</view>
+
+<view id='produce_all' class="{{selected?'show':'hidden'}}">
+  <view class='produce_list_litem'>
+    <view class='procuce_message' wx:for="{{all_produce}}" wx:key="unique">
+      <navigator url='../logs_a/logs_a?buauty_id={{beauty_id}}&pid={{item.pid}}&min={{min}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+            <!-- <text>￥{{item.pprice*1.2}}</text> -->
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+
+</view>
+<view id='produce_all' class="{{selected1?'show':'hidden'}}">
+  <view class='produce_list_litem'>
+
+    <view class='procuce_message' wx:for="{{danpin_produce}}" wx:key="unique">
+      <navigator url='../logs_a/logs_a?buauty_id={{beauty_id}}&pid={{item.pid}}&min={{min}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+            <text>￥{{item.pprice*1.2}}</text>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+
+</view>
+<view id='produce_all' class="{{selected2?'show':'hidden'}}">
+  <view class='produce_list_litem'>
+
+    <view class='procuce_message' wx:for="{{shalong_produce}}" wx:key="unique">
+      <navigator url='../logs_a/logs_a?buauty_id={{beauty_id}}&pid={{item.pid}}&min={{min}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+             <!-- <text>￥{{item.pprice*1.2}}</text>  -->
+          </view>
+        </view>
+      </navigator>
+    </view>
+
+  </view>
+</view>
+<view id='produce_all' class="{{selected3?'show':'hidden'}}">
+  <view class='produce_list_litem'>
+ <view class='procuce_message' wx:for="{{yuanye_produce}}" wx:key="unique">
+      <navigator url='../logs_a/logs_a?buauty_id={{beauty_id}}&pid={{item.pid}}&min={{min}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+            <!-- <text>￥{{item.pprice*1.2}}</text> -->
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+
+</view>
+<view id='produce_all' class="{{selected4?'show':'hidden'}}">
+  <view class='produce_list_litem'>
+    <view class='procuce_message' wx:for="{{mianbu_produce}}" wx:key="unique">
+      <navigator url='../logs_a/logs_a?buauty_id={{beauty_id}}&pid={{item.pid}}&min={{min}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+            <!-- <text>￥{{item.pprice*1.2}}</text> -->
+          </view>
+        </view>
+      </navigator>
+    </view>
+
+  </view>
+
+</view>
+<view id='produce_all' class="{{selected5?'show':'hidden'}}">
+  <view class='produce_list_litem'>
+    <view class='procuce_message' wx:for="{{body_produce}}" wx:key="unique">
+      <navigator url='../logs_a/logs_a?buauty_id={{beauty_id}}&pid={{item.pid}}&min={{min}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+            <!-- <text>￥{{item.pprice*1.2}}</text> -->
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+
+</view>
+
+ <view class="body-view">  
+        <loading hidden="{{hidden}}" bindchange="loadingChange">  
+            加载中...  
+        </loading>  
+    </view>  

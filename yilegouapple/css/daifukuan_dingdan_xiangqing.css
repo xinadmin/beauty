@@ -1,0 +1,213 @@
+			#shouhuo {
+				width: 100%;
+				background: #fff;
+				box-sizing: border-box;
+				overflow: hidden;
+				min-height: 80px;
+				padding: 0 3% 3%;
+			}
+			
+			.xinjian {
+				width: 100%;
+				overflow: hidden;
+				background: #fff;
+				text-align: center;
+				padding: 5% 0;
+				line-height: 40px;
+			}
+			
+			.xinjian img {
+				width: 8%;
+			}
+			
+			#shouhuo p {
+				width: 100%;
+			}
+			
+			#shouhuo .shouhuo_name {
+				color: #222222;
+				padding: 4% 0 2% 0;
+			}
+			
+			#shouhuo .shouhuo_name s {
+				float: right;
+			}
+			
+			#shouhuo .shouhuo_dizhi {
+				color: #222222;
+			}
+			
+			.chanpin {
+				width: 100%;
+				margin-top: 10px;
+				box-sizing: border-box;
+				padding: 0 3% 0;
+				overflow: hidden;
+				background: #fff;
+				box-shadow: 0px -1px 10px 2px #ddd;
+				
+			}
+			
+			.chanpin .chanpin_shop {
+				overflow: hidden;
+				width: 100%;
+				border-bottom: solid 1px #EEEEEE;
+			}
+			
+			.chanpin .chanpin_shop s {
+				float: left;
+				padding: 3% 0 2%;
+				font-size: 1.0rem;
+				display: inline-block;
+			}
+			
+			.chanpin .chanpin_shop img {
+				display: inline-block;
+				width: 6%;
+				padding: 3% 0 2%;
+				float: right;
+			}
+			
+			.chanpin_message {
+				width: 100%;
+				overflow: hidden;
+				border-bottom: solid 1px #EEEEEE;
+			}
+			
+			.chanpin_message img {
+				display: inline-block;
+				width: 23%;
+				float: left;
+				margin: 0.6rem 0.3rem 0.3rem 0.3rem;
+				background: #0062CC;
+			}
+			
+			.chanpin_message div {
+				float: left;
+				width: 72%;
+				padding: 2% 0 0 2%;
+			}
+			
+			.chanpin_message div h2 {
+				padding: 2% 0;
+				 text-align: left;
+				width: 100%;
+				padding: 3px 0;
+				box-sizing: border-box;
+				height: 40px;
+				line-height: 20px;
+				color: #222222;
+				overflow-y: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+				font-size: 0.8rem;
+			}
+			
+			.chanpin_message div h3 {
+				height: 2.0rem;
+				line-height: 2.0rem;
+				font-size: 0.7rem;
+			}
+			
+			.chanpin_message div h3 s {
+				display: inline-block;
+				float: right;
+			}
+			
+			.chanpin_message div h4 {
+				height: 2.0rem;
+				line-height: 2.0rem;
+				
+			}
+			
+			#shangpin_all {
+				width: 100%;
+				padding: 0 3% 2%;
+				overflow: hidden;
+				background: #fff;
+			}
+			
+			#shangpin_all p {
+				height: 2.0rem;
+				font-size: 0.8rem;
+				line-height: 2.0rem;
+				color: #9A9A9A;
+			}
+			#shangpin_all p#price_youhui{
+			color: #222222;
+				font-size: 0.9rem;
+			
+			
+			}
+			#shangpin_all h1 {
+				border-top: solid 1px #E2E2E2;
+				min-height: 2.0rem;
+				line-height: 2.0rem;
+				font-size: 0.9rem;
+				color: #222222;
+			}
+			#shangpin_all h1 .price_all {
+				color: #ff5301;
+			}
+			
+			.dingdan_caozuo {
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				box-shadow: 0px -1px 10px 2px #ddd;
+				background: #fff;
+				padding: 0.6rem 4%;
+				max-height: 3.6rem;
+				min-height: 3.3rem;
+			}
+			
+			/*#caozuo button {
+				color: #33333;
+				border: solid 1px #353535;
+				display: inline-block;
+				height: 2.4rem;
+			}*/
+			
+			.dingdan_caozuo button {
+				width: 22%;
+				border-radius: 5%;
+				text-align: center;
+				border: solid 1px #DDDDDD;
+				float: right;
+				height: 2.4rem;
+				line-height: 2.4rem;
+				box-sizing: border-box;
+				color: #222222;
+				margin-right: 0.5rem;;
+				font-size: 0.9rem;
+			}
+			.dingdan_caozuo button:first-child {
+			margin-right: 0;
+			}
+			.dingdan_caozuo button:nth-child(1) {
+				color: orangered;
+				border: solid 1px orangered;
+			}
+			.dingdan_caozuo button:active {
+			 background: #ff3300;
+			 color: #fff;
+			 border: solid 1px #ff3300;
+			}
+			#bianhao {
+				width: 100%;
+				margin-top: 10px;
+				overflow: hidden;
+				background: #fff;
+			}
+			
+			#bianhao p {
+				width: 100%;
+				height: 2.0rem;
+				padding:0 3%;
+				line-height:2.0rem;
+				color: #222222;
+				letter-spacing: 1px;
+			}

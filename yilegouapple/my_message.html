@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/my_message.css" />
+		<title>我的资料</title>
+		<style type="text/css">
+		</style>
+	</head>
+
+	<body >
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;background-color:#fd4404 ;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">我的资料</h1>
+		</header>
+
+		<!--个人信息列表项start-->
+		<section class="my_list mui-content" style="z-index: -999;" id="mui-content">
+			<ul>
+				<li>
+					<a>个人头像<i><img src='http://yiyun.zhonyou.cn/webapp_img/yilegou2.png' width="33px" /></i></a></li>
+				<li>
+					<a href="javascript:;">会员名/账号名<s id="name"></s></a>
+				</li>
+				<li id="bangding_tel">
+					<a href="javascript:void(0);">手机号码<s id="tel"></s></a>
+				</li>
+				<li>
+					<a href="javascript:;">身份证号<s id="idcard"></s></a>
+				</li>
+				<li id="yaoqing">
+					<a href="javascript:;">我的二维码名片<s></s></a>
+				</li>
+			</ul>
+			<ul>
+		  	<li id="select_sex">
+					<a>性别<s id="sex"></s></a>
+				</li>
+		  </ul>
+		</section>
+		<!--个人信息列表项end-->
+			<div id="select_sex_alert" style="background:rgba(0,0,0,0.2);display: none; width: 100%;height: 100%;top: 0; left: 0;position: fixed; z-index: 9999;">
+				<form class="mui-input-group" style="background: #fff;opacity: 1;  z-index: 9999;font-size: 1.2rem;color: #222222;position: relative;top: 45%;width: 95%;border-radius:5px;margin: 0 auto;">
+					<div class="mui-input-row mui-radio" style="border-bottom: none;">
+						<label>男</label>
+						<input name="radio1" type="radio" value="男" id="man">
+					</div>
+					<div class="mui-input-row mui-radio" style="border-bottom: none;">
+						<label>女</label>
+						<input name="radio1" type="radio" value="女" id="women">
+					</div>
+				</form>
+			</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+
+	var webview_detail = null; //详情页webview
+	mui.init({
+		swipeBack: true
+	});
+    var url_app=mui.app_url();
+	mui.plusReady(function() {
+		var current =plus.webview.currentWebview();
+		$("#name").text(current.account);
+		$("#tel").text(current.tel);
+		$("#idcard").text(current.idcard);
+		
+		var sex = plus.storage.getItem("sex");
+		if(sex) {
+			$("#sex").text(sex);
+		}
+		})
+		document.getElementById("select_sex").addEventListener("tap", function() {
+			document.getElementById("select_sex_alert").style.display = "block";
+			$("input[type=radio]").click(function() {
+
+				switch($("input[type=radio]:checked").attr("id")) {
+					case "man":
+						document.getElementById("select_sex_alert").style.display = "none";
+						plus.storage.setItem("sex", this.value);
+						$("#sex").text(plus.storage.getItem("sex"));
+						break;
+					case "women":
+						plus.storage.setItem("sex", this.value);
+						$("#sex").text(plus.storage.getItem("sex"));
+						document.getElementById("select_sex_alert").style.display = "none";
+						break;
+					default:
+						break;
+				}
+			})
+		})
+		document.getElementById('yaoqing').addEventListener("tap",function(){
+			mui.openWindow({
+				url:"yaoqing.html",
+				id:"yaoqing"
+			})
+		})
+	
+</script>

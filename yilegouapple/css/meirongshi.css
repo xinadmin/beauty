@@ -1,0 +1,254 @@
+/*头部样式*/
+.header_title {
+	width: 100%;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+.header_title .headert_tilte_top {
+	width: 100%;
+	height: 2.8rem;
+	background-color: #fff;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 999;
+}
+
+.header_title .headert_tilte_top a.mui-action-back {
+	position: absolute;
+	width: 2.2rem;
+	height: 2.2rem;
+	left: 0.4rem;
+	top: 0.4rem;
+	background: url(../img/back.png) no-repeat center center;
+	background-size: 80% 80%;
+}
+
+.header_title .headert_tilte_top p {
+	width: 100%;
+	overflow: hidden;
+	background-color: #fff;
+	text-align: center;
+	height: 2.8rem;
+	line-height: 2.8rem;
+	color: #222222;
+	font-size: 1.0rem;
+}
+/*背景图*/
+.meirongyuan_banner {
+	width: 100%;
+	margin-top: 2.2rem;
+}
+/*美容师资料*/
+.message_meirongshi {
+	width: 100%;
+	min-height: 10.6rem;
+	position: absolute;
+	top: 9.6rem;
+}
+
+.message_meirongshi .message_meirongshi_all {
+	width: 92%;
+	margin: 0 auto;
+	background-color: #fff;
+	border-radius: 15px;
+}
+
+.message_meirongshi .message_meirongshi_all .message_meirongshi_top {
+	width: 85%;
+	margin: 0.6rem auto 0.6rem;
+	background-color: #fff;
+	position: relative;
+}
+
+.message_meirongshi .message_meirongshi_all .message_meirongshi_top .meirongyuan_logo {
+	height: 6.0rem;
+	width: 6.0rem;
+	border-radius: 50%;
+	float: left;
+	text-align: center;
+	box-sizing: border-box;
+	border: solid 5px #fff2bd;
+	position: absolute;
+	background-color: #fff;
+	left: 0;
+	top: -3.0rem;
+}
+
+.message_meirongshi .message_meirongshi_all .message_meirongshi_top .meirongyuan_logo img {
+	width: 68%;
+	margin: 12% auto;
+	overflow: hidden;
+}
+
+.message_meirongshi .message_meirongshi_all .message_meirongshi_top .message_meironghshi_content {
+	margin-left: 45%;
+	padding-top: 0.5rem;
+}
+
+.message_meirongshi .message_meirongshi_all .message_meirongshi_top .message_meironghshi_content span {
+	height: 2.2rem;
+	line-height: 1.6rem;
+	font-size: 0.9rem;
+	color: #222222;
+	font-weight: 500;
+}
+
+.message_meirongshi .message_meirongshi_all .message_meirongshi_bottom {
+	width: 85%;
+	overflow: hidden;
+	margin: 0 auto
+}
+
+.message_meirongshi .message_meirongshi_all .message_meirongshi_bottom ul {
+	width: 100%;
+}
+
+.message_meirongshi .message_meirongshi_all .message_meirongshi_bottom ul li {
+	float: left;
+	width: 50%;
+	margin-top: 0.6rem;
+	margin-bottom: 0.6rem;
+	text-align: center;
+	border-left: solid 1px #eeeeee;
+}
+
+.message_meirongshi .message_meirongshi_all .message_meirongshi_bottom ul li:first-child {
+	border-left: none;
+}
+
+.message_meirongshi .message_meirongshi_all .message_meirongshi_bottom ul li span {
+	width: 50%;
+	height: 1.3rem;
+	line-height: 1.3rem;
+	font-size: 1.0rem;
+	font-weight: 600;
+}
+
+.col-gray-meirongshi {
+	color: #999999 !important;
+}
+/*美容师板块*/
+.meirongshi_bankuai {
+	width: 100%;
+	overflow: hidden;
+	margin-top: 6.0rem;
+}
+
+.meirongshi_bankuai .meirongshi_bankuai_list {
+	width: 92%;
+	margin: 0 auto;
+}
+
+.meirongshi_bankuai .meirongshi_bankuai_list .meirongshi_bankuai_list_item {
+	width: 49%;
+	min-height: 5.5rem;
+	border-radius: 10px;
+	text-align: center;
+	background: url(../img/meirongshi_bg1.jpg) repeat 0 0;
+	background-size: 100% 100%;
+}
+
+.meirongshi_bankuai .meirongshi_bankuai_list .meirongshi_bankuai_list_item:last-child {
+	background: url(../img/meirongshi_bg2.jpg) repeat 0 0;
+	background-size: 100% 100%;
+}
+
+.meirongshi_bankuai .meirongshi_bankuai_list .meirongshi_bankuai_list_item span {
+	display: inline-block;
+	height: 1.7rem;
+	line-height: 1.7rem;
+	padding: 0 0.9rem;
+	background-color: #c4e3c1;
+	border-radius: 15px;
+	text-align: center;
+	margin: 1.2rem 0 0.6rem;
+	font-size: 0.9rem;
+}
+
+.meirongshi_bankuai .meirongshi_bankuai_list .meirongshi_bankuai_list_item:last-child span {
+	background-color: #c1e3e2;
+}
+
+.meirongshi_bankuai .meirongshi_bankuai_list .meirongshi_bankuai_list_item s {
+	color: #fff;
+	font-size: 1.0rem;
+}
+/*功能列表*/
+.list_item_function {
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 3.7rem;
+}
+
+.list_item_function ul.list_item_function_content {
+	width: 92%;
+	margin: 0.8rem auto 0;
+}
+
+.list_item_function ul.list_item_function_content li {
+	width: 100%;
+	padding: 0 0.8rem 0 2.6rem;
+	height: 3.0rem;
+	line-height: 3.0rem;
+	border-radius: 5px;
+	margin-bottom: 0.3rem;
+	font-size: 0.9rem;
+	background: url(../img/meirongshi1.jpg) no-repeat 0.6rem center;
+	background-size: 1.6rem 1.6rem;
+	background-color: #fff;
+}
+
+.list_item_function ul.list_item_function_content li s {
+	float: right;
+	display: inline-block;
+	width:3.0rem;
+	height: 3.0rem;
+	background: url(http://yiyun.zhonyou.cn/webapp_img/go.png) no-repeat right center;
+	background-size: 1.6rem 1.6rem;
+}
+
+.list_item_function ul.list_item_function_content li:nth-child(2) {
+	background: url(../img/meirongshi2.jpg) no-repeat 0.6rem center;
+	background-size: 1.6rem 1.6rem;
+	background-color: #fff;
+}
+
+.list_item_function ul.list_item_function_content li:nth-child(3) {
+	background: url(../img/meirongshi3.jpg) no-repeat 0.6rem center;
+	background-size: 1.6rem 1.6rem;
+	background-color: #fff;
+}
+/*导航栏*/
+.footer_nav {
+	width: 100%;
+	height: 3.0rem;
+	background-color: #FF4404;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+}
+
+.footer_nav span {
+	display: inline-block;
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+
+.footer_nav span s {
+	display: inline-block;
+	padding-left: 2.0rem;
+	height: 3.0rem;
+	line-height: 3.0rem;
+	font-size: 1.0rem;
+	color: #fff;
+	background: url(../img/meirongshi_one.jpg) no-repeat left center;
+	background-size: 1.6rem 1.9rem;
+}
+
+.footer_nav span:nth-child(2) s {
+	background: url(../img/meirongshitwo.jpg) no-repeat left center;
+	background-size: 1.6rem 1.9rem;
+}

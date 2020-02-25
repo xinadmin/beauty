@@ -1,0 +1,42 @@
+<view>
+    <view>
+       <image class='huoguo' src='http://yiyun.zhonyou.cn/foods_img/huoguo.png' />
+    </view>
+
+    <view class='body' wx:if="{{shop!=[]}}">
+        <!-- <view class='guangbo'> -->
+          <image class='guangbo_img' src='/pages/img/laba.png'/>
+          <text class='dangqian'>您当前消费：<text class='fan'>{{shop.bName}}</text></text>
+          <view class='tigong_fuwu'>如需服务：</view>
+        <!-- </view> -->
+
+        <view class='bottom'>
+            <view class='fuwu_one'>
+                <image class='jiacan' src='http://yiyun.zhonyou.cn/foods_img/jiacan.png'/>
+                <navigator url='/pages/dot/dot?type=3&bid={{shop.bId}}&tid={{shop.tId}}'>
+                  <text class='jiacan_anniu'>加菜</text>
+                </navigator>  
+            </view>
+            <view class='fuwu_tow'>
+                <image class='jiacan' src='http://yiyun.zhonyou.cn/foods_img/hujiao.png'/>
+                <text class='jiacan_anniu'>呼叫</text>
+            </view>
+             <view class='fuwu_three'>
+            <image class='jiacan' src='http://yiyun.zhonyou.cn/foods_img/fuwu.png'/>
+            <text class='jiacan_anniu'>服务</text>
+            </view>
+             <view class='fuwu_four'>
+              <image class='jiacan' src='http://yiyun.zhonyou.cn/foods_img/pingjia.png'/>
+              <navigator url='/pages/myScore/myScore?oid={{shop.oId}}'>
+                <text class='jiacan_anniu'>评价</text>
+              </navigator>
+            </view>
+        </view>
+        <view class='dixian'>我也是有底线的，更多功能尽在开发中！！</view>
+    </view>
+
+    <view class='body' wx:else>
+    <image class='guangbo_img' src='/pages/img/laba.png'/>
+          <text class='dangqian'>当前尚未在用餐</text>
+      </view>
+</view>

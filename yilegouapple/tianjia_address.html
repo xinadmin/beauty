@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/mui.picker.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<title>新增地址页面</title>
+		<style type="text/css">
+			.mui-input-row input {
+				font-size: 0.9rem;
+			}
+			
+			#show_dizhi s {
+				padding: 4% 2% 4% 0;
+				font-size: 1.0rem;
+			}
+			
+			#show_dizhi s i {
+				padding-top: 3%;
+				display: inline-block;
+			}
+			
+			#show_dizhi s img {
+				width: 8%;
+				margin: 2%;
+				float: right;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;background-color:#fd4404 ;">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;font-weight: 500;">新增地址</span></button>
+
+		</header>
+		<div class="mui-content">
+			<div class="mui-collapse-content">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>收货人</label>
+						<input type="text" class="mui-input-clear" placeholder="请填写收货人" id="name">
+					</div>
+					<div class="mui-input-row">
+						<label>手机号码</label>
+						<input type="number" class="mui-input-clear" placeholder="请填写你的手机号码" id="tel">
+					</div>
+					<div class="mui-input-row" id="show_dizhi">
+						<label>所在地区</label>
+
+						<s><i id="diqu"></i><img src="http://yiyun.zhonyou.cn/webapp_img/go.png"/></s>
+					</div>
+					<div class="mui-input-row">
+						<label>详细地址</label>
+						<input type="text" class="mui-input-clear" placeholder="请填写你的详细地址" id="address">
+					</div>
+					<div class="mui-input-row">
+						<label>邮政编码</label>
+						<input type="number" class="mui-input-clear" placeholder="请填写邮政编码" id="youbian">
+					</div>
+				</form>
+			</div>
+			<ul style="margin-top: 2%;background: #fff;">
+				<li class="mui-table-view-cell">设置为默认
+					<span style="display: none;" id="zhuangtai">1</span>
+					<div class="mui-switch mui-switch-blue mui-switch-mini mui-active" id="switch">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+			</ul>
+			<div class="mui-content-padded">
+				<button type="button" id="set_baocun" class="mui-btn  mui-btn-block" style="color: #fff;font-size: 1.0rem;font-weight: 500; background: #ff5301;">保存</button>
+			</div>
+
+		</div>
+	</body>
+
+</html>
+
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/mui.picker.min.js"></script>
+<script type="text/javascript" src="js/mui.poppicker.js"></script>
+<script type="text/javascript" src="js/city.data-3.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script>
+	var username, uid;
+	mui.init({
+		swipeBack: true
+	});
+	var url_app = mui.app_url();
+
+	$(function() {
+		var storage = window.localStorage;
+		username = storage.getItem("user_name");
+		uid = storage.getItem("uid");
+		document.getElementById('show_dizhi').addEventListener('tap', function() {
+			var adressStr = '';
+			//显示几层，我们要显示省、市、区，所以我们这里写三层，如果不写默认是一层
+			var addressPicker = new mui.PopPicker({
+				layer: 3
+			});
+			addressPicker.setData(cityData3);
+			addressPicker.show(function(selectItems) {
+				//将选择的省、市、区显示到屏幕上
+				for(var i = 0; i < selectItems.length; i++) {
+					adressStr += selectItems[i].text;
+				}
+				if(adressStr.indexOf("区") == -1) {
+					var arraddress = adressStr.split("市");
+					document.getElementById('diqu').innerText = arraddress[0] + "区";
+					$(".error5").addClass("none");
+				} else {
+					document.getElementById('diqu').innerText = adressStr;
+					$(".error5").addClass("none");
+				}
+			});
+		})
+		document.getElementById("switch").addEventListener("tap", function() {
+			var aa = this.classList.contains('mui-active') ? '1' : '0';
+			document.getElementById("zhuangtai").innerText = aa;
+		})
+		document.getElementById("set_baocun").addEventListener("tap", function() {
+			var shouhuo_name = document.getElementById("name").value.replace(/\s+/g, "");
+			var shouhuo_tel = document.getElementById("tel").value.replace(/\s+/g, "");
+			var shouhuo_diqu = document.getElementById("diqu").innerHTML.replace(/\s+/g, "");
+			var address_detail = document.getElementById("address").value.replace(/\s+/g, "");
+			var shouhuo_address = shouhuo_diqu + document.getElementById("address").value.replace(/\s+/g, "");
+			var shouhuo_youbian = document.getElementById("youbian").value.replace(/\s+/g, "");
+			var moren_xuan = document.getElementById("zhuangtai").innerHTML.replace(/\s+/g, ""); //默认选择
+			var reg = /^[0-9]{6}$/;
+
+			if(username != null && uid != null) {
+				if(shouhuo_name == "" || shouhuo_name == null) {
+					mui.toast("请输入收货人");
+					return;
+				} else if(shouhuo_diqu == "" || shouhuo_diqu == null) {
+					mui.toast("请输入收货地区");
+				} else if(address_detail == "" || address_detail == null) {
+					mui.toast("请输入收货地址");
+				} else if(shouhuo_tel == "" || shouhuo_tel.length != 11) {
+					mui.toast("请正确填写手机号");
+				} else {
+
+					var wd = plus.nativeUI.showWaiting();
+					mui.ajax(url_app + 'SysUserAddress/insert', {
+						type: 'POST', //HTTP请求类型  
+						dataType: 'json', //服务器返回json格式数据  
+						timeout: 10000, //超时时间设置为10秒；
+						data: {
+							shouhuoName: shouhuo_name, //收货人
+							shouhuoTel: shouhuo_tel, //收货人tel
+							shouhuoAddress: shouhuo_address, //收货地址
+							shouhuoYoubian: shouhuo_youbian, //收货邮编
+							username: username, //用户名
+							userid: uid,
+							moren: moren_xuan
+						},
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+						},
+						success: function(data) {
+							wd.close();
+							if(data == 1) {
+
+								mui.fire(plus.webview.getWebviewById("xuanze_dizhi"), 'xuanze_refresh', {
+									shouhuo_name: shouhuo_name, //收货人
+									shouhuo_tel: shouhuo_tel, //收货人tel
+									shouhuo_dizhi: shouhuo_address //收货地址
+								});
+								mui.fire(plus.webview.getWebviewById("manager_dizhi"), 'manager_refresh', {
+									shouhuo_name: shouhuo_name, //收货人
+									shouhuo_tel: shouhuo_tel, //收货人tel
+									shouhuo_dizhi: shouhuo_address //收货地址
+								});
+								mui.back();
+							} else {
+								mui.toast("添加失败，请联系管理员");
+								return;
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							wd.close();
+							mui.toast("系统繁忙，稍后再试");
+
+						}
+					});
+
+				}
+			} else {
+				mui.alert("当前为未登录状态，需要你退出，重新登录");
+			}
+		})
+	});
+</script>

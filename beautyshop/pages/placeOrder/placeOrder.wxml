@@ -1,0 +1,86 @@
+<view>
+  <view style='padding:20rpx 30rpx 120rpx 30rpx;'>
+    <view class='hade_ti'>
+      <view class='hade_ti_a'>
+       <view bindtap='onshowusernamemoal'>
+        <text style='margin-left: 40rpx'>提货人：{{user_name}}<text wx:if="{{show_name}}" >请选择</text></text>
+         </view>
+        <text style='margin-right: 20rpx'>{{user_tel}}</text>
+      </view>
+      <view class='hade_ti_b'>
+        <image src='/pages/img/position(2).png' class='position_a'></image>
+        <text class='dizhi'>提货地址：{{meirongyuan_address}}</text>
+      </view>
+    </view>
+
+    <view class='body_ti'>
+      <view class='body_ti_a'>{{meirongyuan_name}}</view>
+      <view class='huo_xiang'>
+        <image src='{{goods_img}}' id='huo_tu'></image>
+        <view class='huo_xiang_a'>
+          <text class="pname">{{pname}}</text>
+          <text class='pprice' style='float:right;'>¥{{costprice}}</text>
+        </view>
+        <view class='shuliang'>
+          x{{num}}
+        </view>
+      </view>
+      <view class='buy_number'>
+        <text>购买数量</text>
+        <text>x{{num}}</text>
+      </view>
+      <view class='buy_number'>
+        <text>配送方式</text>
+        <text>门店自提/服务</text>
+      </view>
+      <view class='liu'>
+        <text style='font-size:30rpx'>买家留言</text>
+        <input placeholder='选填填写内容已和买家确认' bindinput='buyer_message' name="buyer_message" class='liu_a'></input>
+      </view>
+      <view class='zhekou'>
+        <text>优惠折扣</text>
+        <view style='display:flex;'>
+          <text style='color: #858585;'>暂无可用</text>
+          <image src='http://yiyun.zhonyou.cn/webapp_img/go.png'style='width:50rpx;height:45rpx;'></image>
+        </view>
+      </view>
+      <view class='zhekou'>
+        <text>匿名购买</text>
+        <checkbox checked="true" />
+      </view>
+      <view class='gongji'>共{{num}}件商品 小计¥
+        <text style='font-size:40rpx'>{{pprice}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='tail'>
+    <view class='tail_a'>
+      <text>已优惠¥{{p_discount}}</text>
+      <text>合计: <text style='font-size:35rpx'>¥{{p_discount_price}}</text> </text>
+    </view>
+    <button id='tail_but' bindtap='take_goods'>提交订单</button>
+  </view>
+
+</view>
+
+
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal_name}}"></view>
+<view class="modal-dialog" wx:if="{{showModal_name}}">
+  <view class="modal-title">预约信息</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <input placeholder-class="input-holder" type="text" maxlength="10"       bindinput="inputusername" class="input" placeholder="姓名"></input>
+    </view>
+</view>
+
+
+    <view class="modal-footer">
+      <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+      <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+    </view>
+  </view>
+     <view class="body-view">  
+        <loading hidden="{{hidden}}" bindchange="loadingChange">  
+            加载中...  
+        </loading>  
+    </view>  

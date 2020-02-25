@@ -1,0 +1,65 @@
+<!--logs.wxml-->
+<view>
+  <!--轮播-->
+  <swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#fd9827"indicator-color="#fae3e8" style="height: 180px;">
+    <block wx:for="{{imgUrls}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image"  />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view style='padding:0 30rpx;'>
+    <view class='tx_hade'>精选大闸蟹</view>
+    <view class='tx_hade_a'>
+      <text>随时预约 | 免等位</text>
+      <text>月销售：99</text>
+    </view>
+    <view class='tx_hade_b'>菜品介绍</view>
+    <view class='tx_hade_c'>营养价值</view>
+    <view class='tx_hade_d'>螃蟹是高蛋白的东西，具有滋阴壮阳的作用。而且蟹肉含有丰富的微量元素，比如磷等人体所需的物质，因此吃螃蟹对人身体是有好处的。一般都可以吃。但是有些人还是慎食螃蟹，因为螃蟹性寒，对于伤风感冒的人暂时少吃，等身体恢复健康以后可以放心吃了。</view>
+    <view class='tx_hade_c'>温馨提示</view>
+    <view class='tx_hade_e'>1.请在预约时间内进行用餐</view>
+    <view class='tx_hade_e'>2.请根据店内人员的引导进行用餐</view>
+    <!-- 添加菜品 -->
+    <!-- <view>
+      <view class='tx_hade_c'>添加菜品</view>
+      <view class='cai' wx:for="{{carArray}}" wx:kay="index">
+        <image src='{{item.carImage}}' class='cai_tu'></image>
+        <view class='cai_xin'>
+          <view class='cai_xin_a'>{{item.carTitle}}</view>
+          <view class='cai_xin_b' style='margin:15rpx 0;'>{{item.carText}}</view>
+          <view class='cai_xin_c'>{{item.carPrice}}</view>
+        </view>
+        <span class="car_item_operate">
+          <image src='/pages/img/jian.png' id="jianhao" data-alpha-beta="{{index}}" bindtap="carReduce"></image>
+          <span class="car_item_num" data-alpha-beta="{{index}}" bindtap="carRemove">{{item.carNum}}</span>
+          <image src='/pages/img/jia.png' id="jiahao" data-alpha-beta="{{index}}" bindtap="carAdd"></image>
+        </span>
+      </view>
+      <view class='tx_hade_f'>查看更多</view>
+    </view> -->
+    <!-- 热门推荐 -->
+    <!-- <view style='margin-bottom: 100rpx;'>
+      <view class='tx_hade_c'>热门推荐</view>
+      <view class='cai cao_bor' wx:for="{{carArray_a}}" wx:kay="index">
+        <image src='{{item.carImage}}' class='cai_tu'></image>
+        <view class='cai_xin'>
+          <view class='cai_xin_a'>{{item.carTitle}}</view>
+          <view class='cai_xin_b'>{{item.carText}}</view>
+          <view class='cai_xin_d'>{{item.carManjian}}</view>
+          <view class='cai_xin_c'>{{item.carPrice}} <text class='yuanjia'>{{item.carPrice_a}}</text> </view>
+        </view>
+        <view class='tx_hot'><image src='/pages/img/hot.png' class='hot'></image>{{item.carHot}}</view>
+       <button id='lj'>立即抢购</button>
+      </view>
+    </view> -->
+  </view>
+  <view class='bottom'>
+    <view class='bottom_a'> 
+    <!-- 共计：<text class='shumu'>999元</text> -->
+    </view>
+    <view id='jiaru'>立即加购</view>
+  </view>
+</view>

@@ -1,0 +1,80 @@
+page {
+  background-color: #fbf7f8;
+}
+
+.bonus_div {
+  width: 100%;
+  color: #fff;
+  background-color: #fe6047;
+}
+
+.bonus_div .title {
+  width: 80%;
+  height: 130rpx;
+  line-height: 130rpx;
+  padding-left: 56rpx;
+  margin: 0 auto;
+  font-size: 27rpx;
+  letter-spacing: 3rpx;
+}
+
+.bonus_div .bonus_coin {
+  width: 86%;
+  height: 230rpx;
+  line-height: 230rpx;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 120rpx;
+  letter-spacing: 3rpx;
+  border-bottom: solid 1px #fff;
+}
+
+.bonus_fenlei {
+  width: 86%;
+  height: 230rpx;
+  margin: 0 auto;
+  letter-spacing: 3rpx;
+}
+
+.bonus_fenlei .bonnus_item {
+  width: 50%;
+  float: left;
+  margin-top: 60rpx;
+}
+
+.bonus_fenlei .bonnus_item:last-child {
+  border-left: solid 1px #fff;
+  padding-left: 46rpx;
+  box-sizing: border-box;
+}
+
+.bonus_fenlei .bonnus_item .bonnus_item_title {
+  font-size: 28rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  letter-spacing: 3rpx;
+}
+
+.bonus_fenlei .bonnus_item .bonnus_item_coin {
+  font-size: 30rpx;
+  letter-spacing: 3rpx;
+  padding-top: 23rpx;
+}
+
+.list_item {
+  width: 100%;
+  height: 86rpx;
+  line-height: 86rpx;
+  background-color: #fff;
+  color: #939393;
+  margin: 30rpx 0;
+  box-sizing: border-box;
+  padding:0 96rpx;
+  border-top: solid 1px #c5c5c5;
+  border-bottom: solid 1px #c5c5c5;
+  background: url(http://yiyun.zhonyou.cn/sprogram_img/my_coin.png) no-repeat 10rpx center;
+  background-size:56rpx 56rpx; 
+}
+.list_item s {
+ float: right;
+}

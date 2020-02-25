@@ -1,0 +1,352 @@
+.mui-bar {
+	border-bottom: solid 1px #ddd;
+	box-shadow: none;
+	background-color: #fd4404;
+}
+
+
+/*收货地址样式*/
+
+.mui-content {
+	background: #F0F4F3;
+}
+
+#shouhuo {
+	width: 100%;
+	background: #fff;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.xinjian {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+	text-align: center;
+	height: 4.0rem;
+	line-height: 4.0rem;
+}
+
+#shouhuo #address {
+	width: 100%;
+	padding-top: 0.6rem;
+	overflow: hidden;
+	display: none;
+}
+
+#address #img_dingwei {
+	float: left;
+	width: 10%;
+	margin: 2.5% 2.5% 0;
+}
+
+#address_content {
+	width: 85%;
+	float: left;
+	overflow: hidden;
+}
+
+#address_content p {
+	width: 100%;
+	padding: 0 0.6rem;
+}
+
+#address_content .shouhuo_name {
+	color: #222222;
+	font-size: 0.9rem;
+	height: 2.0rem;
+	line-height: 2.0rem;
+}
+
+#shouhuo .shouhuo_name s {
+	float: right;
+}
+
+#shouhuo .shouhuo_dizhi {
+	color: #222222;
+	font-size: 0.9rem;
+	max-height: 2.2rem;
+	min-height: 1.1rem;
+	line-height: 1.1rem;
+	letter-spacing: 0.2px;
+	overflow-y: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	letter-spacing: 1px
+}
+
+#shouhuo .shouhuo_dizhi img {
+	float: right;
+	width: 6%;
+}
+
+#shouhuo .moren {
+	width: 100%;
+	overflow: hidden;
+	padding: 0.25rem 0;
+	box-sizing: border-box;
+}
+
+#shouhuo .moren i {
+	float: right;
+	display: inline-block;
+	height: 1.7rem;
+	line-height: 1.7rem;
+	font-size: 0.8rem;
+	padding: 0 0.4rem;
+	border-radius: 10px;
+	border: solid 1px #007AFF;
+}
+
+.produce {
+	width: 100%;
+	margin-top: 10px;
+	box-sizing: border-box;
+	overflow: hidden;
+	background: #fff;
+}
+
+.produce .produce_shop {
+	overflow: hidden;
+	width: 100%;
+	height: 2.4rem;
+	line-height: 2.4rem;
+}
+
+.produce .produce_shop s {
+	float: left;
+	font-size: 1.0rem;
+	padding-left: 0.6rem;
+	display: inline-block;
+}
+
+.produce .produce_shop img {
+	display: inline-block;
+	width: 6%;
+	padding: 3% 0 2%;
+	float: right;
+}
+
+.produce_message {
+	width: 100%;
+	overflow: hidden;
+	background: rgba(0, 0, 0, 0.02);
+	margin-bottom: 0.3rem;
+}
+
+.produce_message img {
+	display: inline-block;
+	width: 28%;
+	float: left;
+	margin: 0.2rem 0.3rem;
+	border: solid 1px #E0E0E0;
+	background: #ddd;
+}
+
+.produce_message div {
+	float: left;
+	width: 68%;
+	overflow: hidden;
+	padding: 0.2rem 0.3rem;
+}
+
+.produce_message div h2 {
+	min-height: 1.0rem;
+	max-height: 3.0rem;
+	line-height: 1.0rem;
+	font-size: 0.9rem;
+	letter-spacing: 0.2px;
+	overflow-y: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
+
+.produce_message div h3 {
+	height: 1.6rem;
+	line-height: 1.6rem;
+	font-size: 0.8rem;
+}
+
+.produce_message div h3 s {
+	display: inline-block;
+	float: right;
+}
+
+.produce_message div h4 {
+	padding: 2% 0;
+}
+
+
+/* 配送样式 */
+
+#peisong_beizhu {
+	width: 100%;
+	padding: 0 3% 0%;
+	overflow: hidden;
+	/* background: #fff; */
+}
+
+.peisong {
+	height: 2.7rem;
+	line-height: 2.7rem;
+	color: #333333;
+	font-size: 0.9rem;
+}
+
+.peisong s {
+	display: inline-block;
+	float: right;
+	height: 2.7rem;
+	text-align: right;
+}
+
+.peisong_title {
+	font-size: 0.9rem;
+	display: inline-block;
+	float: left;
+}
+
+#peisong_beizhu h2.heji_num {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+	height: 2.2rem;
+	line-height: 2.2rem;
+	padding-right: 0.6rem;
+	text-align: right;
+	font-size: 0.8rem;
+}
+
+#peisong_beizhu h2.heji_num span {
+	color: #fd8d37;
+}
+/*积分和余额抵扣样式*/
+.jifen_bg {
+	width: 100%;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+.jifen_bg .jifen_div {
+	width: 94%;
+	margin: 0 auto;
+}
+
+.jifen_bg .jifen_div .jifen_div_content {
+	width: 100%;
+	overflow: hidden;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li {
+	width: 100%;
+	min-height: 3.0rem;
+	line-height: 3.0rem;
+	color: #333333;
+	font-weight: 500;
+	position: relative;
+	padding-left: 2.0rem;
+	font-size: 0.9rem;
+	border-bottom: solid 1px #eeeeee;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li:last-child {
+	border: none;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li span {
+	display: inline-block;
+	height: 1.2rem;
+	width: 1.2rem;
+	position: absolute;
+	top: 0.9rem;
+	left: 0;
+	border: solid 1px #D3D3D3;
+	background-color: #F0F0F0;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li span.active {
+	border-width: 2px;
+	border-color: #ff4404;
+	background: url(../img/dagou_select.png) no-repeat center center;
+	background-size: 0.9rem 0.9rem;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li span.gray {
+	color: #ddd;
+}
+
+.jifen_bg .jifen_div .jifen_div_content .jifen_div_content_li s {
+	float: right;
+	font-weight: 600;
+}
+
+
+/* 合计结算 */
+
+.heji {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+	margin-top: 10px;
+	padding: 0 3%;
+	margin-bottom: 3.8rem;
+}
+
+.heji .col-red {
+	float: right;
+	color: #F22832 !important;
+}
+
+.heji h1,
+.heji h2 {
+	padding: 2% 0;
+	font-size: 0.9rem;
+}
+
+
+/* 提交订单 */
+
+.jiesuan {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 3.3rem;
+	border-top: solid 1px #f4f4f4;
+	overflow: hidden;
+	background: #fff;
+	z-index: 333;
+}
+
+.jiesuan h1.pay_money {
+	height: 3.3rem;
+	width: 50%;
+	float: left;
+	text-align: center;
+	line-height: 3.3rem;
+	font-size: 1.1rem;
+}
+
+h1.pay_money .col-red {
+	color: #F22832 !important;
+	font-weight: 600;
+}
+
+.jiesuan button {
+	width: 50%;
+	line-height: 3.3rem;
+	height: 3.3rem;
+	display: inline-block;
+	text-align: center;
+	float: left;
+	color: #fff;
+	font-weight: 500;
+	font-size: 1.0rem;
+	background: #ff5301;
+	border-radius: 0;
+	border: none;
+}

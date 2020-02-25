@@ -1,0 +1,874 @@
+.mui-bar .mui-pull-left .mui-icon {
+	padding-right: 5px;
+	font-size: 28px;
+}
+
+.mui-bar .mui-btn {
+	font-weight: normal;
+	font-size: 17px;
+}
+
+.mui-bar .mui-btn-link {
+	top: 1px;
+}
+
+.mui-content img {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+.mui-preview-image.mui-fullscreen {
+	position: fixed;
+	z-index: 20;
+	background-color: #000;
+}
+
+.mui-preview-header,
+.mui-preview-footer {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	z-index: 10;
+}
+
+.mui-preview-header {
+	height: 44px;
+	top: 0;
+}
+
+.mui-preview-footer {
+	height: 50px;
+	bottom: 0px;
+}
+
+.mui-preview-header .mui-preview-indicator {
+	display: block;
+	line-height: 25px;
+	color: #fff;
+	text-align: center;
+	margin: 15px auto 4;
+	width: 70px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 12px;
+	font-size: 16px;
+}
+
+.mui-preview-image {
+	display: none;
+	-webkit-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+.mui-preview-image.mui-preview-in {
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+}
+
+.mui-preview-image.mui-preview-out {
+	background: none;
+	-webkit-animation-name: fadeOut;
+	animation-name: fadeOut;
+}
+
+.mui-preview-image.mui-preview-out .mui-preview-header,
+.mui-preview-image.mui-preview-out .mui-preview-footer {
+	display: none;
+}
+
+.mui-zoom-scroller {
+	position: absolute;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	-webkit-backface-visibility: hidden;
+}
+
+.mui-zoom {
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+
+.mui-slider .mui-slider-group .mui-slider-item img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+	width: 100%;
+}
+
+.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+	display: inline-table;
+}
+
+.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.mui-preview-loading {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+.mui-preview-loading.mui-active {
+	display: block;
+}
+
+.mui-preview-loading .mui-spinner-white {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -25px;
+	margin-top: -25px;
+	height: 50px;
+	width: 50px;
+}
+
+.mui-preview-image img.mui-transitioning {
+	-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+	transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+.mui-slider-item {
+	text-align: center;
+}
+
+.mui-slider-item img {
+	width: 100%;
+}
+
+
+/*产品介绍样式*/
+
+.chanpin_jieshao {
+	width: 100%;
+	height: 100%;
+	margin-bottom: 3.2rem;
+}
+
+.chanpin_jieshao_name {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+	margin-bottom: 0.6rem;
+}
+
+
+/*产品名字样式*/
+
+.chanpin_jieshao_name p {
+	color: #333333;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.2rem 2%;
+	max-height: 2.6rem;
+	min-height: 1.1rem;
+	line-height: 1.1rem;
+	margin-top: 2px;
+	overflow-y: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+
+/*产品价格样式*/
+
+.chanpin_jieshao_name h1 {
+	width: 100%;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	font-size: 0.8rem;
+	color: #8C8B90;
+	padding: 0.1rem 0 0.1rem 2%;
+	color: #FF3030;
+}
+
+.chanpin_jieshao_name h1 #price {
+	font-size: 1.1rem;
+	font-style: italic;
+}
+
+.chanpin_jieshao_name h2 {
+	width: 100%;
+	height: 1.4rem;
+	line-height: 1.4rem;
+	color: #797979;
+	padding: 0.1rem 2%;
+	color: #262626;
+	font-size: 0.8rem;
+	position: relative;
+}
+
+.chanpin_jieshao_name h2 span {
+	font-size: 0.8rem;
+	float: right;
+	color: #222222;
+}
+.chanpin_jieshao_name h2 span em {
+	font-size: 0.9rem;
+	color: #FF900D;
+}
+.chanpin_jieshao_name h2 .jifen_title {
+	display: inline-block;
+	width: 330px;
+	position: absolute;
+	text-align: center;
+	left: 50%;
+	height: 1.4rem;
+	line-height: 1.4rem;
+	margin-left: -165px;
+	top: 0;
+	color: #5F5F5F;
+	font-size: 0.9rem;
+	
+	
+}
+.chanpin_jieshao_canshu {
+	overflow: hidden;
+	background: #fff;
+	width: 100%;
+}
+
+.chanpin_jieshao_canshu ul {
+	width: 96%;
+	margin-left: 2%;
+	overflow: hidden;
+}
+
+.chanpin_jieshao_canshu ul li {
+	width: 100%;
+	border-bottom: solid 1px #eeeeee;
+	height: 2.4rem;
+	font-size: 0.85rem;
+	line-height: 2.4rem;
+	color: #333333;
+}
+
+.chanpin_jieshao_canshu ul li:last-child {
+	border: none;
+}
+
+.chanpin_jieshao_canshu ul li i {
+	display: block;
+	float: right;
+	margin-right: 0.2rem;
+	width: 1.3rem;
+	height: 1.3rem;
+}
+
+
+/*产品p评价样式*/
+
+.chanpin_jieshao_pingjia {
+	width: 100%;
+	padding:0 2%;
+	margin: 10px 0;
+	overflow: hidden;
+	background: #fff;
+}
+
+.chanpin_jieshao_pingjia p {
+	font-size: 0.8rem;
+	height: 2.3rem;
+	width: 100%;
+	line-height: 2.3rem;
+	color: #2c2c2c;
+	background: url(http://yiyun.zhonyou.cn/webapp_img/go.png) no-repeat right center;
+	background-size: 1.6rem 1.6rem;
+	border-bottom: solid 1px #E0E0E0;
+}
+
+#no_evaluate {
+	text-align: center;
+	height: 2.3rem;
+	width: 100%;
+	line-height: 2.3rem;
+	display: none;
+	color: #2c2c2c;
+}
+
+.chanpin_jieshao_pingjia article {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.chanpin_jieshao_pingjia article img {
+	display: inline-block;
+	float: left;
+	width: 11%;
+	height: 11%;
+	border-radius: 5px;
+	background: #FAEFC2;
+}
+
+.chanpin_jieshao_pingjia article div {
+	display: inline-block;
+	width: 89%;
+	padding-left: 5%;
+}
+
+.chanpin_jieshao_pingjia article  s {
+	display: block;
+	min-height:1.1rem;
+	height:1.1rem;
+	max-height:2.2rem;
+	width: 89%;
+	margin-left: 11%;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	letter-spacing: 0.2px;
+	overflow-y: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	padding-left: 5%;
+}
+
+.chanpin_jieshao_pingjia article div strong {
+	display: block;
+}
+
+/*产品评价按钮样式*/
+
+.chanpin_jieshao_pingjia h1 {
+	text-align: center;
+	height: 2.6rem;
+	line-height: 2.6rem;
+}
+
+.chanpin_jieshao_pingjia h1 s {
+	border-radius: 50px;
+	display: inline-block;
+	height: 2.0rem;
+	padding: 0 0.5rem;
+	font-size: 0.8rem;
+	line-height: 2.0rem;
+	text-align: center;
+	color: #333333;
+	font-weight: 500;
+	margin-left: 0.8rem;
+	border: solid 1px #eeeeee;
+}
+.chanpin_jieshao_pingjia h1 s:active {
+      background-color: #ff4404;
+      color: #fff;
+      border-color: #ff4404;
+}
+/*店铺名样式*/
+
+.chanpin_jieshao_dianpuming {
+	width: 100%;
+	padding: 0.5rem 0.5rem 0 0.5rem;
+	overflow: hidden;
+	background: #fff;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.chanpin_jieshao_dianpuming img {
+	display: inline-block;
+	float: left;
+	width: 20%;
+	height: 15%;
+	margin-bottom: 0.6rem;
+}
+
+.chanpin_jieshao_dianpuming .chanpin_jieshao_dianpuming_content {
+	display: inline-block;
+	width: 80%;
+	padding: 0.4rem 0.3rem 0.3rem 0.5rem;
+	position: relative;
+}
+
+.chanpin_jieshao_dianpuming .chanpin_jieshao_dianpuming_content h1 {
+	background: #ff3300;
+	color: #fff;
+	height: 1.3rem;
+	padding: 0 0.2rem;
+	line-height: 1.3rem;
+	display: inline-block;
+}
+
+.chanpin_jieshao_dianpuming .chanpin_jieshao_dianpuming_content h2 {
+	display: inline-block;
+	height: 1.8rem;
+	line-height: 1.8rem;
+	color: #333333;
+	font-size: 0.8rem;
+}
+.chanpin_jieshao_dianpuming .chanpin_jieshao_dianpuming_content button {
+	outline: none;
+	display: inline-block;
+	height: 1.8rem;
+	line-height: 1.8rem;
+	color: #fd8d37;
+	font-size: 0.8rem;
+	width: 4.2rem;
+	position: absolute;
+	right: 0rem;
+	top: 50%;
+	border: solid 1px #fd8d37;
+	border-radius: 12px;
+	margin-top: -0.9rem;
+}
+	.chanpin_jieshao_dianpuming .chanpin_jieshao_dianpuming_content button.all_goods:active {
+	background: -webkit-linear-gradient(left, #ffa803, #fd8d37);
+	background: -o-linear-gradient(right, #ffa803, #fd8d37);
+	background: -moz-linear-gradient(right, #ffa803, #fd8d37);
+	background: linear-gradient(to right, #ffa803, #fd8d37);
+	color: #fff;
+	
+	} 
+.chanpin_jieshao_dianpuming .chanpin_jieshao_dianpuming_content button.jinru_dianpu {
+	right: 4.3rem;
+	top: 50%;
+	margin-top: -0.9rem;
+	border: none;
+	background: -webkit-linear-gradient(left, #ffa803, #fd8d37);
+	background: -o-linear-gradient(right, #ffa803, #fd8d37);
+	background: -moz-linear-gradient(right, #ffa803, #fd8d37);
+	background: linear-gradient(to right, #ffa803, #fd8d37);
+	color: #fff;
+}
+
+/*联系卖家样式*/
+
+.lianxi_goumai {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	border-top: solid 1px #eeeeee;
+	background-color: #FFFFFF;
+	min-height: 3.2rem;
+	max-height: 3.4rem;
+}
+
+.lianxi_gouwuche {
+	width: 100%;
+	overflow: hidden;
+}
+
+.lianxi_gouwuche ul li {
+	width: 16%;
+	background: #fff;
+	text-align: center;
+	float: left;
+	color: #707070;
+	height: 3.2rem;
+	overflow: hidden;
+}
+
+.lianxi_gouwuche ul li p {
+	font-size: 0.7rem;
+}
+
+@media screen and (max-device-width:413px) {
+	.lianxi_gouwuche li img {
+		width: 32%;
+		margin-bottom: 0.2rem;
+	}
+}
+
+@media only screen and (min-width: 414px) and (max-width: 1920px) {
+	.lianxi_gouwuche li img {
+		width: 27%;
+		margin-bottom: 0rem;
+	}
+}
+
+.lianxi_gouwuche .shop_sj {
+	padding: 0.6rem 0;
+	font-weight: 500;
+}
+
+.lianxi_gouwuche #buy,
+.lianxi_gouwuche #join {
+	color: #fff;
+	width: 25%;
+}
+.lianxi_gouwuche .price_cost_buy ,.lianxi_gouwuche .start_up {
+	width: 25%;
+	color: #fff;
+	
+}
+.lianxi_gouwuche .price_cost_buy span {
+	display: block;
+	height: 2.6rem;
+	width: 100%;
+	font-size: 0.8rem;
+	line-height: 2.6rem;
+	margin-top: 0.3rem;
+	background: -webkit-linear-gradient(left, #ffa803, #fd8d37);
+	background: -o-linear-gradient(right, #ffa803, #fd8d37);
+	background: -moz-linear-gradient(right, #ffa803, #fd8d37);
+	background: linear-gradient(to right, #ffa803, #fd8d37);
+	border-radius: 50px 0 0 50px;
+}
+.lianxi_gouwuche #join span {
+	display: block;
+	height: 2.6rem;
+	width: 100%;
+	font-size: 0.8rem;
+	line-height: 2.6rem;
+	margin-top: 0.3rem;
+	background: -webkit-linear-gradient(left, #ffa803, #fd8d37);
+	background: -o-linear-gradient(right, #ffa803, #fd8d37);
+	background: -moz-linear-gradient(right, #ffa803, #fd8d37);
+	background: linear-gradient(to right, #ffa803, #fd8d37);
+	border-radius: 50px 0 0 50px;
+}
+.lianxi_gouwuche .start_up span {
+	display: block;
+	border-radius: 0 50px 50px 0;
+	background-color: #ddd;
+	width: 100%;
+	height: 2.6rem;
+	font-size: 0.8rem;
+	line-height: 2.6rem;
+	margin-top: 0.3rem;
+}
+.lianxi_gouwuche #buy span {
+	display: block;
+	border-radius: 0 50px 50px 0;
+	background: -webkit-linear-gradient(left, #ff7c45, #ff6600);
+	background: -o-linear-gradient(right, #ff7c45, #ff6600);
+	background: -moz-linear-gradient(right, #ff7c45, #ff6600);
+	background: linear-gradient(to right, #ff7c45, #ff6600);
+	width: 100%;
+	height: 2.6rem;
+	font-size: 0.8rem;
+	line-height: 2.6rem;
+	margin-top: 0.3rem;
+}
+
+
+/*产品差数样式*/
+
+.chanpin_jieshao_canshu_content {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background: rgba(0, 0, 0, 0.8);
+	display: none;
+}
+
+.chanpin_jieshao_canshu_content_message {
+	width: 100%;
+	max-height: 70%;
+	min-height: 50%;
+	background: #fff;
+	opacity: 1;
+	position: absolute;
+	bottom: 0%;
+	z-index: 999;
+}
+
+.chanpin_jieshao_canshu_content_message h1 {
+	text-align: center;
+	font-size: 1.0rem;
+	color: #333333;
+	font-weight: 500;
+	height: 2.4rem;
+	line-height: 2.4rem;
+}
+
+.chanpin_jieshao_canshu_content_message .canshu_div {
+	width: 100%;
+	max-height: 80%;
+	overflow-y: hidden;
+}
+.chanpin_jieshao_canshu_content_message .canshu_div p {
+	font-size: 0.9rem;
+	color: #8D8D8D;
+	min-height: 2.8rem;
+	max-height: 11.2rem;
+	width: 96%;
+	margin: 0 auto;
+	border-bottom: solid 1px #eeeeee;
+	line-height: 2.8rem;
+}
+
+.chanpin_jieshao_canshu_content_message .canshu_div p s {
+	display: inline-block;
+	width: 80%;
+	float: right;
+	text-align: left;
+	margin-left: 0.6rem;
+	color: #333333;
+}
+.chanpin_jieshao_canshu_content_message .canshu_div p.spe_more_line s {
+	display: inline-block;
+	width: 80%;
+	float: right;
+	
+}
+
+.chanpin_jieshao_canshu_content_message span {
+	display: block;
+	width: 100%;
+	min-height: 2.9rem;
+	background-color: #fff;
+	position: absolute;
+	bottom: 0;
+	left: 0%;
+	z-index: 222;
+}
+
+.chanpin_jieshao_canshu_content_message span button {
+	font-size: 1.1rem;
+	color: #fff;
+	height: 2.5rem;
+	width: 96%;
+	background: #FF4404;
+	border-radius: 50px;
+	font-weight: 600;
+	line-height: 2.5rem;
+	position: absolute;
+	bottom: 0.2rem;
+	left: 2%;
+}
+
+
+/*产品分类参数样式*/
+
+.chanpin_jieshao_bg {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background: rgba(0, 0, 0, 0.8);
+	display: none;
+}
+
+
+.chanpin_jieshao_fenlei {
+	width: 100%;
+	height: 60%;
+	background: #fff;
+	position: absolute;
+	bottom: 0%;
+	z-index: 999;
+}
+
+.chanpin_jieshao_fenglei_message {
+	width: 94%;
+	border-bottom: solid 1px #eeeeee;
+	margin: 0 auto;
+}
+
+.chanpin_jieshao_fenlei #pic_goods {
+	width: 25%;
+	float: left;
+	margin-top: -0.8rem;
+	z-index: 999;
+	margin-left: 0.8rem;
+	background: #fff;
+	overflow: hidden;
+}
+
+.chanpin_jieshao_fenlei #pic_goods img {
+	width: 100%;
+}
+
+.chanpin_canshu {
+	float: left;
+	margin: 3%;
+	width: 65%;
+}
+
+.chanpin_canshu h1 {
+	height: 1.9rem;
+	line-height: 1.9rem;
+	color: #ff4404;
+	font-size: 0.9rem;
+}
+.chanpin_canshu h1 .sys_item_price {
+	font-size: 1.3rem;
+}
+.chanpin_canshu h2 {
+	height: 1.9rem;
+	line-height: 1.9rem;
+	color: #BBBBBB;
+	font-size: 0.8rem;
+}
+
+.chanpin_canshu h3 {
+	min-height: 1.5rem;
+	max-height: 3.0rem;
+	line-height: 1.5rem;
+	color: #333333;
+	font-weight: 500;
+	font-size: 0.8rem;
+}
+
+.chanpin_jieshao_fenglei_message i {
+	position: absolute;
+	top: 3%;
+	right: 3%;
+	display: block;
+	width: 8%;
+}
+
+.chanpin_jieshao_fenglei_message i img {
+	width: 100%;
+}
+.spe_div p {
+	width: 97%;
+	margin: 3% 0 0 3%;
+	height: 1.8rem;
+	line-height: 1.8rem;
+	font-size: 0.9rem;
+	color: #333333;
+}
+.sys_spec_text {
+	width: 94%;
+	padding-bottom: 0.3rem;
+	margin: 3% 0 3% 3%;
+	min-height: 3.9rem;
+	max-height: 6.9rem;
+	overflow: auto;
+}
+
+.sys_spec_text li {
+	float: left;
+	position: relative;
+	margin: 0.3rem 0.2rem;
+	outline: none;
+}
+
+.sys_spec_text li a {
+	height: 1.7rem;
+	font-family: "微软雅黑";
+	padding: 0 0.5rem;
+	background: #E0E0E0;
+	display: block;
+	line-height: 1.7rem;
+	color: #333333;
+	border-radius: 2px;
+	font-weight: 500;
+	font-size: 0.8rem;
+}
+
+.sys_spec_text li a:hover {
+	background: #ffa803;
+	color: #fff;
+}
+
+.sys_spec_text li.selected a {
+	background: #ffa803;
+	color: #fff;
+}
+
+.shuliang {
+	width: 94%;
+	height: 2.8rem;
+	position: absolute;
+	bottom: 2.6rem;
+	left: 3%;
+}
+
+.shuliang s {
+	padding: 0.5rem 0;
+	font-size: 0.9rem;
+}
+
+.shuliang div input {
+	display: inline-block;
+	width: 5%;
+}
+
+.chanpin_jieshao_fenlei #queding {
+	width: 100%;
+	display: block;
+	text-align: center;
+	position: absolute;
+	bottom: 0px;
+	font-size: 1.2rem;
+	left: 0;
+	z-index: 999;
+	color: #fff;
+	background: #ff4404;
+	opacity: 1;
+	height: 2.7rem;
+	line-height: 2.7rem;
+	border-radius: 0;
+}
+
+
+/*商品详情样式*/
+
+#produce_detail p:last-child {
+	width: 100%;
+}
+
+#produce_detail p img {
+	width: 100%;
+}

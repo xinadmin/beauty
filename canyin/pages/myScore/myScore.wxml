@@ -1,0 +1,46 @@
+<view>
+  <view class='head_all'>
+    <view class='head_fen'>期待你的打分</view>
+    <view class='pingjia'>
+      <text style='font-size:28rpx'>服务：</text>
+      <!-- 评价星星 -->
+      <view id='xing'>
+        <block wx:for="{{stars}}" wx:key="index">
+          <view class='xing_a'>
+            <image class="star-image" src="{{key > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+              <view class="item" style="left:0rpx" data-key="{{item+1}}" bindtap="selectLeft"></view>
+              <view class="item" style="left:16rpx" data-key="{{item+1}}" bindtap="selectRight"></view>
+            </image>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='pingjia'>
+      <text style='font-size:28rpx'>口碑：</text>
+      <!-- 评价星星 -->
+      <view id='xing'>
+        <block wx:for="{{stars_a}}" wx:key="index">
+          <view class='xing_a'>
+            <image class="star-image" src="{{key_a > item ?(key_a-item == 0.5?halfSrc_a:selectedSrc_a) : normalSrc_a}}">
+              <view class="item" style="left:0rpx" data-key="{{item+1}}" bindtap="selectLeft_a"></view>
+              <view class="item" style="left:16rpx" data-key="{{item+1}}" bindtap="selectRight_a"></view>
+            </image>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="textarea-wrp">
+      <textarea auto-focus="true" bindinput='pingjiaTxt' placeholder='味道如何，快来写下你的用餐感受吧！！！' />
+      <!-- 上传图片 -->
+      <view>
+        <image src='/pages/img/addAlbum.png' class='addAlbum'  bindtap="previewImage"></image>
+        <view class="tui-content"> 
+          <image class="tui-preview-img" wx:for="{{previewImageArr}}" bindtap="changePreview" data-src="{{item}}" src="{{item.data}}"></image>
+        </view>
+      </view>
+    </view>
+    <view class='tijiao_a'>
+      <button id='tijiao' bindtap='insNsGoodsEvaluate'>提交</button>
+    </view>
+  </view>
+</view>

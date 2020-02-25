@@ -1,0 +1,25 @@
+<view>
+  <view class='jianyi'>
+    <view class='jianyikuang'>
+        <view class='neirong'>
+       <textarea class='qingshuru' placeholder='请输入您的宝贵意见！' style='width:100%;'></textarea>
+        </view>
+        <view class='youqing_tishi'>还可输入500字</view> 
+     </view>
+     <view class='kuaijie'>快捷标签</view>
+     <view>
+     <view class='bianqianone'>方便快捷</view>
+     <view class='bianqianone'>诚信可靠</view>
+     <view class='bianqiantow'>服务态度好</view>
+     </view>
+     <view class='niming'>匿名提交</view>
+    <view class="tui-list-box">
+      <view class="tui-menu-list">
+          <switch checked="{{isChecked1}}" class="tui-fr" color="black"></switch>
+      </view>
+    </view>
+  </view>
+  <navigator url='/pages/feedback/feedback'>
+  <view class='queren'>确认提交</view>
+</navigator>
+</view>

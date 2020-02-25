@@ -1,0 +1,55 @@
+<!-- <include src="../../common/common"/> -->
+
+    <view class="weui-cells">
+        <view class="weui-cell">
+            <view class="head">
+                <!-- <image src="{{logo}}"></image> -->
+                <open-data type="userAvatarUrl" class='userAvatarUrl'></open-data>
+            </view>
+            <view class="weui-cell__bd">
+                <view class="name">{{username}}</view>
+               
+            </view>
+         
+        </view>
+    </view>
+    <view class="weui-cells">
+        <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active" url="/pages/coin/coin">
+            <view class="weui-cell__hd">
+                <image src="http://yiyun.zhonyou.cn/sprogram_img/my_coin.png" />
+            </view>
+            <view class="weui-cell__bd">余额</view>
+        </navigator>
+        <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active" url="../bonus/bonus">
+            <view class="weui-cell__hd">
+                <image src="http://yiyun.zhonyou.cn/sprogram_img/my_fenhong.png" />
+            </view>
+            <view class="weui-cell__bd">分红</view>
+        </navigator>
+        <navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="tel">
+            <view class="weui-cell__hd">
+                <image src="http://yiyun.zhonyou.cn/sprogram_img/my_kefu.png" />
+            </view>
+            <view class="weui-cell__bd">客服中心</view>
+        </navigator>
+        <!-- <navigator url="/pages/electric/electric" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+                <image src="http://yiyun.zhonyou.cn/sprogram_img/my_yaoqing.png" />
+            </view>
+            <view class="weui-cell__bd">邀请有礼</view>
+        </navigator> -->
+        <navigator  class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap='is_meirongshi'>
+            <view class="weui-cell__hd" >
+                <image src="http://yiyun.zhonyou.cn/sprogram_img/my_meirongshi.png" />
+            </view>
+            <view class="weui-cell__bd">我的美容师</view>
+        </navigator>
+    </view>
+    <view class="weui-cells">
+        <navigator url="../setup/setup" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+                <image src="http://yiyun.zhonyou.cn/sprogram_img/my_shezhi.png" />
+            </view>
+            <view class="weui-cell__bd">设置</view>
+        </navigator>
+    </view>

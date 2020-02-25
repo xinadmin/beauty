@@ -1,0 +1,54 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" maxlength='10' value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="search">搜索</view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+    <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+      <!-- 搜索列表 -->
+      <view class="weui-cell__bd" wx:for="{{list}}" wx:key="key">
+        <!-- 列表名称 -->
+        <view class='list_name'  data-index='{{index}}' data-name='{{item.name}}' bindtap='btn_name'>
+          <!-- 昵称 -->
+          <label class='lab_name'>{{item.name}}</label>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+</view>
+
+
+<!-- 商品列表 -->
+<view id='produce_all'>
+  <view class='produce_list_litem'>
+    <view class='procuce_message' wx:for="{{danpin_produce}}" wx:key="unique">
+      <navigator url='../logs/logs?pid={{item.pid}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+            <!-- <text>￥900</text> -->
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>

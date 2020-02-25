@@ -1,0 +1,32 @@
+<view>
+  <view class='head_mei'>
+    <view class='head_mei_a'>{{user_name}}</view>
+     <view wx:if="{{fuwu==0}}" class='head_mei_b'>待预约</view>
+    <view wx:if="{{fuwu==1}}" class='head_mei_b'>预约成功</view>
+     <view wx:elif="{{fuwu==2}}" class='head_mei_b'>待签单</view>
+      <view wx:elif="{{fuwu==3}}" class='head_mei_b'>签单成功</view>
+       <view wx:elif="{{fuwu==4}}" class='head_mei_b'>评价成功</view>
+  </view>
+  <view class='boby_mei'>
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>服务说明</text>
+      <text class='boby_mei_font'>美容院服务</text>
+    </view>
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>服务产品</text>
+      <text class='boby_mei_font'>{{meal_name}}</text>
+    </view>
+    <!-- <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>预约手机号</text>
+      <text class='boby_mei_font'>13169969067</text>
+    </view> -->
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>服务内容</text>
+      <text class='boby_mei_font'>{{yuyue_body}}</text>
+    </view>
+    <view class='boby_mei_a'>
+      <text class='boby_mei_font font_color'>预约时间</text>
+      <text class='boby_mei_font'>{{fuwu_time}}</text>
+    </view>
+  </view>
+</view>

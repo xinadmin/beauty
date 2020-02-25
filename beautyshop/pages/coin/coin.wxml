@@ -1,0 +1,7 @@
+<view class='yuer'>
+    <view class='yuer_detail' bindtap="balanceDetail">余额明细</view>
+    <view class='yuyue_detail_message'>
+    <!-- <image src="../img/my_coin.png"></image> -->
+    <view class='yuyue_detail_message_coin'>￥{{balance}}</view>
+    </view>
+</view>

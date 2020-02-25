@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>分享</title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			.mui-grid-9 {
+				background: white !important;
+			}
+			li {
+				border-left: none !important;
+			}
+			img {
+				width: 50px !important;
+			}
+			body {
+				background: transparent !important;
+			}
+			.mui-content {
+				background: white;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body onclick="closeShare();">
+		<div class="mui-content">
+			<img id="pic" src="img/add.png" style="display: none;" />
+		</div>
+		<footer style="position: absolute;bottom: 0px; width:100%;background: white;">
+			<div style="height: 30px; line-height: 30px;font-weight: bold;font-family: '微软雅黑'; margin-left: 10px;">分享到</div>
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li onclick="shareHref(0);" class="mui-table-view-cell mui-media mui-col-xs-4">
+					<img class="mui-media-object" src="img/share_to_icon_wx.png">
+					<div class="mui-media-body">微信</div>
+				</li>
+				<li onclick="shareHref(1);" class="mui-table-view-cell mui-media mui-col-xs-4">
+					<img class="mui-media-object" src="img/share_to_icon_wxq.png">
+					<div class="mui-media-body">朋友圈</div>
+				</li>
+				<li onclick="shareSystem();" class="mui-table-view-cell mui-media mui-col-xs-4">
+					<img class="mui-media-object" src="img/share_to_icon_qq.png">
+					<div class="mui-media-body">QQ</div>
+				</li>
+			</ul>
+		</footer>
+		<input id="sharehref" style="display: none;" class="sharehref" type="url" value="http://www.baidu.com" placeholder="请输入要分享的链接地址" />
+		<input id="sharehrefTitle" style="display: none;" class="sharehref" type="text" value="DCloud HBuilder-做最好的HTML5开发工具" placeholder="请输入要分享的链接标题" />
+		<input id="sharehrefDes" style="display: none;" class="sharehref" type="text" value="我正在使用HBuilder+HTML5开发移动应用，赶紧跟我一起来体验！" placeholder="请输入要分享的链接描述" />
+	</body>
+
+	<script type="text/javascript">
+		var shares = null,
+			bhref = false;
+		var Intent = null,
+			File = null,
+			Uri = null,
+			main = null;
+		 //来源页面
+		var pageSourceId;
+		mui.init();
+		mui.plusReady(function() {
+			updateSerivces();
+			if (plus.os.name == "Android") {
+				Intent = plus.android.importClass("android.content.Intent");
+				File = plus.android.importClass("java.io.File");
+				Uri = plus.android.importClass("android.net.Uri");
+				main = plus.android.runtimeMainActivity();
+			}
+			var shareInfo = plus.webview.currentWebview().shareInfo;
+			sharehref.value = shareInfo.href;
+			sharehrefTitle.value = shareInfo.title;
+			sharehrefDes.value = shareInfo.content;
+			pageSourceId = shareInfo.pageSourceId;
+		});
+		/**
+		 * 更新分享服务
+		 */
+		function updateSerivces() {
+				plus.share.getServices(function(s) {
+					shares = {};
+					for (var i in s) {
+						var t = s[i];
+						shares[t.id] = t;
+					}
+				}, function(e) {
+					outSet("获取分享服务列表失败：" + e.message);
+				});
+			}
+			/**
+			 * 调用系统分享
+			 * 调用
+			 */
+
+		function shareSystem() {
+				if (plus.os.name !== "Android") {
+					plus.nativeUI.alert("此平台暂不支持系统分享功能!");
+					return;
+				}
+				var intent = new Intent(Intent.ACTION_SEND);
+				var p = "";
+				if (pic && pic.realUrl) {
+					p = pic.realUrl;
+					if (p.substr(0, 7) === "file://") {
+						p = p.substr(7);
+					} else if (p.sub(0) !== "/") {
+						p = plus.io.convertLocalFileSystemURL(p);
+					}
+				}
+				var f = new File(p);
+				var uri = Uri.fromFile(f);
+				if (f.exists() && f.isFile()) {
+					intent.setType("image/*");
+					intent.putExtra(Intent.EXTRA_STREAM, uri);
+				} else {
+					intent.setType("text/plain");
+				}
+				intent.putExtra(Intent.EXTRA_SUBJECT, "洛阳世界名木树雕博览园");
+				intent.putExtra(Intent.EXTRA_TEXT, sharehrefDes.value + "-" + sharehref.value);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				main.startActivity(Intent.createChooser(intent, "系统分享"));
+			}
+			/**
+			 * 分享操作
+			 * @param {String} id
+			 */
+
+		function shareAction(id, ex) {
+				var s = null;
+				if (!id || !(s = shares[id])) {
+					return;
+				}
+				if (s.authenticated) {
+					shareMessage(s, ex);
+				} else {
+					s.authorize(function() {
+						shareMessage(s, ex);
+					}, function(e) {
+					});
+				}
+			}
+			/**
+			 * 发送分享消息
+			 * @param {plus.share.ShareService} s
+			 */
+
+		function shareMessage(s, ex) {
+				var msg = {
+					content: sharehrefDes.value,
+					extra: {
+						scene: ex
+					}
+				};
+				if (bhref) {
+					msg.href = sharehref.value;
+					if (sharehrefTitle && sharehrefTitle.value != "") {
+						msg.title = sharehrefTitle.value;
+					}
+					if (sharehrefDes && sharehrefDes.value != "") {
+						msg.content = sharehrefDes.value;
+					}
+					msg.thumbs = ["http://yiyun.zhonyou.cn/webapp_img/yilegou2.png"];
+				} else {
+					if (pic && pic.realUrl) {
+						msg.pictures = [pic.realUrl];
+					}
+				}
+				s.send(msg, function() {
+					mui.toast("分享到\"" + s.description + "\"成功！ ");
+				}, function(e) {
+					mui.toast("分享到\"" + s.description + "\"失败: " + e.code + " - " + e.message);
+				});
+			}
+			// 打开分享
+
+		function shareShow() {
+				bhref = false;
+				var ids = [{
+						id: "weixin",
+						ex: "WXSceneSession"
+					}, {
+						id: "weixin",
+						ex: "WXSceneTimeline"
+					}, {
+						id: "sinaweibo"
+					}, {
+						id: "tencentweibo"
+					}],
+					bts = [{
+						title: "发送给微信好友"
+					}, {
+						title: "分享到微信朋友圈"
+					}, {
+						title: "分享到新浪微博"
+					}, {
+						title: "分享到腾讯微博"
+					}];
+				if (plus.os.name == "iOS") {
+					ids.push({
+						id: "qq"
+					});
+					bts.push({
+						title: "分享到QQ"
+					});
+				}
+				plus.nativeUI.actionSheet({
+						cancel: "取消",
+						buttons: bts
+					},
+					function(e) {
+						var i = e.index;
+						if (i > 0) {
+							shareAction(ids[i - 1].id, ids[i - 1].ex);
+						}
+					}
+				);
+			}
+			// 分析链接
+
+		function shareHref(index) {
+			bhref = true;
+			var ids = [{
+					id: "weixin",
+					ex: "WXSceneSession"
+				}, {
+					id: "weixin",
+					ex: "WXSceneTimeline"
+				}],
+				bts = [{
+					title: "发送给微信好友"
+				}, {
+					title: "分享到微信朋友圈"
+				}];
+			if (plus.os.name == "iOS") {
+				ids.push({
+					id: "qq"
+				});
+				bts.push({
+					title: "分享到QQ"
+				});
+			}
+			shareAction(ids[index].id, ids[index].ex);
+		}
+		mui.back = function() {
+			var sourcePage = plus.webview.getWebviewById(pageSourceId);
+			if (sourcePage) {
+				sourcePage.evalJS("closeMask()");
+			}
+		}
+
+		function closeShare() {
+			console.log("e:" + event.target.name);
+		}
+	</script>
+
+</html>

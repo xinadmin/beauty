@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>关于依乐商城</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/base.css" />
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: true
+			});
+			mui.plusReady(function() {
+				plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+					document.getElementById("version").innerHTML = inf.version;
+				})
+			})
+		</script>
+		<style>
+			body {
+				background-color: #fff;
+			}
+			
+			#logo p {
+				text-align: center;
+				color: #ccc;
+				text-indent: 0;
+				height: 2.2rem;
+				line-height: 2.2rem;
+				font-size: 1.1rem;
+			}
+			
+			.qrcode {
+				top: 50px;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.qrcode img {
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #ff4404;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">关于</h1>
+		</header>
+		<div class="mui-content" style="background-color: #fff;">
+			<div class="mui-content-padded" id="logo">
+				<div class="qrcode">
+					<img id="qrcode" src="http://yiyun.zhonyou.cn/webapp_img/yilegou.png" width="100%" />
+				</div>
+				<p>当前版本：<span id="version"></span></p>
+			</div>
+		</div>
+	</body>
+
+</html>

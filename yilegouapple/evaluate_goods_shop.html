@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/goods_evalution.css" />
+		<title>商品评价</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #FF3300;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">交易评价</h1>
+			<button id="sub" class="rig_shai mui-btn mui-btn-blue mui-btn-link mui-pull-right" style="color: #fff;">发布</button>
+
+		</header>
+		<div class="mui-content" style="width: 100%;height: 100%;background: #fff;overflow: hidden;">
+			<div class="produce" v-for="item in goods_list">
+				<div class="produce_message">
+					<img :src="item.goodsPicture" onerror="this.src='img/moren.png'" class="produce_img" />
+					<div>
+						<h1 class="produce_name">{{item.goodsName}}</h1>
+						<h1 class="col-red">￥<s class="price" :data-id="item.goodsId">{{item.price}}</s></h1>
+					</div>
+				</div>
+				<p style="width: 100%;height: 0.6rem;background: #E0E0E0;"></p>
+				<div id="evaluate">
+					<p style="width: 100%;"><span class="fl" style="height: 1.6rem;line-height: 1.6rem;margin-right:0.6rem;display: inline-block;">描述相符</span>
+						<div class="icons" style="display: inline-block;">
+
+							<i data-index="1" class="mui-icon mui-icon-star mui-icon-star-filled"></i>
+							<i data-index="2" class="mui-icon mui-icon-star mui-icon-star-filled"></i>
+							<i data-index="3" class="mui-icon mui-icon-star mui-icon-star-filled"></i>
+							<i data-index="4" class="mui-icon mui-icon-star mui-icon-star-filled"></i>
+							<i data-index="5" class="mui-icon mui-icon-star mui-icon-star-filled"></i>
+							<s id="xingji" style="font-size: 0.9rem;">5</s><s style="font-size: 0.9rem;">星好评</s>
+						</div>
+					</p>
+					<div id="text"><textarea id="text_value"></textarea></div>
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script>
+	var news = new Vue({
+		el: '.mui-content',
+		data: {
+			orderNo: "",
+			orderId: "",
+			userName: "",
+			uid: "",
+			shopId: "",
+			shopName: "",
+			goods_list: []
+		}
+	});
+	mui.init({
+		swipeBack: true
+	});
+	var goods_id;
+	var goods_list = [];
+		var url_app=mui.app_url();
+	
+	mui.plusReady(function() {
+		var current = plus.webview.currentWebview();
+		news.orderId = current.orderId;
+		if(!news.orderId) {
+			return;
+		}
+		var wd = plus.nativeUI.showWaiting();
+		mui.getJSON(url_app+"NsOrder/selnsOrderGoodsANDnsOrderTJorderId?orderId=" + news.orderId + "", function(rsp) {
+			if(rsp && rsp.length != null) {
+				$.each(rsp, function(i, item) {
+					news.shopId = item.shopId;
+					news.orderId = item.orderId;
+					news.shopName = item.shopName;
+					news.uid = item.buyerId;
+					news.orderNo = item.orderNo;
+					news.goods_list = news.goods_list.concat(convert(item.nsOrderGoods));
+//					goods_list = news.goods_list.concat(convert(item.nsOrderGoods));
+//					mui.getJSON(url_app+"shop/selShopPhone?uid=" + news.shopId + "", function(rsp) {
+//						if(rsp && rsp.length != 0) {
+//							news.phone = rsp;
+//						}
+//					})
+				});
+			} else {
+				return;
+			}
+			wd.close();
+		})
+		//
+	})
+	//	评价切换	
+
+	mui('body').on('tap', 'i', function() {
+		var index = parseInt(this.getAttribute("data-index")); //获取当前元素的索引值
+		var parent = this.parentNode; //获取当前元素的父节点
+		var children = parent.children; //获取父节点下所有子元素
+		if(this.classList.contains("mui-icon-star")) { //判断当前节点列表中是否含有.mui-icon-star元素
+			for(var i = 0; i < index; i++) { //亮星
+				children[i].classList.remove('mui-icon-star');
+				children[i].classList.add('mui-icon-star-filled');
+			}
+		} else { //重置已经亮星的元素
+			for(var i = index; i < 5; i++) {
+				children[i].classList.add('mui-icon-star')
+				children[i].classList.remove('mui-icon-star-filled')
+			}
+		}
+		$(this).siblings("#xingji").text(index);
+	})
+	//提交评价
+	var wd = null;
+	document.getElementById("sub").addEventListener("tap", function() {
+		news.username = window.localStorage.getItem("user_name");
+		var evaution = "[";
+		var evalu_length = $(".produce").length;
+		$(".produce").each(function(i, item) {
+			var active = $(this).children("#evaluate").children(".icons").find("#xingji").text();
+			++i;
+			evaution += "{'orderId':'" + news.orderId + "',";
+			evaution += "'orderNo':'" + news.orderNo + "',";
+			evaution += "'goodsId':" + $(this).children(".produce_message").children("div").find(".price").attr("data-id") + ",";
+			evaution += "'goodsName':'" + $(this).children(".produce_message").children("div").find(".produce_name").text() + "',";
+			evaution += "'goodsPrice':" + $(this).children(".produce_message").children("div").find(".price").text() + ",";
+			evaution += "'goodsImage':'" + $(this).children(".produce_message").find("img").attr("src") + "',";
+			evaution += "'shopId':" + news.shopId + ",";
+			evaution += "'shopName':'" + news.shopName + "',";
+			if($(this).children("#evaluate").children("#text").find("textarea").val() == "" || $(this).children("#evaluate").children("#text").find("textarea").val() == null) {
+				evaution += "'content':'用户默认好评',";
+			} else {
+				evaution += "'content':'" + $(this).children("#evaluate").children("#text").find("textarea").val() + "',";
+			}
+			evaution += "'memberName':'" + news.username + "',";
+			evaution += "'uid':'" + news.uid + "',";
+			evaluate
+			evaution += "'scores':" + $(this).children("#evaluate").children(".icons").find("#xingji").text() + ",";
+			if(active == "1") {
+				evaution += "'explainType':3";
+			} else if(active == "2" || active == "3") {
+				evaution += "'explainType':2";
+			} else {
+				evaution += "'explainType':1";
+			}
+			if(evalu_length != i) {
+				evaution += "},";
+			} else {
+				evaution += "}";
+			}
+		});
+		evaution += ']';
+		console.log(evaution);
+		var page = plus.webview.getWebviewById("detail_dingdan");
+		if(page) {
+			page.hide();
+		}
+		wd = plus.nativeUI.showWaiting();
+		$.ajax({
+			url: url_app+"NsGoodsEvaluate/setGoodsEvaluate",
+			type: "POST",
+			data: {
+				order_id: evaution
+			},
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			},
+			success: function(data) {
+				wd.close();
+				wd = null;
+				if(data == 1) {
+					mui.fire(plus.webview.getWebviewById("detail_dingdan"), "produce", {
+						orderId: news.orderId
+					});
+					mui.fire(plus.webview.getWebviewById("my_dingdan"), "refresh_order", null);
+					mui.back();
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				wd.close();
+				wd = null;
+				mui.toast("系统繁忙，稍后再试");
+
+			}
+		})
+	})
+
+	function convert(items) {
+		var newItems = [];
+		items.forEach(function(item) {
+			newItems.push({
+				goodsId: item.goodsId,
+				goodsName: item.goodsName,
+				skuName: item.skuName,
+				price: item.price,
+				num: item.num,
+				price: item.price,
+				goodsPicture: item.goodsPicture
+			});
+		});
+		return newItems;
+	}
+</script>

@@ -1,0 +1,71 @@
+.my_head{
+   width: 100%; 
+  overflow: hidden;
+  position: relative;
+ background-color: #ECEEEB;
+ padding-bottom: 20rpx;
+}
+
+.mybackgruond{
+   width: 100%;
+   
+}
+
+.header{
+  width: 130rpx;
+  height: 130rpx;
+  position: absolute;
+  border-radius: 50%;
+  margin: -340rpx  320rpx;
+  overflow: hidden;
+ 
+}
+
+.header .userAvatarUrl{
+  display: block;
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+}
+
+.id_name{
+  font-size: 15px;
+  width: 100%;
+  color: rgb(216, 210, 210);
+  position: absolute; 
+  text-align: center;
+  left: 0;
+  top: 320rpx;
+
+
+}
+
+.jianyi_fankui,.banben_ruanjian{
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 2rpx solid silver;
+  background-color: rgb(255, 255, 255);
+}
+
+.xiaotubiao,.xiatubiao{
+  width: 50rpx;
+  height: 40rpx;
+  float: left;
+  margin-top: 25rpx;
+  margin-left: 20rpx;
+}
+
+.jianyi,.banben{
+  font-size: 30rpx;
+  margin:25rpx 10rpx;
+  color: gray;
+  float: left;
+}
+
+.right{
+  width: 15rpx;
+  height: 20rpx;
+  float: right;
+  margin-top: 36rpx;
+  margin-right: 40rpx;
+}

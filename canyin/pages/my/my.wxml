@@ -1,0 +1,30 @@
+<view>
+<view class="my_head">
+<image class="mybackgruond" src="http://yiyun.zhonyou.cn/foods_img/my_background.png" />
+    <view class='header'>
+    <open-data type="userAvatarUrl" class='userAvatarUrl'></open-data>
+    </view>
+<view class='id_name'>{{username}}</view>
+</view>
+<navigator url='/pages/balance/balance'>
+<view class='jianyi_fankui'>
+<image class="xiaotubiao" src='/pages/img/yuer.png'/>
+<view class='jianyi'>账户余额</view>
+<image class="right" src='/pages/img/right.png'/>
+</view>
+</navigator>
+<navigator url='/pages/opinion/opinion'>
+    <view class='jianyi_fankui'>
+    <image class="xiaotubiao" src='/pages/img/suggest.png'/>
+    <view class='jianyi'>建议反馈</view>
+    <image class="right" src='/pages/img/right.png'/>
+    </view>
+   </navigator>
+   <navigator url='/pages/version_software/version_software'> 
+    <view class='banben_ruanjian'>
+    <image class="xiatubiao" src='/pages/img/version.png'/>
+    <view class='banben'>版本软件</view>
+    <image class="right" src='/pages/img/right.png'/>
+    </view>
+    </navigator>
+</view>

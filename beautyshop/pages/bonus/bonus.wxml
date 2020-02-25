@@ -1,0 +1,17 @@
+<view class='bonus_div'>
+<view class='title'>今日分红收益（元）</view>
+<view class='bonus_coin'>{{fenhong}}</view>
+<view class='bonus_fenlei'>
+<view class='bonnus_item'>
+   <view class='bonnus_item_title'>累积收益（元）</view>
+   <view class='bonnus_item_coin'>{{zongFenhong}}</view>
+</view>
+<view class='bonnus_item'>
+   <view class='bonnus_item_title'>累积收益（元）</view>
+   <view class='bonnus_item_coin'>0.00</view>
+</view>
+</view>
+</view>
+<view class='list_item'>
+账户余额  <s>0.00</s>
+</view>

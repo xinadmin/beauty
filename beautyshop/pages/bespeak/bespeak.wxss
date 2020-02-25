@@ -1,0 +1,78 @@
+page{
+  background-color: #fbf7f8;
+}
+.heda_a{
+  background-color: #ec708a;
+  width: 100%;
+  color: white;
+  font-size: 30rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+.list{
+  background-color: white;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 1rpx solid #cccccc;
+}
+.list_a{
+  width:45%;
+
+}
+#round{
+  border-radius:50%;
+  border:1rpx solid #ec708a;
+  width:30rpx;
+  height:30rpx;
+  line-height:30rpx;
+  display:inline-block;
+  color:#ec708a;
+  float: left;
+  text-align:center;
+  margin:35rpx 5rpx; 
+
+}
+#round_time {
+  display: inline-block;
+  float: left;
+   width:230rpx;
+  height:100rpx;
+  text-align: center;
+  line-height:50rpx;
+ 
+}
+.list_b{
+  width:95rpx;
+  text-align: center;
+  text-overflow: ellipsis;
+overflow: hidden; 
+white-space: nowrap;
+}
+.list_c{
+  width:120rpx;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+  margin-left:30rpx;
+
+}
+.list_d{
+  width:135rpx;
+  text-align: center;
+  text-overflow: ellipsis;
+overflow: hidden; 
+white-space: nowrap;
+}
+.list_e{
+  display: inline-flex;
+  width: 150rpx;
+  padding: 0 10rpx;
+  margin-left:50rpx;
+}

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+		<title>选择美容师</title>
+
+		<style type="text/css">
+			#select {
+				border-bottom: 1px solid #E5E5E5;
+				width: 95%;
+				margin: 0 auto;
+			}
+			
+			.meirongshi {
+				background: #fff;
+				width: 100%;
+				overflow: hidden;
+			}
+			
+			.meirongshi_select label {
+				font-size: 1.0rem;
+			}
+			
+			.meirongshi_select #radio {
+				margin-top: 3%;
+			}
+			
+			.meirongshi_select label img {
+				display: inline-block;
+				width: 12%;
+				margin: 1% 1% 1% 0;
+				border-radius: 50%;
+			}
+			
+			 #selectBtn {
+			 	display: block;
+				width: 95%;
+				margin: 0.9rem auto;
+				height: 3.0rem;
+				line-height: 3.0rem;
+				background: #F79F09;
+				opacity: 1;
+				color: #fff;
+				border-radius: 5px;
+				font-size: 1.2rem;
+			}
+			.time_xuanze {
+				width: 100%;
+				height: 3.0rem;
+				line-height: 3.0rem;
+				padding: 0 0.6rem;
+				border-bottom: solid 1px #eeeeee;
+				color: #333333;
+				background-color: #fff;
+				font-size:1.0rem;
+				
+			}
+			.time_xuanze  i {
+			width: 1.3rem;
+			height: 3.0rem;
+			background: url(img/goto.png) no-repeat right center;
+			background-size: 1.0rem 1.0rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav"  style="background-color: #eeeeee; box-shadow: none;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #BBBBBB;"></a>
+			<h1 class="mui-title" style="color: #333333;">选择美容师</h1>
+		</header>
+		<div class="mui-content">
+			<div class="meirongshi">
+				<div class="meirongshi_select">
+					<form>
+						<div class="mui-input-row mui-radio" style="border-bottom: solid 1px #ddd;" v-for="item in items">
+							<label> <img  src="img/lody_logo.png" width="12%"/>{{item.meirongshiName}}</label>
+							<input name="radio" id="radio" type="radio" checked="checked" :value="item.meirongshiName" :data-id="item.mid" />
+						</div>
+					</form>
+				</div>
+			</div>
+			<p class="time_xuanze" id="fuwu_select" ><span>服务选择</span><i class="fr"></i><s class="fr">{{fuwu_body}}</s></p>
+			<p class="time_xuanze" id="time_xuanze"><span>服务时间</span><i class="fr"></i><s class="fr">{{start_time}}</s></p>
+			<p class="time_xuanze"  ><span>结束时间</span><i class="fr"></i><s class="fr">{{end_time}}</s></p>
+		</div>
+              <button id="selectBtn">免费预约</button>
+	</body>
+
+</html>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script src="js/mui.picker.min.js"></script>
+<script>
+	mui.init({
+		swipeBack: true
+	});
+	var time = "";
+	var url_app=mui.app_url();
+	var news = new Vue({
+		el: '.mui-content',
+		data: {
+			items: [], //列表信息流数据
+			shopId: "",
+			start_time: "请选择",
+			end_time: "",
+			yuyue_id: "",
+			fuwu_body: "请选择"
+
+		}
+	});
+
+	function convert(items) {
+		var newItems = [];
+		items.forEach(function(item) {
+			newItems.push({
+				mid: item.mid,
+				meirongshiName: item.meirongshiName
+
+			})
+		})
+		return newItems;
+	}
+	mui.plusReady(function() {
+		var current = plus.webview.currentWebview();
+		news.shopId = current.shop_id;
+		news.yuyue_id = current.yuyue_id;
+		if(!news.shopId) {
+			return;
+		}
+		var wd = plus.nativeUI.showWaiting();
+		mui.getJSON(url_app+"mrshop/meirongshibyshopid?shopId=" + news.shopId + "", function(rsp) {
+			wd.close();
+			if(rsp && rsp.length > 0) {
+
+				news.items = news.items.concat(convert(rsp));
+			} else {
+				return false;
+			}
+		})
+	})
+	//	时间选择
+		document.getElementById('time_xuanze').addEventListener('tap', function() {
+		var start_time = document.getElementById("start_time");
+		var end_time = document.getElementById("end_time");
+		var select_val = $('form input[name="radio"]:checked ').val();
+		var youkuaihuo = document.getElementById("youkuaihuo2");
+		var myDate = new Date();
+		var m=0;
+		var d=0;
+		var h=0;
+		var y=0;
+		var mm=0;
+		var mon = data_check(myDate.getMonth());
+		var dtPicker = new mui.DtPicker({
+			type: "datetime", //设置日历初始视图模式
+			beginDate: new Date(myDate.getFullYear(), mon, myDate.getDate(), 09, 00), //设置开始日期
+			endDate: new Date(myDate.getFullYear(), mon + 1, myDate.getDate(), 18, 00), //设置结束日期
+		});
+		dtPicker.show(function(rs) {
+			news.start_time = rs.text + ":00";
+			var data = new Date(news.start_time.replace(/\-/g, '/'));
+			 y = data.getFullYear();
+			data.setHours(data.getHours()+1);
+		    m = data.getMonth() + 1;
+			m = m < 10 ? "0" + m : m;
+			
+			 d = data.getDate();
+			d = d < 10 ? "0" + d : d;
+			
+			 h = data.getHours();
+			h = h < 10 ? "0" + h : h;
+			
+			 mm = data.getMinutes();
+			mm = mm < 10 ? "0" + mm : mm;
+			
+			news.end_time = y + "-" + m + "-" + d + " " + h + ":" + mm + ":00";
+//			youkuaihuo.style.display = "none";
+			dtPicker.dispose();
+			if(!select_val){
+				mui.alert("请选择美容师");
+				return ;
+				
+			}
+			var wd = plus.nativeUI.showWaiting();
+			mui.getJSON(url_app+"yuyue/selectBytime?startTime=" + news.start_time + "&endTime=" + news.end_time + "&beactucianName=" + select_val + "", function(rsp) {
+				
+				if(rsp == 0) {
+					time = 1;
+				} else {
+					mui.toast("请重新选择服务时间,建议选择间隔一小时的时间服务");
+					time = 0;
+				}
+				wd.close();
+			})
+		})
+
+	})
+	//  预约服务
+	document.getElementById("selectBtn").addEventListener("tap", function() {
+		var select_value = $('form input[name="radio"]:checked ').val();
+		var select_id = $('form input[name="radio"]:checked ').attr("data-id");
+		var start_time = news.start_time;
+		var end_time = news.end_time;
+		if(!select_value) {
+                mui.toast("请选择美容师");
+                return;
+		}else if(news.fuwu_body=="请选择") {
+			mui.toast("请选择服务");
+			return;
+		}
+		else if(start_time=="请选择") {
+			mui.toast("请填写服务时间");
+			return;
+		} else if(time == 0) {
+			mui.toast("当前时间段已经有人预约,请重新选择时间段");
+			return;
+		}  else {
+			var wd = plus.nativeUI.showWaiting();
+			mui.ajax({
+				type: "POST",
+				url: url_app+"yuyue/insertdetail",
+				data: {
+					uid: news.yuyue_id,
+					fuwuMeirongshiId: select_id,
+					beauticianName: select_value, //选择的美容师id
+					fuwuTime: start_time, //预约详情的id
+					xuanzeMeirongshiTime: end_time, //预约详情的id，
+					yuyueBody: news.fuwu_body
+				},
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				},
+				success: function(data) {
+					wd.close();
+					if(data == 1) {
+						mui.fire(plus.webview.getWebviewById("my_yuyue_list"), 'refresh', null);
+						mui.back();
+					} else {
+						mui.toast("预约服务失败");
+					}
+				},
+
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					wd.close();
+					mui.toast("系统繁忙，稍后再试");
+				}
+			})
+		}
+	})
+	//選擇服务
+	document.getElementById("fuwu_select").addEventListener('tap', function() {
+		var btnArray = [{
+			title: "脸部按摩"
+		}, {
+			title: "身体按摩"
+		}];
+		plus.nativeUI.actionSheet({
+			title: "选择服务",
+			cancel: "取消",
+			buttons: btnArray
+		}, function(e) {
+			var index = e.index;
+			var text = "请选择";
+			switch(index) {
+				case 1:
+					text = "脸部按摩";
+
+					break;
+				case 2:
+					text = "身体按摩";
+
+					break;
+			}
+			news.fuwu_body = text;
+		});
+	});
+	//  檢查時間
+	function data_check(val) {
+		if(val.length < 2) {
+			val = "0" + val;
+		}
+		return val;
+	}
+	mui('body').on('shown', '.mui-popover', function(e) {
+		//console.log('shown', e.detail.id);//detail为当前popover元素
+	});
+	mui('body').on('hidden', '.mui-popover', function(e) {
+		//console.log('hidden', e.detail.id);//detail为当前popover元素
+	});
+</script>

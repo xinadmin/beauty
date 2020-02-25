@@ -1,0 +1,36 @@
+ page {
+  width:100%;
+  background: url(http://yiyun.zhonyou.cn/foods_img/background.png),no-repeat center center;
+   background-size: 100% 100%;
+}
+
+.bigbox{
+  width: 100%;
+  height: 100%;
+}
+
+.beijing{
+  width: 100%;
+  height: 100%;
+}
+
+.banbenhao{
+  width: 260rpx;
+  height: 200rpx;
+  /* background-color: pink; */
+  margin: 350rpx 260rpx 200rpx;
+  font-size: 160rpx;
+  font-family: "宋体";
+  color: black;
+}
+
+.shangxian{
+  width: 300rpx;
+  height: 40rpx;
+  text-align: center;
+  /* background-color: pink; */
+  margin: 0rpx auto;
+  font-size: 25rpx;
+  font-family: "宋体";
+  color: rgb(112, 109, 109);
+}

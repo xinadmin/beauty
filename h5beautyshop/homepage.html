@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="css/base.css"/>
+	<link rel="stylesheet" href="css/homepage.css"/>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<!-- 头部搜索栏开始 -->
+	<div class="header">
+	  <div class="location">
+	     
+	     	<img class="location_img" src="images/position.png">
+	         <div class="dizhi">广州市</div>
+      </div>
+      <!-- <div class="Scan">
+      	 <img class="Scan_img" src="images/sao.png">
+      </div> -->
+      <div class="sousuo">
+      	<img src="images/search.png" alt="">
+        <p>搜索更多商品</p> 
+      </div> 
+	</div>
+	<!-- 头部搜索栏结束 -->
+
+    <!-- 导航栏开始 -->
+    <nav class="nav">
+		<ul class="hang">
+			<li class="tuijian active" id="duan"><a href="#">推荐</a></li>
+			<li class="danpin" id="duan"><a href="#">单品</a></li>
+			<li class="shalong" id="duan"><a href="#">沙龙装</a></li>
+			<li class="yuanye" id="duan"><a href="#">原液</a></li>
+			<li class="mianbu" id="chang"><a href="#">面部套装</a></li>
+			<li class="shenti" id="chang"><a href="#">身体套盒</a></li>
+		</ul>
+	</nav> 
+	<!-- 导航栏结束 -->
+
+    <!-- 首页内容 -->
+    <div class="page_one">
+
+    	<!-- 轮播图开始-->
+        <div class="rotation_chart">
+            <div class="mySlides fade" style="display: block;">
+                <img class="lunbotu" src="http://yiyun.zhonyou.cn/sprogram_img/beauty_banner1.jpg">
+               <!--  <img class="lunbotu" src="http://yiyun.zhonyou.cn/sprogram_img/beauty_banner2.jpg">
+                <img class="lunbotu" src="http://yiyun.zhonyou.cn/sprogram_img/beauty_banner3.jpg">
+                <img class="lunbotu" src="http://yiyun.zhonyou.cn/sprogram_img/beauty_banner4.jpg">
+                <img class="lunbotu" src="http://yiyun.zhonyou.cn/sprogram_img/beauty_banner5.jpg"> -->
+            </div>
+            <!-- <div class="mySlides fade">
+                <img class="lunbotu" src="images/LLL2.jpg">
+            </div> -->
+            <!-- 左右滑动箭头 -->
+            <!-- <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a> -->
+           <!--  <div style="text-align:center;position: absolute;top: 155px;left: 50%;transform: translateX(-50%);" >
+            <span class="dot" onclick="currentSlide(1)"></span> 
+            <span class="dot" onclick="currentSlide(2)"></span>  --> 
+            <!-- </div> -->
+        </div>
+        <!-- 轮播图结束 -->
+        <!-- 导语开始 -->
+        <div class="remen">
+        	<div id="haohuo">热门好货</div>
+        	<div id="huan">
+                 <div id="scrollBox">
+    	            <ul id="con1">
+    	                <li>1.美容院小程序1.0正式上线<li>
+    	                <li>2.新会员、新店铺入驻，欢迎体验<li>
+    	                <li>3.美容院营销系统将推出一系列优惠<li>
+    	            </ul>
+    	            <ul id="con2"></ul>
+            </div>
+        	</div>
+        </div>
+        <!-- 导语结束 -->
+        <!-- 推荐的商品 -->
+        <div class="img_left">
+        	<div id="left_top">
+    			<img src="images/facialMask.png">
+                <div id="xinpin">新品</div>
+                <div id="jieshaoA">
+                    <div id="a">依梵妮套盒特惠专场</div>
+                    <div id="b">新春特惠&nbsp;好物先抢</div>
+                    <div id="c">仅售：<s>￥298</s></div>
+                </div>
+    		</div>
+        	<div id="left_bottom">
+                <img src="images/facialMask_a.png">
+                <div id="bottom_rirht">
+                    <div id="a">经典面膜</div>
+                    <div id="b">矿泉滋养面膜</div>
+                    <a href="#">立即抢购</a>
+                </div>
+            </div>
+        </div>
+        <div class="img_right">
+            <img src="images/facialMask_b.png" >
+            <div id="wenzi">
+                <div id="a">依梵妮乳腺疏通养生套盒</div>
+                <div id="b">你想不到的奢华</div>
+                <div id="c">仅售：<s>￥2580</s></div>
+            </div>
+        </div>
+        <div class="wang">
+           <!--  <div id="weiqiang">
+                <div id="a">黄金植液多维面膜</div>
+                <div id="b">滋养细嫩·舒纹紧致</div>
+            </div> -->
+            
+            <img src="http://yiyun.zhonyou.cn/sprogram_img/new4.png" alt="">
+        </div>
+        <!-- 猜你喜欢开始 -->
+        <div class="cai">
+            <div id="cai">猜你喜欢</div>
+            <!-- 商品1 -->
+            <div class="waikuang">
+                <img src="images/duowei.png">
+                <div class="logo">依梵妮</div>
+                <div id="A">黄金植液多维面膜</div>
+                <div id="B">
+                     <div id="money">￥398</div>
+                     <div id="buy">去购买</div>
+                </div>
+                <div id="C">黄金植液多维面膜，让肌肤....</div>
+            </div>
+            <!-- 商品2 -->
+            <div class="waikuang">
+                <img src="images/duowei.png">
+                <div class="logo">依梵妮</div>
+                <div id="A">黄金植液多维面膜</div>
+                <div id="B">
+                     <div id="money">￥398</div>
+                     <div id="buy">去购买</div>
+                </div>
+                <div id="C">黄金植液多维面膜，让肌肤....</div>
+            </div>
+            <!-- 商品3 -->
+            <div class="waikuang">
+                <img src="images/duowei.png">
+                <div class="logo">依梵妮</div>
+                <div id="A">黄金植液多维面膜</div>
+                <div id="B">
+                     <div id="money">￥398</div>
+                     <div id="buy">去购买</div>
+                </div>
+                <div id="C">黄金植液多维面膜，让肌肤....</div>
+            </div>
+        </div>
+        <!-- 猜你喜欢结束 -->
+    </div>
+
+     <!-- 单品 -->
+    <div class="page_two"><img src="images/fuwu(2).png" alt=""></div>
+
+    <!-- 沙龙 -->
+    <div class="page_three"><img src="images/fuwu(3).png" alt=""></div>
+
+    <!-- 原液 -->
+    <div class="page_four"><img src="images/fuwu(2).png" alt=""></div>
+
+    <!-- 面部套盒 -->
+    <div class="page_five"><img src="images/fuwu(3).png" alt=""></div>
+
+    <!-- 身体套盒 -->
+    <div class="page_six"><img src="images/fuwu(2).png" alt=""></div>
+    
+</body>
+</html>
+<script type="text/javascript">            
+        var area =document.getElementById('scrollBox');
+        var con1 = document.getElementById('con1');
+        var con2 = document.getElementById('con2');
+        con2.innerHTML=con1.innerHTML;
+        function scrollUp(){
+        if(area.scrollTop>=con1.offsetHeight){
+            area.scrollTop=0;
+        }else{
+            area.scrollTop++
+        }
+        }                
+        var time = 100;
+        var mytimer=setInterval(scrollUp,time);
+        area.onmouseover=function(){
+            clearInterval(mytimer);
+        }
+        area.onmouseout=function(){
+            mytimer=setInterval(scrollUp,time);
+        }
+        $(function(){
+    $(".hang li ").onclick(function(){
+          $(".hang li ").removeClass("lie");
+          $(this).addClass("lie");
+    })
+       })
+</script>
+<script type="text/javascript" src="js/beauty_care.js"></script>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+            $(".tuijian").click(function(){
+                $(this).addClass("active");
+                $(".danpin").removeClass("active");
+                $(".shalong").removeClass("active");
+                $(".yuanye").removeClass("active");
+                $(".mianbu").removeClass("active");
+                $(".shenti").removeClass("active");
+                  $(".page_one").show();
+                  $(".page_two").hide();
+                  $(".page_three").hide();
+                  $(".page_four").hide();
+                  $(".page_five").hide();
+                  $(".page_six").hide();
+            })
+     
+            $(".danpin").click(function(){
+                $(this).addClass("active");
+                $(".tuijian").removeClass("active");
+                $(".shalong").removeClass("active");
+                $(".yuanye").removeClass("active");
+                $(".mianbu").removeClass("active");
+                $(".shenti").removeClass("active");
+                  $(".page_two").show();
+                  $(".page_one").hide();
+                  $(".page_three").hide();
+                  $(".page_four").hide();
+                  $(".page_five").hide();
+                  $(".page_six").hide();
+            })
+    
+            $(".shalong").click(function(){
+                $(this).addClass("active");
+                $(".tuijian").removeClass("active");
+                $(".danpin").removeClass("active");
+                $(".yuanye").removeClass("active");
+                $(".mianbu").removeClass("active");
+                $(".shenti").removeClass("active");
+                  $(".page_three").show();
+                  $(".page_one").hide();
+                  $(".page_two").hide();
+                  $(".page_four").hide();
+                  $(".page_five").hide();
+                  $(".page_six").hide();
+            })
+     
+            $(".yuanye").click(function(){
+                $(this).addClass("active");
+                $(".tuijian").removeClass("active");
+                $(".danpin").removeClass("active");
+                $(".shalong").removeClass("active");
+                $(".mianbu").removeClass("active");
+                $(".shenti").removeClass("active");
+                  $(".page_four").show();
+                  $(".page_one").hide();
+                  $(".page_two").hide();
+                  $(".page_three").hide();
+                  $(".page_five").hide();
+                  $(".page_six").hide();
+            })
+      
+            $(".mianbu").click(function(){
+                $(this).addClass("active");
+                $(".tuijian").removeClass("active");
+                $(".danpin").removeClass("active");
+                $(".shalong").removeClass("active");
+                $(".yuanye").removeClass("active");
+                $(".shenti").removeClass("active");
+                  $(".page_five").show();
+                  $(".page_one").hide();
+                  $(".page_two").hide();
+                  $(".page_three").hide();
+                  $(".page_four").hide();
+                  $(".page_six").hide();
+            })
+     
+            $(".shenti").click(function(){
+                $(this).addClass("active");
+                $(".tuijian").removeClass("active");
+                $(".danpin").removeClass("active");
+                $(".shalong").removeClass("active");
+                $(".yuanye").removeClass("active");
+                $(".mianbu").removeClass("active");
+                  $(".page_six").show();
+                  $(".page_one").hide();
+                  $(".page_two").hide();
+                  $(".page_three").hide();
+                  $(".page_four").hide();
+                  $(".page_five").hide();
+            })
+      })
+
+
+</script>

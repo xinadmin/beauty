@@ -1,0 +1,91 @@
+.header{
+		width: 100%;
+		height: 2.5rem;
+		background-color: white;
+}
+
+.location {
+	width: 22%;	
+	height: 2.5rem;
+	float: left;
+}
+
+.location_img{
+	width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.5rem 0 0 0.5rem;
+	
+}
+
+.dizhi{
+	line-height: 2.5rem; 
+	font-size: 0.7rem;
+	color: pink;
+	float: right;
+}
+.sousuo{
+	width: 72%;
+    font-size: 0.6rem;
+    display: inline-block;
+    height: 1.7rem;
+    line-height: 1.7rem;
+    color: #999999;
+    border-radius: 0.4rem;
+    position: absolute;
+    left: 22.5%;
+    top: 0.39rem;
+    background: #6b575714 url(images/search.png) no-repeat 8px center;
+    background-size: 20px 20px;
+}
+.sousuo img{
+	width: 1rem;
+    float: left;
+    margin: 0.4rem 0.4rem;
+}
+.kuang{
+	width: 100%;
+	height: 7.5rem;
+	 border-top: 0.01rem solid #c0bfbf;
+}
+.kuang .touxiang{
+	width: 3.5rem;
+	height: 3.5rem;
+	margin: 0.5rem;
+	float: left;
+}
+.news_kuang{
+	width: 76%;
+    height: 44%;
+    float: left;
+    margin-top: 0.6rem;
+}
+#dianming{
+    font-size: 1rem;
+    line-height: 1.4rem;
+}
+#address{
+	font-size: 0.66rem;
+    line-height: 1.5rem;
+    color: #908989;
+}
+.news_kuang #minying{
+	width: 24%;
+    height: 1.5rem;
+    float: right;
+    margin: -1.5rem 0.3rem 0 0;
+}
+.juli{
+	width: 94%;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    float: left;
+    text-align: center;
+    font-size: 0.7rem;
+    color: #646161;
+    border: 0.01rem solid #dfdddd;
+    margin-left: 0.55rem;
+}
+.juli #dizhi{
+	width: 6%;
+    height: 1rem;
+}

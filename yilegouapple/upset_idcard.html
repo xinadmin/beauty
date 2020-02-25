@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+    <link rel="stylesheet" href="css/base.css" />	
+    <link rel="stylesheet" href="css/upset.css" />
+		<title>绑定身份证号</title>
+		<style type="text/css">
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color:#fd4404 ;box-shadow: none;border-bottom: solid 1px #E1E1E1;" >
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;font-weight: 500;">绑定身份证号</span></button>
+			
+		</header>
+		<div class="mui-content" style="background: #f0f4f3;">
+					<div class="mui-input-row" id="new" >
+						<label >身份证号</label>
+						<input type="number"  id="idcard"  placeholder="请输入身份证号">
+					</div>
+			<label id="tishi">绑定的身份证号，不能再次操作，请谨慎操作</label>
+			<button   id="yanzheng" class="baocun" onclick="add_pass()">保存</button>
+		</div>
+		
+	</body>
+</html>
+<script type="text/javascript" src="js/mui.min.js" ></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+<script>
+	var local;
+	var uid,idcard;
+	mui.init({
+		swipeBack: true
+	});
+    var url_app=mui.app_url();
+	 
+	$(function(){
+     local=window.localStorage;
+        uid=local.getItem("uid");
+        idcard=local.getItem("idcard");
+        if(idcard!="" && idcard!=null) {
+        	$("#idcard").val(idcard);
+        	$("#idcard").attr("readonly",true);
+        	$("#yanzheng").attr("disabled",true);
+        	$("#yanzheng").css("background","#46A3ff");
+        }
+	})
+		//第一次添加支付密码
+		
+	var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;  
+	function add_pass(){
+		 var idcard=$("#idcard").val();
+            if(uid !="" || uid !=null){
+			if(idcard != null && idcard!=""&&idcard.length==18 && reg.test(idcard) ) {
+				var wd = plus.nativeUI.showWaiting();
+				mui.ajax(url_app+'SysUser/updateTel', {
+					type: 'POST', //HTTP请求类型  
+					timeout: 10000, //超时时间设置为10秒；
+					data: {
+						Idcard: idcard, //新改号码
+						uid: uid           //用户uid
+					},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+					success: function(data) {
+						wd.close();
+						if(data == 1) {
+							mui.back();
+							local.setItem("idcard",idcard);
+						} else {
+							mui.toast("绑定失败");
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；                               
+                        mui.toast("系统繁忙，稍后再试");
+							wd.close();
+					}
+				});
+			} else {
+				mui.toast("请输入正确的身份证号");
+			}
+			} else {
+				mui.toast("当前状态无法绑定身份证号，请退出重新登录进来");
+				
+			}
+	}
+
+</script>

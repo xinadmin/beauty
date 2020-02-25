@@ -1,0 +1,90 @@
+<view class='content_div_all'>
+  <view id="header">
+    <s classfl>{{shipping_type}}</s>
+    <view class='img_div fr'>
+      <image src="http://yiyun.zhonyou.cn/sprogram_img/order_bg1.png" />
+    </view>
+  </view>   
+  <view class='address_message'>
+    <image src='http://yiyun.zhonyou.cn/webapp_img/dingwei.png'></image>
+    <view class='address_message_all'>
+      <view class='address_message_name'>提货人：
+        <view class='name'>{{user_name}}</view> <view class='tel'>
+        {{receiver_mobile}}</view>
+    </view>
+    <view class='address_message_address'>提货地址：
+      <text>{{meirongyuanaddress}}</text>
+    </view>
+  </view>
+</view>
+<view class="produce">
+  <view class="produce_shop">
+    <s class="shop_name" data-id="">{{meirongyuan_name}}</s>
+  </view>
+  <view class="produce_message">
+    <view class='logo_div'>
+      <image src="{{goods_img}}" id="produce_img" class="produce_img" />
+    </view>
+    <view class='procuce_message_content'>
+      <view class='procuce_message_content_right'>
+        <view class="produce_name">{{goods_name}} </view>
+        <view class='guige_all'>类型：
+          <em class="guige">{{goods_hanliang}}</em>
+          <s class="fr">x
+            <i class="shulianng">{{goods_num}}</i>
+          </s>
+        </view>
+        <!-- <view class="col-red fr">￥
+          <s class="price">140</s>
+        </view> -->
+      </view>
+    </view>
+  </view>
+
+</view>
+</view>
+<view id="price">
+  <view class="jiacu">商品总价
+    <s>￥{{goods_money}}</s>
+  </view>
+  <view class="jiacu">订单优惠
+    <s>-￥{{discount_money}}</s>
+  </view>
+  <view>订单总价
+    <s>￥{{pay_money}}</s>
+  </view>
+</view>
+<view class='detail_order_message'>
+<view class='message_one'>
+<view class='message_one_title'>订单编号:</view>{{out_trade_no}}
+</view>
+<view class='message_one' wx:if="{{ order_no!=null }}">
+<view class='message_one_title'>优乐美交易号:</view>{{order_no}}
+</view>
+<view class='message_one' wx:else>
+<view class='message_one_title'>优乐美交易号:</view>-- -- --
+</view>
+<view class='message_one'>
+<view class='message_one_title'>创建时间:</view>{{create_time}}
+</view>
+<view class='message_one' wx:if="{{ pay_time!=null }}">
+<view class='message_one_title'>付款时间:</view>{{pay_time}}
+</view>
+<view class='message_one' wx:else>
+<view class='message_one_title'>付款时间:</view>-- -- --
+</view>
+<view class='message_one'  wx:if="{{ finish_time!=null }}">
+<view class='message_one_title'>成交时间:</view>{{finish_time}}
+</view>
+<view class='message_one' wx:else>
+<view class='message_one_title'>成交时间:</view>-- -- --
+</view>
+<view class='tel_shop' bindtap='tel'>
+ <view>拨打电话
+</view>
+</view>
+<button class='com_buy' bindtap='pay'  wx:if="{{ pay_time==null }}">立即支付</button>
+</view>
+<!-- <view class='more'>
+更多 <text>评价</text>
+</view> -->

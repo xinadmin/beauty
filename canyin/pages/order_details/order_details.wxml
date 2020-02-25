@@ -1,0 +1,77 @@
+<view class='big_box'>
+    <view class='top'>
+        <view class='top_center'>
+            <view class='top_center_top'>
+                <text class='textone'>商品信息</text>
+                <text class='texttow'>{{array.bName}}</text>
+            </view>
+            <view class='shangpin' wx:for="{{array.menuList}}" wx:key="xxxx">
+              <text class='goods'>{{item.menuName}}</text>
+              <text class='goods_money'>￥{{item.mPrice}}</text>
+              <text class='goods_shuliang'>x  {{item.menuNum}}</text>
+              </view>
+
+        </view>
+    </view>
+    <view class='center'>
+        <view class='center_center'>
+            <view class='center_li'>
+                <text class='name'>下单商品总额：</text>
+                <text class='money'>￥{{array.orderMoney}}</text>
+            </view>
+            <view class='center_li'>
+                <text class='name'>优惠减免：</text>
+                <text class='money'>￥0.00</text>
+            </view>
+            <view class='center_li'>
+                <text class='name'>茶位费：</text>
+                <text class='money'>￥{{array.teaPosition}}/人</text>
+            </view>
+             <!-- <view class='center_li'>
+                <text class='name'>就餐人数：</text>
+                <text class='money'>{{array.diners}}人</text>
+            </view> -->
+            <view class='center_li'>
+                <text class='name'>优惠券抵扣：</text>
+                <text class='money'>￥0.00</text>
+            </view>
+        </view>
+        <view class='center_bottom'>
+             <text class='yingfu'>应付金额：</text>
+             <text class='zong_money'>￥{{array.payMoney}}</text>
+        </view>
+    </view>
+    <view class='bottom'>
+        <view class='bottom_li'>
+            <view class='bottom_one'>
+                <text class='textone'>订单信息</text>
+            </view>
+             <view class='shijian'>
+              <text class='lei'>订单号：</text>
+              <text class='shuxing'>{{array.tOrderNo}}</text>
+              </view>
+               <view class='shijian'>
+              <text class='lei'>预约桌号：</text>
+              <text class='shuxing_l'>{{array.tName}}</text>
+              </view>
+               <view class='shijian'>
+              <text class='lei'>支付方式：</text>
+              <text class='shuxing_l'>在线支付</text>
+              </view>
+               <view class='shijian'>
+              <text class='lei'>创建时间：</text>
+              <text class='shuxing_l'>{{array.createTime}}</text>
+              </view>
+               <view class='shijian'>
+              <text class='lei'>就餐时间：</text>
+              <text class='shuxing_l'>{{array.selectionTime}}</text>
+              </view>
+        </view>
+    </view>
+    <navigator url='/pages/dot/dot?bid={{array.bId}}&type=1'>
+      <view class='anniu'>
+        再来一单
+      </view>
+    </navigator>
+    
+</view>

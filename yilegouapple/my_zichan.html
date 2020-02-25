@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+    <link rel="stylesheet" href="css/mui.min.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/my_zichan.css" />
+    <title>我的资金</title>
+<style type="text/css">
+		
+</style>
+</head>
+<body >
+	<header class="mui-bar mui-bar-nav" style="box-shadow: none;background-color:#fd4404 ;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">我的资金</h1>
+		</header>
+	
+				
+	<section class="my_list mui-content" >
+		<ul>
+			<li><a  href="javascript:;">余额<s id="yuer"></s></a></li>
+			<li id="jifen_bg"><a  href="javascript:;">乐购币<s id="jifen"></s></a></li>
+			<li id="my_bankcard"><a href="javascript:;">我的银行卡<s>安全便捷</s></a></li>
+			<li id="zhifu_hongbao"><a href="javascript:;">支付红包<s></s></a></li>
+			<li id="lianming_ka"><a href="javascript:;">联名卡<s></s></a></li>
+		</ul>	
+	</section>
+	
+</body>
+</html>
+<script type="text/javascript" src="js/mui.min.js" ></script>
+<script>
+	mui.plusReady(function(){
+		var current=plus.webview.currentWebview();
+		check_zijin()
+		});
+    var url_app=mui.app_url();
+		
+//	 document.getElementById('jifen').addEventListener('tap', function() {
+//			mui.openWindow({
+//				url: 'recharge.html',
+//				id: 'recharge'
+//			});
+//		});	
+    document.getElementById('my_bankcard').addEventListener('tap', function() {
+			mui.openWindow({
+				url: 'my_bankcard.html',
+				id: 'my_bankcard'
+			});
+		});
+		document.getElementById("zhifu_hongbao").addEventListener('tap',function(){
+			mui.toast("该功能后续开发，尽情期待");
+		})
+		document.getElementById("lianming_ka").addEventListener('tap',function(){
+			mui.toast("该功能后续开发，尽情期待");
+		})
+		function check_zijin(){
+		var storage = window.localStorage;
+		var uid = storage.getItem("uid");
+		if(!uid){
+			mui.toast("请退出，重新登录");
+		}else{
+    	mui.ajax({
+			url: url_app+'SysUserAccount/selSysUserAccountTJuid', //用户账户查询,
+			data: {
+				uid:uid
+			},
+			type: 'post',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			},
+			datatype: 'json',
+			success: function(data) {
+				//解析数组
+				if(!data){
+					mui.toast("系统繁忙,请重新登录");
+				}else {
+					document.getElementById("jifen").innerHTML=data.point;
+					document.getElementById("yuer").innerHTML=data.balance.toFixed(2);
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				mui.toast("系统繁忙,请重新登录");
+			}
+		})
+    	}
+    }
+			window.addEventListener("refresh",function(evt){
+			check_zijin();
+		})
+</script>

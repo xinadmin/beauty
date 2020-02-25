@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link href="css/daifukuan_dingdan_xiangqing.css" rel="stylesheet" />
+		<title>待付款产品详情界面</title>
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color:#fd4404 ;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #ffffff;">订单详情</h1>
+		</header>
+		<div class="mui-content" id="content">
+			<div id="shouhuo">
+				<p class="shouhuo_name">收货人：<i id="shouhuo_name">{{receiverName}}</i> <s id="shouhuo_tel">{{receiverMobile}}</s></p>
+				<p class="shouhuo_dizhi">收货地址：<s id="dizhi">{{receiverAddress}}</s></p>
+
+			</div>
+			<div class="chanpin">
+				<h1 class="chanpin_shop"><s >{{shopName}}</s ><img src="http://yiyun.zhonyou.cn/webapp_img/go.png"/></h1>
+				<div class="chanpin_message" v-for="item in goods_list" :data-id="item.goodsId">
+					<img :src="item.goodsPicture" onerror="this.src='http://yiyun.zhonyou.cn/webapp_img/moren.png'"/>
+					<div>
+						<h2 class="chanpin_name">{{item.goodsName}}</h2>
+						<h3><em>类型：{{item.kuName}}</em>          <s>x<i class="shulianng">{{item.num}}</i></s></h3>
+						<h4 class="col-red">￥<s class="price">{{item.price}}</s></h4>
+					</div>
+				</div>
+			</div>
+			<div id="shangpin_all">
+
+				<p>商品总价 <s class="price_produce fr">￥{{goodsMoney}}</s></p>
+				<p>运费(快递) <s class="price_yunfei fr">￥{{shippingMoney}}</s></p>
+				<p id="price_youhui">商品优惠<s class="fr">9.5折</s></p>
+				<h1>需付款 <s class="price_all fr">￥{{payMoney}}</s></h1>
+			</div>
+              	<div id="bianhao">
+					<p>订单编号:{{orderNo}}</p>
+					<p>创建时间:{{createTime}}</p>
+
+				</div>
+			<div class="dingdan_caozuo">
+				<button @tap="fukuan()">付款</button>
+				<button @tap="canel()">取消订单</button>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script src="js/vue.min.js" type="text/javascript"></script>
+<script>
+	mui.init({
+		swipeBack: true
+	});
+	var wait = null;
+	var webview_detail=null;
+		var url_app=mui.app_url();
+	
+	mui.plusReady(function() {
+		var ding_pay = plus.webview.getWebviewById("dingdan_pay");
+		if(ding_pay != null) {
+			ding_pay.hide(3000);
+		}
+		webview_detail = plus.webview.getWebviewById("chanpin_xiangqing");
+		if(!webview_detail) {
+			webview_detail = mui.preload({
+				url: "chanpin_xiangqing.html",
+				id: "chanpin_xiangqing"
+			})
+		}
+		var current=plus.webview.currentWebview();
+		current.addEventListener("hide", function(e) {
+			window.scrollTo(0, 0);
+			news.resetData();
+		}, false);
+		current.setStyle({
+			scrollIndicator: 'none'
+		});
+	})
+
+	function getDefaultData() {
+		return {
+			receiverMobile: "",
+			receiverAddress: "",
+			receiverName: "",
+			uid: "",
+			shopId: "",
+			orderId: "",
+			shopName: "",
+			goodsMoney: "",
+			payMoney: "",
+			orderMoney: "",
+			shippingMoney: "",
+			goods_list: [],
+			orderNo:"",
+			createTime:"",
+			outTradeNo:"",
+			orderNo:""
+			
+		}
+	};
+
+	function convert(items) {
+		var newItems = [];
+		items.forEach(function(item) {
+			newItems.push({
+				goodsId:item.goodsId,
+				goodsName: item.goodsName,
+				skuName: item.skuName,
+				price: item.price,
+				num: item.num,
+				price: item.price,
+				goodsPicture: item.goodsPicture
+			});
+		});
+		return newItems;
+	}
+	mui("body").on("tap",".chanpin_message",function(){
+		mui.fire(webview_detail, 'get_detail', {
+			goodsId: $(this).attr("data-id")
+		});
+		setTimeout(function() {
+			webview_detail.show("slide-in-right", 300);
+		}, 150);
+		
+	})
+	var news = new Vue({
+		el: '#content',
+		data: getDefaultData(),
+		methods: {
+			resetData: function() { //重置数据
+				Object.assign(this.$data, getDefaultData());
+			}
+		}
+	});
+//  加载订单信息
+	window.addEventListener("dingdan_weifukuan", function(event) {
+		news.orderId = event.detail.order_id;
+		if(!news.orderId) {
+			return;
+		}
+		var wd = plus.nativeUI.showWaiting();
+		mui.getJSON(url_app+"NsOrder/selnsOrderGoodsANDnsOrderTJorderId?orderId=" + news.orderId + "", function(rsp) {
+			if(rsp && rsp.length != null) {
+				$.each(rsp, function(i, item) {
+					news.receiverMobile = item.receiverMobile;
+					news.receiverAddress = item.receiverAddress;
+					news.receiverName = item.receiverName;
+					news.shopId = item.shopId;
+					news.orderId = item.orderId;
+					news.shopName = item.shopName;
+					news.goodsMoney = item.goodsMoney.toFixed(2);
+					news.payMoney = item.payMoney.toFixed(2);
+					news.orderMoney = item.orderMoney.toFixed(2);
+					news.shippingMoney = item.shippingMoney.toFixed(2);
+					news.createTime=item.createTime;
+					news.outTradeNo=item.outTradeNo;
+					news.orderNo=item.orderNo;
+					news.uid = item.buyerId;
+					news.goods_list = news.goods_list.concat(convert(item.nsOrderGoods));
+				});
+			} else {
+				return;
+			}
+			wd.close();
+		})
+	})
+	var back_old = mui.back;
+	mui.back = function() {
+       
+		mui.fire(plus.webview.getWebviewById("gouwuche"), "refresh", null);
+		mui.fire(plus.webview.getWebviewById("chanpin_xiangqing"), "refresh", null);
+		back_old();
+	}
+//付款跳转
+	function fukuan() {
+		mui.openWindow({
+			url: "/order/dingdan_pay.html",
+			id: "dingdan_pay",
+			extras: {
+				order_id: news.orderId,
+				shippingMoney: news.shippingMoney,
+				produce_all_price: news.payMoney, //产品总价
+				shop_id: news.shopId,
+				uid: news.uid
+			}
+		})
+	}
+
+	function canel_order() {
+		var wait = plus.nativeUI.showWaiting();
+		mui.getJSON(url_app+"NsOrder/updTJorderId?orderId=" + news.orderId + "&orderStatus=5", function(rsp) {
+			if(rsp>0) {
+				mui.fire(plus.webview.getWebviewById("my_dingdan"), "refresh", null);
+				mui.back();
+			} else {
+				return;
+			}
+			wait.close();
+			wait = null;
+		})
+	}
+//  取消订单
+	function canel() {
+		if(wait) {
+			return;
+		}
+		var btnArray = ['否', '是'];
+		mui.confirm('是否取消订单', '依乐购', btnArray, function(e) {
+
+			if(e.index == 1) {
+				canel_order();
+			} else if(e.index == 0) {
+				return;
+			}
+		})
+	}
+</script>

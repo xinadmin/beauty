@@ -1,0 +1,60 @@
+<include src="../../common/common"/>
+
+<!-- <view wx:for="{{array}}">
+  {{index}}: {{item.message}}
+</view> -->
+
+<view class='beauty_all' wx:for="{{beauty_list}}" wx:key="unique"> 
+<navigator url="/pages/Beauty_detail/Beauty_detail?beauty_id={{item.id}}&min={{item.min}}">
+  <view class='beauty_list'>
+    <view class='beauty_logo'>
+      <image src='{{item.meirongyuan_logo}}'></image>
+    </view>
+    <view class='beauty_message'>
+      <view class='beauty_message_name'>{{item.meirongyuan_name}}
+        <view class='beauty_message_name_img'>
+          <image src='../img/beauty_type.png'></image>
+        </view>
+      </view>
+      <view class='beauty_message_address'>{{item.meirongyuan_address}}</view>
+
+   
+      </view>
+  </view>
+ <view class='beauty_min'>
+      <view wx:if="{{item.min >1000}}" class='beauty_min_km'>门店地址{{item.min/1000}}KM</view>
+       <view wx:if="{{item.min <500}}" class='beauty_min_km'>门店地址500m</view>
+       <view wx:else class='beauty_min_km'>门店地址{{item.min}}m</view>
+    </view>
+</navigator>
+</view>
+
+
+<!-- <navigator url="/pages/Beauty_detail/Beauty_detail">
+<view class='beauty_all'>
+  <view class='beauty_list'>
+    <view class='beauty_logo'>
+      <image src='http://yiyun.zhonyou.cn/upload/herd_img/2018-11-18/b8a1c3ec-6edf-403a-a67c-6919dc3fc022.jpg'></image>
+    </view>
+    <view class='beauty_message'>
+      <view class='beauty_message_name'>依云美容门诊部
+        <view class='beauty_message_name_img'>
+          <image src='../img/beauty_type.png'></image>
+        </view>
+      </view>
+      <view class='beauty_message_address'>广东省广州市白云区齐富路尚明大厦 906</view>
+
+    </view>
+   
+  </view>
+ <view class='beauty_min'>
+      <view class='beauty_min_km'>门店地址>500</view>
+    </view>
+</view>
+</navigator> -->
+
+ <view class="body-view">  
+        <loading hidden="{{hidden}}" bindchange="loadingChange">  
+            加载中...  
+        </loading>  
+    </view>  

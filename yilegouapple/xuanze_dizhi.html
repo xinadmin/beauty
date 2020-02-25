@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/address_manager.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<title>选择地址界面</title>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;background-color:#fd4404 ;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">选择收货地址</h1>
+			<button class="mui-btn mui-btn-blue mui-btn-link mui-pull-right" id="manager" style="color: #fff;">管理</button>
+		</header>
+		<div class="mui-content" id="mui-content">
+			<!--<article id='shouhuo' class='moren_address'>
+								<p class='shouhuo_name'><i id='shouhuo_name'>" + item.shouhuoName + "</i> <s id='shouhuo_tel'>" + item.shouhuoTel + "</s></p>" +
+								<p class='shouhuo_dizhi'><s class='dizhi'>" + item.shouhuoAddress + "</s><i ></i> </p></div>-->
+			<div class="new_dizhi" id="new_dizhi">
+				<button>新增收货地址</button>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script>
+	var uid;
+	var manager_page;
+	var number=0;
+	mui.init({
+		swipeBack: true
+	});
+    var url_app=mui.app_url();
+	
+	mui.plusReady(function() {
+		uid = window.localStorage.getItem("uid");
+		if(uid != null) {
+			mui.ajax({
+				url:url_app+"SysUserAddress/selTJuidQuanBu",
+				type: 'POST', //HTTP请求类型  
+				dataType: 'json', //服务器返回json格式数据  
+				data: {
+					userid: uid
+				},
+				timeout: 10000, //超时时间设置为10秒；
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				},
+				success: function(data) {
+					if(data != null) {
+						$.each(data, function(i, item) {
+							$("#mui-content").append("<article id='shouhuo'>" +
+								"<p class='shouhuo_name'><i id='shouhuo_name'>" + item.shouhuoName + "</i> <s id='shouhuo_tel'>" + item.shouhuoTel + "</s></p>" +
+								"<p class='shouhuo_dizhi'><s class='dizhi'>" + item.shouhuoAddress + "</s><i class='moren_bg'></i> </p></div>");
+						    ++number;
+						})
+						if(number==5){
+							$("#new_dizhi").hide();
+						}else {
+							$("#new_dizhi").show();
+						}
+						$("#shouhuo").eq(0).addClass("moren_address");
+						$("#shouhuo").eq(0).children("p").find(".moren_bg").text("默认");
+						$("#shouhuo").eq(0).children("p").find(".moren_bg").addClass("moren");
+						
+					} else {
+						return;
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					mui.toast("系统繁忙,稍后再试");
+				}
+			});
+		}
+		var self = plus.webview.currentWebview();
+	    self.addEventListener("hide", function(e) {
+	    	self.reload(true);
+	}, false);
+	manager_page=plus.webview.getWebviewById("manager_dizhi");
+     if(!manager_page){
+	 manager_page=mui.preload({
+	 		url: "manager_dizhi.html",
+			id: "manager_dizhi"
+	 })
+	 }
+	    mui('#mui-content').on('tap', 'article', function(evt) {
+			var shouhuo_name = $(this).find("#shouhuo_name").text();
+			var shouhuo_tel = $(this).find("#shouhuo_tel").text();
+			var dizhi = $(this).find(".dizhi").text();
+			window.localStorage.setItem("shouhuo_name", shouhuo_name);
+			window.localStorage.setItem("shouhuo_tel", shouhuo_tel);
+			window.localStorage.setItem("dizhi", dizhi);
+			mui.back();
+			mui.fire(plus.webview.getWebviewById("cart_Settlement"), 'show', null);
+			mui.fire(plus.webview.getWebviewById("kedui_dingdan"), 'show', null);
+			mui.fire(plus.webview.getWebviewById("meirongyuan_produce_buy"), 'show', null);
+             
+		})
+	});
+	window.addEventListener("xuanze_refresh", function(event) {
+	    plus.webview.currentWebview().reload();
+	})
+	var name = null;
+	var web = null;
+	$(function() {
+		$("#mui-content  article:nth-child(1) .shouhuo_dizhi i").addClass("moren").text("默认");
+		var storage = window.localStorage;
+		name = storage.getItem("userAccount");
+	})
+	document.getElementById("new_dizhi").addEventListener("tap", function() {
+		mui.openWindow({
+			url: "tianjia_address.html",
+			id: "tianjia_address"
+		})
+	})
+	document.getElementById("manager").addEventListener("tap", function() {
+		mui.fire(manager_page,"select_address",null);
+		manager_page.show();
+	})
+	window.addEventListener("show",function(evt){
+		plus.webview.currentWebview().reload();
+	})
+	var mui_old_back = mui.back;
+			mui.back = function() {
+				plus.webview.currentWebview().hide("auto", 300);
+				mui_old_back();
+			}
+			window.addEventListener("manager_refresh",function(evt){
+		plus.webview.currentWebview().reload();
+	})
+</script>

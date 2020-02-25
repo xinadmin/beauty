@@ -1,0 +1,77 @@
+page {
+  background-color: #FFB7C5;
+}
+.logo_img {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 60rpx auto 40rpx;
+  border-radius: 50%;
+  background-color: #f4f4f4;
+}
+.logo_img image {
+  width: 170rpx;
+  height: 170rpx;
+  margin: auto auto ;
+  border-radius: 50%;
+}
+.input_form {
+  width: 100%;
+  margin: 0 auto
+}
+.input_form .input_bg {
+  width: 96%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-bottom: solid 1px #E3E3E3;
+ 
+}
+.input_form .input_bg image {
+  width: 60rpx;
+  height: 60rpx;
+  float: left;
+  margin: 25rpx ;
+ 
+}
+input::-webkit-input-placeholder {
+        color: #fff;
+    }
+    
+.place-holder {
+      color: #fff;
+}
+.input_form .input_bg input {
+  width: 550rpx;
+  float: left;
+  height: 110rpx;
+  font-size: 29rpx;
+  padding-left: 16rpx;
+  color: #fff;
+  
+}
+.input_form .input_bg:last-child {
+  border: none;
+  text-align: center;
+  padding-top: 26rpx;
+}
+.input_form .input_bg .login {
+  margin-top: 26rpx;
+  display: inline-block;
+  width: 230rpx;
+  margin: 0 auto;
+  box-shadow: none;
+  padding: 16rpx;
+  border-radius: 0;
+  color: #fff;
+ text-align: center;
+  background-color: #F3C2C6;
+  border: none;
+}
+.select_pass
+ {
+  width: 96%;
+  margin: 0 auto;
+}
+.select_pass .upset_password{
+  color: #fff;
+  font-size: 31rpx;
+}

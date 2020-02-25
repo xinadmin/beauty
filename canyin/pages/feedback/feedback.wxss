@@ -1,0 +1,24 @@
+.xiadancg{
+  width: 100%;
+  height: 450rpx;
+  background-color: white;
+  border-top: 25rpx solid #ECEEEB;
+}
+
+.chenggong{
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 240rpx;
+  margin-left: 300rpx;
+}
+
+.xiadantx{
+  font-size: 23rpx;
+  color: gray;
+  width: 620rpx;
+  height: 50rpx;
+  line-height: 38rpx;
+  margin-left: 55rpx;
+  text-align: center;
+  margin-top: 16rpx;
+}

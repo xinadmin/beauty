@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/address_manager.css" />
+		<style type="text/css">
+
+		</style>
+		<title>管理地址</title>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #FD4404;">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;font-weight: 500;">修改收货地址</span></button>
+
+		</header>
+		<div class="mui-content" id="mui-content" style="">
+			<div class="mui-collapse-content">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>收货人</label>
+						<input type="text" class="mui-input-clear" id="username" placeholder="">
+					</div>
+
+					<div class="mui-input-row ">
+						<label>手机号码</label>
+						<input type="tel" class=" mui-input-clear" id="tel" placeholder="">
+					</div>
+
+					<div class="mui-input-row ">
+						<label>地址</label>
+						<input type="text" class=" mui-input-clear" id="address" placeholder="">
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="new_dizhi" id="new_dizhi">
+			<a href="javascript:void(0);" onclick="open_new_page()"><button>确认修改</button></a>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	mui.init({
+		swipeBack: true
+	});
+	var account;
+	var id;
+	var url_app=mui.app_url();
+	mui.plusReady(function() {
+		var storage = window.localStorage;
+		uid = storage.getItem("uid");
+		if(!uid) {
+			mui.toast("当前用户未登录");
+			plus.nativeUI.toast("当前用户未登录");
+			return;
+		}
+		var self = plus.webview.currentWebview();
+		$("#address").val(self.address);
+		$("#username").val(self.shouhuoName);
+		$("#tel").val(self.shouhuoTel);
+		id = self.uid;
+	})
+	var i = 0;
+	window.addEventListener("manager_page", function(evt) {
+		$("#address").val(evt.detail.address);
+		$("#username").val(evt.detail.shouhuoName);
+		$("#tel").val(evt.detail.shouhuoTel);
+		id = evt.detail.uid;
+	})
+
+	function open_new_page() {
+		var btnArray = ['否', '是'];
+		mui.confirm('确认修改？', '收货地址', btnArray, function(e) {
+			if(e.index == 1) {
+				var address = $("#address").val();
+				var username = $("#username").val();
+				var tel = $("#tel").val();
+				 if(!(/^1[34578]\d{9}$/.test(tel))){ 
+				   mui.toast("请输入正确手机号");
+				   return false;
+				 }
+				$.ajax({
+					url: url_app+"SysUserAddress/update",
+					type: 'POST', //HTTP请求类型  
+					data: {
+						uid: id,
+						sj: tel,
+						name: username,
+						adder: address
+					},
+					dataType: "json",
+					success: function(data) {
+						if(data == 1) {
+							mui.back();
+							mui.fire(plus.webview.getWebviewById("manager_dizhi"), "manager_refresh", null);
+						} else {
+							mui.toast("系统繁忙++， 稍后再试 ");
+							return;
+						}
+					},
+					error: function() {
+						mui.toast("系统繁忙， 稍后再试 ");
+						//异常处理；                               
+					}
+				})
+
+			} else {
+				return;
+			}
+		})
+	}
+	mui.back(function() {
+		mui.fire(plus.webview.getWebviewById("xuanze_dizhi"), "manager_refresh", null);
+	})
+</script>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"></meta>
+		<link rel="stylesheet" href="../css/mui.css" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<title>商家个人中心</title>
+		<style type="text/css">
+			#item_fenlei {
+				width: 100%;
+				overflow: hidden;
+				background: #fff;
+				border-bottom: solid 1px #ddd;
+			}
+			
+			#item_fenlei li {
+				float: left;
+				width: 33%;
+				color: #222222;
+				text-align: center;
+				height: 3.5rem;
+			}
+			
+			#item_fenlei li p {
+				color: #222222;
+				height: 2.1rem;
+				line-height: 2.1rem;
+			}
+			
+			#item_fenlei li a {
+				display: inline-block;
+			}
+			
+			.header_shop {
+				width: 100%;
+				background: #fff;
+				overflow: hidden;
+			}
+			
+			.header_shop img {
+				float: left;
+				margin: 1%;
+				background-color: #fff;
+			}
+			
+			.header_shop p {
+				float: left;
+				height: 2.2rem;
+				font-size: 1.0rem;
+				line-height: 2.2rem;
+				color: #080808;
+			}
+			
+			.header_shop button {
+				float: right;
+				background: #ff4404;
+				height: 1.9rem;
+				border-radius: 5px;
+				line-height: 1.9rem;
+				font-size: 1.0rem;
+				margin: 1%;
+				display: inline-block;
+				border: solid 1px #ddd;
+				color: #fff;
+				padding-right: 0.4rem;
+				padding-left: 0.1rem;
+				font-size: 0.85rem;
+			}
+			
+			.header_shop button s {
+				display: inline-block;
+				width: 1.2rem;
+				height: 1.3rem;
+				background: url(http://yiyun.zhonyou.cn/webapp_img/kong_love.png) no-repeat 0.2rem 0.4rem;
+				background-size: 0.9rem 0.9rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: #ff4404;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="font-weight: 600;color: #fff;">店铺详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="header_shop">
+				<img  id="shop_logo" width="25%" />
+				<p id="shopname">官方旗舰店</p>
+				<button id="guanzhu"><s></s><i>关注</i></button>
+			</div>
+		</div>
+		<div id="item_fenlei">
+			<ul>
+				<li id="guilei" data-id="1">
+					<p id="all_produce">0</p>
+					<a>全部商品</a>
+				</li>
+				<li style="margin-top: 0.7rem; width: 0.1%;height: 2.0rem;border-right: solid 1px #ddd;"></li>
+				<li id="guilei" data-id="2">
+					<p id="hot_produce">0</p>
+					<a>热销</a>
+				</li>
+				<li style="margin-top: 0.7rem; width: 0.1%;height: 2.0rem;border-right: solid 1px #ddd;"></li>
+
+				<li id="guilei" data-id="3">
+					<p id="new_produce">0</p>
+					<a>上新</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mui-scroll" style="color: #000000; font-size: 0.9rem; margin-top: 0.2rem;">
+			<ul class="mui-table-view">
+
+				<li class="mui-table-view-cell" style="display: none;">店铺简介&nbsp;&nbsp;<s class="jianjie" style="color: #5F5F5F;"></s></li>
+				<li class="mui-table-view-cell">开店时间&nbsp;&nbsp;<s class="time" style="color: #5F5F5F;"></s></li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script>
+			var shopid;
+			var shop_name;
+			var all;
+			var hot;
+			var New;
+			var shopLogo;
+			var shopCollect;
+			var shocuang = false;
+			   var url_app=mui.app_url();
+			mui.plusReady(function() {
+				var buyer_id = window.localStorage.getItem("uid");
+				var currentpage = plus.webview.currentWebview();
+				shop_name = currentpage.shop_name;
+				shopid = currentpage.shop_id;
+				all = currentpage.all;
+				hot = currentpage.hot;
+				New = currentpage.New;
+				document.getElementById("shopname").innerText = shop_name;
+				document.getElementById("all_produce").innerText = all;
+				document.getElementById("hot_produce").innerText = hot;
+				document.getElementById("new_produce").innerText = New;
+				mui.getJSON(url_app+"shop/selBusinessInformation?shopId=" + shopid + "", function(rsp) {
+					shopLogo = rsp.shopLogo;
+					shopCollect = rsp.shopCollect;
+					$("#shop_logo").attr("src", shopLogo);
+					var list=[];
+					list=rsp.shopCreateTime.split(".");
+					$(".time").text(list[0]);
+				})
+				
+				mui.ajax({
+					url: url_app+"SysUserFavorites/selConut",
+					type: "POST",
+					data: {
+						uid: buyer_id,
+						shop_id: shopid,
+						fav_id: shopid,
+						fav_type: "shop"
+
+					},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+					success: function(data) {
+						if(data > 0) {
+							shocuang = true;
+							$("#guanzhu").css({
+								"background": "#fff",
+								"color": "#d81e06"
+							});
+							$("#guanzhu").find("i").text("已关注");
+							$("#guanzhu").find("s").css("background-image", "url(http://yiyun.zhonyou.cn/webapp_img/kong_love_red.png)");
+						} else {
+							shocuang = false;
+							$("#guanzhu").css({
+								"background": "#d81e06",
+								"color": "#fff"
+							});
+							$("#guanzhu").find("i").text("关注");
+							$("#guanzhu").find("s").css("background-image", "url(http://yiyun.zhonyou.cn/webapp_img/kong_love.png)");
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						shocuang = false;
+							$("#guanzhu").css({
+								"background": "#d81e06",
+								"color": "#fff"
+							});
+							$("#guanzhu").find("i").text("关注");
+							$("#guanzhu").find("s").css("background-image", "url(http://yiyun.zhonyou.cn/webapp_img/kong_love.png)");
+					}
+				})
+
+			})
+			document.getElementById("guanzhu").addEventListener("tap", function() {
+				var buyer_id = window.localStorage.getItem("uid");
+				if(!buyer_id){
+					mui.toast("请退出重新登录");
+					return ;
+				}
+				mui.ajax({
+					url: url_app+"SysUserFavorites/api/insertSelective",
+					type: "POST",
+					data: {
+						uid: buyer_id,
+						favId: shopid,
+						favType: "shop",
+						goodsName: "132",
+						shopId: shopid,
+						shopName: shop_name,
+						shopLogo: shopLogo,
+						goodsImage: "132",
+						logPrice: "132",
+						shopCollect: shopCollect,
+						collects:"0"
+					},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+					success: function(data) {
+						if(data == 1) {
+							if(shocuang) {
+								shocuang = false;
+								$("#guanzhu").css({
+									"background": "#d81e06",
+									"color": "#fff"
+								});
+								$("#guanzhu").find("i").text("关注");
+								$("#guanzhu").find("s").css("background-image", "url(http://yiyun.zhonyou.cn/webapp_img/kong_love.png)");
+							} else {
+								$("#guanzhu").css({
+									"background": "#fff",
+									"color": "#d81e06"
+								});
+								$("#guanzhu").find("i").text("已关注");
+								$("#guanzhu").find("s").css("background-image", "url(http://yiyun.zhonyou.cn/webapp_img/kong_love_red.png)");
+								shocuang = true;
+							}
+						} else {
+							mui.toast("系统繁忙，請稍后再试");
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						mui.toast("系统繁忙，稍后再试");
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

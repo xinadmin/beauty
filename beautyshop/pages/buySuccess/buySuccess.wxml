@@ -1,0 +1,35 @@
+<view>
+  <view >
+    <view class='logo_tou'>
+      <image src='{{meirongyuan_logo}}' class='logo_tou_a'></image>
+    </view>
+    <view class='men'>{{meirongyuan_name}}</view>
+    <view class='qian'>-{{pay_money}}</view>
+  </view>
+  <view>
+    <view class='status'>
+      <text class='status_a'>当前状态</text>
+      <text class='status_b'>支付成功</text>
+    </view>
+    <view class='status'>
+      <text class='status_a'>商品</text>
+      <text class='status_b'>{{goods_name}}</text>
+    </view>
+    <view class='status'>
+      <text class='status_a'>商户全称</text>
+      <text class='status_b'>{{meirongyuan_name}}</text>
+    </view>
+    <view class='status'>
+      <text class='status_a'>支付时间</text>
+      <text class='status_b'>{{time}}</text>
+    </view>
+    <view class='status'>
+      <text class='status_a'>支付方式</text>
+      <text class='status_b'>微信支付</text>
+    </view>
+    <view class='status'>
+      <text class='status_a'>交易单号</text>
+      <text class='status_b'>{{out_trade_no}}</text>
+    </view>
+  </view>
+</view>

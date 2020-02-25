@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>有好货</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/tab_item_common.css" />
+		<link rel="stylesheet" href="css/aiguangjie_common.css">
+
+		<style>
+			.mui-segmented-control .mui-control-item.mui-active {
+				color: #0075aa !important;
+				background-color: #EEEEEE;
+			}
+			
+			.mui-slider-item {
+				border: none !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: #66cdcc;box-shadow: none;color: #fff;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">有好货</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background: #66cdcc;border-bottom: none; padding-bottom: 0;">
+					<div class="mui-scroll" style="color: #fff;">
+						<a class="mui-control-item mui-active" href="#item1mobile">
+							推荐
+						</a>
+						<a class="mui-control-item" href="#item2mobile">
+							新品
+						</a>
+						<a class="mui-control-item" href="#item3mobile">
+							精选
+						</a>
+						<a class="mui-control-item" href="#item4mobile">
+							居家
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-active mui-control-content">
+						<div class="mui-scroll-wrapper" id="scroll1">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="jujia" data-id="1">
+									<li v-for="item in items" @tap="open_detail(item)">
+										<div class="fl" id="left_img_logo">
+											<img :src="item.picture" width="140px" height="130px" />
+										</div>
+										<div class="fr" id="right_content">
+											<h1>{{item.goodsName}}</h1>
+											<h2>{{item.introduction}}</h2>
+											<h3>{{item.collects}}收藏</h3>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="jujia" data-id="2">
+									<li v-for="item in item1" @tap="open_detail(item)">
+										<div class="fl" id="left_img_logo">
+											<img :src="item.picture" width="140px" height="130px" />
+										</div>
+										<div class="fr" id="right_content">
+											<h1>{{item.goodsName}}</h1>
+											<h2>{{item.introduction}}</h2>
+											<h3>{{item.collects}}收藏</h3>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="jujia" data-id="3">
+									<li v-for="item in item2" @tap="open_detail(item)">
+										<div class="fl" id="left_img_logo">
+											<img :src="item.picture" width="140px" height="130px" />
+										</div>
+										<div class="fr" id="right_content">
+											<h1>{{item.goodsName}}</h1>
+											<h2>{{item.introduction}}</h2>
+											<h3>{{item.collects}}收藏</h3>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item4mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="jujia" data-id="4">
+									<li v-for="item in item3" @tap="open_detail(item)">
+										<div class="fl" id="left_img_logo">
+											<img :src="item.picture" width="140px" height="130px" />
+										</div>
+										<div class="fr" id="right_content">
+											<h1>{{item.goodsName}}</h1>
+											<h2>{{item.introduction}}</h2>
+											<h3>{{item.collects}}收藏</h3>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.pullToRefresh.js"></script>
+		<script src="js/mui.pullToRefresh.material.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+
+		<script>
+			mui.init({
+				swipeBack: true
+			});
+			var url_app = mui.app_url();
+			var webview_detail = null;
+
+			function getDefault() {
+				return {
+					items: [], //列表信息流数据
+					item1: [],
+					item2: [],
+					item3: [],
+					uid: "",
+					pageNum: "",
+					pageone: "",
+					pagetwo: "",
+					pagethree: "",
+					pagefour: ""
+				}
+			}
+			var news = new Vue({
+				el: '#slider',
+				data: getDefault(),
+				methods: {
+					resetData: function() { //重置数据
+						Object.assign(this.$data, getDefault());
+					}
+				},
+
+			});
+			(function($) {
+				//阻尼系数
+				mui.getJSON(url_app + "nsgoods/selectByCategoryId?CategoryId=6", function(rsp) {
+					news.pageone = rsp.pageNum;
+					if(rsp.list && rsp.list.length > 0) {
+						news.items = news.items.concat(convert(rsp.list));
+					} 
+				});
+				mui.getJSON(url_app + "nsgoods/selectByCategoryId?CategoryId=2", function(rsp) {
+					news.pagetwo = rsp.pageNum;
+					if(rsp.list && rsp.list.length > 0) {
+						news.item1 = news.item1.concat(convert(rsp.list));
+					} 
+				});
+				mui.getJSON(url_app + "nsgoods/selectByCategoryId?CategoryId=7", function(rsp) {
+					news.pagethree = rsp.pageNum;
+
+					if(rsp.list && rsp.list.length > 0) {
+						news.item2 = news.item2.concat(convert(rsp.list));
+					} 
+				});
+				mui.getJSON(url_app + "nsgoods/selectByCategoryId?CategoryId=4", function(rsp) {
+					news.pagefour = rsp.pageNum;
+
+					if(rsp.list && rsp.list.length > 0) {
+						news.item3 = news.item3.concat(convert(rsp.list));
+					} 
+				});
+				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+				$('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration: deceleration
+				});
+				$.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+						$(pullRefreshEl).pullToRefresh({
+							up: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										var ul = self.element.querySelector('.mui-table-view');
+										var item = ul.getAttribute("data-id");
+										item1(item);
+										self.endPullUpToRefresh();
+									}, 1000);
+								}
+							}
+						});
+					});
+				});
+
+			})(mui);
+
+			mui.plusReady(function() {
+				webview_detail = plus.webview.getWebviewById("chanpin_xiangqing");
+				if(!webview_detail) {
+					webview_detail = mui.preload({
+						url: "chanpin_xiangqing.html",
+						id: "chanpin_xiangqing",
+						styles: {
+							popGesture: "close",
+							titleNView: {
+								autoBackButton: true,
+								backgroundColor: '#f7f7f7',
+								titleText: "产品详情",
+								splitLine: {
+									color: '#cccccc'
+								},
+								type: "transparent"
+							},
+							statusbar: {
+								background: "#ddd"
+							},
+							show: {
+								event: 'loaded'
+							},
+							waiting: {
+								autoShow: true
+							},
+
+						}
+					})
+				}
+			})
+
+			function convert(items) {
+				var newItems = [];
+				items.forEach(function(item) {
+					newItems.push({
+						goodsId: item.goodsId,
+						goodsName: item.goodsName,
+						price: (item.price).toFixed(2),
+						picture: item.picture, //商品所有图片/
+						introduction: item.introduction,
+						promotionPrice: (item.promotionPrice).toFixed(2), //商品促销价格
+//						collects: item.collects
+			            collects:Math.ceil(Math.random()*1000)
+                         
+					});
+				});
+				return newItems;
+			}
+
+			function open_detail(item) {
+				//触发子窗口变更新闻详情
+
+				if(!item.goodsId) {
+					mui.toast("当前页面未加载完,请稍后");
+					return false;
+				}
+				mui.fire(webview_detail, 'get_detail', {
+					goodsId: item.goodsId, //产品id
+					picture: item.picture //产品id
+
+				});
+				setTimeout(function() {
+					webview_detail.show("slide-in-right", 300);
+				}, 150);
+			}
+
+			function item1(item) {
+				if(item == 1) {
+					if(!news.pageone) {
+						news.pageone = 1;
+					} else {
+						++news.pageone;
+					}
+					mui.getJSON(url_app + "nsgoods/selectByCategoryId?CategoryId=6&pageNum=" + news.pageone + "", function(rsp) {
+						if(rsp.list && rsp.list.length > 0) {
+							news.items = news.items.concat(convert(rsp.list));
+						} else {
+							mui.toast("当前無更多商品");
+						}
+					});
+				} else if(item == 2) {
+					if(!news.pagetwo) {
+						news.pagetwo = 1;
+					} else {
+						++news.pagetwo;
+					}
+					mui.getJSON(url_app + "nsgoods/selectByCategoryId?CategoryId=2&pageNum=" + news.pagetwo + "", function(rsp) {
+						if(rsp.list && rsp.list.length > 0) {
+							news.item1 = news.item1.concat(convert(rsp.list));
+						} else {
+							mui.toast("当前無更多商品");
+
+						}
+					});
+				} else if(item == 3) {
+					if(!news.pagethree) {
+						news.pagethree = 1;
+					} else {
+						++news.pagethree;
+					}
+					mui.getJSON(url_app + "nsgoods/selectByCategoryId?CategoryId=7&pageNum=" + news.pagethree + "", function(rsp) {
+						if(rsp.list && rsp.list.length > 0) {
+							news.item2 = news.item2.concat(convert(rsp.list));
+						} else {
+							mui.toast("当前無更多商品");
+
+						}
+					});
+				} else if(item == 4) {
+					if(!news.pagefour) {
+						news.pagefour = 1;
+					} else {
+						++news.pagefour;
+					}
+
+					mui.getJSON(url_app + "nsgoods/selectByCategoryId?CategoryId=4&pageNum=" + news.pagefour + "", function(rsp) {
+						if(rsp.list && rsp.list.length > 0) {
+							news.item3 = news.item3.concat(convert(rsp.list));
+						} else {
+							mui.toast("当前無更多商品");
+						}
+					});
+				}
+			}
+		</script>
+	</body>
+
+</html>

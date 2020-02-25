@@ -1,0 +1,152 @@
+.suggested_back{
+				width: 95%;
+				height: 16rem;
+				border: 0.06rem solid #E2E2E2;
+				margin: 0 auto;
+				margin-top: 0.9375rem;
+			}
+			.suggested_inp{
+				width: 100%;
+				height: 11rem;
+				/* background-color: #000000; */
+				/* float: left; */
+			}
+			.input{
+				width: 100%;
+				height: 11rem;
+				border: none;
+				
+			}
+			
+			input::-webkit-input-placeholder {
+			         font-size: 1rem;
+			         text-align: left;
+			}
+			
+			.suggested_pic{
+				width: 100%;
+				height: 5rem;
+				position: relative;
+				/* background-color:palegoldenrod; */
+			}		
+			
+			.addpicture{
+				width: 4rem;
+				height: 4rem;
+				float: left;
+				margin: 0 0 0.625rem 0.625rem;
+				
+			}
+			.addpicture img{
+				width: 100%;
+				height: 100%;
+			}
+			.suggested_pic_rg{
+				float: right;
+				position:absolute;
+				right:0;
+				bottom:0;
+				color: #B7B7B7;
+				margin: 0 0.625rem 0.625rem 0;
+			}
+.quick_label{
+	width: 95%;
+	height: 3rem;
+	line-height: 3rem;
+	margin: 0 auto;
+}
+
+.pingjia{
+	width: 95%;
+	height: 1.875rem;
+	margin: 0 auto;
+	display: flex;
+}
+
+.pingjia_yi,.pingjia_er{
+	width: 5.5rem;
+	height: 1.4rem;
+	line-height: 1.4rem;
+	text-align: center;
+	border: 0.0625rem solid #C5C5C5;
+	border-radius: 0.5rem;
+	color: #7C7C7C;
+}
+
+.pingjia_er{
+	margin-left: 1rem;
+}
+
+.niming{
+	width: 95%;
+	height: 2rem;
+	line-height: 2rem;
+	margin: 0 auto;
+}
+
+.niming span{
+	float: left;
+}
+
+.nimi_in{
+	float: right;
+}
+
+input[type="checkbox"].switch_1{
+	font-size: 30px;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	    appearance: none;
+	width: 2.5rem;
+	height: 1rem;
+	background: #ddd;
+	border-radius: 3em;
+	position: relative;
+	cursor: pointer;
+	outline: none;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+  }
+  
+  input[type="checkbox"].switch_1:checked{
+	background: #0ebeff;
+  }
+  
+  input[type="checkbox"].switch_1:after{
+	position: absolute;
+	content: "";
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 50%;
+	background: #fff;
+	-webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
+	        box-shadow: 0 0 .25em rgba(0,0,0,.3);
+	-webkit-transform: scale(.7);
+	        transform: scale(.7);
+	left: 0;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+  }
+  
+  input[type="checkbox"].switch_1:checked:after{
+	left: calc(100% - 1.5em);
+  }
+	
+	
+	.tijiao{
+		width: 95%;
+		height: 12.5rem;
+		line-height: 12.5rem;
+		/* margin: 0 auto; */
+	}
+	
+	.tijiao input{
+		width: 80%;
+		height: 3rem;
+		background-color: #FD5A5B;
+		color: white;
+		border: none;
+		font-size: 1.125rem;
+		border-radius: 1.5rem;
+		margin-left: 2.5rem;
+	}

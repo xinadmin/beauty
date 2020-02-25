@@ -1,0 +1,63 @@
+ /*更改手机号码样式*/
+ .mui-content {
+ 	background-color: #EEEEEE;
+ }
+ #upset_outer  {
+          	border:1px solid #8cc63e; 
+          	border-top: none;
+          	width: 100%;
+          	display:inline-block;
+          	min-height: 30px;
+          }
+          #upset_outer #new_tel {
+          background: #F0F4F3;
+          width: 102%;
+          margin-left: -1%; 
+          font-size: 1.0rem;
+           border-radius: 0;
+           color: #333333;
+          border:none
+          }
+          #upset_outer label {
+          padding: 2% 0;
+          display: inline-block;
+          }
+         #baocun {
+          	width: 100%;
+          	margin: 2% 0;
+          	background: #8cc63e;
+          	color: #fff; 
+          	padding: 3% 0;
+          	font-size: 1.2rem;
+          }
+          
+
+/*修改登录面膜样式*/
+           .mui-input-row {
+           	background: #fff;
+           	margin: 2% 0;
+           	padding: 0.3rem 0;
+           }
+           .mui-input-row label {
+           color: #333333;
+           font-weight: 500;
+           font-size: 0.9rem;
+		}
+		.mui-input-row  input {
+			font-size: 1.0rem;
+		}
+		label {
+			padding: 2% 2%;
+			display: inline-block;
+		}
+		#yanzheng {
+			width: 96%;
+			margin: 2% ;
+			background: #8cc63e;
+			color: #fff;
+			height: 2.6rem;
+			line-height: 2.6rem;
+			 font-weight: 500;
+			 font-size: 1.1rem;
+		}
+

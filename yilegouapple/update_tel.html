@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/upset.css" />
+		<title>更改手机号码页面</title>
+		<style type="text/css">
+          .mui-content {
+          	width: 96%; margin:  2% auto; background: #f0f4f3;
+          }
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;border-bottom: solid 1px #E1E1E1;background-color:#fd4404 ;" >
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;font-weight: 500;">绑定手机号</span></button>
+			
+		</header>
+		<div class="mui-content">
+			<div id="upset_outer" >
+				<input type="tel" id="new_tel" placeholder="输入需要绑定的号码"  />
+			</div>
+			<label>注意：绑定的手机号必须为本人使用</label>
+			<input type="button" value="保存" id="baocun" />
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	mui.init({
+		beforeback: function(){
+		//获得列表界面的webview
+		var list = plus.webview.getWebviewById('my_message');
+		//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+		mui.fire(list,'refresh');
+		//返回true，继续页面关闭逻辑
+		return true;
+	}
+	})
+    var url_app=mui.app_url();
+	
+	$(function() {
+		var local = window.localStorage;
+		var uid = local.getItem("uid");
+		console.log(uid);
+		//	mui.plusReady(function(){
+		document.getElementById("baocun").addEventListener("tap", function() {
+			var new_tel = $("#new_tel").val();
+			console.log(new_tel);
+			if(uid !="" || uid !=null){
+			if(new_tel != null && new_tel!="" && new_tel.length==11) {
+				var wd = plus.nativeUI.showWaiting();
+				mui.ajax(url_app+ 'SysUser/updateTel', {
+					type: 'POST', //HTTP请求类型  
+					timeout: 10000, //超时时间设置为10秒；
+					data: {
+						userTel: new_tel, //新改号码
+						uid: uid    
+					},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+					success: function(data) {
+						if(data == 1) {
+							wd.close();
+							mui.back();
+							mui.fire(plus.webview.getWebviewById("anquan"), 'reset_tel', null);
+							local.setItem("user_tel",new_tel);
+							console.log("111");
+						} else {
+							mui.toast("修改失败");
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；                               
+                        mui.toast("系统繁忙，稍后再试");
+					}
+				});
+			} else {
+				mui.toast("请填写完整再进行修改");
+			}
+			} else {
+				mui.toast("当前无法修改密码，请退出重新登录进来");
+				
+			}
+		});
+	})
+</script>

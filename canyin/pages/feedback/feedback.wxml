@@ -1,0 +1,6 @@
+<view>
+<view class='xiadancg'>
+<image class='chenggong' src='/pages/img/succeed.png' />
+<view class='xiadantx'>意见已提交成功，感谢您对服务器的关注与支持，我们会认真审理您的宝贵意见，尽快做出改善</view>
+</view>
+</view>

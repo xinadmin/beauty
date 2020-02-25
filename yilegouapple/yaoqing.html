@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<title>新人邀请</title>
+		<link rel="stylesheet" href="css/base.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+
+		<script>
+			var shares = null;
+			var sweixin = null;
+			var buttons = [{
+					title: '我的好友',
+					extra: {
+						scene: 'WXSceneSession'
+					}
+				},
+				{
+					title: '朋友圈',
+					extra: {
+						scene: 'WXSceneTimeline'
+					}
+				},
+				{
+					title: '我的收藏',
+					extra: {
+						scene: 'WXSceneFavorite'
+					}
+				}
+			];
+			// H5 plus事件处理
+			function plusReady() {
+				updateSerivces();
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+			/**
+			 * 更新分享服务
+			 */
+			function updateSerivces() {
+				plus.share.getServices(function(s) {
+					shares = {};
+					for(var i in s) {
+						var t = s[i];
+						shares[t.id] = t;
+					}
+					sweixin = shares['weixin'];
+				}, function(e) {
+					mui.toast('获取分享服务列表失败：' + e.message);
+				});
+			}
+
+			function shareWeb() {
+				var msg = {
+					type: 'web',
+					thumbs: ['_www/logo.png']
+				};
+				if(!web_href.value) {
+					plus.nativeUI.alert('请输入分享网页的链接地址!');
+					web_href.focus();
+					return;
+				}
+				msg.href = web_href.value;
+				if(!web_title.value) {
+					plus.nativeUI.alert('请输入分享网页的标题!');
+					web_title.focus();
+					return;
+				}
+				msg.title = web_title.value;
+				if(!web_content.value) {
+					plus.nativeUI.alert('请输入分享网页的描述!');
+					web_content.focus();
+					return;
+				}
+				msg.content = web_content.value;
+				sweixin ? plus.nativeUI.actionSheet({
+					title: '分享网页到微信',
+					cancel: '取消',
+					buttons: buttons
+				}, function(e) {
+					(e.index > 0) && share(sweixin, msg, buttons[e.index - 1]);
+				}) : plus.nativeUI.alert('当前环境不支持微信分享操作!');
+			}
+			// 分享
+			function share(srv, msg, button) {
+				if(!srv) {
+					mui.toast('无效的分享服务！');
+					return;
+				}
+				button && (msg.extra = button.extra);
+				// 发送分享
+				if(srv.authenticated) {
+					doShare(srv, msg);
+				} else {
+					mui.toast('---未授权---');
+					srv.authorize(function() {
+						doShare(srv, msg);
+					}, function(e) {
+						mui.toast('认证授权失败：' + JSON.stringify(e));
+					});
+				}
+			}
+			// 发送分享
+			function doShare(srv, msg) {
+				srv.send(msg, function() {
+					mui.toast('分享到"' + srv.description + '"成功！');
+				}, function(e) {
+					mui.toast('分享到"' + srv.description + '"失败: ' + JSON.stringify(e));
+				});
+			}
+			// 解除授权
+			function cancelAuth() {
+				mui.toast('解除授权：');
+				if(sweixin) {
+					if(sweixin.authenticated) {
+						mui.toast('取消"' + sweixin.description + '"');
+					}
+					sweixin.forbid();
+				} else {
+					mui.toast('当前环境不支持微信分享操作!');
+				}
+			}
+		</script>
+		<style type="text/css">
+			body,
+			.mui-content {
+				background-color: #fff;
+			}
+			
+			.my_list {
+				width: 100%;
+				text-align: center;
+			}
+			
+			.my_list h1 {
+				color: #333333;
+				font-weight: 500;
+				height: 2.8rem;
+				line-height: 2.8rem;
+				font-size: 1.2rem;
+			}
+			
+			.my_list p {
+				width: 90%;
+				margin: auto auto;
+				color: #2E2E2E;
+				font-size: 0.8rem;
+				padding-top: 2%;
+				padding-bottom: 2%;
+				text-align: center;
+			}
+			
+			.my_list span {
+				display: block;
+				width: 90%;
+				margin: 0 auto;
+				color: #333333;
+				font-weight: 500;
+				font-size: 0.9rem;
+				height: 2.0rem;
+				line-height: 2.0rem;
+				border-radius: 10px;
+				background-color: #f3f3f3;
+			}
+			
+			.my_list span strong {
+				font-size: 1.1rem;
+				color: #66cc00;
+			}
+			
+			.my_list #yaoqing {
+				display: block;
+				color: #fff;
+				width: 90%;
+				margin: 10% auto;
+				background: #FF3300;
+				border-radius: 5px;
+				font-size: 1.0rem;
+				font-weight: 500;
+				padding-top: 2%;
+				padding-bottom: 2%;
+			}
+			
+			.my_list s {
+				color: #222222;
+				font-size: 0.8rem;
+				padding-top: 2%;
+				padding-bottom: 2%;
+			}
+			
+			.my_list i {
+				color: #286090;
+			}
+			
+			#yaoqing_list {
+				width: 90%;
+				margin: 10px auto;
+				border-top: solid 1px #dbdbdb;
+			}
+			
+			#yaoqing_list_item {
+				width: 100%;
+				position: relative;
+				padding: 10px 0;
+				border-bottom: solid 1px #eeeeee;
+			}
+			
+			#yaoqing_list s#num_id {
+				text-align: center;
+				display: block;
+				height: 2.3rem;
+				line-height: 2.3rem;
+				font-size: 0.9rem;
+			}
+			
+			#yaoqing_list s#num_id i {
+				font-weight: 600;
+				font-size: 1.1rem;
+				color: #FF3300;
+			}
+			
+			#yaoqing_list_item:last-child {
+				border: none;
+			}
+			
+			#yaoqing_list_item img {
+				display: inline-block;
+				float: left;
+				border-radius: 50%;
+			}
+			
+			#yaoqing_list_item p s {
+				display: inline-block;
+				padding: 1% 2%;
+				color: #FF3300;
+				font-size: 0.9rem;
+			}
+			
+			#yaoqing_list_item p b {
+				font-weight: 400;
+				color: #333333;
+				padding-left: 2%;
+				font-size: 0.8rem;
+			}
+			
+			#yaoqing_list_item time {
+				position: absolute;
+				top: 45%;
+				height: 1.6rem;
+				color: #333333;
+				right: 2%;
+				margin-top: -0.8rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;background-color: #FF3300;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">新人邀请</h1>
+		</header>
+		<input id="web_href" class="share_input" type="url" style="display: none;" value="" placeholder="请输入要分享的网页地址" />
+		<input id="web_title" class="share_input" type="url" value="依乐购" style="display: none;" placeholder="请输入要分享的网页地址" />
+		<input id="web_content" class="share_input" type="url" value="欢迎加入我们" style="display: none;" placeholder="请输入要分享的网页描述" />
+
+		<section class="my_list mui-content">
+			<h1>邀请好友，得奖励</h1>
+			<div style="margin:0 auto;width:200px">
+				<div class="erweima_shengcheng">
+					<script>
+						mui.init();
+						var url_app = mui.app_url();
+						$(function() {
+							var storage = window.localStorage;
+							var aa = storage.getItem("person_code");
+							$("#code").text(aa);
+							$("#web_href").val("http://yiyun.zhonyou.cn/login/register.jsp?status=1&yaoqing_code=" + aa + "");
+							$(".erweima_shengcheng").qrcode({
+
+								render: "canvas", //table方式
+								width: 200, //宽度
+								height: 200, //高度
+								background: "#ffffff", //背景颜色 
+								foreground: "#000000", //前景颜色
+								text: "http://yiyun.zhonyou.cn/login/register.jsp?yaoqing_code=" + aa + "" //任意内容
+							});
+							mui.ajax({
+								url: url_app + "SysUser/selectinviter",
+								data: {
+									code: aa
+								},
+								headers: {
+									'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+								},
+								type: "POST",
+								timeout: 10000,
+								success: function(data) {
+									if(data != null) {
+										$("#yaoqing_list").html(data);
+									}
+								},
+								error: function(XMLHttpRequest, textStatus, errorThrown) {
+									mui.toast("系统繁忙，稍后再试");
+								}
+							})
+						});
+					</script>
+				</div>
+			</div>
+			<p>邀请好友加入依乐购，TA激活后你将获得一份返利好礼。邀请好友越多，返利奖励越多，赶快和好友一起享受奖励吧！</p>
+			<span>您的邀请码</span><br />
+			<span><strong id="code"></strong></span>
+			<button id="yaoqing" onclick="shareWeb()">立即邀请</button>
+		</section>
+
+		<div id="yaoqing_list">
+
+		</div>
+
+	</body>
+
+</html>
+<!--<script type="text/javascript" src="js/immersed.js"></script>-->

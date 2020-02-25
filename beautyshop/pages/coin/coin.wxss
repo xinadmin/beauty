@@ -1,0 +1,23 @@
+page {
+  background-color: #fff;
+}
+.yuer {
+  width: 100%;
+}
+.yuer .yuer_detail {
+  width: 95%;
+  text-align: right;
+  margin: 33rpx auto;
+  font-size: 28rpx;
+
+}
+.yuyue_detail_message {
+  width: 100%;
+  padding-top: 120rpx;
+  text-align: center
+}
+.yuyue_detail_message image {
+  width: 160rpx;
+  height: 160rpx;
+
+}

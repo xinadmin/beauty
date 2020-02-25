@@ -1,0 +1,114 @@
+.jianyi{
+  width: 100%;
+  height: 730rpx;
+  background-color: white;
+  border-top: 15rpx solid gainsboro;
+}
+.jianyikuang{
+  width: 94%;
+  height: 365rpx;
+  margin: 20rpx auto;
+  border: 1rpx solid gainsboro;
+}
+
+.neirong{
+  width: 96%;
+  height: 260rpx;
+  line-height: 20rpx;
+  margin: 0 auto;
+  /* border: 1rpx solid gainsboro; */
+}
+
+.qingshuru{
+  font-size: 33rpx;
+  color: rgb(170, 168, 168);
+}
+
+.youqing_tishi{
+  font-size: 25rpx;
+  color: rgb(170, 168, 168);
+  float: right;
+  margin: 62rpx 25rpx 0 0;
+}
+
+.kuaijie{
+  width: 100%;
+  height: 50rpx;
+  font-size: 27rpx;
+  color: rgb(119, 117, 117);
+  float: left;
+  margin-left: 25rpx;
+}
+
+.bianqianone{
+  width: 130rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: rgb(119, 117, 117);
+  font-size: 25rpx;
+  border: 1rpx solid gainsboro;
+  margin-left: 20rpx;
+  float: left;
+  text-align: center;
+  border-radius: 12rpx;
+}
+
+.bianqiantow{
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: rgb(119, 117, 117);
+  font-size: 25rpx;
+  border: 1rpx solid gainsboro;
+  margin-left: 20rpx;
+  float: left;
+  text-align: center;
+  border-radius: 12rpx;
+}
+
+.niming{
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: rgb(119, 117, 117);
+  font-size: 25rpx;
+  margin: 18rpx 0 0 25rpx;
+  float: left;
+}
+
+
+.tui-list-box{
+  float: right;
+  margin-right: 25rpx;
+  margin-top: -50rpx;
+}
+
+.wx-switch-input{
+    width:60rpx !important;
+    height:26rpx !important;
+    background: rgb(21, 140, 250) !important;
+    border: rgb(21, 140, 250) !important; /* 重置开关边框颜色 */
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+    width:50rpx !ismportant;
+    height:26rpx !important;
+}
+/*蓝色样式（true的样式）*/
+.wx-switch-input::after{
+    width: 25rpx !important;
+    height: 25rpx !important;
+}
+
+.queren{
+  width: 650rpx;
+  height: 90rpx;
+  border: 1rpx solid gainsboro;
+  background-color: rgb(252, 94, 94);
+  font-size: 28rpx;
+  line-height: 90rpx;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 50rpx;
+  color: rgb(255, 202, 202);
+}

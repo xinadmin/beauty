@@ -1,0 +1,125 @@
+body{
+    background-color: #f3f3f3;
+}
+.header{
+		width: 100%;
+		height: 2.5rem;
+		/*background-color: white;*/
+}
+
+.location {
+	width: 22%;	
+	height: 2.5rem;
+	float: left;
+}
+
+.location_img{
+	width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.5rem 0 0 0.5rem;
+	
+}
+
+.dizhi{
+	line-height: 2.5rem; 
+	font-size: 0.7rem;
+	color: pink;
+	float: right;
+}
+.sousuo{
+	width: 72%;
+    font-size: 0.6rem;
+    display: inline-block;
+    height: 1.7rem;
+    line-height: 1.7rem;
+    color: #999999;
+    border-radius: 0.4rem;
+    position: absolute;
+    left: 22.5%;
+    top: 0.39rem;
+    background: #6b575714 url(images/search.png) no-repeat 8px center;
+    background-size: 20px 20px;
+}
+.sousuo img{
+	width: 1rem;
+    float: left;
+    margin: 0.4rem 0.4rem;
+}
+
+
+.my_list ul{
+    width: 100%;
+    overflow: hidden;
+    max-height: 2.5rem;
+    line-height: 2.4rem;
+    float: left;
+    font-size: 0.7rem;
+    text-align: center;
+}
+.hang li{
+    float: left;
+    text-align: center;
+    width: 20%;
+    line-height: 2.4rem;
+    position: relative;
+}
+
+.my_list{
+    width: 100%;
+    overflow: hidden;
+    max-height: 2.5rem;
+    border-top: 0.01rem solid #bab9b9;
+}
+.my_list .active{
+    border-bottom: 0.5rem solid #fa721c;
+}
+.ware{
+    width: 95%;
+    height: 7rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    margin: 0.7rem auto;
+}
+.name{
+    width: 100%;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    color: gray;
+    font-size: 0.73rem;
+    padding-left: 0.6rem;
+}
+.bao{
+    width: 93%;
+    height: 4.3rem;
+    margin: 0.55rem auto;
+}
+.bao img{
+    width: 30%;
+    height: 4.4rem;
+    float: left;
+    border-radius: 24%;
+}
+.title_box{
+    width: 67%;
+    height: 2rem;
+    float: right;
+}
+#goods_name{
+    line-height: 2rem;
+    font-size: 0.95rem;
+    color: #3e3d3d;
+    float: left;
+}
+#value{
+    line-height: 2rem;
+    font-size: 0.78rem;
+    float: right;
+    color: red;
+}
+.number,.totle{
+    width: 65%;
+    height: 1.4rem;
+    font-size: 0.8rem;
+    text-align: right;
+    float: right;
+}

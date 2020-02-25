@@ -1,0 +1,63 @@
+			body {
+				width: 100%;
+				height: 100%;
+				background: #fff;
+			}
+			
+			#zhengmian_pic {
+				width: 96%;
+				padding: 0 4% 2%;
+				overflow: hidden;
+			}
+			
+			#zhengmian_pic h1 {
+				color: #000000;
+				height: 2.0rem;
+				line-height: 2.0rem;
+				font-size: 0.8rem;
+			}
+			
+			#zhengmian_pic form {
+				width: 4.6rem;
+				height: 4.5rem;
+				display: inline-block;
+				border: 1px #e6e6e6 solid;
+				background: url(http://yiyun.zhonyou.cn/webapp_img/addpic.png) no-repeat center center;
+				background-size: 2.5rem, 2.5rem;
+			}
+			
+			#zhengmian_pic form.border {
+				border: solid 2px #E6E6E6;
+			}
+			
+			#zhengmian_pic p {
+				width: 4.6rem;
+				height: 4.5rem;
+				position: relative;
+				display: inline-block;
+				float: left;
+				margin-right: 0.5rem;
+			}
+			
+			#zhengmian_pic p:last-child {
+				display: none;
+			}
+			
+			#zhengmian_pic p img {
+				width: 4.6rem;
+				height: 4.5rem;
+			}
+			
+			#zhengmian_pic p s {
+				display: block;
+				background-color: rgba(0, 0, 0, 0.4);
+				width: 100%;
+				height: 4.5rem;
+				line-height: 4.5rem;
+				z-index: 999;
+				position: absolute;
+				left: 0;
+				top: 0;
+				text-align: center;
+				color: #fff;
+			}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/address_manager.css" />
+		<style type="text/css">
+
+		</style>
+		<title>管理地址</title>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #FD4404;">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;font-weight: 500;">管理收货地址</span></button>
+
+		</header>
+		<div class="mui-content" id="mui-content" style="">
+			<p id="tishi" style="text-align: center;display: none; height: 4.0rem;line-height: 4.0rem;">当前物地址可用，请添加新的地址</p>
+		</div>
+		<br />
+		<br />
+
+		<br />
+
+		<div class="new_dizhi" id="new_dizhi">
+			<a href="javascript:void(0);" onclick="open_new_page()"><button>新增收货地址</button></a>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	mui.init({
+		swipeBack: true
+	});
+	var account;
+	var uid;
+	var number = 0;
+	var i = 0;
+	var manager_dizhi_page = null;
+	var url_app = mui.app_url();
+	mui.plusReady(function() {
+		var self = plus.webview.currentWebview();
+		self.addEventListener("hide", function(e) {
+			$("#mui-content").empty();
+		}, false);
+		self.setStyle({
+			scrollIndicator: 'none'
+		});
+	})
+	window.addEventListener("manager_refresh", function(event) {
+		dizhi_show();
+	})
+	window.addEventListener("select_address", function(evt) {
+		var storage = window.localStorage;
+		uid = storage.getItem("uid");
+		if(!uid) {
+			plus.nativeUI.toast("当前用户未登录");
+			return;
+		}
+		if(uid != null || uid != "") {
+			dizhi_show();
+		} else {
+			mui.toast("添加收货地址，方便你下次使用");
+		}
+		manager_dizhi_page = mui.preload({
+			url: "manager_dizhi_update.html",
+			id: "manager_dizhi_update"
+		})
+	})
+
+	function dizhi_show() {
+		$("#mui-content").empty();
+		mui.ajax(url_app + 'SysUserAddress/selTJuidQuanBu', {
+			type: 'POST', //HTTP请求类型  
+			dataType: 'json', //服务器返回json格式数据  
+			data: {
+				userid: uid
+			},
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			},
+			timeout: 10000, //超时时间设置为10秒；
+			success: function(data) {
+				if(data != null) {
+					$.each(data, function(i, item) {
+						$("#mui-content").append("<div id='shouhuo' ><p class='shouhuo_name'><i id='shouhuo_name'>" + item.shouhuoName + "</i> <s id='shouhuo_tel'>" + item.shouhuoTel + "</s></p>" +
+							"<p class='shouhuo_dizhi' data-address='" + item.shouhuoAddress + "' data-shouhuoName='" + item.shouhuoName + "' data-uid='" + item.uid + "' data-shouhuoTel='" + item.shouhuoTel + "'><s>" + item.shouhuoAddress + "</s></p>" +
+							"<div class='bianji'>" +
+							"<input name='checkbox' value='Item 1' type='radio' id='danxuan' data-id='" + item.uid + "' >" +
+							"<label>默认地址</label>" +
+							"<button id='delete' onclick='shanchu(this)' data-id='" + item.uid + "'>删除</button>" +
+							"</div></div>");
+					})
+					if(number == 5) {
+						$("#new_dizhi").hide();
+					} else {
+						$("#new_dizhi").show();
+					}
+					$("#shouhuo").children(".bianji").find("input").attr("checked", "checked");
+				} else {
+					document.getElementById("tishi").style.display = "block";
+					mui.toast("添加收货地址，方便你下次使用");
+				}
+			},
+			error: function(xhr, type, errorThrown) {
+				//异常处理；                               
+				mui.toast("系统繁忙");
+			}
+		});
+	}
+
+	function shanchu(obj) {
+		var $this = $(obj);
+		var src = url_app + "SysUserAddress/deleteByPrimaryKey"
+		var id = $this.attr("data-id");
+		var btnArray = ['否', '是'];
+		mui.confirm('确认删除？', '收货地址', btnArray, function(e) {
+			if(e.index == 1) {
+				$this.parent().parent().detach();
+				$.get(src, {
+						uid: id
+					},
+					function(result) {
+
+						if(result == 1) {
+							mui.toast("刪除成功");
+							i = 1;
+						} else {
+							mui.toast("系统繁忙，稍后再试");
+
+						}
+					});
+			} else {
+				return;
+			}
+		})
+	}
+	$("body").on("tap", "#danxuan", function() {
+
+		$.ajax({
+			url: url_app + "SysUserAddress/SelSysUserAddress",
+			type: 'POST', //HTTP请求类型  
+			data: {
+				uid: $(this).attr("data-id"),
+				userid: uid
+			},
+			dataType: "json",
+			success: function(data) {
+				if(data == 1) {
+					i = 2;
+				} else {
+					mui.toast("系统繁忙，請稍后再试");
+					return;
+				}
+			},
+			error: function() {
+				//异常处理；        
+				mui.toast("系统繁忙，稍后再试");
+			}
+		})
+	})
+	mui("body").on("tap", ".shouhuo_dizhi", function() {
+		var address = $(this).attr("data-address");
+		var shouhuoName = $(this).attr("data-shouhuoName");
+		var uid = $(this).attr("data-uid");
+		var shouhuoTel = $(this).attr("data-shouhuoTel");
+		mui.fire(manager_dizhi_page, "manager_page", {
+			address: address,
+			shouhuoName: shouhuoName,
+			uid: uid,
+			shouhuoTel: shouhuoTel
+		});
+		setTimeout(function() {
+			manager_dizhi_page.show("slide-in-right", 300);
+		}, 150);
+
+	})
+	//添加地址
+	function open_new_page() {
+		mui.openWindow({
+			id: "tianjia_address",
+			url: "tianjia_address.html"
+		})
+	}
+	var returnback = mui.back();
+	mui.back(function() {
+		if(i != 0) {
+			var wobj = plus.webview.getWebviewById("manager_dizhi");
+			wobj.reload(true);
+		mui.fire(plus.webview.getWebviewById("xuanze_dizhi"), "show", null);
+			
+		}
+		$("#mui-content").empty("");
+		plus.webview.currentWebview().hide("auto", 300);
+		returnback();
+	})
+</script>

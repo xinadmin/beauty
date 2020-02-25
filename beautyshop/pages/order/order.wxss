@@ -1,0 +1,264 @@
+/* order/order.wxss */
+.search-a {
+  background-color: #fff;
+}
+.hade-a {
+  padding: 15rpx 0;
+}
+page {
+  background-color: #F2F2F2;
+}
+.order_list {
+  width: 100%;
+  height: 100%;
+  background-color: #cccccc;
+ 
+}
+#my_list {
+  width: 100%;
+  overflow: hidden;
+   border-top: solid 1px #ddd;
+}
+
+#my_list .dingdan_zhuangtai {
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 2px 10px 2px #ddd;
+}
+
+.fixed {
+  position: fixed;
+  left: 0;
+}
+
+#my_list .dingdan_zhuangtai #item {
+  float: left;
+  text-align: center;
+  width: 20%;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #333;
+  font-size:28rpx;
+  position: relative;
+}
+
+#my_list .dingdan_zhuangtai .sanjiao {
+  border-bottom: solid 2px #fd4404;
+  color: #f30;
+}
+
+.dingdan {
+  width: 100%;
+  overflow: hidden;
+  margin-top:33rpx;
+}
+
+#dingdan_item {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.show {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+.dingdan_list {
+  width: 88%;
+  overflow: hidden;
+  background: #fff;
+  margin: 0px auto 0.6rem;
+  border-radius: 12px;
+  padding: 0 0.6rem;
+}
+
+.dingdan_list .dingdan_biaohao span {
+  display: inline-block;
+  font-size: 29rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+}
+
+.dingdan_list .dingdan_biaohao span.bianhao {
+  display: inline-block;
+  color: #888;
+}
+
+.dingdan_list .dingdan_biaohao span.zhuangtai {
+  color: #929292;
+}
+
+.dingdan_list_message {
+  width: 100%;
+  overflow: hidden;
+  padding-top: 0.6rem;
+}
+
+.dingdan_list_message .div_img {
+  width: 30%;
+  float: left;
+  height: 180rpx;
+  overflow: hidden;
+  border-radius: 14px;
+  margin-bottom: 23rpx;
+}
+
+.dingdan_list_message .div_img image {
+  width: 100%;
+  height: 100%;
+}
+
+.dingdan_list_message .dingdan_all {
+  width: 68%;
+  float: left;
+  margin-left: 2%;
+  overflow: hidden;
+  height: 180rpx;
+  padding-bottom: 12rpx;
+  position: relative;
+}
+
+
+
+
+.dingdan_list_message .dingdan_all span {
+  color: #f00;
+  font-size: 29rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+}
+
+.dingdan_list_message .dingdan_all .name_produce {
+  display: inline-block;
+  width: 330rpx;
+  box-sizing: border-box;
+  margin-left: 2%;
+  font-size: 0.9rem;
+  color: #333;
+  overflow: hidden;
+}
+
+.dingdan_list_message .dingdan_all  s.num {
+  font-size:26rpx;
+  clear: both;
+  display: block;
+  text-align: right;
+  padding: 10rpx 0;
+  color: #333;
+}
+
+.dingdan_list_message .dingdan_all  b {
+  display: block;
+  width: 100%;
+  text-align: right;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.btn_take_goods {
+  width: 100%;
+  overflow: hidden;
+  border-top: solid 1px #eee;
+}
+
+.btn_take_goods .ok_take_goods {
+  float: right;
+  display: inline-block;
+  height: 66rpx;
+  line-height: 66rpx;
+  overflow: hidden;
+  color: #FF6565;
+  border-radius: 14px;
+  margin: 25rpx 0;
+  font-size: 25rpx;
+  padding: 0 18rpx;
+  border: solid 1px #FF6565;
+}
+
+.tui-loading-row{
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    display: none;
+}
+.tui-loading-cell{
+  width: 100%;
+  display: table-cell;
+  text-align: center;
+  
+}
+/*动画一：单个渐变  */
+.circle-line{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    position:absolute;
+    top: 50%;
+    margin-top: -50px;
+    left: 50%;
+    margin-left: -50px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.circle-line text{
+    display: block;
+    width: 50%;
+    height: 5px;
+    opacity: .7;
+    position: absolute;
+    top: calc(50% - 2.5px);
+    left: 0px;
+    transform-origin: center right; 
+    animation: circle 1.5s linear infinite; 
+}
+.circle-line text::before{
+    content: '';
+    display: block;
+    width: 15px;
+    height: 5px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    background-color: #fff;
+}
+.circle-line text:nth-child(1){
+    transform: rotate(0deg);
+    animation-delay: 0.2s;
+}
+.circle-line text:nth-child(2){
+    transform: rotate(45deg);
+    animation-delay: 0.4s;
+}
+.circle-line text:nth-child(3){
+    transform: rotate(90deg);
+    animation-delay: 0.6s;
+}
+.circle-line text:nth-child(4){
+    transform: rotate(135deg);
+    animation-delay: 0.8s;
+}
+.circle-line text:nth-child(5){
+    transform: rotate(180deg);
+    animation-delay: 1s;
+}
+.circle-line text:nth-child(6){
+    transform: rotate(225deg);
+    animation-delay: 1.2s;
+}
+.circle-line text:nth-child(7){
+    transform: rotate(270deg);
+    animation-delay: 1.4s;
+}
+.circle-line text:nth-child(8){
+    transform: rotate(315deg);
+    animation-delay: 1.6s;
+}
+@keyframes circle {
+    0%{
+        opacity: 0.05;
+    }
+    100%{
+        opacity: 0.9;
+    }
+}

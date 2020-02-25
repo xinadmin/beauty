@@ -1,0 +1,75 @@
+           .chanpin_list {
+           	width: 100%;
+           	overflow: hidden;
+           	height: 100%;
+           	border: solid 1px #000000;
+           }
+           
+           .chanpin_list article {
+           	background: #fff;
+           	/*overflow: hidden;*/
+           }
+           
+           .chanpin_list article {
+           	width: 49.5%;
+           	float: left;
+           	overflow: hidden;
+           	margin-bottom: 1%;
+           }
+           .chanpin_list article:nth-of-type(even) {
+           	float: right;
+           	background: #FFF;
+           }
+               .chanpin_list article #pic_div {
+           	width: 100%;
+           	height: 80%;
+           }
+           .chanpin_list article #pic_div  img {
+           	display: block;
+           	width: 100%;
+           	background: #fff;
+           }
+           .chanpin_list article .chanpin_list_content  {
+           	width: 100%;
+           	overflow: hidden;
+           	background: #fff;
+           }
+           .chanpin_list article .chanpin_list_content p {
+           	width: 100%;
+           	box-sizing: border-box;
+           	overflow-y: hidden;
+           	display: -webkit-box;
+           	height: 2.2rem;
+           	line-height: 1.1rem;
+           	padding: 0 0.2rem;
+           	-webkit-box-orient: vertical;
+           	-webkit-line-clamp: 2;
+           	color: #fff;
+           	font-size: 0.8rem;
+           }
+           
+           .chanpin_list article .chanpin_list_content div {
+           	width: 100%;
+           	overflow: hidden;
+           	background: #fff;
+           }
+           
+           .chanpin_list article .chanpin_list_content div s {
+           	width: 100%;
+           	height: 1.5rem;
+           	line-height: 1.5rem;
+           	padding: 0 0.2rem;
+           	display: inline-block;
+           	color: #FF3030 !important;
+           }
+           
+           .chanpin_list article .chanpin_list_content div s em {
+           	padding-right: 0.2rem;
+           }
+           
+           .chanpin_list article .chanpin_list_content div h1 {
+           	height: 1.8rem;
+           	line-height: 1.8rem;
+           	padding-left: 0.2rem;
+           	color: #222222 !important;
+           }

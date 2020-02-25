@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/mui_common.css" />
+		<link rel="stylesheet" href="css/shezhi.css" />
+		<title>账号安全</title>
+		<script>
+			mui.init({
+				swipeBack: true
+			});
+			window.addEventListener("reset_tel", function() {
+				var tel = local.getItem("user_tel");
+				if(tel != null || tel != "") {
+					var mtel = tel.substr(0, 3) + '****' + tel.substr(7);
+					$('#tel').text(mtel);
+				} else {
+					$('#tel').text("");
+				}
+			})
+			mui.plusReady(function() {
+				var local = window.localStorage;
+				$("#account").text(local.getItem("user_name"));
+				var tel = local.getItem("user_tel");
+				if(tel != null && tel != "") {
+					var mtel = tel.substr(0, 3) + '****' + tel.substr(7);
+					$('#tel').text(mtel);
+				} else {
+					$('#tel').text("");
+				}
+				var idcard = local.getItem("idcard");
+				if(idcard != null && idcard != "") {
+					var id = idcard.substr(0, 2) + '****' + idcard.substr(14);
+					$('#idcard').text(id);
+				} else {
+					$('#idcard').text(" ");
+				}
+			})
+		</script>
+		<style type="text/css">
+			.mui-plus .plus {
+				display: inline;
+			}
+			
+			.plus {
+				display: none;
+			}
+			
+			#topPopover {
+				position: fixed;
+				top: 16px;
+				right: 6px;
+			}
+			
+			#topPopover .mui-popover-arrow {
+				left: auto;
+				right: 6px;
+			}
+			
+			p {
+				text-indent: 22px;
+			}
+			
+			.mui-popover {
+				width: 40%;
+				height: 160px;
+				color: #222222;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;">账号与安全</span></button>
+			<a class="mui-pull-right mui-icon-more mui-icon" style="color: #fff;" href="#topPopover"></a>
+		</header>
+		<div class="set mui-content" style="background: #fff; ">
+			<ul>
+				<li>
+					<a href="updata_username.html">会员名<i><img src="http://yiyun.zhonyou.cn/webapp_img/go.png" width="18px"/></i><s id="account"></s></a>
+				</li>
+
+				<li>
+					<a href="update_tel.html">修改手机号码<i><img src="http://yiyun.zhonyou.cn/webapp_img/go.png" width="18px"/></i><s id="tel"></s></a>
+				</li>
+				<li>
+					<a href="upset_idcard.html">绑定身份证号<i><img src="http://yiyun.zhonyou.cn/webapp_img/go.png" width="18px"/></i><s id="idcard"></s></a>
+				</li>
+				<li>
+					<a href="upset_login_password.html">设置登录密码 <i><img src="http://yiyun.zhonyou.cn/webapp_img/go.png" width="18px"/></i></a>
+				</li>
+				<li>
+					<a href="upset_pay_password.html">设置支付密码 <i><img src="http://yiyun.zhonyou.cn/webapp_img/go.png" width="18px"/></i></a>
+				</li>
+
+			</ul>
+		</div>
+		</div>
+		<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view" style="text-align: center;">
+						<li class="mui-table-view-cell">
+							<a href="#">消息</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="#">首页</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="#">帮助</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="#">我要反馈</a>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,116 @@
+.huoguo{
+  width: 100%;
+  height: 320rpx;
+}
+
+.body{
+  width: 100%;
+  height: 1400rpx;
+  border-top: 28rpx solid rgb(224, 222, 222);
+  background-color: white;
+}
+
+.guangbo{
+  width: 94%;
+  height: 80rpx;
+  background-color: white;
+  vertical-align:middle;
+}
+
+.guangbo_img{
+  width: 38rpx;
+  height: 32rpx;
+  margin-left: 25rpx;
+  margin-top: 35rpx;
+}
+
+.dangqian{
+  font-size: 30rpx;
+  color: black;
+  width: 250rpx;
+  height: 30rpx;
+  margin-left: 9rpx;
+  margin-top: 30rpx;
+  line-height: 80rpx;
+}
+
+.fan{
+  color: red;
+}
+
+.tigong_fuwu{
+  color: black;
+  font-size: 26rpx;
+  margin-left: 25rpx;
+}
+
+
+.bottom{
+  width: 94%;
+  height: 1142rpx;
+  background-color: white;
+  margin: 20rpx 25rpx;
+}
+
+.fuwu_one{
+  width: 100%;
+  height:280rpx;
+  position: absolute;
+  background-color: white;
+}
+
+.jiacan{
+  width: 94%;
+  height: 100%;
+}
+
+.jiacan_anniu{
+  width: 220rpx;
+  height: 72rpx;
+  display: block;
+  background-color: rgb(233, 67, 67);
+  position: relative;
+  margin: -185rpx auto;
+  margin-left: 240rpx;
+  font-size: 40rpx;
+  text-align: center;
+  padding-top: 12rpx;
+  color: rgb(250, 219, 219);
+  border-radius: 50rpx;
+}
+
+.fuwu_tow{
+  width: 100%;
+  height:280rpx;
+  position: absolute;
+  background-color: white;
+  margin-top: 280rpx;
+  border-top: 20rpx solid white;
+}
+
+.fuwu_three{
+  width: 100%;
+  height:280rpx;
+  position: absolute;
+  background-color: white;
+  margin-top: 560rpx;
+  border-top: 20rpx solid white;
+}
+
+.fuwu_four{
+  width: 100%;
+  height:280rpx;
+  position: absolute;
+  background-color: white;
+  margin-top: 840rpx;
+  border-top: 20rpx solid white;
+}
+
+.dixian{
+  width: 100%;
+  height: 120rpx;
+  color: gray;
+  font-size: 25rpx;
+  text-align: center;
+  margin-top: 40rpx;
+}

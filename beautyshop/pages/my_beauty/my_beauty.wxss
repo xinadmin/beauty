@@ -1,0 +1,125 @@
+page {
+  background-color: #FBF7F8;
+}
+.logo_top {
+  width: 100%;
+  overflow: hidden;
+  height: 390rpx;
+  position: relative;
+  background-color: #FBF7F8;
+}
+.logo_top_div {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  margin:96rpx auto 0;
+  background-color: #F582A8;
+  overflow: hidden;
+}
+ .logo_top_div  image {
+   display: inline-block; 
+  width:170rpx;
+  margin:38rpx 10rpx 0 10rpx;   
+  height: 170rpx;
+  border-radius: 50%;
+}
+.beauty_name {
+  
+  width: 100%;
+  text-align: center;
+  font-size: 29rpx;
+  height:96rpx;
+  font-weight: 600;
+   line-height: 96rpx;
+  color: #333333;
+}
+.qiandao_div {
+  width: 66rpx;
+  height: 66rpx;
+  position: absolute;
+  right: 22rpx;
+  top:22rpx;
+}
+.qiandao_div image {
+  width: 66rpx;
+  height: 66rpx;
+}
+.list_item {
+  width: 100%;
+  overflow: hidden;
+}
+.list_item .address_all {
+  width: 100%;
+  overflow: hidden;
+  border-top: solid 1px #CCCCCC;
+  padding: 9rpx 0;
+  background-color: #fff;
+}
+.list_item .address_all .address_message{
+  display: inline-block;
+  width: 550rpx;
+  overflow: hidden;
+  height: 65rpx;
+   line-height: 65rpx;
+  padding-left: 55rpx;
+  font-size: 29rpx;
+  font-weight: 500;
+  color: #333333;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  background: url(http://yiyun.zhonyou.cn/webapp_img/dingwei.png) no-repeat 10rpx center;
+  background-size: 33rpx 33rpx;
+  border-right: 1px solid #CCCCCC;
+}
+.list_item .address_all image{
+  display: inline-block;
+  width: 55rpx;
+  height: 55rpx;
+  margin: 5rpx 30rpx;
+  
+}
+.list_item_nav {
+  width: 100%;
+  overflow: hidden;
+}
+.list_item_nav_one {
+  width: 100%;
+  border-top: #cccccc 1px solid;
+  height: 96rpx;
+  line-height: 96rpx;
+  color: #303030;
+  font-size: 28rpx;
+  padding-left: 86rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  
+}
+
+.list_item_nav_one:nth-child(2) {
+ 
+  background: url(http://yiyun.zhonyou.cn/sprogram_img/beautician_icon2.gif) no-repeat 12rpx center ;
+  background-size: 46rpx;
+}
+.list_item_nav_one:nth-child(3) {
+ 
+  background: url(http://yiyun.zhonyou.cn/sprogram_img/beautician_icon3.gif) no-repeat 12rpx center ;
+  background-size: 46rpx;
+}
+.list_item_nav_one:last-child {
+ 
+  background: url(http://yiyun.zhonyou.cn/sprogram_img/beautician_icon4.png) no-repeat 12rpx center ;
+  background-size: 46rpx;
+}
+#last {
+  background: url(http://yiyun.zhonyou.cn/sprogram_img/beautician_icon1.gif) no-repeat 12rpx center ;
+  background-size: 46rpx;
+}
+.list_item_nav_one s {
+   float: right;
+   width: 160rpx;
+   height: 96rpx;
+   display: inline-block;
+   margin-right: 30rpx;
+   background: url(http://yiyun.zhonyou.cn/webapp_img/go.png) no-repeat right center;
+   background-size:45rpx 45rpx;
+}

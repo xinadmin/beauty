@@ -1,0 +1,149 @@
+/**index.wxss**/
+scroll-view {
+
+}
+.slide-image{
+  width: 100%;
+  height: 100%;
+}
+#navigation{
+  background-color: white;
+  position: absolute;
+  top: 400rpx;
+  width: 100%;
+  
+  border-top-left-radius: 60rpx;
+  border-top-right-radius: 60rpx;
+  display: inline-flex;
+  justify-content: space-around;
+  border-bottom:10px solid #f0f0f0;
+
+}
+.navigation_a{
+  display: inline-block;
+  width: 20%;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+}
+.column{
+  width: 150rpx;
+  height: 150rpx;
+}
+.navigation_a_font{
+  text-align: center;
+  font-size: 26rpx;
+}
+#sj_list{
+  margin-top:240rpx;
+  margin-bottom:20rpx;
+  
+}
+.sj_list_a{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+  padding:15rpx 30rpx 0;
+
+}
+.fjsj{
+  font-size: 26rpx;
+  display: inline-block;
+}
+.sj_tu{
+  width: 25rpx;
+  height: 23rpx;
+  margin-right: 8rpx;
+}
+.more{
+  font-size: 26rpx;
+  display: inline-block;
+}
+.right_tu{
+  width: 13rpx;
+  height: 18rpx;
+  margin-left: 15rpx;
+}
+.sj_list_b{
+  border-bottom:10rpx solid #ebebeb;
+  padding:0 30rpx;
+  margin-top:30rpx;
+
+}
+.sj_list_b_right{
+  display: inline-block;
+
+}
+.business_tou{
+  width:100rpx;
+  height:100rpx;
+  float:left;
+  border-radius:50%;
+
+}
+.dianzi{
+  display: inline-block;
+  margin-left:10rpx;
+
+}
+.dianming{
+  font-size: 32rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width:305rpx;
+
+}
+#xing{
+  width: 25rpx;
+  height: 25rpx;
+}
+.dafen{
+  font-size: 28rpx;
+  color: #f77911;
+  margin-left: 20rpx;
+}
+.diqu{
+  color: #8c8c8c;
+  font-size: 26rpx;
+  float: right;
+  display: inline-block;
+}
+.diqu_a{
+  max-width: 270rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.diqu_b{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.evaluate{
+  margin: 10rpx 0 20rpx 0;
+}
+.evaluate_a{
+  font-size: 26rpx;
+  border: 1px solid #999999;
+  color: #999999;
+  border-radius: 30rpx;
+  min-width: 100rpx;
+  display: inline-block;
+  padding:0 10rpx;
+  margin-right: 10rpx;
+}
+.food{
+  width: 200rpx;
+  height: 170rpx;
+  margin-right: 10rpx;
+  border-radius:15rpx;
+
+}
+.merchandise{
+  margin-bottom: 20rpx;
+}
+.container{  
+    height: 100%;   
+}
+
+

@@ -1,0 +1,40 @@
+<view>
+  <view class='mangyi'>
+    <view class='mang' bindtap='mang'>
+      <view class='mang_text'><text>满意</text></view>
+      <image src='/pages/img/fuwu_gray(1).png' class='mang_tu' wx:if="{{xian_a}}"></image>
+      <image src='/pages/img/fuwu(1).png' class='mang_tu' wx:if="{{xian_b}}"></image>
+    </view>
+    <view class='mang' bindtap='bucuo'>
+      <view class='mang_text'><text>还不错</text></view>
+      <image src='/pages/img/fuwu_gray(2).png' class='mang_tu' wx:if="{{xian_c}}"></image>
+      <image src='/pages/img/fuwu(2).png' class='mang_tu' wx:if="{{xian_d}}"></image>
+    </view>
+    <view class='mang_a' bindtap='cha'>
+      <view class='mang_text'><text>差</text></view>
+      <image src='/pages/img/fuwu_gray(3).png' class='mang_tu' wx:if="{{xian_e}}"></image>
+      <image src='/pages/img/fuwu(3).png' class='mang_tu' wx:if="{{xian_f}}"></image>
+    </view>
+  </view>
+
+<view class='fw'>
+  <view class='service_selection'>
+    <view class="{{isChecked?'is_checked':'normal'}}" bindtap="serviceSelection" data-value="服务很好">服务很好   </view>
+  </view>
+  <view class='service_selection_a'>
+     <view class="{{isChecked_a?'is_checked_a':'normal_a'}}" bindtap="serviceSelection_a" data-value="干净卫生">干净卫生</view>
+  </view>
+  <view class='service_selection_b'>
+     <view class="{{isChecked_b?'is_checked_b':'normal_b'}}" bindtap="serviceSelection_b" data-value="手法不错"> 手法不错</view>
+  </view>
+  <view class='service_selection_c'>
+     <view class="{{isChecked_c?'is_checked_c':'normal_c'}}" bindtap="serviceSelection_c" data-value="体验很好">体验很好</view>
+  </view>
+</view>
+<view class='ty_a'>
+  <textarea placeholder="美容完感觉效果怎么样，快来说说对体验的服务等等怎么样" class='ty' bindinput='pingjiaTxt'/>
+</view>
+<view class='tijiao_a'>
+  <button id='tijiao' bindtap='insBeauty'>提交</button>
+</view>
+</view>

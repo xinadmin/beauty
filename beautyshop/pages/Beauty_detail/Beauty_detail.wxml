@@ -1,0 +1,63 @@
+<view class="top_bg"></view>
+<view class='mid_bg'>
+  <view class='mid_bg_top'>
+    <view class='mid_bg_top_img'>
+      <image src='../img/touxiang.png'></image>
+    </view>
+    <view class='mid_bg_top_meaasge'>
+      <view class='mid_bg_top_meaasge_name'>{{meirongyuan_name}}</view>
+      <view class='xingji_fen'>
+        <view class='mid_bg_top_meaasge_logo'>
+          <image src='../img/xingxing.png'></image>
+          <image src='../img/xingxing.png'></image>
+          <image src='../img/xingxing.png'></image>
+          <image src='../img/xingxing.png'></image>
+          <image src='../img/xingxing.png'></image>
+
+        </view>
+        <view class='mid_bg_top_meaasge_fen'>评分：5.0分</view>
+      </view>
+      <view class='mid_bg_top_meaasge_jieshao'>擅长套装,面部护理</view>
+    </view>
+
+    <view class='mid_bg_bottom'>
+
+      <view class='mid_bg_bottom_address'> {{meirongyuan_address}}
+      </view>
+      <view class='mid_bg_bottom_min'> 距离{{min}}</view>
+      <image src='../img/dianhua.png' bindtap='tel'></image>
+    </view>
+
+  </view>
+
+</view>
+<view id='produce_all'>
+  <view class='produce_title'>精选商品</view>
+  <view class='produce_new'>热门推荐</view>
+  <view class='produce_list_litem'>
+    <view class='procuce_message' wx:for="{{produce_list_sale}}" wx:key="unique">
+     <navigator url='../logs_a/logs_a?buauty_id={{beauty_id}}&pid={{item.pid}}&min={{min}}'>
+      <image src='{{item.p_pic}}'></image>
+      <view class='produce_message'>
+        <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+        <view class='produce_name'>{{item.pname}}
+          <!-- <text>已售100</text> -->
+        </view>
+        <view class='produce_price'>￥{{item.pprice}}
+          <!-- <text>¥{{item.pprice*1.2}}</text> -->
+        </view>
+      </view>
+</navigator>
+    </view>
+    
+  </view>
+  <navigator url='../more_produce/more_produce?beauty_id={{beauty_id}}&min={{min}}'>
+  <text class='select_more'>查看更多</text>
+  </navigator>
+</view>
+ <view class="body-view">  
+        <loading hidden="{{hidden}}" bindchange="loadingChange">  
+            加载中...  
+        </loading>  
+    </view>  

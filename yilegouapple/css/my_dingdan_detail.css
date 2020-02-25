@@ -1,0 +1,343 @@
+			.mui-content {
+				background-color: #EEEEEE;
+				margin-bottom: 3.9rem;
+			}
+			
+			#header {
+				line-height: 5.0rem;
+				height: 5rem;
+				width: 100%;
+				position: relative;
+				background-color: #FF4404;
+				/* 标准的语法（必须放在最后） */
+			}
+			
+			#header s {
+				float: left;
+				margin: 0 6rem 0 0.8rem;
+				font-size: 0.9rem;
+				color: #fff;
+				display: inline-block;
+			}
+			
+			#header p {
+				display: inline-block;
+				height: 100%;
+				float: right;
+				padding-right: 3.5rem;
+			}
+			
+			#header p img {
+				width: 100%;
+			}
+			/*头部提示语样式*/ /*待提货 /取消 /已完成*/
+			#head {
+				line-height: 5.0rem;
+				height: 5rem;
+				width: 100%;
+				position: relative;
+				background-color: #FD4404;
+			}
+			
+			#head s {
+				float: left;
+				margin: 0 6rem 0 0.8rem;
+				font-size: 0.9rem;
+				color: #fff;
+				display: inline-block;
+			}
+			
+			#head p {
+				display: inline-block;
+				height: 100%;
+				float: right;
+				padding-right: 3.5rem;
+			}
+			
+			#head p img {
+				width: 100%;
+			}
+			
+			#address,
+			#express {
+				width: 100%;
+				overflow: hidden;
+				background: #fff;
+			}
+			
+			#address {
+				box-shadow: 0 2px 10px 2px #ddd;
+				border-bottom: solid 1px #ddd
+			}
+			
+			#address #img_dingwei,
+			#express #img_dingwei {
+				float: left;
+				display: inline-block;
+				padding: 0.5rem;
+				height: 3.0rem;
+				width: 15%;
+				line-height: 3.0rem;
+			}
+			
+			#img_dingwei img {
+				width: 100%;
+				display: block;
+			}
+			
+			#address #address_message,
+			#express #express_message,
+			#tihuo_address #address_message {
+				float: left;
+				width: 80%;
+				padding: 0.2rem 0 0 0.2rem;
+				position: relative;
+			}
+			
+			#address #address_message h1,
+			#express #express_message h1 {
+				font-size: 0.95rem;
+				height: 1.6rem;
+				line-height: 1.6rem;
+				color: #222222;
+			}
+			
+			#address #address_message h1 s {
+				display: inline-block;
+				float: right;
+			}
+			
+			#address #address_message h2 {
+				font-size: 0.8rem;
+				max-height: 2.2rem;
+				min-height: 1.1rem;
+				line-height: 1.1rem;
+				color: #222222;
+				margin-bottom: 3%;
+				color: #222222;
+				letter-spacing: 0.2px;
+				overflow-y: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+				letter-spacing: 1px
+			}
+			
+			#tihuo_address #address_message h3 {
+				font-size: 0.8rem;
+				margin-top: 0.5rem;
+				min-height: 1.25rem;
+				max-height: 2.5rem;
+				height: 2.5rem;
+				line-height: 1.25rem;
+				color: #222222;
+				margin-bottom: 3%;
+				color: #222222;
+				letter-spacing: 0.2px;
+				overflow-y: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+				letter-spacing: 1px;
+			}
+			
+			#express #express_message h3 {
+				font-size: 0.8rem;
+				height: 2.0rem;
+				line-height: 1.0rem;
+				color: #222222;
+				margin-bottom: 3%;
+				color: #222222;
+				letter-spacing: 0.2px;
+				overflow-y: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+				letter-spacing: 1px
+			}
+			
+			#express #express_message s {
+				position: absolute;
+				top: 1.2rem;
+				right: 0;
+				width: 15%;
+				height: 15%;
+			}
+			
+			@media only screen and (min-width:768px) {
+				#express #express_message s {
+					position: absolute;
+					top: 0.6rem;
+					right: 0.6rem;
+					width: 9%;
+					height: 9%;
+				}
+			}
+			
+			#express #express s img {
+				width: 100%;
+			}
+			
+			.produce {
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0 3% 0;
+				overflow: hidden;
+				margin-top: 0.5rem;
+				z-index: 999;
+				background: #fff;
+			}
+			
+			#tel {
+				margin-top: 0.5rem;
+				width: 100%;
+				background: #fff;
+				overflow: hidden;
+				padding-left: 0.3rem;
+			}
+			
+			#tel p {
+				line-height: 90%;
+				height: 90%;
+				padding-top: 0.3rem;
+			}
+			
+			#tel p img {
+				margin-right: 0.3rem;
+			}
+			
+			.produce .produce_shop {
+				overflow: hidden;
+				width: 100%;
+				border-bottom: solid 1px #EBEBEB;
+			}
+			
+			.produce .produce_shop s {
+				float: left;
+				height: 2.3rem;
+				line-height: 2.3rem;
+				font-size: 0.9rem;
+				display: inline-block;
+			}
+			
+			.produce .produce_shop i {
+				display: inline-block;
+				padding: 3% 0 2%;
+				float: right;
+				font-size: 0.8rem;
+			}
+			
+			.produce_message {
+				width: 100%;
+				overflow: hidden;
+			}
+			
+			.produce_message img {
+				display: inline-block;
+				width: 28%;
+				float: left;
+			}
+			
+			.produce_message div {
+				float: left;
+				width: 72%;
+				padding: 0 0 0 2%;
+			}
+			
+			.produce_message div h2 {
+				height: 3.3rem;
+				line-height: 1.1rem;
+				padding: 0 0.2rem;
+				font-size: 0.9rem;
+				letter-spacing: 0.2px;
+				overflow-y: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+			}
+			
+			.produce_message div h3 {
+				padding: 2% 0;
+				font-size: 0.8rem;
+			}
+			
+			.produce_message div h3 s {
+				display: inline-block;
+				float: right;
+			}
+			
+			.produce_message div h4 {
+				padding: 2% 0;
+				font-size: 0.8rem;
+			}
+			
+			#price {
+				width: 100%;
+				overflow: hidden;
+				background: #fff;
+				margin-bottom: 0.5rem;
+			}
+			
+			#price p {
+				padding: 1% 3%;
+			}
+			
+			#price p.jiacu {
+				color: #222222;
+				font-weight: 500;
+			}
+			
+			#price p s {
+				display: inline-block;
+				float: right;
+				font-size: 0.8rem;
+			}
+			
+			#caozuo {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				box-shadow: 0 -1px 10px 1px #ddd;
+				background: #fff;
+				overflow: hidden;
+				text-align: right;
+				max-height: 3.6rem;
+				min-height: 0;
+			}
+			
+			#caozuo button {
+				color: #33333;
+				border: solid 1px #858585;
+				display: inline-block;
+				height: 2.4rem;
+				margin: 0.6rem 0.6rem 0.6rem 0;
+			}
+			
+			#caozuo button:active {
+				color: #fff;
+				background: #ff3300;
+				border-color: #ff3300;
+			}
+			
+			#bianhao {
+				width: 100%;
+				overflow: hidden;
+				background: #fff;
+			}
+			
+			#bianhao p {
+				width: 100%;
+				padding: 0.3rem 0 0 0.6rem;
+				height: 1.4rem;
+				line-height: 1.4rem;
+				color: #222222;
+				letter-spacing: 1px;
+			}
+			.fenge_div {
+				width: 100%;
+				max-height: 3.6rem;
+			}

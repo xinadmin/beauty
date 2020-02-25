@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="css/dingdan_pay.css" />
+		<title>订单支付</title>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: #ff3300; ">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">支付订单</h1>
+		</header>
+		<div class="mui-content">
+			<div class="dingdan">
+				<h1>应付金额&nbsp;<strong id="price_all"></strong></h1>
+				<h2>含运费￥<i id="yunfei"></i></h2>
+			</div>
+			<div class="zhifu">
+				<h1>选择支付方式</h1>
+				<div class="zhifu-qudao">
+					<form>
+						<div class="mui-input-row mui-radio " id="wxpay" style=" width: 95%; margin: 0 auto;">
+							<label> <img  src="http://yiyun.zhonyou.cn/webapp_img/weixin.png" width="12%"/>微信支付</label>
+							<input name="radio" value="wxapy" id="radio" class="radio mui-selected" checked="checked" type="radio">
+						</div>
+					</form>
+				</div>
+			</div>
+			<div id="href"></div>
+
+			<a id="error"></a>
+			<div class="mui-bar mui-bar-tab">
+
+				<p class="totalPrice">
+
+					总计:<span id="totalPrice">&yen;</span>
+
+				</p>
+
+				<p class="buyNow">
+
+					<button id="buyNowBtn" class="buyNowBtn">立即支付</button>
+
+				</p>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/mui.min.js"></script>
+<script>
+    mui.init();
+	var pays = {};
+	var price = null;
+	var orderNo = "";
+	var shop_id = "";
+	var order_id = "";
+	var url_app=mui.app_url();
+	function plusReady() {
+		var self = plus.webview.currentWebview();
+		document.getElementById('yunfei').innerText = self.shippingMoney;
+		document.getElementById('price_all').innerText = self.produce_all_price;
+		document.getElementById('totalPrice').innerText = self.produce_all_price;
+		shop_id = self.shop_id;
+		order_id = self.order_id;
+		var kedui_dingdan = plus.webview.getWebviewById("kedui_dingdan");
+		if(kedui_dingdan != null) {
+			kedui_dingdan.hide(800);
+		}
+		var cart_setlemtent = plus.webview.getWebviewById("cart_Settlement");
+		if(cart_setlemtent != null) {
+			cart_setlemtent.hide(800);
+		}
+		// 获取支付通道
+		plus.payment.getChannels(function(channels) {
+			for(var i in channels) {
+				var channel = channels[i];
+
+				pays[channel.id] = channel;
+				checkServices(channel);
+			}
+		}, function(e) {
+			mui.alert('获取支付通道失败：' + e.message);
+		});
+	}
+	document.addEventListener('plusready', plusReady, false);
+	// 检测是否安装支付服务
+	function checkServices(pc) {
+		if(!pc.serviceReady) {
+			var txt = null;
+			switch(pc.id) {
+				case 'alipay':
+					txt = '检测到系统未安装“支付宝快捷支付服务”，无法完成支付操作，是否立即安装？';
+					break;
+				default:
+					txt = '系统未安装“' + pc.description + '”服务，无法完成支付，是否立即安装？';
+					break;
+			}
+			plus.nativeUI.confirm(txt, function(e) {
+				if(e.index == 0) {
+					pc.installService();
+				}
+			}, pc.description);
+		}
+	}
+
+	document.getElementById("buyNowBtn").addEventListener('tap', function() {
+		var zf = document.getElementsByClassName('radio');
+		for(var i = 0; i < zf.length; i++) {
+			if(zf[i].classList.contains('mui-selected') == true) {
+						pay("wxpay");
+			}
+		}
+
+	})
+
+	function change() {
+		var d = new Date();
+		var vYear = d.getFullYear();
+		var vMon = d.getMonth() + 1;
+		var vDay = d.getDate();
+		var h = d.getHours();
+		var m = d.getMinutes();
+		var se = d.getSeconds();
+		var ms = d.getMilliseconds();
+		billno = "" + vYear + (vMon < 10 ? "0" + vMon : vMon) + (vDay < 10 ? "0" + vDay : vDay) + (h < 10 ? "0" + h : h) + (m < 10 ? "0" + m : m) + (se < 10 ? "0" + se : se) + ms;
+		return billno;
+
+	};
+	var w = null;
+	var out_trade_no = "";
+	// 支付
+	function pay(id) {
+		if(w) {
+			mui.toast("支付请求中,请稍等");
+			return;
+		}
+		var uid = window.localStorage.getItem("uid");
+		out_trade_no = change();
+		var total = (parseFloat($('#totalPrice').text())).toFixed(2);
+		var PAYdata = {
+			outTradeNo: out_trade_no,
+			shopId: shop_id,
+			typeAlisId: order_id,
+			payBody: "商城产品",
+			payDetail: "商品支付信息",
+			payMoney: total,
+			type: 1
+
+		};
+		w = plus.nativeUI.showWaiting();
+		// 请求支付订单
+		mui.ajax({
+			url: url_app+"weixin/zhifu",
+			type: 'post',
+			data: JSON.stringify(PAYdata),
+			dataType: 'json',
+			contentType: "application/json",
+			success: function(data) {
+				w.close();
+				w = null;
+				if(!data) {
+					return false;
+				}
+				var order = JSON.stringify(data);
+				 plus.payment.request(pays[id], order, function(result) {
+					mui.openWindow({
+						id: "pay_success",
+						url: "pay_success.html",
+						extras: {
+							out_trade_no: out_trade_no,
+							typeAlisId: order_id,
+							payMoney: total,
+							shopId: shop_id
+						}
+					})
+   				}, function(e) {
+   					plus.nativeUI.alert('当前未支付', null, mui.toast("请重新支付"));
+   				});
+               
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				w.close();
+				w = null;
+				plus.nativeUI.alert('获取订单信息失败！', null, '依乐购');
+			}
+
+		})
+	}
+
+	var back_old = mui.back;
+	mui.back = function() {
+		var btnArray = ['否', '是'];
+		mui.confirm('是否退出当前订单支付', '依乐购', btnArray, function(e) {
+			if(e.index == 1) {
+				mui.fire(plus.webview.getWebviewById("gouwuche"), "refresh", {order:"1"});
+				mui.fire(plus.webview.getWebviewById("gouwuche.html"), "refresh",{order:"2"});
+				back_old();
+			} else if(e.index == 0) {
+				return false;
+			}
+		})
+	}
+</script>

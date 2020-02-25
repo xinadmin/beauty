@@ -1,0 +1,215 @@
+ body {
+ 	background: #fff;
+ }
+ 
+ .chanping_pingji {
+ 	width: 100%;
+ 	background: #fff;
+ }
+ /*导航切换样式*/
+ .chanping_pingji ul {
+ 	width: 100%;
+ 	overflow: hidden;
+ 	border-bottom: solid 1px #EBEBEB;
+ }
+ 
+ .chanping_pingji ul li {
+ 	float: left;
+ 	width: 25%;
+ 	text-align: center;
+ 	margin: 0.7rem 0;
+ }
+ 
+ .chanping_pingji ul li button {
+ 	display: inline-block;
+ 	border: solid 1px #ddd;
+ 	background: rgba(0,122,255,0.5);
+ 	color: #fff;
+ 	height: 1.6rem;
+ 	padding: 0 0.5rem;
+ 	line-height: 1.6rem;
+ 	border-radius: 3px;
+ 	font-size: 0.9rem;
+ }
+ 
+ .chanping_pingji ul li button.active {
+ 	background: rgba(0,122,255,0.9);
+ 	color: #fff;
+ 	border: solid 1px #007AFF0;
+ }
+  .chanping_pingji ul li button:active {
+ 	background: rgba(0,122,255,0.9);
+ 	color: #fff;
+ 	border: solid 1px #007AFF ;
+ }
+ 
+ .pingjia {
+ 	width: 100%;
+ 	background: #fff;
+ 	overflow: hidden;
+ 	border-top: solid 5px #F0F0F0;
+ }
+ 
+ 
+ .pingjia ul {
+ 	width: 100%;
+ 	overflow: hidden;
+ 	
+ }
+ 
+ .pingjia ul li {
+ 	width: 100%;
+ 	padding-bottom: 0.6rem;
+ 	overflow: hidden;
+ 	border-bottom: solid 1px #F0F4F3;
+ 	
+ }
+ .pingjia ul li:last-child {
+ border: none;
+ }
+ .pingjia ul li #pingjia_name {
+ 	width: 100%;
+ 	float: left;
+ 	overflow: hidden;
+ }
+ 
+ .pingjia ul li #pingjia_name img {
+ 	width: 10%;
+ 	display: inline-block;
+ 	float: left;
+ 	margin:0.6rem;
+ }
+ 
+ .pingjia ul li #pingjia_name h1 {
+ 	float: left;
+ 	width: 81%;
+ 	height: 1.5rem;
+ 	line-height: 1.5rem;
+     font-size: 0.9rem;
+ }
+ .pingjia ul li #pingjia_name time {
+ 	height: 1.5rem;
+ 	line-height: 1.5rem;
+ 	}
+ 
+ .pingjia ul li p {
+    height: 2.2rem;
+	line-height: 1.1rem;
+	letter-spacing: 0.2px;
+	overflow-y: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	letter-spacing: 1px;
+	color: #222222;
+	padding: 0 0.6rem;
+ 	margin: 0.4rem 0;
+	border: solid 1px #fff;
+	
+ }
+ 
+			body {
+				width: 100%;
+				height: 100%;
+				background: #fff;
+			}
+			
+			
+			.produce {
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0.6rem 3% 0;
+				overflow: hidden;
+				box-shadow: 0 2px 10px 2px #ddd;
+				z-index: 999;
+				background: #fff;
+			}
+			
+			.produce_message {
+				width: 100%;
+				overflow: hidden;
+			}
+			
+			.produce_message img {
+				display: inline-block;
+				width: 28%;
+				float: left;
+			}
+			
+			.produce_message div {
+				float: left;
+				width: 72%;
+				padding: 0 0 0 2%;
+			}
+			
+			.produce_message div h1 {
+				height: 3.3rem;
+				line-height: 1.1rem;
+				padding: 0 0.2rem;
+				font-size: 0.9rem;
+				letter-spacing: 0.2px;
+				overflow-y: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+			}
+			
+			.produce_message div h2 {
+				padding: 2% 0;
+				font-size: 0.8rem;
+			}
+			
+			#evaluate {
+				margin-top: 0.5rem;
+				width: 100%;
+				height: 100%;
+				background: #fff;
+			}
+			
+			#evaluate p {
+				padding-left: 0.5rem;
+				width: 100%;
+				/*height: 2.8rem;
+				line-height: 2.8rem;*/
+				font-size: 1.0rem;
+				color: #000000;
+			}
+			
+			#evaluate p a {
+				font-weight: 500;
+				font-size: 0.8rem;
+				margin-left: 0.6rem;
+				margin-right: 0.3rem;
+				width: 20%;
+				/*display: inline-block;*/
+			}
+			
+			#evaluate p a img {
+				display: inline-block;
+			}
+			
+			#evaluate #text {
+				border: solid 1px #CDCDCD;
+				background: rgba(0, 0, 0, 0.02);
+				margin: 0.6rem auto;
+				width: 94%;
+			}
+			
+			#evaluate textarea {
+				border: none;
+			}
+			
+			#evaluate #sub_all {
+				width: 100%;
+				text-align: center;
+			}
+			
+			#evaluate #sub_all button#sub {
+				display: inline-block;
+				height: 2.5rem;
+				line-height: 2.5rem;
+				color: #fff;
+				background: #fd4404;
+				padding: 0 4rem;
+				font-size: 1.0rem;
+			}

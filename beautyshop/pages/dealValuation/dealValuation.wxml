@@ -1,0 +1,34 @@
+<view>
+  <view class='hade'>
+    <image src='{{goodsImage}}' class='hade_tu'></image>
+    <view class='hade_a'>
+      <view class='hade_a_shang'>{{goodsName}}</view>
+      <view class='hade_a_jia'>¥{{goodsPrice}}</view>
+    </view>
+  </view>
+
+<view class='pingjia'>
+  <text style='font-size:32rpx'>评价：</text>
+  <!-- 评价星星 -->
+  <view id='xing'>
+    <block wx:for="{{stars}}" wx:key="index">
+      <view class='xing_a'>
+        <image class="star-image" src="{{key > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+          <view class="item" style="left:0rpx" data-key="{{item+1}}" bindtap="selectLeft"></view>
+          <view class="item" style="left:20rpx" data-key="{{item+1}}" bindtap="selectRight"></view>
+        </image>
+      </view>
+    </block>
+  </view>
+  <text class='haoping'>{{haoping}}</text>
+</view>
+<view class="textarea-wrp">
+  <textarea auto-focus="true" bindinput='pingjiaTxt'/>
+</view>
+<view class='tijiao_a'>
+  <button id='tijiao' bindtap='insNsGoodsEvaluate'>提交</button>
+</view>
+ 
+</view>
+
+

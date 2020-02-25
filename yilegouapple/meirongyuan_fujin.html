@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/bimaiqingdan.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script src="js/vue.min.js" type="text/javascript"></script>
+		<script src="js/mui.pullToRefresh.js"></script>
+		<script src="js/mui.pullToRefresh.material.js"></script>
+		<title>美容产品</title>
+		<style type="text/css">
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #F4F4F4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color:#fd4404 ;box-shadow: none;">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;">美容产品</span></button>
+		</header>
+		<div class="mui-content">
+			<div class="chanpin_list" id="chanpin_list">
+				<ul class="list_item_goods" data-id="1">
+
+					<li v-for="item in items">
+						<a href="javascript:;" :data-guid="item.goodsId" @tap="open_detail(item)">
+							<div class="produce_img"><img :src="item.picture" onerror="this.src='img/moren.png'" width="130PX" height="130px"> </div>
+							<div class="produce_item">
+								<h1>{{item.goodsName}}</h1>
+								<h2><s class="fl col-orange">￥<i class="price ">{{item.promotionPrice}}</i>  </s><em class="sales fr">{{item.sales}}销售量</em></h2>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<script>
+				var url_app = mui.app_url();
+				mui.init({
+					swipeBack: true //启用右滑关闭功能
+				});
+				(function($) {
+					
+					$.ready(function() {
+						//循环初始化所有下拉刷新，上拉加载。
+						pulluploading();
+						$("#chanpin_list").pullToRefresh({
+							up: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										pulluploading();
+										self.endPullUpToRefresh();
+									}, 1000);
+								}
+							}
+						});
+
+					});
+					//打开产品详情页
+				})(mui);
+
+				function getDefaultData() {
+					return {
+						items: [], //列表信息流数据
+						uid: "",
+						pageNum: ""
+
+					}
+				}
+				var webview_detail;
+				var news = new Vue({
+					el: '.mui-content',
+					data: getDefaultData(),
+					methods: {
+						resetData: function() { //重置数据
+							Object.assign(this.$data, getDefaultData());
+						}
+					}
+				});
+				//遍历产品属性
+
+				function convert(items) {
+					var newItems = [];
+					items.forEach(function(item) {
+						newItems.push({
+							goodsId: item.goodsId,
+							goodsName: item.goodsName,
+							price: (item.price).toFixed(2),
+							picture: item.picture, //商品所有图片/
+							promotionPrice: (item.promotionPrice).toFixed(2), //商品促销价格
+							sales: item.sales
+						});
+					});
+					return newItems;
+				}
+				mui.plusReady(function() {
+					//加载产品列表
+					webview_detail = plus.webview.getWebviewById("chanpin_xiangqing");
+					if(!webview_detail) {
+						webview_detail = mui.preload({
+							url: 'chanpin_xiangqing.html',
+							id: 'chanpin_xiangqing',
+							styles: {
+								popGesture: "close",
+								titleNView: {
+									autoBackButton: true,
+									backgroundColor: '#f7f7f7',
+									titleText: "产品详情",
+									splitLine: {
+										color: '#cccccc'
+									},
+									type: "transparent"
+								},
+								statusbar: {
+									background: "#ddd"
+								},
+								show: {
+									event: 'loaded'
+								},
+								waiting: {
+									autoShow: true
+								},
+
+							}
+						});
+					}
+				})
+
+				function pulluploading() {
+					if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+						plus.nativeUI.toast('似乎已断开与互联网的连接', {
+							verticalAlign: 'bottom'
+						});
+						return;
+					}
+					if(!news.pageNum) {
+						news.pageNum = 1
+					} else {
+						news.pageNum += 1;
+					}
+					//请求历史列表信息流
+					mui.getJSON(url_app + "nsgoods/selectBykeywords?shopId=1&pageNum="+news.pageNum +"", function(rsp) {
+						news.pageNum = rsp.pageNum;
+						if(rsp.list && rsp.list.length > 0) {
+							news.items = news.items.concat(convert(rsp.list));
+						} else {
+							mui.toast("当前商品为空");
+
+						}
+					});
+				}
+
+				function open_detail(item) {
+					if(!item.goodsId) {
+						mui.toast("当前页面未加载完,请稍后");
+						return false;
+					}
+					mui.fire(webview_detail, 'get_detail', {
+						goodsId: item.goodsId, //产品id
+						picture: item.picture //产品id
+
+					});
+
+					setTimeout(function() {
+						webview_detail.show("slide-in-right", 300);
+					}, 150);
+				}
+				mui(".daohang").on("tap", "li", function() {
+					$(".daohang > li > a").removeClass("active");
+					$(this).children("a").addClass("active");
+					var index = $(this).index();
+					$("#chanpin_list > div ").eq(index).show().siblings().hide();
+				})
+			</script>
+	</body>
+
+</html>

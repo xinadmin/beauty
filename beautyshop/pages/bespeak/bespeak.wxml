@@ -1,0 +1,47 @@
+<view>
+  <view class='heda_a'>
+    <text style='margin:0 230rpx 0 20rpx'>时间</text>
+    <text>姓名</text>
+    <text style='margin-left:40rpx'>服务项目</text>
+     <text style='margin-left:100rpx;'>操作</text> 
+  </view>
+   <!-- <view class='list'>
+    <text class='list_a'>
+      <text id='round'>1</text>
+      <text>2018-09-02 09:30-10:30</text>
+    </text>
+    <text class='list_b' style='color:#ec708a'>黄大仙</text>
+    <text class='list_c'>养生套餐</text>
+    <text class='list_d'>黄大仙</text>
+    <view class='list_e'>
+      <text style='color:#2bbd2c'>确认</text>
+      <text style='color:#f68282'>删除</text>
+    </view>
+  </view>  -->
+
+      <block wx:for='{{list}}' wx:key="index" >
+       <block wx:for='{{item.detail}}' wx:for-item="detail" wx:key="index">
+         <view class='list'>
+          <text class='list_a'>
+            <text id='round'>{{index+1}}</text>
+            <text id='round_time'>{{detail.fuwu_time}}</text>
+            
+          </text>
+          <navigator url='/pages/my_beauty_yuyue_confirm/my_beauty_yuyue_confirm?fuwu={{detail.fuwu}}&fuwu_time={{detail.fuwu_time}}&meal_name={{item.meal_name}}&beautician_name={{detail.beautician_name}}&user_name={{item.user_name}}&yuyue_body={{detail.yuyue_body}}'>
+            <text class='list_b' style='color:#ec708a'>{{item.user_name}}</text>
+          </navigator>
+            <text class='list_c'>{{item.meal_name}}</text>
+            <!-- <text class='list_d'>{{detail.beautician_name}}</text> -->
+           
+          <view class='list_e'>
+            <text style='color:#2bbd2c' wx:if="{{detail.fuwu==0}}" data-yuyueid="{{detail.id}}" data-mealnumber="{{item.meal_number}}" data-mid="{{detail.fuwu_meirongshi_id}}" data-mealprice="{{item.meal_price}}" bindtap='querenFuwu'>确认预约</text>
+            <!-- <text style='color:#f68282'>删除</text> -->
+             <text style='color:#2bbd2c' wx:elif="{{detail.fuwu==2}}" >待确认</text> 
+            
+            <text style='color:#2bbd2c' wx:elif="{{detail.fuwu==1}}" data-yuyueid="{{detail.id}}"  bindtap='querenQiandan'>确认签单</text>
+            <text style='color:#2bbd2c' wx:elif="{{detail.fuwu>2}}" >已签单</text>
+          </view>
+        </view>
+        </block>
+      </block>
+</view>

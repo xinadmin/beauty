@@ -1,0 +1,32 @@
+<view class='list_yuyue'>
+  <block wx:for="{{order_list}}" wx:key="index">
+    <view>
+      <navigator url='/pages/order_yuyue_success/order_yuyue_success?order_id={{order_id}}&time={{item.fuwu_time}}&beautician_name={{item.beautician_name}}&yuyue_body={{item.yuyue_body}}&fuwu_meirongshi_id={{item.fuwu_meirongshi_id}}&id={{item.id}}&fuwu={{item.fuwu}}&shop_id={{shop_id}}'>
+        <view class='list_yuyue_item' style='margin-bottom:0;'> 
+          <view class='time'>服务开始时间</view>
+          <view class='list_yuyue_startime'>{{item.fuwu_time}}</view>
+
+          <view class='time'>服务结束时间</view>
+          <view class='list_yuyue_endtime'>{{item.xuanze_meirongshi_time}}</view>
+          <view class='beauty'>
+            <view class='beauty_title'>美容师</view>
+            <view class='beauty_name'>{{item.beautician_name}}</view>
+          </view>
+          <text id='yiqian' wx:if="{{item.fuwu ==1}}">待服务</text>
+          
+          <text id='yiqian' wx:if="{{item.fuwu ==3}}">已签单</text>
+           <text id='yiqian' wx:if="{{item.fuwu ==4}}">已完成</text>
+        </view>
+      </navigator>
+      <view class='qian' wx:if="{{item.fuwu == 2}}" style='margin-top:0;'>
+          <button class='qiand' bindtap='anliu' data-hi='1' id='{{item.id}}'>服务签单</button>
+      </view>
+    </view>
+  </block>
+</view>
+<view class='title'  wx:if="{{is_show}}">
+当前还可预约{{meal_number-order_list_length}}次
+</view>
+<navigator url='/pages/order_yuyue_add/order_yuyue_add?yuyue_id={{yuyue_id}}&shop_id={{shop_id}}'>
+  <view class='add_yuyue' wx:if="{{is_show}}">添加预约</view>
+</navigator>

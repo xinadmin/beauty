@@ -1,0 +1,57 @@
+.body{
+  width: 100%;
+}
+
+#mingxi{
+  width:100%;
+  height:96rpx;
+  line-height: 96rpx;
+  font-size:34rpx;
+  color:white;
+  background-color: gainsboro;
+  padding-left: 20rpx;
+}
+
+.xiangqing{
+  width: 100%;
+  height: 185rpx;
+  position: relative;
+  /* background-color: greenyellow; */
+  border-top: 1rpx solid gainsboro;
+}
+
+#bigbox{
+  width:380rpx;
+  height:104rpx;
+  line-height: 52rpx;
+  float: left;
+  top:37rpx;
+  left:26rpx;
+  position:absolute;
+}
+
+#title{
+  font-size: 35rpx;
+  color: black;
+}
+
+#time{
+  font-size: 35rpx;
+  color: rgb(112, 109, 109);
+}
+
+#time text{
+  margin-left: 20rpx;
+}
+
+#money{
+  float:right;
+  height:185rpx;
+  width:312rpx;
+  line-height:185rpx;
+  text-align:right;
+  color:black;
+  right:20rpx;
+  position:absolute;
+
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+    <title></title>
+      <link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/zhangdan.css" />
+<style type="text/css">
+</style>
+</head>
+<body >
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;border-bottom: solid 1px #E1E1E1;background-color: #FD4404;" >
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;font-weight: 500;">账单详情</span></button>
+			
+		</header>
+	
+	<!--个人信息列表项start-->
+	<section class="my_zhangdan mui-content">
+		<div class="zhangdan_list_title">
+			<h1 id="jiner"></h1>
+			<h2>交易成功</h2>
+		</div >
+			<div class="zhangdan_list_message">
+				<h1>商品说明<i id="shuoming">美容院服务</i></h1>
+						<h1>商品账户<i id="zhanghao"></i></h1>
+						<h1>到账时间<i>2017-01-05 06:52</i></h1>
+						<h1>订单号<i>2018010544897806331</i></h1></div>
+			
+	</section>
+	<!--个人信息列表项end-->
+	
+</body>
+</html>
+<script src="js/mui.min.js"></script>
+<script>
+	mui.init();
+	mui.plusReady(function(){
+		var current=plus.webview.currentWebview();
+		$("#jiner").text(current.yongjin);
+		$("#zhanghao").text(current.shop_name);
+	})
+</script>

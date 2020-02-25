@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/meirongshi.css" />
+		<title>美容师页面详情</title>
+		<style type="text/css">
+  a {
+  	text-decoration: line-through;
+  }
+		</style>
+	</head>
+
+	<body>
+		<header class="header_title">
+			<div class="headert_tilte_top">
+				<a class="mui-action-back"></a>
+				<p>我的美容师</p>
+			</div>
+			<div class="meirongyuan_banner">
+				<img src="img/meirongshi_banner.jpg" width="100%" /></div>
+		</header>
+		<div class="message_meirongshi">
+			<div class="message_meirongshi_all">
+				<div class="message_meirongshi_top">
+					<div class="meirongyuan_logo"> <img src="img/meirongshi_logo.jpg" />
+					</div>
+					<div class="message_meironghshi_content" id="header_content">
+						<span>昵称:<i id="meirongshi_name"></i></span><br />
+						<span>店铺:<i id="shop_name"></i></span>
+					</div>
+				</div>
+				<div class="message_meirongshi_bottom">
+					<ul>
+						<li>
+							<span><s id="jixiao"></s>元</span><br />
+							<span class="col-gray-meirongshi">本月绩效</span><br />
+
+						</li>
+						<li>
+							<span><s>0.00</s>元</span><br />
+							<span class="col-gray-meirongshi">上月绩效</span><br />
+
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<div class="meirongshi_bankuai">
+			<div class="meirongshi_bankuai_list">
+				<article class="meirongshi_bankuai_list_item  fl">
+					<span>我的美容店</span><br />
+					<s>点击进入</s>
+				</article>
+				<article class="meirongshi_bankuai_list_item fr">
+					<span>美容师知识</span><br />
+					<s>点击进入</s>
+				</article>
+			</div>
+		</div>
+		<div class="list_item_function">
+			<ul class="list_item_function_content">
+				<li id="qiandao">签到<s></s></li>
+				<li id="huiyuan" >会员<s></s></li>
+				<li id="fanli_zhangdan">服务费<s></s></li>
+
+			</ul>
+		</div>
+		<div class="footer_nav">
+			<span><s>美容师</s></span>
+			<span id="huiyuan_yuyue"><s>预约</s></span>
+
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	mui.init({
+		swipeBack: true
+	});
+	var uid = "";
+	var url_app=mui.app_url();
+	mui.plusReady(function() {
+		var current = plus.webview.currentWebview();
+		uid = current.uid;
+		if(!uid) {
+			plus.nativeUI.toast("当前用户未登录");
+			mui.back();
+			return;
+		}
+		mui.get(url_app+"SysUserAccount/selSysUserAccountTJuid?uid=" + uid + "", function(rsp) {
+			document.getElementById("jixiao").innerHTML = rsp.serviceCharge.toFixed(2);
+		})
+		//查询美容师当前账户余额，绩效
+		var wd = plus.nativeUI.showWaiting();
+		mui.ajax({
+			type: "POST",
+			url: url_app+"SysMeirongshi/selectByUid",
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			},
+			data: {
+				Uid: uid
+			},
+			timeout: 10000,
+			success: function(data) {
+				wd.close();
+				if(data != null) {
+
+					$("#meirongshi_name").text(data.meirongshiName);
+					$("#shop_name").text(data.meirongshiShop);
+					$("#header_content").attr("data-id", data.mid);
+				} else {
+					plus.nativeUI.toast("系统繁忙，请稍后再试");
+					return false;
+				}
+			},
+			error: function(xhr, type, errorThrown) {
+				wd.close();
+				plus.nativeUI.toast("系统繁忙，稍后再试");
+
+			}
+		})
+	});
+	//	预约列表
+	document.getElementById("huiyuan_yuyue").addEventListener("tap", function() {
+		mui.openWindow({
+			url: "meirongshi_huiyuan_yuyue.html",
+			id: "meirongshi_huiyuan_yuyue",
+			extras: {
+				meirongshi_id: $("#header_content").attr("data-id"),
+			}
+		})
+	})
+	//	返利账单
+	document.getElementById("fanli_zhangdan").addEventListener("tap", function() {
+		mui.openWindow({
+			url: "meirongshi_zhangdan.html",
+			id: "meirongshi_zhangdan",
+			extras: {
+				uid: uid
+			}
+		})
+	})
+	document.getElementById("huiyuan").addEventListener("tap", function() {
+		mui.toast("该功能开发中");
+	})
+	//	签到列表
+	document.getElementById("qiandao").addEventListener("tap", function() {
+		mui.toast("该功能开发中");
+	})
+	//	绩效提现
+</script>

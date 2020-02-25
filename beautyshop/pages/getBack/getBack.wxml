@@ -1,0 +1,23 @@
+<view>
+  <view class='all_padding'>
+    <form>
+      <view class='user'>
+        <image src='/pages/img/user.png' class='user_tu'></image>
+        <input placeholder='请输入手机号' type='number' bindinput='userTel'></input>
+      </view>
+      <view class='yan'>
+        <view class='user' style='width:65%;margin:0;'>
+          <image src='/pages/img/phone.png' class='user_tu'></image>
+          <input placeholder='请输入验证码' type='number' bindinput='numTel'></input>
+        </view>
+        <button class='huoyan' bindtap='sendCode' id="{{is_show == true? 'active':''}}" disabled='{{is_diabled==true ? true:false }}'>{{yanzhengma}}</button>
+      </view>
+      <view class='user'>
+        <image src='/pages/img/password.png' class='user_tu'></image>
+        <input placeholder='8到16个字符组成的密码' type='password' bindinput='pwdWord'></input>
+      </view>
+      <button id='zhuce' bindtap='updatePwd'>重置密码</button>
+    </form>
+  </view>
+  
+</view>

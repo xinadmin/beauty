@@ -1,0 +1,85 @@
+/* pages/mine/mine.wxss */
+
+page {
+ background-color: #fbf7f8;
+}
+.search-a {
+  background-color: #fff;
+}
+.hade-a {
+  margin-bottom: 0;
+  padding: 15rpx 0;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #FBF7F8;
+}
+.weui-cells {
+  border: none;
+  background-color: white;
+}
+.weui-cells:first-child { 
+    font-size: 28rpx;
+    
+}
+
+weui-cells {
+  border:none;
+}
+.weui-cell.head {
+    /* padding: 8px 14px; */
+    border-radius: 50%;
+    width: 128rpx;
+    height: 128rpx;
+}
+
+.head{
+  border-radius: 50%;
+  height: 100rpx;
+  width: 100rpx;
+  display: inline-block;
+}
+.userAvatarUrl{
+  display: inline-block;
+  border-radius: 10rpx;
+  height: 100rpx;
+  width: 100rpx;
+}
+.weui-cell__bd{
+  margin-left:30rpx;
+  font-size: 28rpx;
+
+}
+.weui-cell__hd{
+  width:60rpx;
+  height:60rpx;
+  display: inline-block;
+}
+.weui-cell__hd.head image{
+    width: 120rpx;
+    height: 120rpx;
+    margin-right: 16px;
+    margin-left: 0;
+    vertical-align: middle;
+}
+
+.weui-cell__hd image {
+    width: 100%;
+    height: 100%;
+    margin-left: 5rpx;
+    vertical-align: middle;
+}
+
+.weui-cell__bd .account{
+    width: 180rpx;
+    height: 46rpx;
+    line-height: 46rpx;
+    margin-top: 8rpx;
+    text-align: center;
+    font-size: 10pt;
+    color: #333;
+    background: #ebebeb;
+    border-radius: 6rpx;
+}
+

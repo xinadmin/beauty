@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<title>预约确认</title>
+		<style type="text/css">
+			body {
+				background: #fff;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.yyue_title {
+				background: #fff;
+				width: 100%;
+				padding-top: 0.3rem;
+			}
+			
+			.yyue_title h1 {
+				color: #000000;
+				line-height: 2.5rem;
+				height: 2.5rem;
+				font-weight: 500;
+				font-size: 1.3rem;
+				text-align: center;
+			}
+			
+			.yyue_title h2 {
+				color: #a9a9a9;
+				font-size: 1.0rem;
+				text-align: center;
+				line-height: 2.0rem;
+				height: 2.0rem;
+			}
+			
+			.yyue_detail {
+				background: #fff;
+				width: 100%;
+				padding-left: 0.6rem;
+			}
+			
+			.yyue_detail h1,
+			.yyue_detail h2,
+			.yyue_detail h3 {
+				color: #8d8d8d;
+				width: 97%;
+				height: 1.8rem;
+				line-height: 1.8rem;
+				font-size: 0.9rem;
+			}
+			
+			.yyue_detail h1 i,
+			.yyue_detail h2 i,
+			.yyue_detail h3 i {
+				color: #303030;
+				display: inline-block;
+				float: right;
+				font-size: 0.9rem;
+			}
+			
+			#xuanze {
+				width: 100%;
+				background: #fff;
+				overflow: hidden;
+				padding-top: 0.8rem;
+			}
+			
+			#xuanze button {
+				display: block;
+				margin: 0 auto 0.2rem;
+				width: 94%;
+				height: 2.8rem;
+				border-radius: 0;
+				border-radius: 5px;
+				color: #fff;
+				line-height: 2.8rem;
+				background: #ff4404;
+			}
+			
+			#xuanze button:active {
+				background: #ddd;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav" style="background-color: #FD4404;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">预约确认</h1>
+		</header>
+		<div class="my_yuyue mui-content" id="my_yuyue">
+			<div class="yyue_title">
+				<h1 id="name">{{yuyue_userName}}</h1>
+				<h2>预定成功</h2>
+			</div>
+			<div class="yyue_detail">
+				<h1>服务说明<i id="shuoming">美容院服务</i></h1>
+				<h2>服务产品<i id="produce">{{yuyue_meal}}</i></h2>
+				<h2>预约手机号<i id="tel">{{yuyue_tel}}</i></h2>
+				<h2>服务<i id="body">{{yuyue_body}}</i></h2>
+				<h3>预约时间<i id="time">{{yuyue_time}}</i></h3>
+			</div>
+			<div id="xuanze">
+				<button id="ok" v-if="first" @tap="ok_yuyue()">确定预约</button>
+				<button id="canel" v-if="first1" @tap="canel_qiandan()">未到店</button>
+				<button id="qiandan" onclick="qiandan()" v-if="first2">服务签单</button>
+				<button id="daiqiandan" style="background-color: #ddd;" v-if="first3">待会员签单</button>
+				<button id="ok_queren" v-if="first4">会员已签单</button>
+				<button id="ok_pingjia" v-if="first5">会员已评价</button>
+				<button id="canel" v-if="first6">已取消</button>
+				
+			</div>
+		</div>
+
+		<script>
+			mui.init({
+				swipeBack: true
+			});
+			var news = new Vue({
+				el: '#my_yuyue',
+				data: getDefaultData(),
+				methods: {
+					resetData: function() { //重置数据
+						Object.assign(this.$data, getDefaultData());
+					}
+				}
+			});
+			var url_app = mui.app_url();
+
+			function getDefaultData() {
+				return {
+					yuyue_id: "",
+					yuyue_price: "",
+					yuyue_meal: "",
+					yuyue_tel: "",
+					yuyue_time: "",
+					yuyue_userName: "",
+					yuyue_body: "",
+					yuyue_meirongshiId: "",
+					is_ok: false,
+					is_canel: false,
+					yuyue_meal_number: "",
+					first: false,
+					first1: false,
+					first2: false,
+					first3: false,
+					first4: false,
+					first5: false,
+					first6: false,
+					yuyue_status:0
+				}
+			}
+			mui.plusReady(function() {
+				var current = plus.webview.currentWebview();
+				news.yuyue_meal = current.yuyue_meal;
+				news.yuyue_tel = current.yuyue_tel;
+				news.yuyue_userName = current.yuyue_userName;
+				news.yuyue_body = current.yuyue_body;
+				news.yuyue_time = current.yuyue_time;
+				news.yuyue_id = current.yuyue_id;
+				news.yuyue_price = current.yuyue_price;
+				news.yuyue_meirongshiId = current.yuyue_meirongshiId;
+				news.yuyue_meal_number = current.yuyue_meal_number;
+				if(current.yuyue_status == 0) {
+					news.first=true;
+				} else if(current.yuyue_status == 1) {
+					news.first1=true;
+				    news.first2=true;
+				} else if(current.yuyue_status == 2) {
+					news.first3=true;
+					
+					
+				} else if(current.yuyue_status == 3) {
+					news.first4=true;
+					
+				} else if(current.yuyue_status == 4) {
+					news.first5=true;
+				}else {
+					news.first6=true;
+					
+				}
+				var yuyue_status = current.yuyue_status;
+
+				current.addEventListener("close", function(e) {
+					news.resetData();
+				}, false);
+				current.setStyle({
+					scrollIndicator: 'none'
+				});
+
+			});
+
+			function qiandan() {
+				var id = news.yuyue_id;
+				mui.post(url_app + "yuyue/beauticiansSignature?id=" + id + "", function(rsp) {
+					if(rsp == 1) {
+						mui.toast("签单成功");
+						mui.back();
+					} else {
+						mui.toast("签单失败，联系美容院");
+					}
+				})
+			}
+			function canel_qiandan() {
+				var id = yuyue_id;
+				mui.post(url_app + "yuyue/beauticiansSignature?id=" + id + "", function(rsp) {
+					if(rsp == 1) {
+						mui.toast("签单成功");
+						mui.back();
+					} else {
+						mui.toast("签单失败，联系美容院");
+					}
+				})
+			}
+			var wd = null;
+			function ok_yuyue() {
+				if(wd) {
+					return;
+				}
+				wd = plus.nativeUI.showWaiting();
+				mui.ajax({
+					type: "POST",
+					url: url_app + "beauticianorder/mrsclick",
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+					data: {
+						yuyueId: news.yuyue_id,
+						mrsId: news.yuyue_meirongshiId,
+						money: news.yuyue_price,
+						Num: news.yuyue_meal_number,
+						tel: news.yuyue_tel,
+						meal: news.yuyue_meal,
+						userName: news.yuyue_userName
+					},
+					timeout: 10000,
+					success: function(data) {
+						wd.close();
+						wd = null;
+						if(data == 1) {
+							plus.nativeUI.toast("预约确认成功");
+							mui.fire(plus.webview.getWebviewById("meirongshi_huiyuan_yuyue"), "refresh_list", null);
+							mui.back();
+						} else {
+							plus.nativeUI.toast("系统繁忙，请稍后再试");
+							return false;
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						wd.close();
+						wd = null;
+						plus.nativeUI.toast("系统繁忙，稍后再试");
+
+					}
+				})
+			}
+			mui.back = function() {
+				plus.webview.currentWebview().close("auto", 300);
+				mui.fire(plus.webview.getWebviewById("meirongshi_huiyuan_yuyue"), "refresh_list", null);
+
+			}
+		</script>
+
+	</body>
+
+</html>

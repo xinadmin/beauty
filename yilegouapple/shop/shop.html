@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"></meta>
+		<link rel="stylesheet" href="../css/mui.css" />
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/shop.css" />
+		<title>商家店铺</title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+
+	<div>
+		<div id="all">
+			<header class="mui-bar mui-bar-nav" style="background: #fff;box-shadow: none;" id="mui-bar">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #22222;"></a>
+				<h1 class="mui-title" id="shop_name" style="font-weight: 600;color: #000000;">{{shopName}}</h1>
+			</header>
+			<div class="mui-content" id="content_all">
+				<div id="slider" class="mui-slider" v-html="banner">
+				</div>
+
+				<div id="item_fenlei">
+					<ul>
+						<li class="red img_logo">
+							<img src="http://yiyun.zhonyou.cn/webapp_img/shop_logo.png" width="35px" height="35px" />
+							<a>首页</a>
+						</li>
+						<li>
+							<p id="all_produce">{{goodsNumber}}</p>
+							<a>全部商品</a>
+						</li>
+						<li>
+							<p id="hot_produce">{{sale_goods}}</p>
+							<a>热销</a>
+						</li>
+						<li>
+							<p id="new_produce">{{news_goods}}</p>
+							<a>上新</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="wai_shoplist" style="margin-bottom:10px;overflow: hidden;">
+					<div class="nei_shoplist nei_shoplist_one" id="all_produce_list">
+						<div class="shop_border" v-for="item in items_all" @tap="open_detail(item)">
+							<p align="center"><img :src="item.picture" width="150px" height="150px"></p>
+							<div class="wenziborder">
+
+								<p><strong>￥{{item.promotionPrice}}</strong>&nbsp
+									<a class="textthrought">￥{{item.price}}</a>&nbsp;&nbsp;
+									<a style="display: block;color: orange;">9.5折</a>
+								</p>
+								<p align="left" class="Gradientscolor">折扣优惠价&nbsp;￥{{item.size_price}}</p>
+								<p class="footerwenzi">{{item.goodsName}}</p>
+							</div>
+						</div>
+
+					</div>
+					<div class="nei_shoplist" style="display: none;width: 100%;" id="all_produce_list">
+						<div class="shop_list_goods">
+							<ul class="shop_list_goods_all">
+								<li class="shop_list_goods_item" v-for="item in items_all1" @tap="open_detail(item)">
+									<div class="shop_list_goods_img">
+										<img :src="item.picture" />
+									</div>
+									<div class="shop_list_goods_content">
+										<p>{{item.goodsName}}</p>
+										<span class="price">￥<strong>{{item.price}}</strong></span><br />
+										<s>
+										<span class="pingjia_num">{{item.evaluates}}评价</span>&nbsp;&nbsp;&nbsp;<span>98%好评</span>
+									   </s>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="nei_shoplist" style="display: none;" id="goods_sales">
+
+					</div>
+					<div class="nei_shoplist" style="display: none;" id="goods_news">
+
+					</div>
+				</div>
+				<div class="slide_up"></div>
+				<div id="footer_nav">
+					<ul>
+						<li id="shop_detail">
+							<p><i class="detail">店铺详情</i>
+							</p>
+						</li>
+						<li>
+							<p><i>热门分类</i>
+							</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<script src="../js/vue.min.js" type="text/javascript"></script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			var webview_detail = null;
+			var main_loaded_flag = false;
+			var url_app = mui.app_url();
+			(function($) {
+				$.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					$(".slide_up").pullToRefresh({
+						up: {
+							offset: 0, //距离底部高度(到达该高度即触发)
+							show: false,
+							contentinit: '上拉显示更多',
+							contentdown: '上拉显示更多',
+							contentrefresh: '正在加载...',
+							contentnomore: '没有更多商品了',
+							callback: function() {
+								var self = this;
+								setTimeout(function() {
+									if(!news.slide) {
+										mui.toast("当前无更多商品");
+										return false;
+									}
+									if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+										plus.nativeUI.toast('似乎已断开与互联网的连接', {
+											verticalAlign: 'bottom'
+										});
+										return;
+									}
+									if(!news.pageNum) {
+										news.pageNum = 1
+									} else {
+										news.pageNum += 1;
+									}
+									//请求历史列表信息流
+									mui.getJSON(url_app + "nsgoods/findByshopId?pageNum=" + news.pageNum + "&shopId=" + news.shopId + "", function(rsp) {
+										news.pageNum = rsp.pageNum;
+										if(rsp.list && rsp.list.length > 0) {
+											news.items_all = news.items_all.concat(convert(rsp.list));
+											news.items_all1 = news.items_all1.concat(convert(rsp.list));
+										} else {
+											news.slide = false;
+											self.endPullUpToRefresh(news.pageNum);
+											mui.toast("当前无更多商品");
+										}
+
+									});
+									self.endPullUpToRefresh();
+								}, 1000);
+							}
+						}
+					});
+
+				});
+
+			})(mui);
+
+			function getDefaultData() {
+				return {
+					index_bg: [], //列表信息流数据
+					shopId: "",
+					shopName: "",
+					goods_num: 0,
+					items_all: [],
+					items_all1: [],
+					items_new: [],
+					items_hot: [],
+					pageNum: "",
+					goodsNumber: 0,
+					sale_goods: 0,
+					news_goods: 0,
+					banner: "",
+					slide: true
+
+				}
+			}
+			var news = new Vue({
+				el: "#all",
+				data: getDefaultData(),
+				methods: {
+					resetData: function() { //重置数据
+						Object.assign(this.$data, getDefaultData());
+					}
+				},
+				updated: function() {
+					var sliderMuiObj = mui("#slider");
+					sliderMuiObj.slider({
+						interval: 1500
+					});
+				},
+			})
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				self.addEventListener("hide", function(e) {
+					window.scrollTo(0, 0);
+					news.resetData();
+					self.reload(true);
+				}, false);
+				self.setStyle({
+					scrollIndicator: 'none'
+				});
+			})
+
+			function pulluploading() {
+				if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+					plus.nativeUI.toast('似乎已断开与互联网的连接', {
+						verticalAlign: 'bottom'
+					});
+					return;
+				}
+				if(!news.pageNum) {
+					news.pageNum = 1
+				} else {
+					news.pageNum += 1;
+				}
+				//请求历史列表信息流
+
+				mui.getJSON(url_app + "nsgoods/findByshopId?pageNum=" + news.pageNum + "&shopId=" + news.shopId + "", function(rsp) {
+					news.pageNum = rsp.pageNum;
+					if(rsp.list && rsp.list.length > 0) {
+						news.items_all = news.items_all.concat(convert(rsp.list));
+						news.items_all1 = news.items_all1.concat(convert(rsp.list));
+
+					} else {
+						news.slide = false;
+						mui.toast("当前无更多商品");
+						return;
+					}
+				});
+			}
+
+			window.addEventListener('shop', function(event) {
+				news.shopId = event.detail.shopId;
+				if(news.shopId == null || news.shopId == "") {
+					return;
+				}
+				   var wd = plus.nativeUI.showWaiting();
+					$("#item_fenlei ul li").removeClass("red");
+					$("#item_fenlei ul li").eq(0).addClass("red");
+					$(".wai_shoplist > div").eq(0).show().siblings().hide();
+				mui.get(url_app + "NsShopAd/selShopAd?shopId=" + news.shopId + "&type=1", function(rsp) {
+					var html = "";
+					if(rsp == "0") {
+						html += "<div class='mui-slider-group mui-slider-loop'>";
+						html += "<div class='mui-slider-item'>";
+						html += "<a href='#'><img src='http://yiyun.zhonyou.cn/webapp_img/shopbanner1.jpg'>";
+						html += "</a></div>";
+						html += "<div class='mui-slider-item'>";
+						html += "<a href='#'>";
+						html += "<img src='http://yiyun.zhonyou.cn/webapp_img/shopbanner2.jpg'>";
+						html += "</a></div></div>";
+						html += "<div class='mui-slider-indicator'>";
+						html += "<div class='mui-indicator mui-active'></div>";
+						html += "<div class='mui-indicator'></div></div>";
+						news.banner = html;
+					} else {
+						news.banner = rsp;
+						$("body .mui-indicator").eq(1).addClass("mui-active");
+					}
+				});
+				news.shopName = event.detail.shopName;
+				news.goodsNumber = event.detail.goodsNumber;
+				mui.getJSON(url_app + "nsgoods/findByshopId?pageNum=1&shopId=" + news.shopId + "", function(rsp) {
+					news.pageNum = rsp.pageNum;
+					if(rsp.list && rsp.list.length > 0) {
+						news.items_all = news.items_all.concat(convert(rsp.list));
+						news.items_all1 = news.items_all1.concat(convert(rsp.list));
+					} else {
+						mui.toast("当前商家商品为空");
+					}
+				});
+				mui.get(url_app + "nsgoods/selectshopten?shopId=" + news.shopId + "", function(rsp) {
+					$("#goods_sales").html(rsp);
+					news.sale_goods = $("body  #goods_sales > div ").length;
+
+				});
+				mui.get(url_app + "nsgoods/selectshopnewten?shopId=" + news.shopId + "", function(rsp) {
+					$("#goods_news").html(rsp);
+					news.news_goods = $("body  #goods_news > div ").length;
+					wd.close();
+
+				});
+				webview_detail = plus.webview.getWebviewById("shop_chanpin_detail");
+				if(!webview_detail) {
+					webview_detail = mui.preload({
+						"id": "shop_chanpin_detail",
+						"url": "shop_chanpin_detail.html",
+						styles: {
+							popGesture: "close",
+							titleNView: {
+								autoBackButton: true,
+								backgroundColor: '#f7f7f7',
+								titleText: "产品详情",
+								splitLine: {
+									color: '#cccccc'
+								},
+								type: "transparent"
+							},
+							statusbar: {
+								background: "#ddd"
+							},
+							show: {
+								event: 'loaded'
+							},
+							waiting: {
+								autoShow: true
+							},
+
+						}
+					})
+				}
+			})
+
+			function convert(items) {
+				var newItems = [];
+				items.forEach(function(item) {
+					newItems.push({
+						goodsId: item.goodsId,
+						goodsName: item.goodsName,
+						price: (item.price).toFixed(2),
+						picture: item.picture, //商品所有图片/
+						promotionPrice: (item.promotionPrice).toFixed(2), //商品促销价格
+						size_price: (item.promotionPrice * 0.95).toFixed(2),
+						evaluates:item.evaluates
+					});
+				});
+				return newItems;
+			}
+
+			function open_detail(item) {
+				if(!item.goodsId) {
+					mui.toast("当前页面未加载完,请稍后");
+					return false;
+				}
+				mui.fire(webview_detail, 'get_detail', {
+					goodsId: item.goodsId //产品id
+				});
+				setTimeout(function() {
+					webview_detail.show("slide-in-right", 300);
+				}, 150);
+			}
+			mui("body").on("tap", "#goods_items", function() {
+				if(!$(this).attr("data-id")) {
+					mui.toast("当前页面未加载完,请稍后");
+					return false;
+				}
+				mui.fire(webview_detail, 'get_detail', {
+					goodsId: $(this).attr("data-id") //产品id
+				});
+				setTimeout(function() {
+					webview_detail.show("slide-in-right", 300);
+				}, 150);
+			})
+			$(function() {
+				$("#item_fenlei ul li").on("click", function() {
+					$("#item_fenlei ul li").removeClass("red");
+					var index = $(this).index();
+					$(this).addClass("red");
+					$(".wai_shoplist > div").eq(index).show().siblings().hide();
+				})
+			})
+			document.getElementById("shop_detail").addEventListener("tap", function() {
+				mui.openWindow({
+					"id": 'shop_detail',
+					"url": 'shop_detail.html',
+					extras: {
+						shop_name: news.shopName,
+						shop_id: news.shopId,
+						all: $("#all_produce").text(),
+						New: $("#new_produce").text(),
+						hot: $("#hot_produce").text()
+
+					}
+				})
+			})
+			mui.back = function() {
+				plus.webview.currentWebview().hide("auto", 300);
+			}
+			$(window).scroll(function(event) {
+				var wScrollY = window.scrollY; // 当前滚动条位置  
+				var wInnerH = window.innerHeight; // 设备窗口的高度（不会变）  
+				var bScrollH = document.body.scrollHeight; // 滚动条总高度      
+				if(wScrollY + wInnerH >= bScrollH) {
+					$("#footer_nav").hide();
+				} else {
+					$("#footer_nav").show();
+				}
+			})
+
+			function scroll() { // 开始封装自己的scrollTop
+				if(window.pageYOffset != null) { // ie9+ 高版本浏览器
+					// 因为 window.pageYOffset 默认的是  0  所以这里需要判断
+					return {
+						left: window.pageXOffset,
+						top: window.pageYOffset
+					}
+				} else if(document.compatMode === "CSS1Compat") { // 标准浏览器   来判断有没有声明DTD
+					return {
+						left: document.documentElement.scrollLeft,
+						top: document.documentElement.scrollTop
+					}
+				}
+				return { // 未声明 DTD
+					left: document.body.scrollLeft,
+					top: document.body.scrollTop
+				}
+			}
+
+			window.onload = function() {
+				var top = document.getElementById("mui-bar");
+				var main = document.getElementById("slider");
+				var item_fenlei = document.getElementById("item_fenlei");
+
+				var height1 = top.offsetHeight;
+				var height2 = main.offsetHeight;
+				var top_hegiht = height1 + height2;
+				window.onscroll = function() {
+					if(scroll().top >= top_hegiht) {
+						item_fenlei.className += " fixed";
+						item_fenlei.style.marginTop = top.offsetHeight + "px";
+					} else {
+						item_fenlei.className = "";
+						item_fenlei.style.marginTop = 0;
+					}
+				}
+			}
+		</script>
+	</div>
+
+</html>

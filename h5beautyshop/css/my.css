@@ -1,0 +1,72 @@
+body{
+	background-color: #f6f6f6;
+	width: 100%;
+}
+.information{
+	height: 3.4rem;
+    width: 100%;
+    background-color: white;
+    border-bottom: 0.01rem solid #c0bfbf;
+    border-top: 0.01rem solid #c0bfbf;
+    margin-top: 0.9rem;
+}
+.information img{
+	width: 2.5rem;
+    height: 2.5rem;
+    float: left;
+    margin: 0.5rem 0 0 0.8rem;
+}
+.id{
+	width: 11rem;
+    height: 1.5rem;
+    float: left;
+    line-height: 1.5rem;
+    font-size: 0.7rem;
+    margin: 1rem 0 0 0.5rem;
+}
+.function{
+	height: 10.1rem;
+    width: 100%;
+    background-color: white;
+    border-bottom: 0.01rem solid #c0bfbf;
+    border-top: 0.01rem solid #c0bfbf;
+    margin-top: 1.2rem;
+}
+.kuang{
+	height: 10.1rem;
+    width: 95.5%;
+    float: right;
+}
+.hang{
+	height: 2.5rem;
+    width: 100%;
+    border-bottom: 0.01rem solid #c0bfbf;
+}
+.hang_wei{
+	height: 2.5rem;
+    width: 100%;
+}
+.hang img,.hang_wei img,.hang_set img{
+	height: 1.6rem;
+    width: 1.6rem;
+    float: left;
+    margin: 0.4rem 0.5rem 0 0;
+}
+.hang #value,.hang_wei #value,.hang_set #value{
+	height: 2.5rem;
+    width: 70%;
+    float: left;
+    line-height: 2.5rem;
+    text-align: left;
+    font-size: 0.8rem;
+    color: #373636;
+} 
+.hang_set{
+	height: 2.5rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding-left: 1rem;
+    border-top: 0.01rem solid #c0bfbf;
+    border-bottom: 0.01rem solid #c0bfbf;
+    background: white;
+}

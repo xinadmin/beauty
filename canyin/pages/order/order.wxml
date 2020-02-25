@@ -1,0 +1,123 @@
+<wxs module="filters" src="order.wxs"></wxs>
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh" scroll-top="{{scrollTop}}">
+  <view class="my_list" id="my_list">
+    <view class="dingdan_zhuangtai">
+
+      <view id="item" class="{{selected?'sanjiao':''}}" bindtap="selected">全部</view>
+      <view id="item" class="{{selected1?'sanjiao':''}}" bindtap="selected1">待用餐</view>
+      <view id="item" class="{{selected2?'sanjiao':''}}" bindtap="selected2">用餐中</view>
+      <view id="item" class="{{selected3?'sanjiao':''}}" bindtap="selected3">待评价</view>
+      <view id="item" class="{{selected4?'sanjiao':''}}" bindtap="selected4">已取消</view>
+
+    </view>
+  </view>
+
+  <!-- 全部 -->
+  <view id='xiangqingw' class="{{selected?'show':'hidden'}}">
+
+    <view class='xiangqingl' wx:for="{{order_list}}" wx:key="xxx">
+      <view class='dianpu_name_zhuangtai'>
+        <text class='dianpu_name'>{{item.bName}}</text>
+        <text class='dianpu_zhuangtai' wx:if="{{item.oStatus==0}}">未付款</text>
+        <text class='dianpu_zhuangtai' wx:if="{{item.oStatus==1}}">已付款</text>
+        <text class='dianpu_zhuangtai' wx:if="{{item.oStatus==2}}">用餐中</text>
+        <text class='dianpu_zhuangtai' wx:if="{{item.oStatus==-1}}">已取消</text>
+           <text class='dianpu_zhuangtai' wx:if="{{item.oStatus==3}}">待评价</text>
+           <text class='dianpu_zhuangtai' wx:if="{{item.oStatus==4}}">已完成</text>
+      </view>
+       <navigator url='/pages/order_details/order_details?oid={{item.oId}}'>  
+      <view>
+      <block wx:for="{{item.menuList}}" wx:for-item="items" wx:key="xxxx">
+     
+          <view class='goods_list'>
+            <view class='shangpin'>
+              <text class='goods'>{{items.menuName}}</text>
+              <text class='goods_money'>￥{{filters.toFix(items.menuNum*items.mPrice)}}</text>
+              <text class='goods_shuliang'>x{{items.menuNum}}</text>
+            </view>
+          </view>
+     
+      </block>
+            </view>  
+             </navigator>
+      <view class='jianshu'>
+        <text class='jianshu_num'>共{{item.oCount}}件</text>
+      </view>
+      <view class='tody'>
+        <text class='time'>{{item.createTime}}</text>
+        <text class='zhuohao'>桌号：{{item.tName}}</text>
+      </view>
+      <view class='shiji_fukuan'>
+        实付金额：
+        <text class='shiji_jiner'>￥{{item.payMoney}}</text>
+      </view>
+      <view class='mowei'>
+        <text class='ping' wx:if="{{item.oStatus==3}}">评价</text>
+        <navigator url='/pages/dot/dot?bid={{item.bId}}&type=1'>
+          <text class='zhai' wx:if="{{item.oStatus==1}}">再来一单</text> </navigator>
+        <navigator url='/pages/dot/dot?bid={{item.bId}}&type=1'>
+          <text class='zhai' wx:if="{{item.oStatus==2}}">再来一单</text> </navigator>
+         <navigator url='/pages/dot/dot?bid={{item.bId}}&type=1'>
+          <text class='zhai' wx:if="{{item.oStatus==4}}">再来一单</text> </navigator>
+
+        <text class='zhai' bindtap='payment' data-out_trade_no='{{item.tOutTradeNo}}' data-money='{{item.payMoney}}' wx:if="{{item.oStatus==0}}">继续支付</text>
+        <text class='zhai' wx:if="{{item.oStatus==3}}">评价</text>
+      </view>
+    </view>
+
+
+  </view>
+
+
+  <!-- 待用餐 -->
+  <view id='xiangqingw' class="{{selected_meal?'show':'hidden'}}">
+    <view class='xiangqingl' wx:for="{{order_list_one}}" wx:key="xxx">
+      <view class='dianpu_name_zhuangtai'>
+        <text class='dianpu_name'>{{item.bName}}</text>
+        <text class='dianpu_zhuangtai' wx:if="{{item.oStatus==0}}">未付款</text>
+        <text class='dianpu_zhuangtai' wx:if="{{item.oStatus==1}}">已付款</text>
+        <text class='dianpu_zhuangtai' wx:if="{{item.oStatus==2}}">用餐中</text>
+        <text class='dianpu_zhuangtai' wx:if="{{item.oStatus==-1}}">已取消</text>
+      </view>
+           <navigator url='/pages/order_details/order_details?oid={{item.oId}}'>  
+      <view>
+      <block wx:for="{{item.menuList}}" wx:for-item="items" wx:key="xxxx">
+        
+          <view class='goods_list'>
+            <view class='shangpin'>
+              <text class='goods'>{{items.menuName}}</text>
+              <text class='goods_money'>￥{{filters.toFix(items.menuNum*items.mPrice)}}</text>
+              <text class='goods_shuliang'>x{{items.menuNum}}</text>
+            </view>
+          </view>
+       
+      </block>
+      </view>
+       </navigator>
+      <view class='jianshu'>
+        <text class='jianshu_num'>共{{item.oCount}}件</text>
+      </view>
+      <view class='tody'>
+        <text class='time'>{{item.createTime}}</text>
+        <text class='zhuohao'>桌号：{{item.tName}}</text>
+      </view>
+      <view class='shiji_fukuan'>
+        实付金额：
+        <text class='shiji_jiner'>￥{{item.payMoney}}</text>
+      </view>
+      <view class='mowei'>
+        <text class='ping'>评价</text>
+        <text class='zhai' wx:if="{{item.oStatus==1}}">再来一单</text>
+        <text class='zhai' wx:if="{{item.oStatus==0}}">继续支付</text>
+      </view>
+    </view>
+  </view>
+
+
+</scroll-view>
+<!-- 滑动刷新样式 -->
+<view class="body-view">
+  <loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+  </loading>
+</view>

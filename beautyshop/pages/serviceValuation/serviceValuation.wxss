@@ -1,0 +1,138 @@
+.mangyi{
+  border-bottom: 20rpx solid #cccccc;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.mang{
+  width: 28%;
+  display: inline-block;
+  text-align: center;
+  padding: 20rpx;
+  border-right: 1rpx solid #cccccc;
+  background: url('/pages/img/fuwu_gray(1).png')
+}
+.mang_a{
+  width: 28%;
+  display: inline-block;
+  text-align: center;
+  padding: 20rpx;
+}
+.mang_text{
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+.mang_tu{
+  width: 110rpx;
+  height: 100rpx;
+  display: inline-block;
+}
+.fw{
+  margin: 20rpx;
+}
+.service_selection{
+  width: 28%;
+  font-size: 32rpx;
+  text-align: center;
+  border: 1rpx solid #cccccc;
+  border-radius: 10rpx;
+  display: inline-block;
+  margin: 0 10rpx;
+}
+.service_selection_a{
+  width: 28%;
+  font-size: 32rpx;
+  text-align: center;
+  border: 1rpx solid #cccccc;
+  border-radius: 10rpx;
+  display: inline-block;
+  margin: 0 10rpx;
+}
+.service_selection_b{
+  width: 28%;
+  font-size: 32rpx;
+  text-align: center;
+  border: 1rpx solid #cccccc;
+  border-radius: 10rpx;
+  display: inline-block;
+  margin: 0 10rpx;
+}
+.service_selection_c{
+  width: 28%;
+  font-size: 32rpx;
+  text-align: center;
+  border: 1rpx solid #cccccc;
+  border-radius: 10rpx;
+  display: inline-block;
+  margin: 0 10rpx;
+}
+.service_selection .is_checked{
+  color: white ;
+  background-color: red;
+  border: 1rpx solid #cccccc;
+  border-radius: 10rpx;
+}
+.service_selection_a .is_checked_a{
+  color: white ;
+  background-color: red;
+  border: 1rpx solid #cccccc;
+  border-radius: 10rpx;
+}
+.service_selection_b .is_checked_b{
+  color: white ;
+  background-color: red;
+  border: 1rpx solid #cccccc;
+  border-radius: 10rpx;
+}
+.service_selection_c .is_checked_c{
+  color: white ;
+  background-color: red;
+  border: 1rpx solid #cccccc;
+  border-radius: 10rpx;
+}
+.service_selection .normal{
+  border: none;
+  color: #333;
+  background-color: #ffffff;
+  display: inline-block;
+}
+.service_selection_a .normal_a{
+  border: none;
+  color: #333;
+  background-color: white;
+  display: inline-block;
+}
+.service_selection_b .normal_b{
+  border: none;
+  color: #333;
+  background-color: white;
+  display: inline-block;
+}
+.service_selection_c .normal_c{
+  border: none;
+  color: #333;
+  background-color: white;
+  display: inline-block;
+}
+.ty_a{
+  padding: 20rpx 30rpx;
+  box-shadow: 0 0 5rpx rgba(0, 0, 0, 0.2);
+}
+.ty{
+  font-size: 32rpx;
+  width: 100%;
+  text-indent: 20rpx;
+}
+.tijiao_a{
+  text-align: center;
+  margin-top: 30rpx;
+}
+#tijiao{
+  padding: 0;
+  margin: 0;
+  width: 70%;
+  display: inline-block;
+  background-color: #ff9a9e;
+  border-radius: 6rpx;
+  color: white;
+}

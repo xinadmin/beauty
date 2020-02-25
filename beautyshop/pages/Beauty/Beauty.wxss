@@ -1,0 +1,97 @@
+page {
+  background-color: #FBF7F8;
+}
+.hade-a{
+  background-color: #fff;
+  padding-bottom: 10rpx;
+  margin-bottom:0;
+}
+.dingwei {
+  width: 100%;
+  height: 99rpx;
+  background-color: #fff;
+}
+.beauty_all {
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  padding-bottom: 23rpx;
+  margin-bottom: 23rpx;
+
+}
+.beauty_all .beauty_list {
+  width: 100%;
+  padding: 26rpx 26rpx 120rpx;
+  margin-bottom: 23rpx;
+  
+}
+.beauty_all .beauty_list:first-child {
+  border-top: solid 1px #DEDEDE;
+}
+.beauty_all .beauty_list .beauty_logo {
+  width: 130rpx;
+  height: 130rpx;
+  float: left;
+  padding-right:26rpx;
+}
+.beauty_all .beauty_list .beauty_logo  image {
+  width: 130rpx;
+  height: 130rpx;
+}
+.beauty_message {
+  width: 560rpx;
+  float: left;
+  height:140rpx; 
+  position: relative;
+}
+.beauty_message  .beauty_message_name {
+        color: #333333;
+}
+.beauty_message  .beauty_message_name {
+        color: #333333;
+}
+.beauty_message  .beauty_message_name     .beauty_message_name_img {
+     width: 120rpx;
+     float: right;
+}
+.beauty_message  .beauty_message_name     .beauty_message_name_img image {
+     width: 120rpx;
+     height: 55rpx;
+}
+.beauty_message  .beauty_message_address {
+        color: #969696;
+        font-size: 27rpx;
+        height: 66rpx;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        letter-spacing:2rpx;
+        line-height: 66rpx;
+        overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+.beauty_min {
+  clear: both;
+  width: 94%;
+  overflow: hidden;
+  margin:50rpx 0 0 3%;
+  height: 66rpx;
+  line-height: 66rpx;
+  border: solid 1px #DEDEDE;
+  font-size: 26rpx;
+}
+.beauty_min .beauty_min_km {
+  height: 66rpx;
+   width: 390rpx;
+  margin: 0 auto;
+  padding-left: 55rpx;
+  box-sizing: border-box;
+ background: url(http://yiyun.zhonyou.cn/sprogram_img/dingwei.png) no-repeat left center ;
+ background-size: 50rpx 50rpx;
+ letter-spacing: 3rpx;
+}
+ 
+
+

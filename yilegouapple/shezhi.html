@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/shezhi.css" />
+
+		<title>个人设置</title>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="border-bottom: solid 1px #E1E1E1;box-shadow: none;background-color:#fd4404 ;" >
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;font-weight: 500;">设置</span></button>
+			
+		</header>
+		<section class="set mui-content" >
+			<ul>
+				<li id="my_message">
+					<a href="javascript:void(0);">我的资料</a>
+				</li>
+				<li id="zhanghao_anquan">
+					<a href="javascript:void(0);">账号与安全</a>
+				</li>
+				<li id="manager_dizhi">
+					<a href="javascript:void(0);">我的收货地址</a>
+				</li>
+
+			</ul>
+			<ul>
+				<li id="address_set" onclick="no_set()">
+					<a href="javascript:void(0);">地区设置</a>
+				</li>
+				<li onclick="no_set()">
+					<a href="javascript:void(0);">隐私</a>
+				</li>
+				<li onclick="no_set()">
+					<a href="javascript:void(0);">通用</a>
+				</li>
+
+			</ul>
+			<ul>
+				<li id="fankui">
+					<a href="javascript:void(0);">帮助与反馈</a>
+				</li>
+				<li id="about">
+					<a href="javascript:void(0);">关于依乐购</a>
+				</li>
+			</ul>
+		</section>
+		<br />
+		<br />
+		
+		<button id="logout">
+						退出当前账户
+					</button>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	var managerpage;
+	mui.init({
+		swipeBack: true
+	});
+    var url_app=mui.app_url();
+	var uid, username, user_tel, idcard;
+    var local = window.localStorage;
+	mui.plusReady(function() {
+		var local = window.localStorage;
+        uid=local.getItem("uid"); 
+        username=local.getItem("user_name"); 
+        user_tel=local.getItem("user_tel"); 
+        idcard=local.getItem("idcard");
+        registerpage = plus.webview.getWebviewById("login");
+	if(!managerpage) {
+		managerpage = mui.preload({
+			"id": "manager_dizhi",
+			"url": "manager_dizhi.html"
+		});
+	}
+	})
+//	收貨地址
+	document.getElementById("manager_dizhi").addEventListener("tap", function() {
+		mui.fire(managerpage,"select_address",null);
+		setTimeout(function() {
+			managerpage.show("slide-in-right", 300);
+		}, 150);
+	})
+	//我的信息
+	document.getElementById("my_message").addEventListener("tap", function() {
+		username=local.getItem("user_name"); 
+        user_tel=local.getItem("user_tel"); 
+        idcard=local.getItem("idcard"); 
+		mui.openWindow({
+			url: 'my_message.html',
+			id: 'my_message',
+			extras: {
+				account: username,
+				tel: user_tel,
+				idcard: idcard
+
+			}
+		});
+	})
+	function no_set(){
+		plus.nativeUI.toast("敬请期待");
+	}
+	//关于
+	document.getElementById("about").addEventListener("tap", function() {
+		mui.openWindow({
+			id: "about",
+			url: "about.html"
+		})
+	})
+	//反馈
+	document.getElementById("fankui").addEventListener("tap", function() {
+		mui.openWindow({
+			id: "fankui",
+			url: "fankui.html"
+		})
+	})
+	//安全
+	document.getElementById("zhanghao_anquan").addEventListener("tap", function() {
+		mui.openWindow({
+			id: "anquan",
+			url: "anquan.html"
+		})
+	})
+    //退出登录
+	document.getElementById("logout").addEventListener("tap", function() {
+		plus.nativeUI.confirm("是否重置首次打开app？", function(event) {
+			/**
+			 * 按钮的索引，从0开始；
+			 */
+			var miao=2;
+			var index = event.index;
+			if(index == 0) {
+				plus.storage.removeItem("loginFlag");
+				plus.storage.removeItem("meirongshi_status")
+				var local = window.localStorage;
+				local.clear();
+				plus.nativeUI.toast("退出成功,"+miao+"秒后重启app", {
+					verticalAlign: "center"
+				});
+				setTimeout(function() {
+					plus.runtime.restart();
+				}, 2000);
+			}
+		}, "重置启动", ["重启", "取消"]);
+	});
+	//管理地址
+</script>

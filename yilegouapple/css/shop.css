@@ -1,0 +1,261 @@
+body .mui-content {
+				background-color: #eeeeee;
+			}
+			
+			.banner {
+				width: 100%;
+			}
+			
+			.banner img {
+				width: 100%;
+				min-height: 120px;
+			}
+			
+			.wai_shoplist {
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			
+			.wai_shoplist .nei_shoplist {
+				width: 97%;
+				margin: 0 auto;
+				height: 100%;
+			}
+			
+			.wai_shoplist .nei_shoplist .shop_border {
+				height: auto;
+				width: 46%;
+				margin: 2%;
+				background: white;
+				float: left;
+				box-shadow: 0px 0px 8px 6px rgba(0, 0, 0, 0.07);
+			}
+			
+			.wai_shoplist .nei_shoplist .shop_border img {
+				margin-top: 7%;
+				margin-bottom: 5%;
+			}
+			
+			.wai_shoplist .nei_shoplist .shop_border .wenziborder {
+				width: 90%;
+				position: relative;
+				height: auto;
+				margin: 0 auto;
+			}
+			
+			.wai_shoplist .nei_shoplist .shop_border .wenziborder strong {
+				font-size: 0.8rem;
+				color: #222222;
+			}
+			
+			.wai_shoplist .nei_shoplist .shop_border .wenziborder a {
+				color: darkgray;
+				font-size: 12px;
+			}
+			
+			.wai_shoplist .nei_shoplist .shop_border .wenziborder .textthrought {
+				text-decoration: line-through;
+			}
+			
+			.wai_shoplist .nei_shoplist .shop_border .wenziborder .Gradientscolor {
+				background: linear-gradient(to right, #FF1493, #FF6A6A);
+				width: 88%;
+				line-height: 1.5rem;
+				height: 1.5rem;
+				font-size: 12px;
+				color: whitesmoke;
+				margin-top: 3%;
+				padding-left: 0.2rem;
+			}
+			
+			.wai_shoplist .nei_shoplist .shop_border .wenziborder .footerwenzi {
+				color: dimgray;
+				letter-spacing: 1px;
+				margin-top: 3%;
+				font-size: 0.6rem;
+				height: 2.5rem;
+				width: 100%;
+				line-height: 1.25rem;
+				overflow: hidden;
+				overflow-y: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+			}
+			
+			#item_fenlei {
+				width: 100%;
+				overflow: hidden;
+				background: #fff;
+				margin-top: 2px;
+			}
+			
+			#item_fenlei li {
+				float: left;
+				width: 25%;
+				color: #222222;
+				text-align: center;
+				height: 3.5rem;
+			}
+			
+			#item_fenlei li img {
+				margin: 0 auto;
+				display: block;
+			}
+			
+			#item_fenlei li p {
+				color: #222222;
+				height: 2.1rem;
+				line-height: 2.1rem;
+			}
+			
+			#item_fenlei li a {
+				display: inline-block;
+			}
+			
+			#item_fenlei li.red a {
+				color: red;
+				border-bottom: solid 2px red;
+			}
+			
+			#item_fenlei li.red p {
+				color: red;
+			}
+			
+			#footer_nav {
+				width: 100%;
+				overflow: hidden;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				background: #fff;
+			}
+			
+			#footer_nav li {
+				width: 50%;
+				float: left;
+				min-height: 2.8rem;
+				text-align: center;
+			}
+			
+			#footer_nav li p {
+				margin: 1% 0;
+				height: 2.8rem;
+				line-height: 2.8rem;
+				color: #333333;
+				font-size: 1.0rem;
+			}
+			
+			#footer_nav li:last-child p {
+				padding-left: 20px;
+				background: url(http://yiyun.zhonyou.cn/webapp_img/fenlei_logo.png) no-repeat 30% center;
+				background-size: 1.0rem 1.0rem;
+			}
+			
+			#footer_nav li p {
+				border-right: solid 1px #eeeeee;
+			}
+			
+			.mui-pull-bottom-tips {
+				display: block;
+				width: 100%;
+				text-align: center;
+				background-color: #eeeeeee;
+				font-size: 15px;
+				height: 40px;
+				line-height: 40px;
+				color: #777;
+			}
+			
+			.shop_list_goods {
+				width: 100%;
+				overflow: hidden;
+				background-color: #fff;
+				padding: 0.3rem 0;
+			}
+			
+			.shop_list_goods .shop_list_goods_all {
+				width: 97%;
+				margin: 0 3% 0 0;
+				overflow: hidden
+			}
+			
+			.shop_list_goods .shop_list_goods_all li.shop_list_goods_item {
+				width: 100%;
+				overflow: hidden;
+				max-height: 7.3rem;
+				min-height: 7.3rem;
+			}
+			
+			.shop_list_goods .shop_list_goods_all li.shop_list_goods_item:last-child .shop_list_goods_content {
+				border-bottom: none;
+			}
+			
+			.shop_list_goods .shop_list_goods_all li.shop_list_goods_item .shop_list_goods_img {
+				float: left;
+				width: 34%;
+				max-height: 7.0rem;
+				min-height: 6.9rem;
+				overflow: hidden;
+				margin-right: 1%;
+				background-color: #fff;
+			}
+			
+			.shop_list_goods .shop_list_goods_all li.shop_list_goods_item .shop_list_goods_img img {
+				width: 95%;
+				height: 100%;
+				display: inline-block;
+				margin: 6% 2.5% 0 0;
+			}
+			
+			.shop_list_goods .shop_list_goods_all li.shop_list_goods_item .shop_list_goods_content {
+				float: left;
+				width: 65%;
+				min-height: 7.3rem;
+				max-height: 7.3rem;
+				padding-top: 0.3rem;
+				padding-bottom: 0.3rem;
+				border-bottom: solid 1px #EEEEEE;
+				position: relative;
+			}
+			
+			.shop_list_goods .shop_list_goods_all li.shop_list_goods_item .shop_list_goods_content p {
+				height: 2.6rem;
+				line-height: 1.3rem;
+				overflow-y: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				margin: 0 auto;
+				color: #333333;
+			}
+			
+			.shop_list_goods .shop_list_goods_all li.shop_list_goods_item .shop_list_goods_content span.price {
+				display: inline-block;
+				height: 1.6rem;
+				line-height: 1.6rem;
+				color: #FF3300;
+				position: absolute;
+				left: 0rem;
+				bottom: 1.5rem;
+			}
+			
+			.shop_list_goods .shop_list_goods_all li.shop_list_goods_item .shop_list_goods_content span.price strong {
+				font-weight: 600;
+				font-size: 1.1rem;
+			}
+			
+			.shop_list_goods .shop_list_goods_all li.shop_list_goods_item .shop_list_goods_content s {
+				display: inline-block;
+				color: #8C8B90;
+				position: absolute;
+				left: 0rem;
+				bottom: 0.3rem;
+				font-size: 0.85rem;
+			}
+			
+			.fixed {
+				position: fixed;
+				left: 0;
+			}

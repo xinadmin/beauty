@@ -1,0 +1,54 @@
+.head_mei{
+  height: 150rpx;
+  background-color: white;
+  padding-top:30rpx; 
+}
+.head_mei_a{
+  font-size: 32rpx;
+  text-align: center;
+  
+}
+.head_mei_b{
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 20rpx;
+  color: #454545;
+}
+.boby_mei{
+  background-color: white;
+  padding: 40rpx 20rpx;
+}
+.boby_mei_a{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60rpx;
+  
+}
+.boby_mei_font{
+  font-size: 28rpx;
+}
+.font_color{
+  color: #454545;
+}
+.font_chang{
+  max-width: 500rpx;
+  text-overflow: ellipsis; 
+  overflow: hidden; 
+  white-space: nowrap;
+}
+.confirm_center{
+  text-align: center;
+}
+#confirm{
+  background-color: red;
+  padding: 0;
+  margin: 0;
+  width: 80%;
+  line-height: 80rpx;
+  height: 80rpx;
+  color: white;
+  font-size: 32rpx;
+  border-radius: 12rpx;
+  display: inline-block;
+}

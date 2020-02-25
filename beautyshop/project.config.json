@@ -1,0 +1,138 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.1",
+	"appid": "wx06719d4f1c4588e8",
+	"projectname": "%E7%BE%8E%E5%AE%B9%E9%99%A2",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "首页",
+					"pathName": "pages/succeed/succeed",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详情",
+					"pathName": "pages/logs/logs",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "buySuccess",
+					"pathName": "pages/buySuccess/buySuccess",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "Beauty",
+					"pathName": "pages/Beauty/Beauty",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "Beauty_detail",
+					"pathName": "pages/Beauty_detail/Beauty_detail",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "登陆",
+					"pathName": "pages/login_auth/login_auth",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "getBack",
+					"pathName": "pages/getBack/getBack",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "login_auth",
+					"pathName": "pages/login_auth/login_auth",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "order",
+					"pathName": "pages/order/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "more_produce",
+					"pathName": "pages/more_produce/more_produce",
+					"query": ""
+				},
+				{
+					"id": 11,
+					"name": "order_detail",
+					"pathName": "pages/order_detail/order_detail",
+					"query": ""
+				},
+				{
+					"id": 12,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "12",
+					"pathName": "pages/my_beauty/my_beauty",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "order",
+					"pathName": "pages/bespeak/bespeak",
+					"query": ""
+				},
+				{
+					"id": 15,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				}
+			]
+		}
+	}
+}

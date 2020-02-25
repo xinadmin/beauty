@@ -1,0 +1,23 @@
+<view class='logo_img'>
+<image src="../img/touxiang.png"></image>
+</view>
+
+<view class='input_form'>
+<view class='input_bg'>
+<image src='../img/my_1.png'></image>
+<input type='text' placeholder='用户名/手机号' placeholder-class="place-holder" name="username" bindinput='username_input'> </input>
+</view>
+<view class='input_bg'>
+<image src='../img/mimaxianxing.png'></image>
+<input type='password' placeholder='密码' placeholder-class="place-holder" name="password" bindinput='password_input' > </input>
+</view>
+<view class='input_bg'>
+
+<view class="login" bindtap='login_go'>登录</view>
+</view>
+</view>
+<view class='select_pass'>
+
+
+
+</view>

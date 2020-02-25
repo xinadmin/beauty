@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src
+			="js/mui.min.js"></script>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<title>关于依乐</title>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: true
+			});
+			mui.plusReady(function() {
+				plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+					document.getElementById("version").innerHTML = inf.version;
+				})
+			})
+		</script>
+		<style type="text/css">
+			#logo {
+				width: 100%;
+				overflow: hidden;
+				text-align: center;
+				padding: 8% 0;
+			}
+			
+			#logo img {
+				width: 40%;
+				display: inline-block;
+			}
+			
+			#logo p {
+				color: #222222;
+				font-size: 1.0rem;
+				height: 2.5rem;
+				line-height: 2.5rem;
+			}
+			
+			.mui-scroll {
+				color: #333333;
+				font-size: 0.9rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #ff4404;">
+			<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left" style="color: #fff;"><span class="mui-icon mui-icon-left-nav" style="font-size: 1.1rem;">关于依乐</span></button>
+		</header>
+		<div class="mui-content">
+			<div id="logo">
+				<img src="http://yiyun.zhonyou.cn/webapp_img/yilegou.png" />
+				<p>依乐购<s id="version"></s></p>
+			</div>
+			<div class="mui-scroll">
+				<ul class="mui-table-view">
+
+					<li class="mui-table-view-cell">
+						<a href="fuwu_tiaokuan.html">服务条款</a>
+					</li>
+					<li class="mui-table-view-cell" id="banben">版本更新</li>
+					<li class="mui-table-view-cell" id="about_evian">关于依乐购</li>
+				</ul>
+			</div>
+		</div>
+		</div>
+
+	</body>
+
+</html>
+<script>
+	mui.init();
+	var url_app=mui.app_url();
+	console.log(url_app);
+	mui.plusReady(function() {
+		document.getElementById("about_evian").addEventListener("tap", function() {
+			mui.openWindow({
+				id: "about_info",
+				url: "about_info.html"
+			})
+		})
+		document.getElementById("banben").addEventListener("tap", function() {
+			plus.nativeUI.toast("检测更新", {
+				verticalAlign: "bottom"
+			});
+			var wgtVer = null;
+			var url_app=mui.app_url();
+			var urllist = url_app+"updateversion"
+			plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+				wgtVer = inf.version;
+				var ua = navigator.userAgent.toLowerCase();
+				if(/iphone|ipad|ipod/.test(ua)) { //苹果手机            
+					$.ajax({
+						type: "get",
+						url: url_app+"appleupdateversion", //获取当前上架APPStore版本信息
+						data: {
+							oldVersion: wgtVer //APP唯一标识ID
+						},
+						contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+						success: function(data) {
+							if(data == "") {
+								plus.nativeUI.toast("当前版本为最新", {
+									verticalAlign: "bottom"
+								});
+								return;
+							}
+							var btnArray = ['否', '更新'];
+							mui.confirm('发现新版本', '依乐购', btnArray, function(e) {
+								if(e.index == 1) {
+									plus.runtime.openURL(data);
+									return;
+								} else if(e.index == 0) {
+									return;
+								}
+							})
+						}
+					});
+				}
+				//		
+				else {
+					mui.ajax({
+						url: urllist,
+						data: {
+							oldVersion: wgtVer,
+						},
+						type: 'POST',
+						timeout: 10000,
+						success: function(data) {
+							if(data != null && data != "") {
+								mui.toast("发现新版本"); //获取远程数据库中上新andriod版本号
+								plus.nativeUI.confirm("版本已更新", function(event) {
+									if(0 == event.index) {
+										var dtask = plus.downloader.createDownload(data, {
+											method: "GET"
+										}, function(d, status) {
+											if(status == 200) {
+												plus.nativeUI.toast("正在准备环境，请稍后！");
+												sleep(1000);
+												plus.nativeUI.confirm("安装包已下载", function(event) {
+													if(0 == event.index) {
+														//										plus.runtime.openURL(data);
+														var path = d.filename; //下载apk
+														plus.runtime.install(path); // 自动安装apk文件
+													}
+												}, "立即安装", ["确   定", "取　　消"]);
+											} else {
+												alert('版本更新失败:' + status);
+											}
+										});
+										dtask.start();
+									}
+								}, "立即下载", ["确   定", "取　消"]);
+							} else {
+								plus.nativeUI.toast("当前版本为最新", {
+									verticalAlign: "bottom"
+								});
+								return;
+							}
+						},
+						error: function(xhr, type, errerThrown) {
+							mui.toast('网络异常,请稍候再试');
+						}
+					});
+				}
+			});
+
+		})
+	})
+
+	function sleep(numberMillis) {
+		var now = new Date();
+		var exitTime = now.getTime() + numberMillis;
+		while(true) {
+			now = new Date();
+			if(now.getTime() > exitTime)
+				return;
+		}
+	}
+</script>

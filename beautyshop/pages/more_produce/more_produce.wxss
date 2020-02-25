@@ -1,0 +1,43 @@
+page {
+  background-color: #fff;
+}
+
+.nav {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 12rpx;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+}
+.nav view {
+  color: #767676;
+  float: left;
+  margin: 19rpx 12rpx;
+}
+#nav_item {
+  font-size: 25rpx;
+  display: inline-block;
+}
+ .nav .active {
+  color: #EE7F96;
+}
+#border {
+  font-size: 25rpx;
+  display: inline-block;
+}
+#produce_all {
+
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  margin: 30rpx auto 0;
+  
+}
+.hidden {
+  display: none;
+}
+.show {
+  display: block;
+}
+@import "../../common/common.wxss";

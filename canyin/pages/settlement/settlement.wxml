@@ -1,0 +1,73 @@
+<view>
+  <view class='my_goods'>
+    <view class='my_goods1' wx:for="{{cartArray}}" wx:key="xxx">
+      <image class='goods_images1' src='{{item.menu.mImage}}' />
+      <text class='text1'>{{item.menu.mName}}</text>
+      <text class='text2'>{{item.menu.carText}}</text>
+      <text class='text3'>￥{{item.menu.mPrice}}</text>
+      <view class='text4'>x{{item.num}}</view>
+    </view>
+
+  </view>
+<view class='chaweifei' wx:if='{{type!=3}}'>
+<text id='choose5'>茶位费</text>
+<text id='choose6'>{{teaPosition}}元/位</text>
+</view>
+  <view class='choose_zong' >
+    <view class='choose'wx:if='{{type!=3}}'>
+    <!-- <view class='choose' > -->
+      <text id='choose1'>选择就餐人数</text>
+      <view class='cai' wx:for="{{carArray}}" wx:key="index">
+        <span class="car_item_operate">
+          <image src='/pages/img/jian.png' id="jianhao" data-alpha-beta="{{index}}" bindtap="carReduce"></image>
+          <span class="car_item_num" data-alpha-beta="{{index}}" bindtap="carRemove">{{item.carNum}}</span>
+          <image src='/pages/img/jia.png' id="jiahao" data-alpha-beta="{{index}}" bindtap="carAdd"></image>
+        </span>
+      </view>
+    </view>
+   
+    <view class='choose1'>
+      <text id='choose3'>是否需要开具发票</text>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{k7}}" wx:key="index" class=''>
+          <radio value="{{item.arr_guige02}}" bindtap='radio' color='#fff' checked="{{item.checked}}" /> {{item.arr_guige02}}
+        </label>
+      </radio-group>
+    </view>
+
+    <view class='choose' wx:if="{{type==2}}">
+      <text id='choose1'>选择就餐时间</text>
+      <view id='choose2'>
+        <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}" start="2019-01-01" end="2017-09-01">
+          <view class="tui-picker-detail">
+            当前选择：
+            <text style='color: black;'>{{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}</text>
+          </view>
+        </picker>
+      </view>
+      <image id='choose_img2' src='/pages/img/xuanze.png' />
+    </view>
+     <view class='choose' wx:if="{{type!=3}}">
+      <text id='choose1'>选择桌号</text>
+      <view id='choose2'>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key="tNum">
+          <view class="picker">
+            <text>当前选择：</text>
+            <text style='color: black;'>{{array[index].tNum}}</text>
+          </view>
+        </picker>
+      </view>
+      <image id='choose_img' src='/pages/img/xuanze.png' />
+    </view>
+  </view>
+
+  <view class='bottom'>
+    <view class='bottom_left'>
+      <text id='xiaoji'>小计：<text>{{payMoney}}</text>元</text>
+    </view>
+    <view class='bottom_right' bindtap="insert">
+      <text>立即结算</text>
+    </view>
+  </view>
+
+</view>

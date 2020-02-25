@@ -1,0 +1,274 @@
+<!--index.wxml-->
+<view>
+<!--hade-->
+<view id='hede_all'>
+  <view class='hade-a'>
+    <view class='hade-b'>
+      <image src="/pages/img/position.png" class='personal' />
+       <navigator url='/pages/switchcity/switchcity'>
+      <text style='font-size:28rpx;color:#ed708a' class='cityLength'>{{address}}</text>
+       </navigator>
+    </view>
+    
+    <view class='hade-c' bindtap="hopSearch">
+    
+      <image src='/pages/img/search.png' class='search' />
+      <input placeholder="大家都在搜索" placeholder-class="phcolor" class='search-a' disabled='false' />
+    </view>
+   
+    <view>
+
+    </view>
+  </view>
+  <view class='tab'>
+      <view class="navbar">
+        <view class="navbar-item" wx:for="{{navbar}}" wx:key="index" wx:for-index="idx" data-idx="{{idx}}" bindtap="swichNav">
+        <text class="navbar-text {{currentNavbar==idx ? 'active' : ''}}">{{item}}</text>
+        </view>
+    </view>
+  </view>
+</view>
+
+<!-- 推荐 -->
+<scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
+  scroll-y="true" bindscrolltolower="pullUpLoad">
+<!--轮播-->
+  <swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#fd9827"indicator-color="#fae3e8" style="height: 180px;">
+    <block wx:for="{{imgUrls}}" wx:key="index">
+      <!-- <navigator url="/pages/logs/logs"> -->
+      <swiper-item>
+        <image src="{{item}}" class="slide-image"  />
+      </swiper-item>
+      <!-- </navigator> -->
+    </block>
+  </swiper>
+
+<view class='bot_huo'>
+  <text class='haohuo'>热门好货</text>
+  <!--文字轮播-->
+  <swiper class='swiper-box' autoplay='{{true}}' interval='2000' vertical='{{true}}' circular='{{true}}'>
+    <swiper-item class='item' wx:for='{{txtlist}}' wx:key="index">{{index + 1}}、{{item.content}}</swiper-item>
+  </swiper>
+</view>
+
+<view>
+   <navigator url="/pages/logs/logs?pid=YS005">
+  <view class='tu_left'>
+   
+    <view class='tu_left_zhong'>
+      <image src='/pages/img/facialMask_b.png' class='tu_left_a' />
+    </view>
+    <view class='tu_left_text'>
+      <view class='tu_left_text_a'>依梵妮乳腺疏通养生套盒</view>
+      <view class='tu_left_text_b'>你想不到的奢华</view>
+      <view class='tu_left_text_c'>
+        <text class='tu_left_text_d'>仅售：</text>
+        <text class='tu_left_text_e'>¥2580</text>
+      </view>
+    </view>
+  </view>
+  </navigator>
+  <view class='tu_right'>
+    <view class='tu_right_b'>
+     <navigator url="/pages/logs/logs?pid=ZY001">
+      <view class='tu_right_b_te'>
+      <image src='/pages/img/facialMask.png'  class='tu_right_b_tu'/>
+      <image src='/pages/img/xinping.png'  class='tu_right_b_tu_a'/>
+        <view class='tu_left_text_a'>依梵妮套盒特惠专场</view>
+        <view class='tu_left_text_b'>新春特惠 好物先抢</view>
+        <view class='tu_left_text_d'>仅售：<text class='tu_left_text_e' style='font-size:18rpx;'>¥298</text></view>
+        <!-- <view class='tu_left_text_c'>
+          <text class='tu_left_text_d'>直降</text>
+          <text class='tu_left_text_g'>100元</text>
+        </view> -->
+      </view>
+     </navigator>
+      
+    </view>
+    <navigator url="/pages/logs/logs?pid=D035">
+    <view class='tu_right_a'>
+      <image src='/pages/img/facialMask_a.png'  class='tu_right_a_tu'/>
+      <view class='tu_right_a_te'>
+        <view class='tu_left_text_a'>经典面膜</view>
+        <view class='tu_left_text_b'>矿泉滋养亮颜面膜开售</view>
+        <view class='tu_left_text_b' style='color:#e6d78c'>立即抢购</view>
+      </view>
+    </view>
+   </navigator>
+  </view>
+  <navigator url="/pages/logs/logs?pid=D043">
+  <image src='http://yiyun.zhonyou.cn/sprogram_img/new4.png' class='tu_c' />
+  </navigator>
+</view>
+ <!-- <view>
+  <text class='titles'>今日爆款</text>
+  <view class='tu_center'>
+    <image src='/pages/img/bao.png' class='tu_center_a' />
+    <image src='/pages/img/bao1.png' class='tu_center_a' />
+    <image src='/pages/img/bao2.png' class='tu_center_a' />
+  </view>
+</view>  -->
+
+<view>
+  <text class='titles'>猜你喜欢</text>
+  <view>
+    <view class='guess'>
+      <block wx:for='{{list}}' wx:key="index">
+        <navigator url="/pages/logs/logs?pid={{item.pid}}">
+          <view class='main'>
+            <image src="{{item.p_pic}}" class="picB" />
+            <text class='main_a'>依梵妮</text>
+            <view class="main_p">{{item.pname}}</view>
+            <view class='goumai'>
+              <text class='price'>¥{{item.pprice}}</text>
+              <button class='buy' plain='true'>去购买</button>
+            </view>
+            <view class='recommend'>
+              {{item.pdetail}}
+            </view>
+          </view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+</view>
+
+  
+</scroll-view>
+
+<!-- 单品 -->
+<scroll-view class="latest-item-container {{currentNavbar==1 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;" scroll-y="true" bindscrolltolower="pullUpLoadLatest" >
+  <view id='produce_all'>
+    <view class='produce_list_litem'>
+      <view class='procuce_message' wx:for="{{danpin_produce}}" wx:key="unique">
+        <navigator url='../logs/logs?pid={{item.pid}}'>
+          <image src='{{item.p_pic}}'></image>
+          <view class='produce_message'>
+            <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+            <view class='produce_name'>{{item.pname}}
+              <!-- <text>已售100</text> -->
+            </view>
+            <view class='produce_price'>￥{{item.pprice}}
+              <!-- <text>￥900</text> -->
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 沙龙装 -->
+<scroll-view class="latest-item-container {{currentNavbar==2 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;" scroll-y="true" bindscrolltolower="pullUpLoadLatest">
+<view id='produce_all'>
+  <view class='produce_list_litem'>
+    <view class='procuce_message' wx:for="{{shalong_produce}}" wx:key="unique">
+      <navigator url='../logs/logs?pid={{item.pid}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+            <!-- <text>￥900</text> -->
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>
+</scroll-view>
+
+<!-- 原液 -->
+<scroll-view class="latest-item-container {{currentNavbar==3 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;" scroll-y="true" bindscrolltolower="pullUpLoadLatest">
+<view id='produce_all'>
+  <view class='produce_list_litem'>
+ <view class='procuce_message' wx:for="{{yuanye_produce}}" wx:key="unique">
+      <navigator url='../logs/logs?pid={{item.pid}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+            <!-- <text>￥900</text> -->
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>
+</scroll-view>
+
+
+
+<!-- 面部套盒 -->
+<scroll-view class="latest-item-container {{currentNavbar==4 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;" scroll-y="true" bindscrolltolower="pullUpLoadLatest">
+<view id='produce_all'>
+  <view class='produce_list_litem'>
+    <view class='procuce_message' wx:for="{{mianbu_produce}}" wx:key="unique">
+      <navigator url='../logs/logs?pid={{item.pid}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+            <!-- <text>￥900</text> -->
+          </view>
+        </view>
+      </navigator>
+    </view>
+
+  </view>
+
+</view>
+</scroll-view>
+
+<!-- 身体套盒 -->
+<scroll-view class="latest-item-container {{currentNavbar==5 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;" scroll-y="true" bindscrolltolower="pullUpLoadLatest">
+<view id='produce_all'>
+  <view class='produce_list_litem'>
+    <view class='procuce_message' wx:for="{{body_produce}}" wx:key="unique">
+      <navigator url='../logs/logs?pid={{item.pid}}'>
+        <image src='{{item.p_pic}}'></image>
+        <view class='produce_message'>
+          <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+          <view class='produce_name'>{{item.pname}}
+            <!-- <text>已售100</text> -->
+          </view>
+          <view class='produce_price'>￥{{item.pprice}}
+            <!-- <text>￥900</text> -->
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>
+</scroll-view>
+</view>
+
+<!-- 加载样式 -->
+<view class="tui-loading-row" wx:if="{{current}}">
+  <view class="tui-loading-cell">
+    <view class="circle-line">
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+      <text></text>
+    </view>
+  </view>
+</view>

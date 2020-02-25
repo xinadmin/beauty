@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"></meta>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/meirongshi_zhuce.css" />
+		<style type="text/css">
+			#select_btn {
+				height: 2.6rem;
+				width: 96%;
+				margin: 0 auto 0.6rem;
+				line-height: 2.2rem;
+			}
+			
+			#next,
+			#reg {
+				height: 100%;
+				line-height: 100%;
+				border-radius: 2px;
+				font-size: 0.9rem;
+				background: #ff3300;
+				color: #fff;
+				width: 100%;
+			}
+		</style>
+		<title>美容师入驻</title>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav"  style="background-color: #FD4404;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title" style="color: #fff;">补全资料</h1>
+		</header>
+		<div class="zhuce mui-content" style="background: #fff;">
+			<div id="fomr_div">
+				<form class="mui-input-group" style="font-size: 0.9rem !important;">
+					<div class="mui-input-row">
+						<label>姓名:</label>
+						<input id='name' type="text" style="font-size: 0.9rem " class="mui-input-clear mui-input" placeholder="请输入真实姓名">
+					</div>
+					<div class="mui-input-row">
+						<label>年龄:</label>
+						<input id='age' type="number" style="font-size: 0.9rem " class="mui-input-clear mui-input" placeholder="请输入年龄">
+					</div>
+					<div class="mui-input-row">
+						<label>商家店名:</label>
+						<input id='shop_name' type="text" style="font-size: 0.9rem " class="mui-input-clear mui-input" placeholder="请确认商家名">
+					</div>
+					<div class="mui-input-row">
+						<label>商家邀请码</label>
+						<input id='shop_code' type="text" style="font-size: 0.9rem " class="mui-input-clear mui-input" placeholder="请输入商家邀请码">
+					</div>
+				</form>
+				<div id="select_btn">
+					<button id='next'>下一步</button>
+				</div>
+			</div>
+			<div id="idcard_content" style="display: none;">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>身份证号</label>
+						<input id='idcard' type="number" style="font-size: 0.9rem " class="mui-input-clear mui-input" placeholder="请输入身份证号 ">
+					</div>
+				</form>
+				<div id="zhengmian_pic">
+					<h1>身份证正面照</h1>
+
+					<form id="form_person_info_zheng" name="form_person_info" class="jiashen" method="post" enctype="multipart/form-data">
+						<a href="javascript:void(0);" style="display: block; position: relative; z-index: 1;">
+							<span style="width: 97px; height: 34px; position: absolute; left: 0; top: 0; z-index: 2; cursor: pointer;">
+								<input type="file" name="pic" style="width: 97px; height: 34px; padding: 0; margin: 0; border: none 0; opacity: 0; filter: alpha(opacity = 0); cursor: pointer;" onchange="imgUpload1();"/>
+										<!--<input hidefocus="true" size="1" class="input-file" name="pic" id="contacts_card_electronic_1" nc_type="change_store_label" type="file" style="width: 97px; height: 34px; padding: 0; margin: 0; border: none 0; opacity: 0; filter: alpha(opacity = 0); cursor: pointer;" onchange="imgUpload1();">-->
+										<input type="hidden" name="contacts_card_electronic_1" id="logo1" value="手持身份证照片">
+									</span>
+						</a>
+					</form>
+					<p onclick="pic_detail(this)">
+						<img src="img/zheng.jpg"><s>实例</s></p>
+					<p id="bg1" onclick="pic_detail(this)">
+						<img id="imglogo1" style="border: solid 1px #F0F0F0;"></p>
+
+				</div>
+				<div id="zhengmian_pic">
+					<h1>身份证反面照</h1>
+					<form id="form_person_info_fan" name="form_person_info" class="jiashen" enctype="multipart/form-data">
+						<a href="javascript:void(0);" style="display: block; position: relative; z-index: 1;">
+							<span style="width: 97px; height: 34px; position: absolute; left: 0; top: 0; z-index: 2; cursor: pointer;">
+										<input hidefocus="true" size="1" class="input-file" name="pic" id="contacts_card_electronic_2" nc_type="change_store_label" type="file" style="width: 97px; height: 34px; padding: 0; margin: 0; border: none 0; opacity: 0; filter: alpha(opacity = 0); cursor: pointer;" onchange="imgUpload2();">
+										<input type="hidden" name="contacts_card_electronic_1" id="logo2" value="手持身份证照片">
+									</span>
+						</a>
+					</form>
+					<p onclick="pic_detail(this)">
+						<img src="img/fan.jpg"><s>实例</s></p>
+					<p id="bg2" onclick="pic_detail(this)">
+						<img id="imglogo2" style="border: solid 1px #F0F0F0;"></p>
+
+				</div>
+				<div id="select_btn">
+					<button id='reg'>注册</button>
+				</div>
+			</div>
+		</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script>
+	var url_app=mui.app_url();
+	//	生成個人码
+	var code; //在全局定义验证码
+	function createCode() {
+		code = "";
+		var codeLength = 6; //验证码的长度  
+		var random = new Array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+			'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9'); //随机数  
+		for(var i = 0; i < codeLength; i++) { //循环操作  
+			var index = Math.floor(Math.random() * 52); //取得随机数的索引（0~35）  
+			code += random[index]; //根据索引取得随机数加到code上  
+		}
+		return code;
+	}
+	var meirongshi_shop_id;
+	mui.init();
+	mui.plusReady(function() {
+		var withdrawal_bank = plus.webview.getWebviewById("meirongshi_xuzhi");
+		if(withdrawal_bank != null) {
+			withdrawal_bank.hide(5000);
+		}
+
+	})
+	//	下一步
+	document.getElementById("next").addEventListener("tap", function() {
+		var name = $("#name").val().replace(/(^\s*)|(\s*$)/g, '');
+		var age = $("#age").val().replace(/(^\s*)|(\s*$)/g, '');
+		var shop_name = $("#shop_name").val().replace(/(^\s*)|(\s*$)/g, ''); //商家店名
+		var shop_code = $("#shop_code").val().replace(/(^\s*)|(\s*$)/g, ''); //商家个人码
+		if(name == "" || age == "" || shop_name == "" || shop_code == "") {
+			mui.toast("信息不能为空，请补充信息");
+			return false;
+		}
+		if(shop_code.length != 6) {
+			mui.toast("请填写正确的邀请码");
+		} else {
+			var wd = plus.nativeUI.showWaiting();
+			mui.ajax({
+				url: url_app+"mrshop/TJid",
+				data: {
+					meirongyuanCode: shop_code
+				},
+				type: "POST",
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+				},
+				success: function(data) {
+					wd.close();
+					if(data == "") {
+						mui.toast("请填写正确的邀请码");
+						return;
+					} else {
+						$("#fomr_div").hide();
+						$("#idcard_content").show();
+						meirongshi_shop_id = data;
+					}
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					wd.close();
+					mui.toast("系统繁忙，稍后再试");
+				}
+			});
+		}
+	})
+	//	注冊
+	document.getElementById("reg").addEventListener("tap", function() {
+		var local = window.localStorage;
+		var uid = local.getItem("uid"); //用户姓名
+		var name = $("#name").val().replace(/(^\s*)|(\s*$)/g, '');
+		var age = $("#age").val().replace(/(^\s*)|(\s*$)/g, '');
+		var shop_name = $("#shop_name").val().replace(/(^\s*)|(\s*$)/g, ''); //商家店名
+		var idcard = $("#idcard").val().replace(/(^\s*)|(\s*$)/g, ''); //商家个人码
+		var meirongshi_code = createCode(); //美容师6位个人码
+		var imglogo1 = document.getElementById("imglogo1").src; //图片
+		var imglogo2 = document.getElementById("imglogo2").src; //图片
+		var bg1 = $("#bg1").css("display");
+		var bg2 = $("#bg2").css("display");
+		var reg1 = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+		if(name == "" || age == "" || shop_name == "" || shop_code == "" || idcard == "") {
+			mui.toast("信息不能为空，请补充信息");
+			return false;
+		} else if(bg1 == "none" || bg2 == "none") {
+			mui.toast("图片不能为空");
+			return false;
+			
+		}else if(!reg1.test(idcard)){
+				mui.toast("请输入正确身份证号")
+				return false ;
+			}
+		else {
+			if(uid != null && uid != "") {
+				var wd = plus.nativeUI.showWaiting();
+				$.ajax({
+					url: url_app+'SysMeirongshi/insertMeirongshi',
+					data: {
+						userId: uid,
+						meirongshiName: name,
+						meirongshiAge: age,
+						meirongshiShop: shop_name,
+						meirongshiShopid: meirongshi_shop_id,
+						meirongshiIdcard: idcard,
+						meirongshiCode: meirongshi_code,
+						meirongshiIdcardZheng: imglogo1,
+						meirongshiIdcardFan: imglogo2
+					},
+					datetype: "json",
+					success: function(data) {
+						if(data == 1) {
+							var local = window.localStorage.setItem("is_meirongshi", 1);
+							mui.fire(plus.webview.getWebviewById("my_meirongyuan"), 'refresh', null);
+							mui.back();
+						} else {
+							alert("你当前填写的信息有误，请联系商家");
+						}
+						wd.close();
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						wd.close();
+						mui.toast("系统繁忙");
+					}
+				});
+			} else {
+				mui.toast("当前状态未登录，请重新登录");
+				return false;
+			}
+		}
+	});
+	//上传图片
+	function imgUpload1() {
+		var wd = plus.nativeUI.showWaiting();
+		var formFile = new FormData($('#form_person_info_zheng')[0]);
+		$.ajax({
+			url: url_app+"user/card_img",
+			type: "post",
+			data: formFile,
+			cache: false, //上传文件无需缓存
+			processData: false, //用于对data参数进行序列化处理 这里必须false
+			contentType: false, //必须 
+			success: function(ssu) {
+				wd.close();
+				if(ssu == null || ssu == "") {
+					mui.toast("上传失败，联系管理员");
+					return;
+
+				} else if(ssu == "1") {
+					mui.toast("文件格式不正确，只能为jpg,png,gif！");
+				} else if(ssu == "2") {
+					mui.toast("文件过大！请上传小于3M的图片");
+				} else {
+					$("#imglogo1").attr("src", ssu);
+					$("#bg1").show();
+				}
+			}
+
+		});
+
+	}
+	//上传图片
+	function imgUpload2() {
+		var wd = plus.nativeUI.showWaiting();
+		var formFile = new FormData($('#form_person_info_fan')[0]);
+		$.ajax({
+			url: url_app+"user/card_img",
+			type: "post",
+			data: formFile,
+			cache: false, //上传文件无需缓存
+			processData: false, //用于对data参数进行序列化处理 这里必须false
+			contentType: false, //必须 
+			success: function(ssu) {
+				if(ssu == null || ssu == "") {
+                     mui.toast("系统繁忙");
+				} else if(ssu == "1") {
+					mui.toast("文件格式不正确，只能为jpg,png,gif！");
+				} else if(ssu == "2") {
+					mui.toast("文件过大！请上传小于3M的图片");
+				} else {
+					$("#imglogo2").attr("src", ssu);
+					$("#bg2").show();
+				}
+				wd.close();
+			},
+			error: function(xhr, type, errerThrown) {
+             	wd.close();
+				mui.toast('系统繁忙，稍后再试');
+			}
+
+		});
+
+	}
+	//图片详情
+	function pic_detail(obj) {
+		var $this = $(obj);
+		var src = $this.children("img").attr("src");
+		mui.openWindow({
+			url: "pic_detail.html",
+			id: "pic_detail",
+			extras: {
+				src: src
+			}
+		})
+	}
+</script>

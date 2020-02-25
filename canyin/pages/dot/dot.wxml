@@ -1,0 +1,121 @@
+<view>
+  <view class='bg_tou'>
+    <image src='{{shop.bImage}}' class='dian_tou'></image>
+    <view class='hade_tx'>
+      <view class='hade_tx_a'>{{shop.bShop}}</view>
+      <view class='hade_tx_b'>服务宗旨：{{shop.bBrief}}</view>
+    </view>
+  </view>
+  <view>
+    <view class="my_list" id="my_list">
+      <view class="dingdan_zhuangtai">
+        <view id="item" class="{{selected?'sanjiao':''}}" bindtap="selected">点餐</view>
+        <view id="item" class="{{selected1?'sanjiao':''}}" bindtap="selected1">购物车({{carlen}})</view>
+        <view id="item" class="{{selected2?'sanjiao':''}}" bindtap="selected2">商家</view>
+      </view>
+    </view>
+  <view class="dingdan">
+    <view id="dingdan_item" class="{{selected?'show':'hidden'}}">
+      <view class='tab'>
+        <view class="navbar">
+          <view class="navbar-item" wx:for="{{navbar}}" wx:key="index" wx:for-index="idx" data-idx="{{idx}}" bindtap="swichNav" data-id="{{item.typeId}}">
+          <text class="navbar-text {{currentNavbar==idx ? 'active' : ''}}">{{item.typeName}}</text>
+          </view>
+        </view>
+      </view>
+      <!-- 热销 -->
+<scroll-view class="hot-item-container" style="height: {{systemInfo.windowHeight}}px;" scroll-y="true" bindscrolltolower="pullUpLoad">
+    <view class='cai' wx:for="{{carArray}}" wx:key="index"  wx:key="unique">
+    
+      <image src='{{item.mImage}}' class='cai_tu'></image>
+      
+      <view class='cai_xin'>
+       <navigator url='/pages/logs/logs?mid={{item.mId}}'>
+        <view class='cai_xin_a'>{{item.mName}}</view>
+        <view class='cai_xin_b'>{{item.mSpec}}</view>
+        <view class='cai_xin_c'>￥{{item.mPrice}}</view>
+      </navigator>
+      </view>
+    
+      <span class="car_item_operate">
+        <image src='/pages/img/jian.png' id="jianhao" data-alpha-beta="{{index}}" data-id='{{item.mId}}' bindtap="carReduce"></image>
+        <span class="car_item_num" data-alpha-beta="{{index}}" bindtap="carRemove">{{item.carNum}}</span>
+        <image src='/pages/img/jia.png' id="jiahao" data-id='{{item.mId}}' data-alpha-beta="{{index}}" bindtap="carAdd"></image>
+      </span>
+    </view>
+</scroll-view>
+    </view>
+    <view id="dingdan_item" class="{{selected1?'show':'hidden'}} ">
+      <view class='cai' wx:for="{{cartArray}}"   wx:key="unique"  style='padding:0 30rpx;'>
+        <image src='{{item.menu.mImage}}' class='cai_tu'></image>
+        <view class='cai_xin'>
+          <view class='cai_xin_a'>{{item.menu.mName}}</view>
+          <view class='cai_xin_b'>{{item.menu.carText}}</view>
+          <view class='cai_xin_c'>￥{{item.menu.mPrice}}</view>
+        </view>
+        <span class="car_item_operate">
+          <image src='/pages/img/jian.png' id="jianhao" data-alpha-beta="{{index}}" bindtap="cartReduce" data-id='{{item.mId}}'></image>
+          <span class="car_item_num" data-alpha-beta="{{index}}" bindtap="cartRemove">{{item.num}}</span>
+          <image src='/pages/img/jia.png' id="jiahao" data-alpha-beta="{{index}}" bindtap="cartAdd" data-id='{{item.mId}}'></image>
+        </span>
+      </view>
+    </view>
+    <view id="dingdan_item" class="{{selected2?'show':'hidden'}}">
+    <view style='padding:30rpx 0 0 30rpx'>
+        <view style='font-size:34rpx'>{{shop.bShop}}</view>
+        <view>
+          <image src='/pages/img/xing.png' id='xing'></image>
+          <image src='/pages/img/xing.png' id='xing'></image>
+          <image src='/pages/img/xing.png' id='xing'></image>
+          <image src='/pages/img/xing.png' id='xing'></image>
+          <image src='/pages/img/xing.png' id='xing'></image>
+          <text class='dafen'>5.0分</text>
+        </view>
+        <view>
+          <view class='ying_hade'><image src='/pages/img/clock_fill.png' class='clock_tu'></image>营业时间</view>
+          <view class='ying_hade_a'>{{shop.bHours}}</view>
+        </view>
+        <view>
+          <view class='ying_hade'><image src='/pages/img/coordinates.png' class='clock_tu'></image>地址</view>
+          <view class='ying_hade_a'>{{shop.bAddress}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  </view>
+  <view class='bottom'>
+    <view class='bottom_a'>共选择<text class='shumu'>{{carlen}}</text>样菜品</view>
+    <view class='bottom_b'>
+      <view class='bottom_gong'>共计<text class='yuan'>{{carMoney}}</text>元</view>
+      <view class='bottom_zhe'>折扣<text style='margin-left: 10rpx;'>0.99</text></view>
+    </view>
+   
+    <view id='jiaru' bindtap='settlement'>结算购物车</view>
+  </view>
+  <!-- 弹窗模块 -->
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modalDlg" wx:if="{{showModal}}">
+    <view class='product'>
+    <image src='/pages/img/guanbi.png' id='guanbi' bindtap='go'></image>
+      <view class='product_a'>
+        <image src='/pages/img/cai.png' class='gou_tu'></image>
+        <view style='margin-left:40rpx'>
+          <view style='font-size:30rpx;margin:20rpx 0;'>经典烧烤</view>
+          <view style='font-size:26rpx'>已选：单点</view>
+          <view style='color:#fd5854;font-size:30rpx'>
+            ¥ <text style='color:#fd5854;font-size:50rpx'>999</text>
+          </view>
+        </view>
+      </view>     
+    </view>
+   <view style='padding:30rpx;font-size:30rpx;' wx:for="{{navbar_a}}" wx:for-index="idx_a" data-idx="{{idx_a}}">
+    <view>{{item.name}}</view>
+    <view class="navbar_a">
+  <view class="navbar-item_a"  bindtap="swichNav_a" wx:for="{{item.text}}"  wx:for-item="spe">
+    <text class="navbar-text_a {{currentNavbar_a==idx_a ? 'active_a' : ''}}">{{spe}}</text>
+  </view>
+</view>
+   </view>
+   <button id='suer' bindtap='order_take'>确定</button>
+  </view>
+</view>

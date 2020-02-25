@@ -1,0 +1,97 @@
+.label-2{
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #dedede;
+  
+}
+.jishi_a{
+  display: flex;
+  align-items: center;
+}
+.label-2__icon {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50px;
+    border: 1rpx solid red;
+}
+
+.label-2__icon-checked {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 12px;
+    height: 12px;
+    background: red;
+    border-radius: 50%;
+}
+
+.label-4_text{
+    text-align: center;
+    margin-top: 15px;
+}
+#jishi{
+  width: 70rpx;
+  height: 65rpx;
+  display: inline-block;
+}
+.label-2__text{
+  font-size: 30rpx;
+}
+#right_back{
+  display: inline-block;
+  width: 35rpx;
+  height: 35rpx;
+}
+.right_back_a{
+  display: flex;
+  align-items: center;
+}
+.picker{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  height: 100rpx;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #dedede;
+}
+
+
+.tui-picker-content{
+  
+}
+.tui-picker-name{
+  display: flex;
+  align-items: center;
+}
+.tui-picker-detail{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 30rpx;
+  height:100rpx;
+  font-size:28rpx;
+  border-bottom: 1rpx solid #dedede;
+
+}
+#yuyue{
+  padding: 0;
+  margin: 0;
+  width: 90%;
+  background-color: #f79f09;
+  color: white;
+  border-radius: 7rpx;
+  display: inline-block;
+}
+.juzhong{
+  text-align: center;
+  margin-top: 40rpx;
+}

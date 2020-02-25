@@ -1,0 +1,231 @@
+<!--logs.wxml-->
+<view>
+<swiper indicator-dots="{{indicatorDots}}"
+autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#fd9827"indicator-color="#fae3e8" style="height: 350px;">
+ <block wx:for="{{imgUrls}}" wx:key="index">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image"  />
+    </swiper-item>
+  </block>
+</swiper>
+<view class='bg'>
+  <view>
+    <text style='font-size:40rpx;font-weight:bold;'>{{pname}}</text>
+  </view>
+  <view>
+    <text style='font-size:24rpx;color:#888'>{{meirongyuan_name}}</text>
+  </view>
+  <view class='jia_a'>
+    ¥ <text class='jia_a_a'>{{pprice}}</text> <text style='font-size:28rpx;margin-left:20rpx;'>¥ <text class='jia_a_b'>{{p_price_cost}}</text></text>
+  </view>
+  <view class='jia_b'>门市价：￥{{p_price_cost}}</view>
+</view>
+<view class='available'>
+  可用门店
+</view>
+<view class='avai'>
+  <view class='available_a'>
+    <view class='available_a_a'>
+        <!-- <picker bindchange="bindPickerChange" data-id="{{array[indexs].id}}" value="{{indexs}}" range="{{array}}" range-key="meirongyuan_name"> -->
+        <view class="picker">
+          已选择门店：{{meirongyuan_name}}
+          <!-- <image src='/pages/img/sort-down.png' id='xiala'></image> -->
+        </view>
+      <!-- </picker> -->
+      
+    </view>
+    <view class='available_a_b'>{{meirongyuan_address}}</view>
+    <view class='available_a_c'>
+      <image src='/pages/img/position(1).png' class='position_a'></image>
+  <text class='position_b'>距离 ：{{min}} </text>
+    </view> 
+  </view>
+  <image src='/pages/img/dianhua.png' id='phone' bindtap='tel'></image>
+</view>
+
+<view class='commodity'>
+  <view class='commodity_a'>商品详情</view>
+  <view class='commodity_b'>
+    <text>{{pname}}</text>
+    <text style='font-size:26rpx'>1份 | {{pprice}}元</text>
+  </view>
+  <view class='commodity_c'><text style='color:#888;'>产品品牌：</text>依梵妮</view>
+  <!-- <view class='commodity_c'><text style='color:#888;'>产品质量：</text>{{phanliang}}</view> -->
+  <view class='commodity_d'><text>会员价：<text style='font-size:38rpx;color:#222222;'>{{p_discount}}</text>元<text style='margin-left: 50rpx;'>优惠价：{{p_discount_price}}元</text></text></view>
+</view>
+
+<view class='wentu'>
+  <view class='wentu_hade'>图文详情</view>
+  <view  class='pdetail_produce'>
+    {{pdetail}}
+  </view>
+  <image src='{{produce_brank}}' style='width:100%;'></image>
+  <image src='' style='width:100%;'></image>
+</view>
+<view class='wentu'>
+  <view class='wentu_hade'>购买须知</view>
+  <view class='xq'>
+    <view style='font-size:25rpx;color:#888'>有效期</view>
+    <view style='margin-bottom:20rpx;'>·购买之日起180天有效</view>
+    <view style='font-size:25rpx;color:#888'>预约信息</view>
+    <view style='margin-bottom:20rpx;'>·请提前两小时预约</view>
+    <view style='font-size:25rpx;color:#888'>可用时间</view>
+    <view style='margin-bottom:20rpx;'>·9:00-22:00</view>
+    <view style='font-size:25rpx;color:#888'>到店流程</view>
+    <view style='margin-bottom:20rpx;'>·到店后将消费码提供给商户验证</view>
+  </view>
+</view>
+
+<view class='wentu'>
+  <view class='ping_hade'>
+    <image src='/pages/img/xing.png' id='xing'></image>
+    <image src='/pages/img/xing.png' id='xing'></image>
+    <image src='/pages/img/xing.png' id='xing'></image>
+    <image src='/pages/img/xing.png' id='xing'></image>
+    <image src='/pages/img/xing.png' id='xing'></image>
+    <text style='margin-left:20rpx'>评分5.0分</text>
+  </view>
+  <view class='user_ping' wx:for="{{goods_evalution}}"  wx:key="index">
+    <image src='http://yiyun.zhonyou.cn/webapp_img/yilegou2.png' class='logo_tou_a'></image>
+    <view class='user_ping_a'>
+      <text style='color:#2e6eae'>{{item.member_name}}</text>
+      <view class='dafen'>
+        <text style='margin-right:10rpx'>打分</text>
+        <image src='/pages/img/xing.png' id='xing'></image>
+        <image src='/pages/img/xing.png' id='xing'></image>
+        <image src='/pages/img/xing.png' id='xing'></image>
+        <image src='/pages/img/xing.png' id='xing'></image>
+        <image src='/pages/img/xing.png' id='xing'></image>
+      </view>
+      <view>
+        {{item.content}}
+      </view>
+      <!-- <view class='tu_center'>
+        <image src='/pages/img/bao.png' class='tu_center_a' />
+        <image src='/pages/img/bao1.png' class='tu_center_a' />
+        <image src='/pages/img/bao2.png' class='tu_center_a' />
+      </view> -->
+    </view>
+  </view>
+
+   <!-- <view class='user_ping'>
+    <image src='/pages/img/bao1.png' class='logo_tou_a'></image>
+    <view class='user_ping_a'>
+      <text style='color:#2e6eae'>黄大仙</text>
+      <view class='dafen'>
+        <text style='margin-right:10rpx'>打分</text>
+        <image src='/pages/img/xing.png' id='xing'></image>
+        <image src='/pages/img/xing.png' id='xing'></image>
+        <image src='/pages/img/xing.png' id='xing'></image>
+        <image src='/pages/img/xing.png' id='xing'></image>
+        <image src='/pages/img/xing.png' id='xing'></image>
+      </view>
+      <view>
+        这款面膜真好玩这款面膜真好玩这款面膜真好玩这款面膜真好玩这款面膜真好玩这款面膜真好玩
+      </view>
+      <view class='tu_center'>
+        <image src='/pages/img/bao.png' class='tu_center_a' />
+        <image src='/pages/img/bao1.png' class='tu_center_a' />
+        <image src='/pages/img/bao2.png' class='tu_center_a' />
+      </view>
+    </view>
+  </view> -->
+  <view id='check'>查看全部评价</view>
+</view>
+
+  <view class='wentu'>
+    <view class='wentu_more'>
+      <text>更多本店热门商品</text>
+      <image src='http://yiyun.zhonyou.cn/webapp_img/go.png'style='width:50rpx;height:45rpx;'></image>
+    </view>
+    <!-- <view class='more_one'>
+      <block wx:for="{{beauty_goods}}" wx:key="index">
+        <view class='more_a'> 
+        <navigator url="/pages/logs/logs?pid={{item.pid}}">
+          <image src='{{item.p_pic}}' class='more_a_tu'></image>
+          <view style='padding:20rpx 10rpx;'>
+            <view class='pname_text'>{{item.pname}}</view>
+              <view style='font-size:24rpx;color:#686868;' class='pdetail_text'>{{item.pdetail}}</view>
+              <view class='geng_jia'>
+                <view class='geng_shou'>
+                  ¥ <text style='font-size:38rpx;'>{{item.pprice}}</text>
+                </view>
+              <text style='font-size:24rpx;color:#686868;'>{{item.xiao}}</text>
+            </view>
+          </view>
+          </navigator>
+        </view>
+      </block>  
+    </view> -->
+  <view class='produce_list_litem'>
+    <view class='procuce_message' wx:for="{{beauty_goods}}" wx:key="unique">
+     <navigator url='/pages/logs/logs?pid={{item.pid}}'>
+      <image src='{{item.p_pic}}'></image>
+      <view class='produce_message'>
+        <view class='produce_message_name'>{{item.pname}}【爆款】</view>
+
+        <view class='produce_name'>{{item.pname}}
+          <!-- <text>已售100</text> -->
+        </view>
+        <view class='produce_price'>￥{{item.pprice}}
+          <!-- <text>¥{{item.pprice*1.2}}</text> -->
+        </view>
+      </view>
+</navigator>
+    </view>
+    
+  </view>
+
+
+  </view>
+
+<view class='bottom'>
+  <view class='bottom_tu_all'>
+    <image src='/pages/img/laugh.png' class='bottom_tu'></image>
+    <image src='/pages/img/info.png' class='bottom_tu'></image>
+    <image src='/pages/img/collection.png' class='bottom_tu'></image>
+    <text class='bottom_info'>999</text>
+  </view>
+  <image src='/pages/img/ljgm.png' id='purchase' bindtap="submit"></image>
+</view>
+</view>
+
+<!-- 弹窗模块 -->
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modalDlg" wx:if="{{showModal}}">
+    <view class='product'>
+    <image src='/pages/img/guanbi.png' id='guanbi' bindtap='go'></image>
+      <view class='product_a'>
+        <image src='{{p_pic}}' class='gou_tu'></image>
+        <view style='margin-left:40rpx'>
+          <view style='color:#fb989d;font-size:30rpx'>
+            ¥ <text style='color:#fb989d;font-size:50rpx'>{{pprice}}</text>
+          </view>
+          <view style='color:#fb989d;font-size:26rpx;margin:20rpx 0;'>库存999</view>
+          <view style='font-size:26rpx'>选择 {{produce_fenlei}}</view>
+        </view>
+      </view>     
+    </view>
+   <view style='padding:30rpx;font-size:30rpx;'>
+    <view>产品分类</view>
+    <text class='dan'>{{produce_fenlei}}</text>
+   </view>
+   <view class='product_b'>
+    <text>购买数量</text>
+    <view class="car_item_wrap" wx:for="{{carArray}}" wx:key="index" wx:if="{{item.carShow}}">
+      <span class="car_item_operate">
+        <span class="car_item_reduce car_item_btn" data-alpha-beta="{{index}}" bindtap="carReduce">-</span>
+        <span class="car_item_num" data-alpha-beta="{{index}}">{{item.carNum}}</span>
+        <span class="car_item_add car_item_btn" data-alpha-beta="{{index}}" bindtap="carAdd">+</span>
+      </span>
+    </view>
+   </view>
+   <navigator url='/pages/placeOrder/placeOrder?pid={{pid}}&num={{Num}}&beauty_id={{buauty_id}}'>
+   <button id='suer'>确定</button>
+  </navigator>
+  </view>
+     <view class="body-view">  
+        <loading hidden="{{hidden}}" bindchange="loadingChange">  
+            加载中...  
+        </loading>  
+    </view>  

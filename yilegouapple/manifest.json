@@ -1,0 +1,706 @@
+{
+    "@platforms" : [ "android", "iPhone", "iPad" ],
+    "id" : "H5CEB08CF", /*应用的标识，创建应用时自动生成，勿手动修改*/
+    "name" : "依乐购", /*应用名称，程序桌面图标名称*/
+    "version" : {
+        "name" : "1.1.2", /*应用版本名称*/
+        "code" : "83"
+    },
+    "description" : "美容服务商城", /*应用描述信息*/
+    "icons" : {
+        "72" : "icon.png"
+    },
+    "launch_path" : "index_guide.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "developer" : {
+        "name" : "", /*开发者名称*/
+        "email" : "", /*开发者邮箱地址*/
+        "url" : "http://www.dcloud.io"
+    },
+    "permissions" : {
+        "Cache" : {
+            "description" : "管理应用缓存"
+        },
+        "Console" : {
+            "description" : "跟踪调试输出日志"
+        },
+        "Contacts" : {
+            "description" : "访问系统联系人信息"
+        },
+        "Events" : {
+            "description" : "应用扩展事件"
+        },
+        "Messaging" : {
+            "description" : "访问通讯能力"
+        },
+        "Maps" : {
+            "description" : "管理地图插件"
+        },
+        "Speech" : {
+            "description" : "管理语音识别插件"
+        },
+        "Payment" : {},
+        "Share" : {},
+        "OAuth" : {}
+    },
+    "plus" : {
+        "splashscreen" : {
+            "autoclose" : true, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "waiting" : true,
+            "delay" : "3000"
+        },
+        "runmode" : "liberate", /*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+        "signature" : "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==", /*可选，保留给应用签名，暂不使用*/
+        "distribute" : {
+            "plugins" : {
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "wx15fa439c82bb716d",
+                        "appsecret" : "6e8220fc9a672457ed663f646e5ef6eb"
+                    }
+                },
+                "share" : {
+                    "weixin" : {
+                        "appid" : "wx15fa439c82bb716d",
+                        "appsecret" : "6e8220fc9a672457ed663f646e5ef6eb",
+                        "description" : "可选，微信分享"
+                    },
+                    "qq" : {
+                        "appid" : "100371282",
+                        "description" : "QQ分享"
+                    }
+                },
+                "payment" : {
+                    "weixin" : {
+                        "description" : "微信支付",
+                        "appid" : "wx15fa439c82bb716d"
+                    },
+                    "alipay" : {
+                        "description" : "阿里支付",
+                        "scheme" : ""
+                    }
+                },
+                "maps" : {
+                    "baidu" : {
+                        "appkey_ios" : "aHrY4psAATYNQ7CGGNnhN2yjwM6VG4h9",
+                        "appkey_android" : "qPicjKN2tsFS92ZvZEN6y4DrffMMZrRa"
+                    }
+                },
+                "speech" : {
+                    "ifly" : {}
+                }
+            },
+            "apple" : {
+                "appid" : "", /*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+                "mobileprovision" : "", /*iOS应用打包配置文件*/
+                "password" : "", /*iOS应用打包个人证书导入密码*/
+                "p12" : "", /*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+                "devices" : "universal", /*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+                "frameworks" : []
+            },
+            "google" : {
+                "packagename" : "", /*Android应用包名，如io.dcloud.HelloH5*/
+                "keystore" : "", /*Android应用打包使用的密钥库文件*/
+                "password" : "", /*Android应用打包使用密钥库中证书的密码*/
+                "aliasname" : "", /*Android应用打包使用密钥库中证书的别名*/
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_LOCATION_EXTRA_COMMANDS\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_MOCK_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ]
+            },
+            "orientation" : [ "portrait-primary" ], /*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+            "icons" : {
+                "ios" : {
+                    "prerendered" : true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+
+                    /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+                    "iphone" : {
+                        "normal" : "", /*iPhone普通屏幕程序图标，分辨率：57x57*/
+                        "retina" : "", /*iPhone高分屏程序图标，分辨率：114x114*/
+
+                        /*iPhone iOS7高分屏程序图标，分辨率：120x120*/
+                        "spotlight-normal" : "", /*iPhone Spotlight搜索程序图标，分辨率：29x29*/
+                        "spotlight-retina" : "", /*iPhone高分屏Spotlight搜索程序图标，分辨率：58x58*/
+
+                        /*iPhone iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+                        "settings-normal" : "", /*iPhone设置页面程序图标，分辨率：29x29*/
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png"
+                    },
+                    "ipad" : {
+                        "normal" : "", /*iPad普通屏幕程序图标，分辨率：72x72*/
+                        "retina" : "", /*iPad高分屏程序图标，分辨率：144x144*/
+
+                        /*iPad iOS7程序图标，分辨率：76x76*//*iPad iOS7高分屏程序图标，分辨率：152x152*/
+                        "spotlight-normal" : "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+                        "spotlight-retina" : "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+
+                        /*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*//*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*//*iPad设置页面程序图标，分辨率：29x29*/
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png"
+                    },
+                    "appstore" : "unpackage/res/icons/1024x1024.png"
+                },
+                "android" : {
+                    "mdpi" : "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+                    "ldpi" : "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+                    "hdpi" : "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+                    "xhdpi" : "unpackage/res/icons/96x96.png", /*720P高分屏程序图标，分辨率：96x96*/
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                }
+            },
+            "splashscreen" : {
+                "ios" : {
+                    "iphone" : {
+                        "default" : "", /*iPhone3启动图片选，分辨率：320x480*/
+                        "retina35" : "C:/Users/xin/Desktop/启动图标0108改/640x960.png", /*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+                        "retina40" : "C:/Users/xin/Desktop/启动图标0108改/640x1136.png",
+                        "iphonex" : "C:/Users/xin/Desktop/启动图标0108改/1125x2436.png",
+                        "iphonexl" : "C:/Users/xin/Desktop/启动图标0108改/2436x1125.png",
+                        "retina47" : "C:/Users/xin/Desktop/启动图标0108改/750x1334.png",
+                        "retina55" : "C:/Users/xin/Desktop/启动图标0108改/1242x2208.png",
+                        "retina55l" : "C:/Users/xin/Desktop/启动图标0108改/2208x1242.png"
+                    },
+                    "ipad" : {
+                        "portrait" : "C:/Users/xin/Desktop/启动图标0108改/768x1004.png", /*iPad竖屏启动图片，分辨率：768x1004*/
+                        "portrait-retina" : "C:/Users/xin/Desktop/启动图标0108改/1536x2008.png", /*iPad高分屏竖屏图片，分辨率：1536x2008*/
+                        "landscape" : "C:/Users/xin/Desktop/启动图标0108改/1024x748.png", /*iPad横屏启动图片，分辨率：1024x748*/
+                        "landscape-retina" : "C:/Users/xin/Desktop/启动图标0108改/2048x1496.png", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+                        "portrait7" : "C:/Users/xin/Desktop/启动图标0108改/768x1024.png", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+                        "portrait-retina7" : "C:/Users/xin/Desktop/启动图标0108改/1536x2048.png", /*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+                        "landscape7" : "C:/Users/xin/Desktop/启动图标0108改/1024x768.png", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+                        "landscape-retina7" : "C:/Users/xin/Desktop/启动图标0108改/2048x1536.png"
+                    }
+                },
+                "android" : {
+                    "mdpi" : "", /*普通屏启动图片，分辨率：240x282*/
+                    "ldpi" : "", /*大屏启动图片，分辨率：320x442*/
+                    "hdpi" : "C:/Users/xin/Desktop/启动图标0108改/480x800.png", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi" : "C:/Users/xin/Desktop/启动图标0108改/720x1280.png", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi" : "C:/Users/xin/Desktop/启动图标0108改/1080x1920.png"
+                }
+            },
+            "debug" : false
+        },
+        "adid" : "128999200406"
+    },
+    "dependencies" : {
+        "pages" : {
+            "guide.html" : {
+                "resources" : [],
+                "refer" : [ "login/login.html" ],
+                "priority" : 0
+            },
+            "index_guide.html" : {
+                "resources" : [ "js/mui.min.js" ],
+                "refer" : [ "guide.html", "tab-webview-main.html", "login/login.html" ],
+                "priority" : 0
+            },
+            "tab-webview-main.html" : {
+                "resources" : [ "index.html", "gouwuche.html" ],
+                "refer" : [ "my.html", "meirongyuan.html", "login/login.html", "fenlei.html" ],
+                "priority" : 0
+            },
+            "my.html" : {
+                "resources" : [
+                    "img/nav/daipingjia.png",
+                    "img/nav/daishouhuo.png",
+                    "img/nav/shohou.png",
+                    "css/my.css",
+                    "img/nav/daifukuan.png",
+                    "img/nav/user_logo.png",
+                    "js/my.js",
+                    "img/nav/daifahuo.png",
+                    "css/icons-extra.css"
+                ],
+                "refer" : [
+                    "my_meirongyuan.html",
+                    "yaoqing.html",
+                    "my_dingdan_shouhou.html",
+                    "shezhi.html",
+                    "shop_ruzhu_xuzhi.html",
+                    "my_dingdan.html",
+                    "shop/shop_zhuce_status.html",
+                    "my_zichan.html",
+                    "fenhong_tixian.html",
+                    "meirongshi.html",
+                    "yaoqing_fenxiang_fasong.html",
+                    "meirongshi_xuzhi.html",
+                    "shop/shop_zhuce_method.html",
+                    "my_collection.html",
+                    "yaoqing_link.html",
+                    "recharge.html"
+                ],
+                "priority" : 0
+            },
+            "gouwuche.html" : {
+                "resources" : [
+                    "css/weixin.css",
+                    "css/share.css",
+                    "css/signin.css",
+                    "css/ionic.min.css"
+                ],
+                "refer" : [ "cart_Settlement.html", "chanpin_xiangqing.html" ],
+                "priority" : 0
+            },
+            "chanpin_xiangqing.html" : {
+                "resources" : [
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520938191009745.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520937150067810.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520937602061907.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520938044030866.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520937025034798.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520937364063532.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520937898092633.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520937799065492.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520936700074716.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520938276017521.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520936555051891.jpg",
+                    "%3C%=request.getServletContext().getContextPath()%%3E/upload/image/20181026/1540520936906000807.jpg"
+                ],
+                "refer" : [
+                    "order/kedui_dingdan.html",
+                    "gouwuche.html",
+                    "goods_evalution.html",
+                    "shop/shop.html",
+                    "login/login.html"
+                ],
+                "priority" : 0
+            },
+            "index.html" : {
+                "resources" : [ "img/new_index22.png", "img/cart_index.png", "img/buy.png" ],
+                "refer" : [
+                    "chanpin_xiangqing.html",
+                    "youhaohuo.html",
+                    "bimaiqingdan.html",
+                    "pinpaitegou.html",
+                    "meizhuang.html",
+                    "sousuo.html",
+                    "fenlei.html",
+                    "barcode_scan.html",
+                    "aiguangjie.html",
+                    "rushbuy.html",
+                    "meirongyuan.html",
+                    "goods_all.html",
+                    "point_change.html",
+                    "meirongyuan_fujin.html"
+                ],
+                "priority" : 0
+            },
+            "meirongyuan.html" : {
+                "resources" : [],
+                "refer" : [ "location.html", "meirongyuan_xiangqing.html", "new_location.html" ],
+                "priority" : 0
+            },
+            "cart_Settlement.html" : {
+                "resources" : [],
+                "refer" : [ "xuanze_dizhi.html", "order/dingdan_pay.html" ],
+                "priority" : 0
+            },
+            "shop/shop.html" : {
+                "resources" : [],
+                "refer" : [ "shop/shop_chanpin_detail.html", "shop/shop_detail.html" ],
+                "priority" : 0
+            },
+            "order/kedui_dingdan.html" : {
+                "resources" : [ "img/dagou_select.png" ],
+                "refer" : [ "order/dingdan_pay.html", "xuanze_dizhi.html" ],
+                "priority" : 0
+            },
+            "meirongyuan_xiangqing.html" : {
+                "resources" : [
+                    "js/meirongyuan_shop_detail.js",
+                    "css/meirongyuan_detail.css",
+                    "js/immersed.js",
+                    "js/mui.min.js"
+                ],
+                "refer" : [
+                    "meirongyuan_detail_yuyue.html",
+                    "meirongyuan_produce_xiangqing.html",
+                    "meirongyuan_produce_show.html",
+                    "meirongyuan_produce_buy.html",
+                    "meirongyuan_produce_libao.html"
+                ],
+                "priority" : 0
+            },
+            "my_meirongyuan.html" : {
+                "resources" : [],
+                "refer" : [
+                    "my_yuyue.html",
+                    "meirongyuan_order.html",
+                    "meirongshi_xuzhi.html",
+                    "meirongshi.html"
+                ],
+                "priority" : 0
+            },
+            "my_yuyue.html" : {
+                "resources" : [],
+                "refer" : [ "my_yuyue_list.html" ],
+                "priority" : 0
+            },
+            "my_yuyue_list.html" : {
+                "resources" : [],
+                "refer" : [ "meirongshi_user_xuanze_meirongshi.html", "my_yuyue_detail.html" ],
+                "priority" : 0
+            },
+            "meirongyuan_order.html" : {
+                "resources" : [],
+                "refer" : [
+                    "meirongyuan_order_detail.html",
+                    "logistics_information.html",
+                    "evaluate_goods.html"
+                ],
+                "priority" : 0
+            },
+            "meirongyuan_produce_show.html" : {
+                "resources" : [],
+                "refer" : [ "meirongyuan_produce_detail.html" ],
+                "priority" : 0
+            },
+            "meirongyuan_produce_detail.html" : {
+                "resources" : [],
+                "refer" : [ "meirongyuan_produce_buy.html" ],
+                "priority" : 0
+            },
+            "meirongyuan_produce_buy.html" : {
+                "resources" : [],
+                "refer" : [
+                    "meirongyuan_produce_pay.html",
+                    "xuanze_dizhi.html",
+                    "meirongyuan_yuyue_pay.html"
+                ],
+                "priority" : 0
+            },
+            "sousuo.html" : {
+                "resources" : [],
+                "refer" : [ "sousuo_list.html" ],
+                "priority" : 0
+            },
+            "order/dingdan_pay.html" : {
+                "resources" : [],
+                "refer" : [ "order/pay_success.html" ],
+                "priority" : 0
+            },
+            "fenlei.html" : {
+                "resources" : [
+                    "img/yizhanshi/nannvzhuang/nz1.jpg",
+                    "img/yizhanshi/nannvzhuang/nz4.jpg",
+                    "img/yizhanshi/nannvzhuang/nz3.jpg",
+                    "img/yizhanshi/nannvzhuang/nz5.jpg",
+                    "img/yizhanshi/nannvzhuang/nz2.jpg",
+                    "img/yizhanshi/nannvzhuang/nz6.jpg",
+                    "img/red_tea.jpg",
+                    "img/green_tea.jpg",
+                    "img/tie_tea.jpg"
+                ],
+                "refer" : [ "sousuo_list.html", "sousuo_fenlei.html" ],
+                "priority" : 0
+            },
+            "yaoqing.html" : {
+                "resources" : [],
+                "refer" : [ "share.html" ],
+                "priority" : 0
+            },
+            "meirongshi_xuzhi.html" : {
+                "resources" : [],
+                "refer" : [ "meirongshi_zhuce.html" ],
+                "priority" : 0
+            },
+            "shop_ruzhu_xuzhi.html" : {
+                "resources" : [],
+                "refer" : [ "shop/shop_ruzhu.html" ],
+                "priority" : 0
+            },
+            "shezhi.html" : {
+                "resources" : [],
+                "refer" : [
+                    "manager_dizhi.html",
+                    "my_message.html",
+                    "anquan.html",
+                    "about.html",
+                    "fankui.html"
+                ],
+                "priority" : 0
+            },
+            "my_dingdan.html" : {
+                "resources" : [],
+                "refer" : [
+                    "daifukuan_dingdan_xiangqing.html",
+                    "detail_dingdan.html",
+                    "order/dingdan_pay.html",
+                    "goods_logistics_information.html",
+                    "meirongyuan_order.html",
+                    "evaluate_goods_shop.html"
+                ],
+                "priority" : 0
+            },
+            "daifukuan_dingdan_xiangqing.html" : {
+                "resources" : [],
+                "refer" : [ "order/dingdan_pay.html" ],
+                "priority" : 0
+            },
+            "detail_dingdan.html" : {
+                "resources" : [],
+                "refer" : [
+                    "goods_logistics_information.html",
+                    "evaluate_goods.html",
+                    "evaluate_goods_shop.html"
+                ],
+                "priority" : 0
+            },
+            "order/pay_success.html" : {
+                "resources" : [],
+                "refer" : [ "detail_dingdan.html" ],
+                "priority" : 0
+            },
+            "meirongyuan_produce_pay.html" : {
+                "resources" : [],
+                "refer" : [ "meirongyuan_produce_pay_success.html" ],
+                "priority" : 0
+            },
+            "my_yuyue_detail.html" : {
+                "resources" : [],
+                "refer" : [ "my_yuyue_detail_pingjia.html" ],
+                "priority" : 0
+            },
+            "shop/shop_ruzhu.html" : {
+                "resources" : [],
+                "refer" : [
+                    "pic_detail.html",
+                    "shop/pic_detail.html",
+                    "shop/shop_zhuce_status.html"
+                ],
+                "priority" : 0
+            },
+            "meirongyuan_order_detail.html" : {
+                "resources" : [],
+                "refer" : [
+                    "meirongyuan_produce_pay.html",
+                    "logistics_information.html",
+                    "evaluate_goods.html"
+                ],
+                "priority" : 0
+            },
+            "manager_dizhi.html" : {
+                "resources" : [],
+                "refer" : [ "tianjia_address.html", "manager_dizhi_update.html" ],
+                "priority" : 0
+            },
+            "meirongyuan_detail_yuyue.html" : {
+                "resources" : [],
+                "refer" : [ "meirongyuan_yuyue_pay.html" ],
+                "priority" : 0
+            },
+            "xuanze_dizhi.html" : {
+                "resources" : [],
+                "refer" : [ "tianjia_address.html", "manager_dizhi.html" ],
+                "priority" : 0
+            },
+            "login/login.html" : {
+                "resources" : [],
+                "refer" : [ "login/register.html", "login/upset_password.html" ],
+                "priority" : 0
+            },
+            "anquan.html" : {
+                "resources" : [],
+                "refer" : [
+                    "update_tel.html",
+                    "upset_idcard.html",
+                    "upset_login_password.html",
+                    "upset_pay_password.html",
+                    "updata_username.html"
+                ],
+                "priority" : 0
+            },
+            "update_tel.html" : {
+                "resources" : [],
+                "refer" : [ "anquan.html" ],
+                "priority" : 0
+            },
+            "upset_idcard.html" : {
+                "resources" : [],
+                "refer" : [ "anquan.html" ],
+                "priority" : 0
+            },
+            "upset_login_password.html" : {
+                "resources" : [],
+                "refer" : [ "anquan.html" ],
+                "priority" : 0
+            },
+            "upset_pay_password.html" : {
+                "resources" : [],
+                "refer" : [ "anquan.html" ],
+                "priority" : 0
+            },
+            "meirongyuan_yuyue_pay.html" : {
+                "resources" : [],
+                "refer" : [ "meirongyuan_yuyue_success.html" ],
+                "priority" : 0
+            },
+            "shop/shop_zhuce_status.html" : {
+                "resources" : [],
+                "refer" : [ "shop/shop_ruzhu.html" ],
+                "priority" : 0
+            },
+            "about.html" : {
+                "resources" : [],
+                "refer" : [ "fuwu_tiaokuan.html", "about_info.html" ],
+                "priority" : 0
+            },
+            "fuwu_tiaokuan.html" : {
+                "resources" : [],
+                "refer" : [ "about.html" ],
+                "priority" : 0
+            },
+            "my_zichan.html" : {
+                "resources" : [],
+                "refer" : [ "my_bankcard.html", "recharge.html" ],
+                "priority" : 0
+            },
+            "login/register.html" : {
+                "resources" : [ "/img/register1_01.jpg" ],
+                "refer" : [ "fuwu_tiaokuan.html" ],
+                "priority" : 0
+            },
+            "fenhong_tixian.html" : {
+                "resources" : [],
+                "refer" : [ "tianjia_card.html" ],
+                "priority" : 0
+            },
+            "sousuo_fenlei.html" : {
+                "resources" : [],
+                "refer" : [ "chanpin_xiangqing.html" ],
+                "priority" : 0
+            },
+            "my_message.html" : {
+                "resources" : [],
+                "refer" : [ "yaoqing.html" ],
+                "priority" : 0
+            },
+            "meirongshi.html" : {
+                "resources" : [],
+                "refer" : [
+                    "meirongshi_user_yuyue_success.html",
+                    "meirongshi_huiyuan_yuyue.html",
+                    "my_meirongyuan.html",
+                    "meirongshi_zhangdan.html"
+                ],
+                "priority" : 0
+            },
+            "my_bankcard.html" : {
+                "resources" : [],
+                "refer" : [ "tianjia_card.html" ],
+                "priority" : 0
+            },
+            "meirongyuan_produce_xiangqing.html" : {
+                "resources" : [],
+                "refer" : [
+                    "meirongyuan_detail_yuyue.html",
+                    "login/login.html",
+                    "meirongyuan_produce_buy.html"
+                ],
+                "priority" : 0
+            },
+            "meirongshi_huiyuan_yuyue.html" : {
+                "resources" : [],
+                "refer" : [ "meirongshi_huiyuan_yuyue_queren.html" ],
+                "priority" : 0
+            },
+            "yaoqing_fenxiang_fasong.html" : {
+                "resources" : [],
+                "refer" : [ "share.html" ],
+                "priority" : 0
+            },
+            "yaoqing_link.html" : {
+                "resources" : [],
+                "refer" : [ "share.html" ],
+                "priority" : 0
+            },
+            "updata_username.html" : {
+                "resources" : [],
+                "refer" : [ "anquan.html" ],
+                "priority" : 0
+            },
+            "location.html" : {
+                "resources" : [ "css/mui.indexedlist.css", "img/shuaixn.png", "js/mui.indexedlist.js" ],
+                "refer" : [],
+                "priority" : 0
+            },
+            "rushbuy.html" : {
+                "resources" : [],
+                "refer" : [ "rushby.html" ],
+                "priority" : 0
+            },
+            "rushby.html" : {
+                "resources" : [],
+                "refer" : [
+                    "order/kedui_dingdan.html",
+                    "goods_evalution.html",
+                    "gouwuche.html",
+                    "shop/shop.html"
+                ],
+                "priority" : 0
+            },
+            "my_collection.html" : {
+                "resources" : [],
+                "refer" : [ "chanpin_xiangqing.html" ],
+                "priority" : 0
+            }
+        },
+        "idle" : {
+            "resources" : [
+                "login/img/login3.jpg",
+                "login/img/login2.jpg",
+                "fonts/mui.ttf",
+                "css/mui.min.css",
+                "login/css/loginstyle.css",
+                "img/guide2.jpg",
+                "js/mui.js",
+                "css/mui.css",
+                "img/guide1.jpg",
+                "img/guide3.png"
+            ]
+        }
+    },
+    "fullscreen" : true,
+    "unpackage" : []
+}
